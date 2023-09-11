@@ -20,6 +20,10 @@ const userSchema = new Schema({
     required: false,
     type: Schema.Types.String,
   },
+  isAdmin: {
+    type: Schema.Types.Boolean,
+    default: false,
+  }
 });
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);

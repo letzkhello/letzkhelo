@@ -2,6 +2,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Navbar from '../components/Navbar'
+// import Card from "@/components/Card";
+// import SearchBar from '@/components/Search';
 import NextAuthSessionProvider from "./provider/sessionProvider";
 
 const inter = Inter({ subsets: ['latin'] })
@@ -20,6 +22,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
       <Navbar fixed={undefined} />
+      {/* <SearchBar/>
+      <Card/> */}
       <NextAuthSessionProvider>
         {children}
         </NextAuthSessionProvider>

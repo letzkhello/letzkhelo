@@ -1,9 +1,22 @@
-import React from "react";
+"use client"
+import React ,{useState} from "react";
+
 export default function SearchBar() {
+  const [searchData, setSearchData] = useState([]);
+  const [search, setSearch] = useState("");
+  const handleInputChange = (e: any) => {
+    setSearch(e.target.value);
+    const inputValue = e.target.value.toLowerCase();
+    const updatedFilter = searchData.filter((check: any) =>
+      check?.patientName.toLowerCase().includes(inputValue)
+    );
+    // setAppointments(updatedFilter);
+  };
+
   return (
     <>
       <div className="flex  w-screen  justify-center p-5">
-        <div className="w-full rounded-lg bg-gray-200 p-5 md:w-2/4">
+        <div className="w-full rounded-lg bg-gray-200 p-2 md:w-2/4">
           <div className="flex">
             <div className="flex w-10 items-center justify-center rounded-tl-lg rounded-bl-lg border-r border-gray-200 bg-white p-5">
               <svg
@@ -16,13 +29,12 @@ export default function SearchBar() {
             </div>
             <input
               type="text"
+              value={search}
+              onChange={handleInputChange}
               className="w-full bg-white pl-2 text-base font-semibold outline-0"
-              placeholder=""
+              placeholder="Enter Game "
               id=""
             />
-            <button className="bg-blue-500 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-blue-800 transition-colors">
-              Search
-            </button>
           </div>
         </div>
       </div>

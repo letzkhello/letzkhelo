@@ -16,7 +16,7 @@ export default function SearchBar() {
   return (
     <>
       <div className="flex  w-screen  justify-center p-5">
-        <div className="w-full rounded-lg bg-gray-200 p-5 md:w-2/4">
+        <div className="w-full rounded-lg bg-gray-200 p-2 md:w-2/4">
           <div className="flex">
             <div className="flex w-10 items-center justify-center rounded-tl-lg rounded-bl-lg border-r border-gray-200 bg-white p-5">
               <svg

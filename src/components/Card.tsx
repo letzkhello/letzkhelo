@@ -17,24 +17,23 @@ export default function Card() {
   };
 
   return (
-
-    <div className="p-4 w-full md:flex md:justify-evenly">
+    <div className="p-4 w-full md:flex md:justify-evenly md:flex-wrap">
       {getGame?.map((game, id) => {
         return (
           <>
-            <div className=" md:w-1/4 max-w-md  bg-white rounded-3xl shadow-xl overflow-hidden m-8" key={id}>
+            <div
+              className=" md:w-1/4 max-w-md  bg-white rounded-3xl shadow-xl overflow-hidden m-8"
+              key={id}
+            >
               <div className="max-w-md mx-auto">
-                {/* {
-                    game.image
-                } */}
                 <div className="h-[236px]">
-                  <Image
-                    src={require("./asset/Arm_Wrestler_002-1.jpg")}
+                  {/* <Image
+                    src={game.image}
                     alt="img"
                     width="300"
                     height="200"
                     className="rounded-t-lg object-cover h-[100%] w-[100%]"
-                  />
+                  /> */}
                 </div>
                 <div className="p-4 sm:p-6">
                   <p className="font-bold text-gray-700 text-[22px] leading-7 mb-1">
@@ -42,7 +41,7 @@ export default function Card() {
                   </p>
                   <div className="flex flex-row">
                     <p className="text-[17px] font-bold text-[#0FB478]">
-                     {/* location: {game?.location} */}
+                      {/* location: {game?.location} */}
                     </p>
                     <span> uttam nagar</span>
                   </div>

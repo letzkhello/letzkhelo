@@ -6,6 +6,7 @@ import { Toaster } from "react-hot-toast";
 import SearchBar from "@/components/Search";
 import Card from "@/components/Card";
 import NextAuthSessionProvider from "./provider/sessionProvider";
+import Carousel from '../components/Carousel'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,13 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar fixed={undefined} />
-
-        <SearchBar />
-
-        <Card />
-        <NextAuthSessionProvider>{children}</NextAuthSessionProvider>
-        <Toaster />
+      <Navbar fixed={undefined} />
+      <Carousel/>
+      <SearchBar/>
+      <Card/>
+      <NextAuthSessionProvider>
+        {children}
+      </NextAuthSessionProvider>
+      <Toaster/>
       </body>
     </html>
   );

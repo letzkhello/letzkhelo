@@ -2,9 +2,14 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
-
+interface Game {
+  sportName: string;
+  location: string;
+  image: string;
+}
 export default function Card() {
-  const [getGame, setGame] = useState([]);
+  // const [getGame, setGame] = useState([]);
+  const [getGame, setGame] = useState<Game[]>([]);
 
   useEffect(() => {
     getGameDetails();
@@ -27,23 +32,23 @@ export default function Card() {
             >
               <div className="max-w-md mx-auto">
                 <div className="h-[236px]">
-                  {/* <Image
+                  <Image
                     src={game.image}
                     alt="img"
                     width="300"
                     height="200"
                     className="rounded-t-lg object-cover h-[100%] w-[100%]"
-                  /> */}
+                  />
                 </div>
                 <div className="p-4 sm:p-6">
                   <p className="font-bold text-gray-700 text-[22px] leading-7 mb-1">
-                    {/* {game?.sportName} */}
+                    {game?.sportName}
                   </p>
                   <div className="flex flex-row">
                     <p className="text-[17px] font-bold text-[#0FB478]">
-                      {/* location: {game?.location} */}
+                      location: {game?.location}
                     </p>
-                    <span> uttam nagar</span>
+                    {/* <span> uttam nagar</span> */}
                   </div>
                   <button className="block mt-10 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-[#FFC933] rounded-[14px] hover:bg-[#FFC933DD] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80">
                     Register Now

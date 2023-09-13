@@ -8,11 +8,14 @@ import axios from "axios";
 const ApiTest = () => {
 
   const [allSports, setAllSports] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => {
     async function fetchAllSports() {
-        const response = await axios.get("/api/getAllSports");
-        setAllSports(response.data);
+        // const response = await axios.get("/api/getAllSports");
+        const response = await axios.get("/api/users/getAllUsers");
+        setAllUsers(response.data.data);
+        console.log(response.data.data)
     }
     fetchAllSports()
   },[])
@@ -21,8 +24,8 @@ const ApiTest = () => {
     <div>
         GetAllSports
         {
-            allSports.map((sport)=> (
-              <h1 key={1}>{sport?.sportName}</h1>
+            allUsers?.map((user)=> (
+              <h1 key={1}>{user.name}</h1>
             ))
         }
     </div>

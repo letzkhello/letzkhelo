@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import Navbar from '../components/Navbar'
 import { Toaster } from 'react-hot-toast';
 import NextAuthSessionProvider from "./provider/sessionProvider";
+import Carousel from '../components/Carousel'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,6 +21,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      <Carousel/>
+
       <Navbar fixed={undefined} />
       {/* <SearchBar/>
       <Card/> */}

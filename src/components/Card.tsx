@@ -2,10 +2,14 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import axios from "axios";
+import Link from "next/link";
+
 interface Game {
   sportName: string;
   location: string;
   image: string;
+  description: string;
+  _id: number
 }
 export default function Card() {
   // const [getGame, setGame] = useState([]);
@@ -51,7 +55,9 @@ export default function Card() {
                     {/* <span> uttam nagar</span> */}
                   </div>
                   <button className="block mt-10 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-[#FFC933] rounded-[14px] hover:bg-[#FFC933DD] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80">
+                    <Link href={`/bookCompetetion/${game._id}`}>
                     Register Now
+                    </Link>
                     <path
                       stroke="currentColor"
                       strokeLinecap="round"

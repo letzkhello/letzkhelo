@@ -32,7 +32,7 @@ export default async function Home() {
           {JSON.stringify(session)}
         </div>
       </div>
-      <SignoutButton />
+      {/* <SignoutButton /> */}
     </main>
   );
 }

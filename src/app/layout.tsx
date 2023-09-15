@@ -23,11 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <Navbar fixed={undefined} />
-      <Carousel/>
-      <SearchBar/>
-      <Card/>
       <NextAuthSessionProvider>
+
+      <Navbar fixed={undefined} />
+      {/* <Carousel/>
+      <SearchBar/>*/}
+      <Card/> 
         {children}
       </NextAuthSessionProvider>
       <Toaster/>

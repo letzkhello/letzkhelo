@@ -12,10 +12,10 @@ const competetionSchema = new mongoose.Schema({
 //     type: Schema.Types.String,
 //     required: true,
 //   },
-  date: {
-    type: Schema.Types.Date,
-    required: true,
-  },
+  // date: {
+  //   type: Schema.Types.Date,
+  //   required: true,
+  // },
   sportName: {
     type: Schema.Types.String,
     required: true,

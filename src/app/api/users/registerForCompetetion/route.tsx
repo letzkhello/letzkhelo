@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     const {
       userName,
       // userId,
-      date,
+      // date,
       sportName,
       registrationPrice,
       phoneNumber,
@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
     const bookingCompetetion = new bookForCompetetion({
       userName,
       // userId,
-      date,
+      // date,
       sportName,
       registrationPrice,
       phoneNumber,
@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
     console.log(error)
     return NextResponse.json(
       { error: "Error Booking in Competetion" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 }

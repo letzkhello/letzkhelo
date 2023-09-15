@@ -13,6 +13,7 @@ import { authOptions } from "./api/auth/[...nextauth]/options";
 import SignoutButton from "@/components/signoutButton";
 import HomeHere from "@/components/homeHere";
 import Carousel from "@/components/Carousel";
+import SearchBar from "@/components/Search";
 export default async function Home() {
   const session = await getServerSession(authOptions);
   // if (!session) {
@@ -22,7 +23,7 @@ export default async function Home() {
     <main className="h-full">
       {/* <HomeHere /> */}
       <Carousel />
-
+        <SearchBar/>
 
       <div className="container">
         {/* <Carousel /> */}

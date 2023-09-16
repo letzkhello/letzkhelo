@@ -3,10 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "../components/Navbar";
 import { Toaster } from "react-hot-toast";
-import SearchBar from "@/components/Search";
-import Card from "@/components/Card";
 import NextAuthSessionProvider from "./provider/sessionProvider";
-import Carousel from '../components/Carousel'
 import Footer from "@/components/Footer";
 
 
@@ -28,7 +25,6 @@ export default function RootLayout({
       <NextAuthSessionProvider>
 
       <Navbar fixed={undefined} />
-      {/* <SearchBar/> */}
         {children}
         <Footer/>
       </NextAuthSessionProvider>

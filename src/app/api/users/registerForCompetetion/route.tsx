@@ -52,8 +52,8 @@ export async function POST(request: NextRequest) {
       phoneNumber,
     } = reqBody;
 
-    console.log("first");
-    console.log(reqBody);
+    // console.log("first");
+    // console.log(reqBody);
 
     // You can add any necessary validations here before proceeding with the appointment creation.
 
@@ -66,13 +66,12 @@ export async function POST(request: NextRequest) {
       phoneNumber,
     });
 
-    console.log("second",bookingCompetetion);
+    // console.log("second",bookingCompetetion);
 
 
     await bookingCompetetion.save();
 
-    console.log("third");
-
+    // console.log("third");
 
     // Send the appointment confirmation email
     // await sendAppointmentConfirmationEmail(patientName, testName, email);

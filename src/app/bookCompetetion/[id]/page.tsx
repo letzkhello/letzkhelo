@@ -4,8 +4,7 @@ import React from 'react'
 const BookCompetetionDynamic = ({ params }: any) => {
 
   return (
-    <div>
-        Hello 
+    <div >
         <BookCompetetionFormDynamic params={params}/>
     </div>
   )

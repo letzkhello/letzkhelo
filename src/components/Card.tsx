@@ -54,18 +54,19 @@ export default function Card() {
                     </p>
                     {/* <span> uttam nagar</span> */}
                   </div>
+                  <Link href={`/bookCompetetion/${game._id}`}>
                   <button className="block mt-10 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-[#FFC933] rounded-[14px] hover:bg-[#FFC933DD] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80">
-                    <Link href={`/bookCompetetion/${game._id}`}>
                     Register Now
-                    </Link>
-                    <path
+                    {/* <path
                       stroke="currentColor"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth="2"
                       d="M1 5h12m0 0L9 1m4 4L9 9"
-                    />
+                    /> */}
                   </button>
+                  </Link>
+
                 </div>
               </div>
             </div>

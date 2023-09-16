@@ -7,6 +7,8 @@ import SearchBar from "@/components/Search";
 import Card from "@/components/Card";
 import NextAuthSessionProvider from "./provider/sessionProvider";
 import Carousel from '../components/Carousel'
+import Footer from "@/components/Footer";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode;  
 }) {
   return (
     <html lang="en">
@@ -26,10 +28,9 @@ export default function RootLayout({
       <NextAuthSessionProvider>
 
       <Navbar fixed={undefined} />
-      {/* <Carousel/>
-      <SearchBar/>*/}
-      <Card/> 
+      {/* <SearchBar/> */}
         {children}
+        <Footer/>
       </NextAuthSessionProvider>
       <Toaster/>
       </body>

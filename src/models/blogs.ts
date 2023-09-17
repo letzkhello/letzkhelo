@@ -26,6 +26,6 @@ const BlogSchema = new Schema<Iblog>({
 });
 
 const AddBlog: Model<Iblog> =
-  mongoose.models.AddSport || mongoose.model<Iblog>("AddBlog", BlogSchema);
+  mongoose.models.AddBlog || mongoose.model<Iblog>("AddBlog", BlogSchema);
 
 export default AddBlog;

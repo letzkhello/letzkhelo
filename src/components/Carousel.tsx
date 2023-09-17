@@ -23,21 +23,24 @@ export default function Carousel() {
   return (
     <>
       <div className="carousel w-full h-[35vh]">
-        {getGame.map((game?:any , index?:any) => {
-          console.log('hii');
+        {getGame.map((game?: any, index?: any) => {
+          console.log("hii");
           return (
             <>
-              <div id={`slide`+ index} className="carousel-item relative w-full h-full">
+              <div
+                id={`slide` + index}
+                className="carousel-item relative w-full h-full"
+              >
                 <img
                   src="https://rukminim1.flixcart.com/fk-p-flap/1600/270/image/4529fd434a85c683.jpg?q=20"
                   className="w-full "
                 />
-                
+
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                  <a href={`#slide`+ eval("index - 1")} className="btn btn-circle">
+                  <a href={`#slide${index - 1}`} className="btn btn-circle">
                     ❮
                   </a>
-                  <a href={`#slide`+ eval(index +1)} className="btn btn-circle">
+                  <a href={`#slide${index + 1}`} className="btn btn-circle">
                     ❯
                   </a>
                 </div>

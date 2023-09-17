@@ -22,7 +22,7 @@ export default function AboutUs() {
               compete, and celebrate the spirit of athleticism!
               <br />
               At Letzkhelo, we believe that sports are more than just games;
-              they're a way of life. Our platform was born out of a passion for
+              they&apos;re a way of life. Our platform was born out of a passion for
               sports and a desire to bring athletes and teams together like
               never before.
             </p>
@@ -41,7 +41,7 @@ export default function AboutUs() {
                 </h2>
                 <p className="mt-2 mb-5 text-base text-gray-500">
                   Our mission is simple: to create a vibrant and inclusive
-                  community for athletes of all levels. Whether you're a
+                  community for athletes of all levels. Whether you&apos;re a
                   seasoned pro or just starting your sporting journey, Letzkhelo
                   is the place where you can connect, compete, and grow.
                 </p>
@@ -66,8 +66,8 @@ export default function AboutUs() {
                 showdowns, Letzkhelo is where the action happens. Weekly and
                 Monthly Competitions: Join our exciting weekly and monthly
                 competitions spanning a wide range of sports. Compete for glory,
-                prizes, and the thrill of victory. Community and Support: We're
-                more than just a platform; we're a community. Connect with
+                prizes, and the thrill of victory. Community and Support: We&apos;re
+                more than just a platform; we&apos;re a community. Connect with
                 fellow athletes, share your experiences, and find support and
                 inspiration from others who share your passion.
               </p>
@@ -82,17 +82,17 @@ export default function AboutUs() {
                 Why Choose Letzkhelo?
               </h2>
               <p className="mt-2 text-base text-gray-500  mb-5">
-                assion for Sports: We're sports enthusiasts, just like you. Our
+                assion for Sports: We&apos;re sports enthusiasts, just like you. Our
                 dedication to the world of athletics drives us to provide the
                 best platform for athletes to shine. Fair Play: We value fair
                 competition and sportsmanship above all. Letzkhelo is a place
                 where everyone has a chance to succeed and enjoy sports to the
-                fullest. Innovation: We're always evolving, introducing new
+                fullest. Innovation: We&apos;re always evolving, introducing new
                 features and improvements to enhance your experience on
                 Letzkhelo. Join Letzkhelo today and embark on an exciting
-                journey through the world of sports. Whether you're looking for
+                journey through the world of sports. Whether you&apos;re looking for
                 competition, camaraderie, or a way to stay active, Letzkhelo is
-                your home for all things sports. Let's play, compete, and
+                your home for all things sports. Let&apos;s play, compete, and
                 conquer together!
               </p>
             </div>

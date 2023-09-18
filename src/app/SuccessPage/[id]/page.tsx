@@ -1,12 +1,12 @@
 import { SuccessPageComponent } from '@/components/SuccessPageComponent'
 import React from 'react'
 
-const SuccessPage = () => {
+const SuccessPageDynamic = ({ params }: any) => {
   return (
     <div>
-      <SuccessPageComponent/>
+      <SuccessPageComponent params={params}/>
     </div>
   )
 }
 
-export default SuccessPage
+export default SuccessPageDynamic

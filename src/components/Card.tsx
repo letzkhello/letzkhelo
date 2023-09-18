@@ -4,6 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
 import Loader from "@/components/Loader";
+import { Shimmer } from "./Shimmer";
 interface Game {
   sportName: string;
   location: string;
@@ -15,6 +16,9 @@ export default function Card() {
   const [getLoader, setLoader] = useState(true);
   const [getGame, setGame] = useState<Game[]>([]);
   const [getRegisterUser, setRegisterUser] = useState<Game[]>([]);
+  const [shimmer, setShimmer] = useState(true);
+
+
   useEffect(() => {
     getGameDetails();
     getUserRegisterDetails();
@@ -28,8 +32,10 @@ export default function Card() {
    
   const getGameDetails = async () => {
     setLoader(true);
+    setShimmer(true);
     const res = await axios.get("/api/getAllSports");
     setLoader(false);
+    setShimmer(false);
     console.log(res.data);
     setGame(res.data);
   }
@@ -38,10 +44,14 @@ export default function Card() {
     const count = getRegisterUser.filter((user) => user.sportName === sportName)?.length;
     return count;
   };
+  // if (getLoader == true) {
+  //   return <Loader />;
+  // } 
+  if(shimmer == true){
+    return <Shimmer/>
+  }
 
-  if (getLoader == true) {
-    return <Loader />;
-  } else {
+  else {
     return (
       <div className="p-4 w-full md:flex md:justify-evenly md:flex-wrap">
         {getGame?.map((game:any, id) => {

@@ -23,6 +23,18 @@ const userSchema = new Schema({
   isAdmin: {
     type: Schema.Types.Boolean,
     default: false,
+  },
+  age: {
+    type: Schema.Types.Number,
+    required: false,
+  },
+  weight: {
+    type: Schema.Types.Number,
+    required: false,
+  },
+  intrestedSport: {
+    type: Schema.Types.String,
+    required: false,
   }
 });
 

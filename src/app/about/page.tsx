@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 
 export default function AboutUs() {
@@ -6,7 +7,12 @@ export default function AboutUs() {
       <div className="sm:flex items-center max-w-screen-xl">
         <div className="sm:w-1/2 p-10">
           <div className="image object-center text-center">
-            <Image src="https://i.imgur.com/WbQnbas.png" alt="img" width="50" height="50"/>
+            <Image
+              src="https://i.imgur.com/WbQnbas.png"
+              alt="img"
+              width="400"
+              height="400"
+            />
           </div>
         </div>
         <div className="sm:w-1/2 p-5">
@@ -22,8 +28,8 @@ export default function AboutUs() {
               compete, and celebrate the spirit of athleticism!
               <br />
               At Letzkhelo, we believe that sports are more than just games;
-              they&apos;re a way of life. Our platform was born out of a passion for
-              sports and a desire to bring athletes and teams together like
+              they&apos;re a way of life. Our platform was born out of a passion
+              for sports and a desire to bring athletes and teams together like
               never before.
             </p>
           </div>
@@ -33,8 +39,7 @@ export default function AboutUs() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mt-12 flex">
             <div>
-              <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-              </div>
+              <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"></div>
               <div className="mt-5">
                 <h2 className="text-3xl font-extrabold text-gray-900">
                   Mission
@@ -50,8 +55,7 @@ export default function AboutUs() {
           </div>
 
           <div>
-            <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-            </div>
+            <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"></div>
             <div className="mt-5">
               <h2 className="text-3xl font-extrabold text-gray-900">
                 What we Offers
@@ -66,34 +70,32 @@ export default function AboutUs() {
                 showdowns, Letzkhelo is where the action happens. Weekly and
                 Monthly Competitions: Join our exciting weekly and monthly
                 competitions spanning a wide range of sports. Compete for glory,
-                prizes, and the thrill of victory. Community and Support: We&apos;re
-                more than just a platform; we&apos;re a community. Connect with
-                fellow athletes, share your experiences, and find support and
-                inspiration from others who share your passion.
+                prizes, and the thrill of victory. Community and Support:
+                We&apos;re more than just a platform; we&apos;re a community.
+                Connect with fellow athletes, share your experiences, and find
+                support and inspiration from others who share your passion.
               </p>
             </div>
           </div>
           <div>
-            <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-      
-            </div>
+            <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"></div>
             <div className="mt-5">
               <h2 className="text-3xl font-extrabold text-gray-900">
                 Why Choose Letzkhelo?
               </h2>
               <p className="mt-2 text-base text-gray-500  mb-5">
-                assion for Sports: We&apos;re sports enthusiasts, just like you. Our
-                dedication to the world of athletics drives us to provide the
-                best platform for athletes to shine. Fair Play: We value fair
-                competition and sportsmanship above all. Letzkhelo is a place
-                where everyone has a chance to succeed and enjoy sports to the
-                fullest. Innovation: We&apos;re always evolving, introducing new
-                features and improvements to enhance your experience on
+                assion for Sports: We&apos;re sports enthusiasts, just like you.
+                Our dedication to the world of athletics drives us to provide
+                the best platform for athletes to shine. Fair Play: We value
+                fair competition and sportsmanship above all. Letzkhelo is a
+                place where everyone has a chance to succeed and enjoy sports to
+                the fullest. Innovation: We&apos;re always evolving, introducing
+                new features and improvements to enhance your experience on
                 Letzkhelo. Join Letzkhelo today and embark on an exciting
-                journey through the world of sports. Whether you&apos;re looking for
-                competition, camaraderie, or a way to stay active, Letzkhelo is
-                your home for all things sports. Let&apos;s play, compete, and
-                conquer together!
+                journey through the world of sports. Whether you&apos;re looking
+                for competition, camaraderie, or a way to stay active, Letzkhelo
+                is your home for all things sports. Let&apos;s play, compete,
+                and conquer together!
               </p>
             </div>
           </div>

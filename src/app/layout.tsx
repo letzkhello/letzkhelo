@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from "../components/Navbar";
 import { Toaster } from "react-hot-toast";
 import NextAuthSessionProvider from "./provider/sessionProvider";
@@ -26,6 +27,7 @@ export default function RootLayout({
 
       <Navbar fixed={undefined} />
         {children}
+        <Analytics/>
         <Footer/>
       </NextAuthSessionProvider>
       <Toaster/>

@@ -11,6 +11,8 @@ export function BookCompetetionFormDynamic({ params }: any) {
   const { data: session, status } = useSession();
   const router = useRouter()
 
+  // console.log(params.id,typeof(params.id));
+
   const [loader, setLoader] = useState(false);
   const [allSports, setAllSports] = useState([]);
   console.log(session);
@@ -80,7 +82,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
         phoneNumber: "",
       });
 
-      router.push("/SuccessPage");
+      router.push(`/SuccessPage/${params.id}`);
       
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
@@ -212,4 +214,8 @@ export function BookCompetetionFormDynamic({ params }: any) {
 
 }
 
+
+function typrOf(params: any): any {
+  throw new Error("Function not implemented.");
+}
 

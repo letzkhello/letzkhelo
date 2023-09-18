@@ -1,4 +1,36 @@
-export default function Profile() {
+"use client"
+
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useSession } from "next-auth/react";
+
+
+interface User {
+  age: number;
+  email: string;
+  intrestedSport: string;
+  isAdmin: boolean;
+  name: string;
+  weight: number;
+  _id: number;
+}
+
+export default function ProfileComponent() {
+
+  const { data: session, status } = useSession()
+
+  const [allUsers, setAllUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
+
+  const getAllUsers = async () => {
+    const res = await axios.get("/api/users/getAllUsers");
+    console.log(res.data.data);
+    setAllUsers(res.data.data);
+  };
+
   return (
     <>
       <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
@@ -92,6 +124,57 @@ export default function Profile() {
                 </svg>
               </a>
             </div>
+
+          <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
+          <li className="flex flex-col items-center justify-around">
+            <p>Weight</p>
+            <div>
+              {
+                allUsers?.map((user) => {
+                  if(user.email == session?.user?.email){
+                    return(
+                      <p key={user._id}>
+                        {user.weight}
+                      </p>
+                    )
+                  }
+                })
+              }
+            </div>
+          </li>
+          <li className="flex flex-col items-center justify-between">
+            <p>Age</p>
+            <div>
+            {
+                allUsers?.map((user) => {
+                  if(user.email == session?.user?.email){
+                    return(
+                      <p key={user._id}>
+                        {user.age}
+                      </p>
+                    )
+                  }
+                })
+              }
+            </div>
+          </li>
+          <li className="flex flex-col items-center justify-around">
+            <p>Intrested Sports</p>
+            <div>
+            {
+                allUsers?.map((user) => {
+                  if(user.email == session?.user?.email){
+                    return(
+                      <p key={user._id}>
+                        {user.intrestedSport}
+                      </p>
+                    )
+                  }
+                })
+              }
+            </div>
+          </li>
+        </ul>
 
             <h2 className="text-xl font-bold mb-4">Write about yourself</h2>
             <p className="text-gray-700">

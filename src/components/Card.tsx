@@ -14,24 +14,37 @@ interface Game {
 export default function Card() {
   const [getLoader, setLoader] = useState(true);
   const [getGame, setGame] = useState<Game[]>([]);
-
+  const [getRegisterUser, setRegisterUser] = useState<Game[]>([]);
   useEffect(() => {
     getGameDetails();
+    getUserRegisterDetails();
   }, []);
 
+  const getUserRegisterDetails = async () => {
+    const res = await axios.get("/api/users/getAllRegisteredUsers");
+    console.log(res.data.data);
+    setRegisterUser(res.data.data);
+  };
+   
   const getGameDetails = async () => {
     setLoader(true);
     const res = await axios.get("/api/getAllSports");
     setLoader(false);
     console.log(res.data);
     setGame(res.data);
+  }
+
+  const countRegisteredUsers = (sportName:any) => {
+    const count = getRegisterUser.filter((user) => user.sportName === sportName)?.length;
+    return count;
   };
+
   if (getLoader == true) {
     return <Loader />;
   } else {
     return (
       <div className="p-4 w-full md:flex md:justify-evenly md:flex-wrap">
-        {getGame?.map((game, id) => {
+        {getGame?.map((game:any, id) => {
           return (
             <>
               <div
@@ -41,7 +54,7 @@ export default function Card() {
                 <div className="max-w-md mx-auto">
                   <div className="h-[236px]">
                     <Image
-                      src={game.image}
+                      src={game?.image}
                       alt="img"
                       width="300"
                       height="200"
@@ -57,8 +70,13 @@ export default function Card() {
                         location: {game?.location}
                       </p>
                     </div>
+                    <div className="flex flex-row">
+                      <p className="text-[17px] font-bold text-[#0FB478]">
+                        Registered Users: {countRegisteredUsers(game?.sportName)}
+                      </p>
+                    </div>
                     <button className="block mt-10 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-[#FFC933] rounded-[14px] hover:bg-[#FFC933DD] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80">
-                      <Link href={`/bookCompetetion/${game._id}`}>
+                      <Link href={`/bookCompetetion/${game?._id}`}>
                         Register Now
                       </Link>
                       <path

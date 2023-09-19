@@ -1,8 +1,10 @@
-
+import Profile from "../profile/page";
 
 export default function ContactUs() {
+
   return (
     <>
+      <Profile />
       <div className="mx-4 sm:mx-auto">
         <div className="container my-24 mx-auto md:px-6 ">
           <section className="mb-32">

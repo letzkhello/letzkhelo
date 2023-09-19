@@ -1,9 +1,8 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-
 
 interface User {
   age: number;
@@ -16,14 +15,39 @@ interface User {
 }
 
 export default function ProfileComponent() {
-
-  const { data: session, status } = useSession()
-
+  const { data: session, status } = useSession();
   const [allUsers, setAllUsers] = useState<User[]>([]);
+  const modalRef = useRef<HTMLDialogElement | null>(null);
+  const [formData, setFormData] = useState({
+    age: "",
+    instagramLink: "",
+  });
 
-  useEffect(() => {
-    getAllUsers();
-  }, []);
+  const handleInputChange = (e:any) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e:any) => {
+    e.preventDefault();
+    // Handle form submission (e.g., send data to server)
+    console.log(formData);
+  };
+
+  const openModal = () => {
+    if (modalRef.current) {
+      modalRef.current.showModal();
+    }
+  };
+
+  const closeModal = () => {
+    if (modalRef.current) {
+      modalRef.current.close();
+    }
+  };
 
   const getAllUsers = async () => {
     const res = await axios.get("/api/users/getAllUsers");
@@ -125,56 +149,38 @@ export default function ProfileComponent() {
               </a>
             </div>
 
-          <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
-          <li className="flex flex-col items-center justify-around">
-            <p>Weight</p>
-            <div>
-              {
-                allUsers?.map((user) => {
-                  if(user.email == session?.user?.email){
-                    return(
-                      <p key={user._id}>
-                        {user.weight}
-                      </p>
-                    )
-                  }
-                })
-              }
-            </div>
-          </li>
-          <li className="flex flex-col items-center justify-between">
-            <p>Age</p>
-            <div>
-            {
-                allUsers?.map((user) => {
-                  if(user.email == session?.user?.email){
-                    return(
-                      <p key={user._id}>
-                        {user.age}
-                      </p>
-                    )
-                  }
-                })
-              }
-            </div>
-          </li>
-          <li className="flex flex-col items-center justify-around">
-            <p>Intrested Sports</p>
-            <div>
-            {
-                allUsers?.map((user) => {
-                  if(user.email == session?.user?.email){
-                    return(
-                      <p key={user._id}>
-                        {user.intrestedSport}
-                      </p>
-                    )
-                  }
-                })
-              }
-            </div>
-          </li>
-        </ul>
+            <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
+              <li className="flex flex-col items-center justify-around">
+                <p>Weight</p>
+                <div>
+                  {allUsers?.map((user) => {
+                    if (user.email == session?.user?.email) {
+                      return <p key={user._id}>{user.weight}</p>;
+                    }
+                  })}
+                </div>
+              </li>
+              <li className="flex flex-col items-center justify-between">
+                <p>Age</p>
+                <div>
+                  {allUsers?.map((user) => {
+                    if (user.email == session?.user?.email) {
+                      return <p key={user._id}>{user.age}</p>;
+                    }
+                  })}
+                </div>
+              </li>
+              <li className="flex flex-col items-center justify-around">
+                <p>Intrested Sports</p>
+                <div>
+                  {allUsers?.map((user) => {
+                    if (user.email == session?.user?.email) {
+                      return <p key={user._id}>{user.intrestedSport}</p>;
+                    }
+                  })}
+                </div>
+              </li>
+            </ul>
 
             <h2 className="text-xl font-bold mb-4">Write about yourself</h2>
             <p className="text-gray-700">
@@ -188,6 +194,103 @@ export default function ProfileComponent() {
             </p>
           </div>
         </div>
+        {
+          <div className="py-4 mt-2 text-white flex items-center justify-around">
+            <button className="btn" onClick={openModal}>
+              Open Modal
+            </button>
+            <dialog id="my_modal_1" className="modal" ref={modalRef}>
+              <div className="modal-box">
+                <form onSubmit={handleSubmit}>
+                  <div className="md:w-1/3">
+                    <label
+                      className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                      htmlFor="age"
+                    >
+                      Age:
+                    </label>
+                    <input
+                      type="number"
+                      name="age"
+                      id="age"
+                      value={formData.age}
+                      onChange={handleInputChange}
+                    ></input>
+                  </div>
+
+                  <div>
+                    <label
+                      className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                      htmlFor="instagramLink"
+                    >
+                      Instagram Link:
+                    </label>
+                    <input
+                      type="text"
+                      id="instagramLink"
+                      name="instagramLink"
+                      value={formData.instagramLink}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div>
+                    <label
+                      className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                      htmlFor="weight"
+                    >
+                      Weight:
+                    </label>
+                    <select
+                      name="weight"
+                      id="weight"
+                      onChange={handleInputChange}
+                    >
+                      <option value="40-45">40-45</option>
+                      <option value="45-50">45-50</option>
+                      <option value="50-55">50-55</option>
+                      <option value="55-60">50-55</option>
+                      <option value="60-65">50-55</option>
+                      <option value="65-70">50-55</option>
+                      <option value="70-75">50-55</option>
+                      <option value="75-80">50-55</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                      htmlFor="interestedSport"
+                    >
+                      Interested Sport:
+                    </label>
+                    <select
+                      name="interestedSport"
+                      id="interestedSport"
+                      onChange={handleInputChange}
+                    >
+                      <option value="Cricket">Cricket</option>
+                      <option value="Khokho">Khokho</option>
+                      <option value="Kabadi">Kabadi</option>
+                      <option value="Panga">Panga</option>
+                    </select>
+                  </div>
+                  <button
+                    type="submit"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+                  >
+                    Button
+                  </button>
+                </form>
+                <div className="modal-action">
+                  <form method="dialog">
+                    <button className="btn" onClick={closeModal}>
+                      Close
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
+          </div>
+        }
       </div>
     </>
   );

@@ -7,7 +7,9 @@ interface ISport extends Document {
   image: string;
   description?: string;
   location?: string;
+  date?: Date;
   isFeatured: boolean;
+  isOpen: boolean;
 }
 
 const SportSchema = new Schema<ISport>({
@@ -25,11 +27,20 @@ const SportSchema = new Schema<ISport>({
   },
   location: {
     type: Schema.Types.String,
-    required: false,
+    required: true,
+  },
+  date: {
+    type: Schema.Types.Date,
+    required: true,
   },
   isFeatured: {
     type: Schema.Types.Boolean,
     default: false,
+  },
+  isOpen: {
+    type: Schema.Types.Boolean,
+    default: false,
+    required: false,
   },
 });
 

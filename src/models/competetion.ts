@@ -33,6 +33,14 @@ const competetionSchema = new mongoose.Schema({
     type: Schema.Types.Boolean,
     default: false,
   },
+  age: {
+    type: Schema.Types.Number,
+    required: true,
+  },
+  weight: {
+    type: Schema.Types.String,
+    required: true,
+  },
 });
 
 export const bookForCompetetion =

@@ -10,7 +10,7 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { sportName, description, image, location  } =
+    const { sportName, description, image, location, date  } =
       reqBody;
 
     // You can add any necessary validations here before proceeding with the Sport creation.
@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
         description,
         image,
         location,
+        date,
     });
 
     await AllSport.save();
@@ -29,6 +30,7 @@ export async function POST(request: NextRequest) {
       success: true,
     });
   } catch (error: any) {
+    console.log(error)
     return NextResponse.json(
       { error: "Error adding in Sport" },
       { status: 400 }

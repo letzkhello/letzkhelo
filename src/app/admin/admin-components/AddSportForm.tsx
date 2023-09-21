@@ -12,6 +12,7 @@ import BeatLoader from "react-spinners/BeatLoader";
     description: "",
     image: "",
     location: "",
+    date:"",
   });
   const [loader, setLoader] = useState(false);
 
@@ -34,6 +35,7 @@ import BeatLoader from "react-spinners/BeatLoader";
         description: "",
         image: "",
         location: "",
+        date:"",
       });
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
@@ -103,25 +105,44 @@ import BeatLoader from "react-spinners/BeatLoader";
               required
               className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
             />
+
+
+          </div>
+          <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+            <label
+              htmlFor="date"
+              className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+            >
+              Date of Competetion:
+            </label>
+            <input
+              id="date"
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              required
+              className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
+            />
           </div>
 
-          {/* <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+          <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
             <label
-              htmlFor="sport-loaction"
+              htmlFor="loaction"
               className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
             >
               Sport location:
             </label>
             <input
-              id="sport-loaction"
+              id="location"
               type="text"
-              name="sportLocation"
+              name="location"
               value={formData.location}
               onChange={handleChange}
               required
               className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
             />
-          </div> */}
+          </div>
 
       
 

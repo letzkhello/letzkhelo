@@ -29,13 +29,17 @@ const userSchema = new Schema({
     required: false,
   },
   weight: {
-    type: Schema.Types.Number,
+    type: Schema.Types.String,
     required: false,
   },
   intrestedSport: {
     type: Schema.Types.String,
     required: false,
-  }
+  },
+  instagramLink: {
+    type: Schema.Types.String,
+    required: false,
+    }
 });
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);

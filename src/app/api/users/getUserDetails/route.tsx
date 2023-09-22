@@ -24,6 +24,7 @@ const {
   age,
   weight,
   intrestedSport,
+  instagramLink,
 } = reqBody;
 
 //   const { email } = await request.json();
@@ -43,6 +44,8 @@ const {
     user.age = age;
     user.weight = weight; 
     user.intrestedSport = intrestedSport; 
+    user.instagramLink = instagramLink; 
+
     await user.save();
 
     return NextResponse.json(
@@ -50,9 +53,10 @@ const {
       { status: 200 }
     );
   } catch (error: any) {
+    console.log(error)
     return NextResponse.json(
       { message: "Something went wrong" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

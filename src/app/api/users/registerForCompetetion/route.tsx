@@ -18,7 +18,7 @@ async function sendAppointmentConfirmationEmail(patientName: any,testName:any,em
     debug: true,
     auth: {
       user: "letzkhello@gmail.com",
-      pass: "LetzKhelo@2415",
+      pass: "xlrk kauh tqfu bxkw",
     },
     tls: {
       rejectUnauthorized: true,
@@ -28,8 +28,12 @@ async function sendAppointmentConfirmationEmail(patientName: any,testName:any,em
   const mailOptions = {
     from: "letzkhello@gmail.com",
     to: useremail,
-    subject: "Appointment Confirmation",
-    text: `Dear ${patientName},\n\nYour appointment for ${testName} has been successfully booked. Thank you for choosing us.\n\nBest regards,\nThe Appointment Team`,
+    subject: `${testName} Sports Competition Registration Confirmation`,
+    text: `Dear ${patientName},\n\nCongratulations! Your registration for the LetzKhelo Sports Competition has been successfully confirmed. We're excited to have you on board.\n\nEvent Details:
+    - Event Name: ${testName}
+   
+    Please make sure to arrive at least 30 minutes before the event starts. If you have any questions or need further assistance, feel free to contact us at [contact 8851840604].\n\nBest of luck, and may the best athlete win!\n\nBest regards,\nThe LetzKhelo Team`,
+  
   };
 
   try {
@@ -46,6 +50,7 @@ export async function POST(request: NextRequest) {
     const {
       userName,
       // userId,
+      userEmail,
       // date,
       sportName,
       registrationPrice,
@@ -78,7 +83,7 @@ export async function POST(request: NextRequest) {
     // console.log("third");
 
     // Send the appointment confirmation email
-    await sendAppointmentConfirmationEmail(userName, sportName, "negsanshuman14@gmail.com");
+    await sendAppointmentConfirmationEmail(userName, sportName, userEmail);
 
     return NextResponse.json({
       message: "Competetion Book successfully",

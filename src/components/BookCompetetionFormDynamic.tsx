@@ -66,6 +66,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
       const updatedFormData = {
         ...formData,
         userName: session?.user?.name,
+        userEmail:session?.user?.email,
         sportName: sport?.sportName,
         registrationPrice: 0,
       };

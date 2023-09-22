@@ -39,6 +39,7 @@ const competetionSchema = new mongoose.Schema({
   },
   weight: {
     type: Schema.Types.String,
+    default:'55-60',
     required: true,
   },
 });

@@ -4,6 +4,9 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
+import Image from 'next/image'
+import img from "@/../public/avatar.png";
+
 
 interface User {
   age: number;
@@ -20,6 +23,7 @@ export default function ProfileComponent() {
   const { data: session, status } = useSession();
   const [allUsers, setAllUsers] = useState<User[]>([]);
   const modalRef = useRef<HTMLDialogElement | null>(null);
+
   const [formData, setFormData] = useState({
     age: "",
     instagramLink: "",
@@ -31,6 +35,7 @@ export default function ProfileComponent() {
   useEffect(() => {
     getAllUsers();
   }, []);
+
 
   const getAllUsers = async () => {
     const res = await axios.get("/api/users/getAllUsers");
@@ -113,28 +118,35 @@ export default function ProfileComponent() {
                 />
               </div>
               <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
-                <img
+                {/* <img
                   className="object-cover object-center h-32"
                   src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
                   alt="Woman looking front"
-                />
+                /> */}
+                <Image 
+                 src={session?.user?.image || img}
+                 height="120"
+                 width="128"
+                 className="object-cover object-center h-32"
+                 alt="Woman looking front"
+               />
               </div>
               <div className="text-center mt-2">
-                <h2 className="font-semibold">Sarah Smith</h2>
-                <p className="text-gray-500">Freelance Web Designer</p>
+                <h2 className="font-semibold">{session?.user?.name}</h2>
+                {/* <p className="text-gray-500">Freelance Web Designer</p> */}
               </div>
               <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
                 <li className="flex flex-col items-center justify-around">
                   <p>contest</p>
-                  <div>2k</div>
+                  <div>0</div>
                 </li>
                 <li className="flex flex-col items-center justify-between">
                   <p>Win</p>
-                  <div>10</div>
+                  <div>0</div>
                 </li>
                 <li className="flex flex-col items-center justify-around">
                   <p>Loss</p>
-                  <div>15</div>
+                  <div>0</div>
                 </li>
               </ul>
               <div className="col-span-4 sm:col-span-9">
@@ -232,89 +244,8 @@ export default function ProfileComponent() {
                   </button>
                   <dialog id="my_modal_1" className="modal" ref={modalRef}>
                     <div className="modal-box">
-                      {/* <form onSubmit={(e) => handleSubmit(e, user)}>
-                        <div className="md:w-1/3">
-                          <label
-                            className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                            htmlFor="age"
-                          >
-                            Age:
-                          </label>
-                          <input
-                            type="number"
-                            name="age"
-                            id="age"
-                            value={formData.age}
-                            onChange={handleInputChange}
-                          ></input>
-                        </div>
 
-                        <div>
-                          <label
-                            className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                            htmlFor="instagramLink"
-                          >
-                            Instagram Link:
-                          </label>
-                          <input
-                            type="text"
-                            id="instagramLink"
-                            name="instagramLink"
-                            value={formData.instagramLink}
-                            onChange={handleInputChange}
-                          />
-                        </div>
-                        <div>
-                          <label
-                            className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                            htmlFor="weight"
-                          >
-                            Weight:
-                          </label>
-                          <select
-                            name="weight"
-                            id="weight"
-                            value={formData.weight}
-                            onChange={handleInputChange}
-                          >
-                            <option value="40-45">40-45</option>
-                            <option value="45-50">45-50</option>
-                            <option value="50-55">50-55</option>
-                            <option value="55-60">50-55</option>
-                            <option value="60-65">50-55</option>
-                            <option value="65-70">50-55</option>
-                            <option value="70-75">50-55</option>
-                            <option value="75-80">50-55</option>
-                          </select>
-                        </div>
-                        <div>
-                          <label
-                            className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                            htmlFor="interestedSport"
-                          >
-                            Interested Sport:
-                          </label>
-                          <select
-                            name="interestedSport"
-                            id="interestedSport"
-                            value={formData.intrestedSport}
-                            onChange={handleInputChange}
-                          >
-                            <option value="Cricket">Cricket</option>
-                            <option value="Khokho">Khokho</option>
-                            <option value="Kabadi">Kabadi</option>
-                            <option value="Panga">Panga</option>
-                          </select>
-                        </div>
-                        <button
-                          type="submit"
-                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
-                        >
-                          Button
-                        </button>
-                      </form> */}
-
-                      {/* <form className="w-full max-w-sm">
+                      <form className="w-full max-w-sm" onSubmit={(e) => handleSubmit(e, user)}>
                         <div className="md:flex md:items-center mb-6">
                           <div className="md:w-1/3">
                             <label
@@ -352,7 +283,6 @@ export default function ProfileComponent() {
                               name="instagramLink"
                               value={formData.instagramLink}
                               onChange={handleInputChange}
-                              
                             ></input>
                           </div>
                         </div>
@@ -366,18 +296,52 @@ export default function ProfileComponent() {
                             </label>
                           </div>
                           <div className="md:w-2/3">
-                            <input
-                              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                              type="text"
-                              id="instagramLink"
-                              name="instagramLink"
-                              value={formData.instagramLink}
+                            <select
+                              id="weight"
+                              name="weight"
                               onChange={handleInputChange}
-                              
-                            ></input>
+                              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                            >
+                              <option value="50-55" selected>50-55</option>
+                              <option value="55-60">55-60</option>
+                              <option value="60-65">60-65</option>
+                              <option value="65-70">65-70</option>
+                              <option value="70-75">70-75</option>
+                            </select>
                           </div>
                         </div>
-                      </form> */}
+                        <div className="md:flex md:items-center mb-6">
+                          <div className="md:w-1/3">
+                            <label
+                              className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                              htmlFor="intrestedSport"
+                            >
+                              Interested Sport:
+                            </label>
+                          </div>
+                          <div className="md:w-2/3">
+                            <select
+                              name="intrestedSport"
+                              id="intrestedSport"
+                              onChange={handleInputChange}
+                              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                              defaultValue="Cricket" 
+                            >
+                              <option value="Cricket">Cricket</option>
+                              <option value="Khokho">Khokho</option>
+                              <option value="Kabadi">Kabadi</option>
+                              <option value="Panga">Panga</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <button
+                          type="submit"
+                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded "
+                        >
+                          Add
+                        </button>
+                      </form>
                       <div className="modal-action">
                         <form method="dialog">
                           <button className="btn" onClick={closeModal}>

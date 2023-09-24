@@ -240,7 +240,7 @@ export default function ProfileComponent() {
               {
                 <div className="py-4 mt-2 text-white flex items-center justify-around">
                   <button className="btn" onClick={openModal}>
-                    Open Modal
+                    Add Details
                   </button>
                   <dialog id="my_modal_1" className="modal" ref={modalRef}>
                     <div className="modal-box">

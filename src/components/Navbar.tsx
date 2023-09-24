@@ -127,8 +127,20 @@ export default function Navbar({ fixed }: any) {
                 <a href="/about">About</a>
               </li>
               <li className="border-b border-gray-400 my-8 uppercase">
-                <a href="/portfolio">Portfolio</a>
+                <a href="/allUsers">All Members</a>
               </li>
+              
+              <li className="border-b border-gray-400 my-8 uppercase">
+                <a href="/profile">Profile</a>
+              </li>
+              
+              <li className="border-b border-gray-400 my-8 uppercase">
+                <a href="/createTeam">Create Team</a>
+              </li>
+              <li className="border-b border-gray-400 my-8 uppercase">
+                <a href="/allTeam">All Teams</a>
+              </li>
+
               <li className="border-b border-gray-400 my-8 uppercase">
                 <a href="/contact">Contact</a>
               </li>

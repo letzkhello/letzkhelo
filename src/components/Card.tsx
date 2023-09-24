@@ -18,7 +18,6 @@ export default function Card() {
   const [getRegisterUser, setRegisterUser] = useState<Game[]>([]);
   const [shimmer, setShimmer] = useState(true);
 
-
   useEffect(() => {
     getGameDetails();
     getUserRegisterDetails();
@@ -29,7 +28,7 @@ export default function Card() {
     console.log(res.data.data);
     setRegisterUser(res.data.data);
   };
-   
+
   const getGameDetails = async () => {
     setLoader(true);
     setShimmer(true);
@@ -38,26 +37,31 @@ export default function Card() {
     setShimmer(false);
     console.log(res.data);
     setGame(res.data);
-  }
+  };
 
-  const countRegisteredUsers = (sportName:any) => {
-    const count = getRegisterUser.filter((user) => user.sportName === sportName)?.length;
+  const countRegisteredUsers = (sportName: any) => {
+    const count = getRegisterUser.filter(
+      (user) => user.sportName === sportName
+    )?.length;
     return count;
   };
   // if (getLoader == true) {
   //   return <Loader />;
-  // } 
-  if(shimmer == true){
-    return <Shimmer/>
-  }
-
-  else {
+  // }
+  if (shimmer == true) {
+    return <Shimmer />;
+  } else {
     return (
-      <div className="p-4 w-full md:flex md:justify-evenly md:flex-wrap">
-        {getGame?.map((game:any, id) => {
-          return (
-            <>
-              <div
+      <>
+          <div className="flex justify-center items-center my-6 ">
+          <h1 className="md:text-4xl text-2xl border-b-2 border-sky-500 font-serif">LetzKhelo Competetions</h1>
+       </div>
+        
+        <div className="p-4 w-full md:flex md:justify-evenly md:flex-wrap">
+          {getGame?.map((game: any, id) => {
+            return (
+              <>
+                {/* <div
                 className=" md:w-1/4 max-w-md  bg-white rounded-3xl shadow-xl overflow-hidden m-8"
                 key={id}
               >
@@ -99,11 +103,36 @@ export default function Card() {
                     </button>
                   </div>
                 </div>
-              </div>
-            </>
-          );
-        })}
-      </div>
+              </div> */}
+                <div className="card w-80 p-2 glass">
+                  <figure>
+                    <Image
+                      src={game?.image}
+                      alt="img"
+                      width="300"
+                      height="200"
+                      className="rounded-t-lg object-cover h-[100%] w-[100%]"
+                    />
+                  </figure>
+                  <div className="card-body">
+                    <h2 className="card-title">{game?.sportName}</h2>
+                    <p>location: {game?.location}</p>
+                    <p>Participants: {countRegisteredUsers(game?.sportName)}</p>
+                    <div className="card-actions justify-end">
+                      <button className="btn btn-primary">
+                        {" "}
+                        <Link href={`/bookCompetetion/${game?._id}`}>
+                          Register Now
+                        </Link>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </>
+            );
+          })}
+        </div>
+      </>
     );
   }
 }

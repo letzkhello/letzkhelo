@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import Loader from "./Loader";
 import React, { useEffect, useState } from "react";
 interface User {
   name: string;
@@ -11,10 +12,13 @@ interface User {
 }
 export default function AllUserCard() {
   const [users, setUsers] = useState<User[]>([]);
+  const [getLoader, setLoader] = useState(true);
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoader(true);
         const response = await axios.get("/api/users/getAllUsers");
+        setLoader(false);
         console.log(response?.data?.data);
         setUsers(response?.data?.data);
       } catch (error) {
@@ -24,6 +28,11 @@ export default function AllUserCard() {
 
     fetchData();
   }, []);
+
+
+  if (getLoader) {
+    return <Loader />;
+  } else {
   return (
     <>
       <h1 className="text-center font-bold text-5xl m-5">All SportsMen</h1>
@@ -64,4 +73,7 @@ export default function AllUserCard() {
       </div>
     </>
   );
+
+  }
+
 }

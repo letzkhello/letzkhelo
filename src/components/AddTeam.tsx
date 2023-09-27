@@ -6,23 +6,38 @@ import BeatLoader from "react-spinners/BeatLoader";
 
 export default function AddTeam() {
   const [loader, setLoader] = useState(false);
+  const [phoneNumberError, setPhoneNumberError] = useState("");
   const [formData, setFormData] = useState({
     teamName: "",
     captainName: "",
     noOfPlayers: "",
     location: "",
-    instagramId:"",
+    instagramId: "",
     phoneNumber: "",
   });
-  
+
   const handleChange = (e: { target: { name: any; value: any } }) => {
+    if (e.target.name === "phoneNumber") {
+      const phoneNumber = e.target.value;
+      setFormData({
+        ...formData,
+        [e.target.name]: phoneNumber,
+      });
+
+      if (phoneNumber.length !== 10) {
+        setPhoneNumberError("Please enter a 10-digit phone number");
+      } else {
+        setPhoneNumberError("");
+      }
+    }
+
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
       setLoader(true);
@@ -34,7 +49,7 @@ export default function AddTeam() {
         captainName: "",
         location: "",
         noOfPlayers: "",
-        instagramId:"",
+        instagramId: "",
         phoneNumber: "",
       });
     } catch (error) {
@@ -42,6 +57,14 @@ export default function AddTeam() {
       setLoader(false);
     }
   };
+  const isFormNotValid =
+    formData.teamName.trim() === "" ||
+    formData.captainName.trim() === "" ||
+    formData.location.trim() === "" ||
+    formData.noOfPlayers.trim() === "" ||
+    formData.instagramId.trim() === "" ||
+    phoneNumberError;
+
   return (
     <>
       <div className="w-full lg:bg-[#090c31] flex justify-center items-center lg:h-[140vh]">
@@ -71,7 +94,11 @@ export default function AddTeam() {
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
-
+            {formData.teamName.trim() === "" && (
+              <p className="mt-2 text-sm text-red-500">
+               Enter Team name
+              </p>
+            )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
               <label
                 htmlFor="captainName"
@@ -89,7 +116,11 @@ export default function AddTeam() {
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
-
+            {formData.captainName.trim() === "" && (
+              <p className="mt-2 text-sm text-red-500">
+              Enter captain name
+              </p>
+            )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
               <label
                 htmlFor="game-type"
@@ -107,7 +138,11 @@ export default function AddTeam() {
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
-
+            {formData.location.trim() === "" && (
+              <p className="mt-2 text-sm text-red-500">
+               Enter location name
+              </p>
+            )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
               <label
                 htmlFor="registration-price"
@@ -125,12 +160,17 @@ export default function AddTeam() {
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
+            {formData.noOfPlayers.trim() === "" && (
+              <p className="mt-2 text-sm text-red-500">
+                Enter number of player 
+              </p>
+            )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
               <label
                 htmlFor="instagramId"
                 className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
               >
-            captain Instagram:
+                captain Instagram:
               </label>
               <input
                 id="instagramId"
@@ -142,7 +182,11 @@ export default function AddTeam() {
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
-
+            {formData.instagramId.trim() === "" && (
+              <p className="mt-2 text-sm text-red-500">
+                Enter patient name
+              </p>
+            )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
               <label
                 htmlFor="number"
@@ -160,11 +204,18 @@ export default function AddTeam() {
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
-
+            {formData?.phoneNumber.length !== 10 && (
+              <p className="mt-2 text-sm text-red-500">{phoneNumberError}</p>
+            )}
+            {formData?.phoneNumber.length === 0 && (
+              <p className="mt-2 text-sm text-red-500">
+              Enter phone number
+              </p>
+            )}
             <button
               type="submit"
               className="mx-0 my-12 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
-              disabled={loader ? true : false}
+              disabled={isFormNotValid || loader ? true : false}
             >
               {loader ? (
                 <div className="flex justify-evenly items-center">

@@ -54,8 +54,8 @@ export default function Card() {
     return (
       <>
         <div className="flex justify-center items-center my-6 ">
-          <h1 className="md:text-4xl text-2xl border-b-2 border-sky-500 font-serif">
-            LetzKhelo Competetions
+          <h1 className="md:text-4xl text-2xl border-b-2 border-sky-500 font-serif font-bold">
+             LETZKHELO COMPETETIONS
           </h1>
         </div>
 

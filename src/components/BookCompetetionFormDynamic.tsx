@@ -15,6 +15,8 @@ export function BookCompetetionFormDynamic({ params }: any) {
 
   const [loader, setLoader] = useState(false);
   const [allSports, setAllSports] = useState([]);
+  const [phoneNumberError, setPhoneNumberError] = useState("");
+
   console.log(session);
   console.log(session?.user);
 
@@ -49,6 +51,19 @@ export function BookCompetetionFormDynamic({ params }: any) {
   // getUserID(user)
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
+    if (e.target.name === "phoneNumber") {
+      const phoneNumber = e.target.value;
+      setFormData({
+        ...formData,
+        [e.target.name]: phoneNumber,
+      });
+
+      if (phoneNumber.length !== 10) {
+        setPhoneNumberError("Please enter a 10-digit phone number");
+      } else {
+        setPhoneNumberError("");
+      }
+    }
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -66,13 +81,13 @@ export function BookCompetetionFormDynamic({ params }: any) {
       const updatedFormData = {
         ...formData,
         userName: session?.user?.name,
-        userEmail:session?.user?.email,
+        userEmail: session?.user?.email,
         sportName: sport?.sportName,
         registrationPrice: 0,
       };
 
-        console.log(updatedFormData,"data");
-      
+      console.log(updatedFormData, "data");
+
       await axios.post("/api/users/registerForCompetetion", updatedFormData);
       setLoader(false);
 
@@ -96,6 +111,11 @@ export function BookCompetetionFormDynamic({ params }: any) {
       // alert("Something went wrong. Please try again.");
     }
   };
+
+  const isFormNotValid =
+    formData.age.trim() === "" ||
+    formData.weight.trim() === "" ||
+    phoneNumberError;
 
   if (loader) {
     return <Loader />;
@@ -185,7 +205,11 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
                         />
                       </div>
-
+                      {formData.age.trim() === "" && (
+                        <p className="mt-2 text-sm text-red-500">
+                          Enter Age name
+                        </p>
+                      )}
                       <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
                         <label
                           htmlFor="weight"
@@ -206,7 +230,11 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           <option value="70-75">70-75</option>
                         </select>
                       </div>
-
+                      {formData.weight.trim() === "" && (
+                        <p className="mt-2 text-sm text-red-500">
+                          Select weight
+                        </p>
+                      )}
                       <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
                         <label
                           htmlFor="number"
@@ -223,11 +251,20 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
                         />
                       </div>
-
+                      {formData?.phoneNumber.length !== 10 && (
+                        <p className="mt-2 text-sm text-red-500">
+                          {phoneNumberError}
+                        </p>
+                      )}
+                      {formData?.phoneNumber.length === 0 && (
+                        <p className="mt-2 text-sm text-red-500">
+                          Enter phone number
+                        </p>
+                      )}
                       <button
                         type="submit"
                         className="mx-0 my-12 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
-                        disabled={loader ? true : false}
+                        disabled={isFormNotValid ||loader ? true : false}
                       >
                         {loader ? (
                           <div className="flex justify-evenly items-center">

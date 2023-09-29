@@ -39,13 +39,11 @@ function GetAllBlog() {
                     <time dateTime="2022-04-05">April 5, 2022</time>
                   </p>
                 </div>
-
                 <img
                   src={blog?.image}
                   alt="Featured image"
                   className="w-full h-auto mb-8"
                 />
-
                 <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto">
                   {blog?.description}
                 </div>

@@ -27,7 +27,7 @@ export default function Footer() {
           <Link href={'/about'}  className="link link-hover">About us</Link>
           <Link href={'/contact'} className="link link-hover">Contact</Link>
           <Link href={'/ourTeam'} className="link link-hover">Team</Link>
-          <Link href={'/'} className="link link-hover">Press kit</Link>
+          <Link href={'/blog'} className="link link-hover">Blogs Page</Link>
         </nav>
         <nav>
           <header className="footer-title">Legal</header>

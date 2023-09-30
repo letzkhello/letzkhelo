@@ -10,12 +10,14 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { title, description, image,   } =
+    const { title, description, image, author,date  } =
       reqBody;
 
 
     const allBlogs = new AddBlog({
         title,
+        author,
+        date,
         description,
         image,
     });

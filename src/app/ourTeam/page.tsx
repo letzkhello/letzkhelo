@@ -45,7 +45,7 @@ export default function Team() {
               />
               <div>
                 <h4 className="text-2xl">Rishabh Jha</h4>
-                <span className="block text-sm text-gray-500">CTO-Founder</span>
+                <span className="block text-sm text-gray-500">Founder(Chief Technology Officer)</span>
               </div>
             </div>
 

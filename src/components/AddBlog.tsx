@@ -6,6 +6,8 @@ export default function AddBlog() {
     title: "",
     image: "",
     description: "",
+    author:"",
+    date:"",
   });
 
   const blogDetailsEdit = (e: { target: { name: any; value: any } }) => {
@@ -18,17 +20,23 @@ export default function AddBlog() {
     e.preventDefault();
     try {
       await axios.post("/api/addBlog", blogDetails);
-      toast.success("Profile is Successfully Edited");
+      toast.success("blog add Successfully");
       setBlogDetails({
         title: "",
         image: "",
         description: "",
+        author:"",
+        date:"",
       });
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
       console.log(error);
     }
   };
+
+
+  const currentDate = new Date();
+  console.log(`${currentDate.getDate()} ${currentDate.getMonth()} ${currentDate.getFullYear()}`)
   return (
     <div className="bg-white border-4 rounded-lg shadow relative m-10">
       <div className="flex items-start justify-between p-5 border-b rounded-t">
@@ -68,6 +76,38 @@ export default function AddBlog() {
                 onChange={blogDetailsEdit}
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                 placeholder="Image"
+              />
+            </div>
+            <div className="col-span-6 sm:col-span-3">
+              <label
+                htmlFor="author"
+                className="text-sm font-medium text-gray-900 block mb-2"
+              >
+               Author
+              </label>
+              <input
+                type="text"
+                name="author"
+                value={blogDetails.author}
+                onChange={blogDetailsEdit}
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                placeholder="Author Name"
+              />
+            </div>
+            <div className="col-span-6 sm:col-span-3">
+              <label
+                htmlFor="date"
+                className="text-sm font-medium text-gray-900 block mb-2"
+              >
+               Post Date
+              </label>
+              <input
+                type="text"
+                name="date"
+                value={blogDetails.date}
+                onChange={blogDetailsEdit}
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                placeholder="Date"
               />
             </div>
             <div className="col-span-full">

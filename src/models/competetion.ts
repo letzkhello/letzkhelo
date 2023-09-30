@@ -8,14 +8,14 @@ const competetionSchema = new mongoose.Schema({
     type: Schema.Types.String,
     required: true,
   },
-//   userId: {
-//     type: Schema.Types.String,
-//     required: true,
-//   },
-  // date: {
-  //   type: Schema.Types.Date,
-  //   required: true,
-  // },
+  userEmail: {
+    type: Schema.Types.String,
+    required: false,
+  },
+  date: {
+    type: Schema.Types.String,
+    required: false,
+  },
   sportName: {
     type: Schema.Types.String,
     required: true,

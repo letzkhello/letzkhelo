@@ -6,7 +6,7 @@ import nodemailer from "nodemailer";
 connect();
 
 // Function to send the email
-async function sendAppointmentConfirmationEmail(patientName: any,testName:any,email:any) {
+async function sendAppointmentConfirmationEmail(patientName: any,testName:any,email:any,date:any) {
   const useremail = email;
   console.log(useremail,"my msg")
   const transporter = nodemailer.createTransport({
@@ -31,6 +31,7 @@ async function sendAppointmentConfirmationEmail(patientName: any,testName:any,em
     subject: `${testName} Sports Competition Registration Confirmation`,
     text: `Dear ${patientName},\n\nCongratulations! Your registration for the LetzKhelo Sports Competition has been successfully confirmed. We're excited to have you on board.\n\nEvent Details:
     - Event Name: ${testName}
+    -Date:${date}
    
     Please make sure to arrive at least 30 minutes before the event starts. If you have any questions or need further assistance, feel free to contact us at [contact 8851840604].\n\nBest of luck, and may the best athlete win!\n\nBest regards,\nThe LetzKhelo Team`,
   
@@ -51,7 +52,7 @@ export async function POST(request: NextRequest) {
       userName,
       // userId,
       userEmail,
-      // date,
+      date,
       sportName,
       registrationPrice,
       weight,
@@ -67,7 +68,8 @@ export async function POST(request: NextRequest) {
     const bookingCompetetion = new bookForCompetetion({
       userName,
       // userId,
-      // date,
+      date,
+      userEmail,
       sportName,
       registrationPrice,
       weight,
@@ -83,7 +85,7 @@ export async function POST(request: NextRequest) {
     // console.log("third");
 
     // Send the appointment confirmation email
-    await sendAppointmentConfirmationEmail(userName, sportName, userEmail);
+    await sendAppointmentConfirmationEmail(userName, sportName, userEmail,date);
 
     return NextResponse.json({
       message: "Competetion Book successfully",

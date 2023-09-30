@@ -84,6 +84,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
         userEmail: session?.user?.email,
         sportName: sport?.sportName,
         registrationPrice: 0,
+        date:sport?.date
       };
 
       console.log(updatedFormData, "data");

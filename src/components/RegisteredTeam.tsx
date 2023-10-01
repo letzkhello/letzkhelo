@@ -1,21 +1,27 @@
 "use client";
 import axios from "axios";
-
+import Loader from "@/components/Loader";
 import { useEffect, useState } from "react";
 
 export default function RegisteredTeam() {
+  const [loader, setLoader] = useState(true);
   const [setRegisterTeam, getRegisterTeam] = useState([]);
   useEffect(() => {
     RegisteredTeam();
   }, []);
 
   const RegisteredTeam = async () => {
+    setLoader(true);
     const res = await axios.get("/api/getAllTeams");
+    setLoader(false);
     getRegisterTeam(res.data);
     console.log(setRegisterTeam);
   };
-
-  return (
+  if (loader) {
+    return <Loader />;
+  }
+  else{
+return (
     <>
       <div className="p-4 w-full md:flex md:justify-evenly md:flex-wrap">
         {setRegisterTeam.map((team: any, id) => {
@@ -66,4 +72,6 @@ export default function RegisteredTeam() {
       </div>
     </>
   );
+  }
+  
 }

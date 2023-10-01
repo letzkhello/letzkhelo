@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
@@ -7,7 +8,6 @@ export default function AddBlog() {
     image: "",
     description: "",
     author:"",
-    date:"",
   });
 
   const blogDetailsEdit = (e: { target: { name: any; value: any } }) => {
@@ -19,14 +19,19 @@ export default function AddBlog() {
   const handleSubmit = async (e: { preventDefault: () => void }, user: any) => {
     e.preventDefault();
     try {
-      await axios.post("/api/addBlog", blogDetails);
+      const currentDate = new Date();
+      const updatedBlogDetails = {
+        ...blogDetails,
+        date: currentDate,
+      };
+      console.log(updatedBlogDetails,"pardsda");
+      await axios.post("/api/addBlog", updatedBlogDetails);
       toast.success("blog add Successfully");
       setBlogDetails({
         title: "",
         image: "",
         description: "",
         author:"",
-        date:"",
       });
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
@@ -36,7 +41,6 @@ export default function AddBlog() {
 
 
   const currentDate = new Date();
-  console.log(`${currentDate.getDate()} ${currentDate.getMonth()} ${currentDate.getFullYear()}`)
   return (
     <div className="bg-white border-4 rounded-lg shadow relative m-10">
       <div className="flex items-start justify-between p-5 border-b rounded-t">
@@ -92,22 +96,6 @@ export default function AddBlog() {
                 onChange={blogDetailsEdit}
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                 placeholder="Author Name"
-              />
-            </div>
-            <div className="col-span-6 sm:col-span-3">
-              <label
-                htmlFor="date"
-                className="text-sm font-medium text-gray-900 block mb-2"
-              >
-               Post Date
-              </label>
-              <input
-                type="text"
-                name="date"
-                value={blogDetails.date}
-                onChange={blogDetailsEdit}
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder="Date"
               />
             </div>
             <div className="col-span-full">

@@ -1,4 +1,3 @@
-
 "use client";
 
 import axios from "axios";
@@ -35,8 +34,10 @@ function GetAllBlog() {
                 <div className="py-8">
                   <h1 className="text-3xl font-bold mb-2">{blog?.title}</h1>
                   <p className="text-gray-500 text-sm">
-                    Published on
-                    <time dateTime="2022-04-05">April 5, 2022</time>
+                  <b>Author Name :</b>   {blog?.author}
+                  </p>
+                  <p className="text-gray-500 text-sm">
+                    <time dateTime="2022-04-05"><b>Date :</b>{blog?.date}</time>
                   </p>
                 </div>
                 <img

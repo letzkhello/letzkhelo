@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
-import Image from 'next/image'
+import Image from "next/image";
 import img from "@/../public/avatar.png";
 import Loader from "@/components/Loader";
 
@@ -36,7 +36,6 @@ export default function ProfileComponent() {
   useEffect(() => {
     getAllUsers();
   }, []);
-
 
   const getAllUsers = async () => {
     setLoader(true);
@@ -82,18 +81,39 @@ export default function ProfileComponent() {
         intrestedSport: "",
         email: "",
       });
+
+
       closeModal();
+      // window.location.reload();
+    getAllUsers();
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
       closeModal();
+  
       console.log(error);
       // setLoader(false);
       // alert("Something went wrong. Please try again.");
     }
   };
 
-  const openModal = () => {
+  // const openModal = () => {
+  //   if (modalRef.current) {
+  //     modalRef.current.showModal();
+  //   }
+
+  // };
+
+  const openModal = (user: User) => {
     if (modalRef.current) {
+      // Set the form data with the user's data
+      setFormData({
+        age: user?.age?.toString(),
+        instagramLink: user?.instagramLink,
+        weight: user?.weight || "50-55",
+        intrestedSport: user?.intrestedSport || "Cricket",
+        email: session?.user?.email || "",
+      });
+
       modalRef.current.showModal();
     }
   };
@@ -128,13 +148,13 @@ export default function ProfileComponent() {
                     src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
                     alt="Woman looking front"
                   /> */}
-                  <Image 
-                   src={session?.user?.image || img}
-                   height="120"
-                   width="128"
-                   className="object-cover object-center h-32"
-                   alt="Woman looking front"
-                 />
+                  <Image
+                    src={session?.user?.image || img}
+                    height="120"
+                    width="128"
+                    className="object-cover object-center h-32"
+                    alt="Woman looking front"
+                  />
                 </div>
                 <div className="text-center mt-2">
                   <h2 className="font-semibold">{session?.user?.name}</h2>
@@ -212,45 +232,52 @@ export default function ProfileComponent() {
                         </svg>
                       </a>
                     </div>
-  
+
                     <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
                       <li className="flex flex-col items-center justify-around">
                         <p>Weight</p>
-                        <div>{user.weight}</div>
+                        <div>{user?.weight ? user?.weight : "not mentioned"}</div>
                       </li>
                       <li className="flex flex-col items-center justify-between">
                         <p>Age</p>
-                        <div>{user.age}</div>
+                        <div>{user?.age ? user?.age : "not mentioned"}</div>
                       </li>
                       <li className="flex flex-col items-center justify-around">
                         <p>Intrested Sports</p>
-                        <div>{user.intrestedSport}</div>
+                        <div>{user?.intrestedSport ? user?.intrestedSport : "not mentioned"}</div>
                       </li>
                     </ul>
-  
+
                     <h2 className="text-xl font-bold mb-4">
                       Write about yourself
                     </h2>
                     <p className="text-gray-700">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                      finibus est vitae tortor ullamcorper, ut vestibulum velit
-                      convallis. Aenean posuere risus non velit egestas suscipit.
-                      Nunc finibus vel ante id euismod. Vestibulum ante ipsum
-                      primis in faucibus orci luctus et ultrices posuere cubilia
-                      Curae; Aliquam erat volutpat. Nulla vulputate pharetra
-                      tellus, in luctus risus rhoncus id.
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Sed finibus est vitae tortor ullamcorper, ut vestibulum
+                      velit convallis. Aenean posuere risus non velit egestas
+                      suscipit. Nunc finibus vel ante id euismod. Vestibulum
+                      ante ipsum primis in faucibus orci luctus et ultrices
+                      posuere cubilia Curae; Aliquam erat volutpat. Nulla
+                      vulputate pharetra tellus, in luctus risus rhoncus id.
                     </p>
                   </div>
                 </div>
                 {
                   <div className="py-4 mt-2 text-white flex items-center justify-around">
-                    <button className="btn" onClick={openModal}>
+                    {/* <button className="btn" onClick={openModal}>
+                      Add Details
+                    </button> */}
+
+                    <button className="btn" onClick={() => openModal(user)}>
                       Add Details
                     </button>
+
                     <dialog id="my_modal_1" className="modal" ref={modalRef}>
                       <div className="modal-box">
-  
-                        <form className="w-full max-w-sm" onSubmit={(e) => handleSubmit(e, user)}>
+                        <form
+                          className="w-full max-w-sm"
+                          onSubmit={(e) => handleSubmit(e, user)}
+                        >
                           <div className="md:flex md:items-center mb-6">
                             <div className="md:w-1/3">
                               <label
@@ -266,7 +293,7 @@ export default function ProfileComponent() {
                                 type="number"
                                 name="age"
                                 id="age"
-                                value={formData.age}
+                                value={formData?.age}
                                 onChange={handleInputChange}
                               ></input>
                             </div>
@@ -286,7 +313,7 @@ export default function ProfileComponent() {
                                 type="text"
                                 id="instagramLink"
                                 name="instagramLink"
-                                value={formData.instagramLink}
+                                value={formData?.instagramLink}
                                 onChange={handleInputChange}
                               ></input>
                             </div>
@@ -305,9 +332,11 @@ export default function ProfileComponent() {
                                 id="weight"
                                 name="weight"
                                 onChange={handleInputChange}
+                                value={formData?.weight}
+                                // defaultValue= {formData?.weight ? formData?.weight : "50-55"}
                                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                               >
-                                <option value="50-55" selected>50-55</option>
+                                <option value="50-55">50-55</option>
                                 <option value="55-60">55-60</option>
                                 <option value="60-65">60-65</option>
                                 <option value="65-70">65-70</option>
@@ -329,8 +358,9 @@ export default function ProfileComponent() {
                                 name="intrestedSport"
                                 id="intrestedSport"
                                 onChange={handleInputChange}
+                                value={formData?.intrestedSport}
                                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                                defaultValue="Cricket" 
+                                // defaultValue= {formData?.intrestedSport? formData?.intrestedSport : "Cricket"}
                               >
                                 <option value="Cricket">Cricket</option>
                                 <option value="Khokho">Khokho</option>
@@ -339,7 +369,7 @@ export default function ProfileComponent() {
                               </select>
                             </div>
                           </div>
-  
+
                           <button
                             type="submit"
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded "
@@ -365,5 +395,4 @@ export default function ProfileComponent() {
       </div>
     );
   }
- 
 }

@@ -49,12 +49,7 @@ export default function SignInOne() {
   };
 
   // * Github signin
-  const githubSignIn = async () => {
-    await signIn("github", {
-      callbackUrl: "/",
-      redirect: true,
-    });
-  };
+
 
   // * Google login
   const googleLogin = async () => {
@@ -66,14 +61,10 @@ export default function SignInOne() {
 
   return (
     <section>
-      <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
+      {/* <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
         <div className="relative flex items-end px-4 pb-10 pt-60 sm:px-6 sm:pb-16 md:justify-center lg:px-8 lg:pb-24">
           <div className="absolute inset-0">
-            {/* <Image
-              className="h-full w-full  object-cover object-top"
-              src="https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80"
-              alt=""
-            /> */}
+       
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
           <div className="relative">
@@ -163,7 +154,7 @@ export default function SignInOne() {
             </form>
             <p className="text-center my-3">-- OR --</p>
 
-            {/* Google Login Button */}
+            Google Login Button
             <div className="space-y-3 mt-3">
               <button
                 type="button"
@@ -183,7 +174,27 @@ export default function SignInOne() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+
+
+<div className="space-y-3 mt-3 p-12">
+<button
+  type="button"
+  className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
+  onClick={googleLogin}
+>
+  <span className="mr-2 inline-block"></span>
+  <Image
+    src="/google_icon.png"
+    height={30}
+    width={30}
+    alt="Google Icon"
+    className="mr-3"
+  />
+  Sign in with Google
+</button>
+</div>
     </section>
   );
 }
+

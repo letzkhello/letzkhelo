@@ -24,12 +24,12 @@ export default function Card() {
   useEffect(() => {
     getGameDetails();
     getUserRegisterDetails();
-    // checkUserEmail();
+    checkUserEmail();
   }, []);
   useEffect(() => {
     
     checkUserEmail();
-  }, [getGame]);
+  }, [getGame,shimmer]);
 
   const getUserRegisterDetails = async () => {
     const res = await axios.get("/api/users/getAllRegisteredUsers");

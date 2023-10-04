@@ -26,17 +26,17 @@ export default function Card() {
     getGameDetails();
     getUserRegisterDetails();
   }, []);
-  // useEffect(() => {
+  useEffect(() => {
     
-  //   checkUserEmail();
+    checkUserEmail();
     
-  // }, [getGame]);
+  }, [getGame]);
 
   const getUserRegisterDetails = async () => {
     const res = await axios.get("/api/users/getAllRegisteredUsers");
     console.log(res.data.data);
-    setRegisterUser(res.data.data);
-  };
+    setRegisterUser(res.data.data);  
+  }; 
 
   const getGameDetails = async () => {
     setShimmer(true);

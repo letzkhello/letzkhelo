@@ -30,13 +30,12 @@ export default function Card() {
     
     checkUserEmail();
     
-  }, [getGame, getRegisterUser]);
+  }, [getGame, getRegisterUser,registered]);
 
   const getUserRegisterDetails = async () => {
     const res = await axios.get("/api/users/getAllRegisteredUsers");
     console.log(res.data.data);
     setRegisterUser(res.data.data);
-    await checkUserEmail();
   };
 
   const getGameDetails = async () => {
@@ -45,7 +44,6 @@ export default function Card() {
     setShimmer(false);
     console.log(res.data);
     setGame(res.data);
-    await checkUserEmail();
   };
 
   const checkUserEmail = () => {

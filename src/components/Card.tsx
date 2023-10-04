@@ -26,11 +26,11 @@ export default function Card() {
     getGameDetails();
     getUserRegisterDetails();
   }, []);
-  useEffect(() => {
+  // useEffect(() => {
     
-    checkUserEmail();
+  //   checkUserEmail();
     
-  }, [getGame, getRegisterUser]);
+  // }, [getGame]);
 
   const getUserRegisterDetails = async () => {
     const res = await axios.get("/api/users/getAllRegisteredUsers");

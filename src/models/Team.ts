@@ -9,12 +9,16 @@ interface ITeam extends Document {
   location?: string;
   instagramId?: string;
   phoneNumber?:number;
-
+  sportName: string;
  
 }
 
 const TeamSchema = new Schema<ITeam>({
     teamName: {
+    type: Schema.Types.String,
+    required: true,
+  },
+    sportName: {
     type: Schema.Types.String,
     required: true,
   },

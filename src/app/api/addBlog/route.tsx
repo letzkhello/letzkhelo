@@ -10,7 +10,7 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { title, description, image, author,date  } =
+    const { title, description, image, author,date, subHeading  } =
       reqBody;
 
 
@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
         date,
         description,
         image,
+        subHeading
     });
 
     await allBlogs.save();

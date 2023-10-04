@@ -9,12 +9,16 @@ interface Iblog extends Document {
   image: string;
   description?: string;
   date?: Date;
-
+  subHeading: string;
   
 }
 
 const BlogSchema = new Schema<Iblog>({
   title: {
+    type: Schema.Types.String,
+    required: true,
+  },
+  subHeading: {
     type: Schema.Types.String,
     required: true,
   },

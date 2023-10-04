@@ -10,13 +10,14 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { teamName, captainName, noOfPlayers, location, instagramId,phoneNumber  } =
+    const { teamName, sportName, captainName, noOfPlayers, location, instagramId,phoneNumber  } =
       reqBody;
 
     // You can add any necessary validations here before proceeding with the Sport creation.
 
     const AllTeam = new AddTeam({
         teamName,
+        sportName,
         captainName,
         noOfPlayers,
         location,

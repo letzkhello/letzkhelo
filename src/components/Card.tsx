@@ -36,6 +36,7 @@ export default function Card() {
     const res = await axios.get("/api/users/getAllRegisteredUsers");
     console.log(res.data.data);
     setRegisterUser(res.data.data);  
+    checkUserEmail();
   }; 
 
   const getGameDetails = async () => {

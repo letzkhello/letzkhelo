@@ -22,21 +22,21 @@ export default function Card() {
   console.log(session?.user?.email);
 
   useEffect(() => {
+    checkUserEmail();
     getGameDetails();
     getUserRegisterDetails();
-    checkUserEmail();
   }, []);
   useEffect(() => {
     
     checkUserEmail();
     
-  }, [getGame,shimmer]);
+  }, [getGame]);
 
   const getUserRegisterDetails = async () => {
     const res = await axios.get("/api/users/getAllRegisteredUsers");
     console.log(res.data.data);
     setRegisterUser(res.data.data);
-    checkUserEmail();
+    await checkUserEmail();
   };
 
   const getGameDetails = async () => {
@@ -45,7 +45,7 @@ export default function Card() {
     setShimmer(false);
     console.log(res.data);
     setGame(res.data);
-    checkUserEmail();
+    await checkUserEmail();
   };
 
   const checkUserEmail = () => {

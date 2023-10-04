@@ -208,7 +208,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                       </div>
                       {formData.age.trim() === "" && (
                         <p className="mt-2 text-sm text-red-500">
-                          Enter Age name
+                          Enter Age 
                         </p>
                       )}
                       <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
@@ -279,7 +279,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                             />
                           </div>
                         ) : (
-                          "Book Appointment"
+                          "Register"
                         )}
                       </button>
                     </form>

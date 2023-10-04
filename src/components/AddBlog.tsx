@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 export default function AddBlog() {
   const [blogDetails, setBlogDetails] = useState({
     title: "",
+    subHeading:"",
     image: "",
     description: "",
     author:"",
@@ -29,6 +30,7 @@ export default function AddBlog() {
       toast.success("blog add Successfully");
       setBlogDetails({
         title: "",
+        subHeading:"",
         image: "",
         description: "",
         author:"",
@@ -38,9 +40,6 @@ export default function AddBlog() {
       console.log(error);
     }
   };
-
-
-  const currentDate = new Date();
   return (
     <div className="bg-white border-4 rounded-lg shadow relative m-10">
       <div className="flex items-start justify-between p-5 border-b rounded-t">
@@ -93,6 +92,22 @@ export default function AddBlog() {
                 type="text"
                 name="author"
                 value={blogDetails.author}
+                onChange={blogDetailsEdit}
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
+                placeholder="Author Name"
+              />
+            </div>
+            <div className="col-span-6 sm:col-span-3">
+              <label
+                htmlFor="author"
+                className="text-sm font-medium text-gray-900 block mb-2"
+              >
+               Sub Heading
+              </label>
+              <input
+                type="text"
+                name="author"
+                value={blogDetails.subHeading}
                 onChange={blogDetailsEdit}
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
                 placeholder="Author Name"

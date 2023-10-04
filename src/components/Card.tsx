@@ -22,20 +22,22 @@ export default function Card() {
   console.log(session?.user?.email);
 
   useEffect(() => {
+    checkUserEmail();
     getGameDetails();
     getUserRegisterDetails();
-    // checkUserEmail();
   }, []);
   useEffect(() => {
     
     checkUserEmail();
-  }, [getGame]);
+    
+  }, [getRegisterUser]);
 
   const getUserRegisterDetails = async () => {
     const res = await axios.get("/api/users/getAllRegisteredUsers");
     console.log(res.data.data);
-    setRegisterUser(res.data.data);
-  };
+    setRegisterUser(res.data.data);  
+    checkUserEmail();
+  }; 
 
   const getGameDetails = async () => {
     setShimmer(true);

@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 export default function Carousel() {
   const [getGame, setGame] = useState([]);
@@ -37,18 +38,18 @@ export default function Carousel() {
                 />
 
                 <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                  <a
+                  <Link
                     href={`#slide` + eval("index - 1")}
                     className="btn btn-circle"
                   >
                     ❮
-                  </a>
-                  <a
+                  </Link>
+                  <Link
                     href={`#slide` + eval(index + 1)}
                     className="btn btn-circle"
                   >
                     ❯
-                  </a>
+                  </Link>
                 </div>
                 <button className="btn btn-primary absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-3/4 mx-auto w-3/12 md:w-2/12">
                   Register Now

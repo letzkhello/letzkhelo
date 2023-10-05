@@ -10,6 +10,7 @@ export default function AddTeam() {
   const [formData, setFormData] = useState({
     teamName: "",
     captainName: "",
+    sportName:"",
     noOfPlayers: "",
     location: "",
     instagramId: "",
@@ -47,6 +48,7 @@ export default function AddTeam() {
       setFormData({
         teamName: "",
         captainName: "",
+        sportName:"",
         location: "",
         noOfPlayers: "",
         instagramId: "",
@@ -60,6 +62,7 @@ export default function AddTeam() {
   const isFormNotValid =
     formData.teamName.trim() === "" ||
     formData.captainName.trim() === "" ||
+    formData.sportName.trim() === "" ||
     formData.location.trim() === "" ||
     formData.noOfPlayers.trim() === "" ||
     formData.instagramId.trim() === "" ||
@@ -119,6 +122,28 @@ export default function AddTeam() {
             {formData.captainName.trim() === "" && (
               <p className="mt-2 text-sm text-red-500">
               Enter captain name
+              </p>
+            )}
+             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+              <label
+                htmlFor="sportName"
+                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+              >
+                Sport name:
+              </label>
+              <input
+                id="sportName"
+                type="text"
+                name="sportName"
+                value={formData.sportName}
+                onChange={handleChange}
+                placeholder="captain name"
+                className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
+              />
+            </div>
+            {formData.sportName.trim() === "" && (
+              <p className="mt-2 text-sm text-red-500">
+              Enter Sport name
               </p>
             )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">

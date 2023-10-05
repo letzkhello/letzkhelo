@@ -99,18 +99,18 @@ export default function AddBlog() {
             </div>
             <div className="col-span-6 sm:col-span-3">
               <label
-                htmlFor="author"
+                htmlFor="subHeading"
                 className="text-sm font-medium text-gray-900 block mb-2"
               >
                Sub Heading
               </label>
               <input
                 type="text"
-                name="author"
+                name="subHeading"
                 value={blogDetails.subHeading}
                 onChange={blogDetailsEdit}
                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder="Author Name"
+                placeholder="subHeading Name"
               />
             </div>
             <div className="col-span-full">

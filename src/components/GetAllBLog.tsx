@@ -45,7 +45,7 @@ function GetAllBlog() {
                   alt="Featured image"
                   className="w-full h-auto mb-8"
                 />
-                <h4 className="text-3xl font-bold mb-2">{blog?.title}</h4>
+                <h2 className="text-3xl mb-2">{blog?.subHeading}</h2>
                 <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto">
                   {blog?.description}
                 </div>

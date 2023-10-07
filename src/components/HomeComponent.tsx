@@ -13,7 +13,7 @@ export const HomeComponent = () => {
   return (
     <div>
       {/* <Carousel/> */}
-      <section className="background firstsection">
+      {/* <section className="background firstsection">
         <div className="box-main">
           <div className={`fhalf flex flex-col p-20 ${isMounted ? 'animate-fadeInLeft' : ''}`} id="home">
             <p className={`textbig ${isMounted ? 'animate-bounce' : ''}`}>The Future is here</p>
@@ -23,7 +23,7 @@ export const HomeComponent = () => {
             <img src='/icon.jpeg' alt="kk" />
           </div>
         </div>
-      </section>
+      </section> */}
       <Card />
     </div>
   );

@@ -27,17 +27,15 @@ export default function Card() {
     getUserRegisterDetails();
   }, []);
   useEffect(() => {
-    
     checkUserEmail();
-    
   }, [getRegisterUser]);
 
   const getUserRegisterDetails = async () => {
     const res = await axios.get("/api/users/getAllRegisteredUsers");
     console.log(res.data.data);
-    setRegisterUser(res.data.data);  
+    setRegisterUser(res.data.data);
     checkUserEmail();
-  }; 
+  };
 
   const getGameDetails = async () => {
     setShimmer(true);
@@ -52,21 +50,20 @@ export default function Card() {
       (user: any) => user?.userEmail === session?.user?.email
     );
     console.log(getRegisterUser, "hiiiiiiiii");
-    console.log(allGameRegsitered,"rewds")
+    console.log(allGameRegsitered, "rewds");
     setRegistered(allGameRegsitered);
   };
 
-
   const countRegisteredUsers = (sportName: any) => {
     const count = getRegisterUser.filter(
-      (user) => user.sportName === sportName 
+      (user) => user.sportName === sportName
     )?.length;
     return count;
   };
- 
+
   const checkAlreadyRegistered = (sportName: any) => {
-    return registered.some(item => item.sportName === sportName) 
-  }; 
+    return registered.some((item) => item.sportName === sportName);
+  };
 
   if (shimmer == true) {
     return <Shimmer />;
@@ -78,13 +75,14 @@ export default function Card() {
             LETZKHELO COMPETETIONS
           </h1>
         </div>
-
-        <div className="p-4 w-full md:flex md:justify-evenly md:flex-wrap">
-          {getGame?.map((game: any, id) => {
+{/* 
+        <div className="p-4 w-full sm:flex sm:justify-center sm:items-center md:flex md:justify-evenly md:flex-wrap"> */}
+        <div className="w-full flex flex-wrap items-center justify-evenly py-3 px-8">
+      {getGame?.map((game: any, id) => {
             return (
               <div
                 key={id}
-                className="card w-80 p-2 glass transition-transform transform hover:scale-105 duration-300"
+                className="card w-80 p-2 my-6 glass transition-transform transform hover:scale-105 duration-300 sm:my-12"
               >
                 <figure>
                   <Image
@@ -101,11 +99,9 @@ export default function Card() {
                   <p>Participants: {countRegisteredUsers(game?.sportName)}</p>
                   <div className="card-actions justify-end">
                     <button
-                      className="btn btn-primary transform transition-transform hover:scale-105 duration-300"
+                      className="btn bg-purple-400 transform transition-transform hover:scale-105 hover:bg-purple-500 duration-300"
                       disabled={
-                        checkAlreadyRegistered(game?.sportName)
-                          ? true
-                          : false
+                        checkAlreadyRegistered(game?.sportName) ? true : false
                       }
                     >
                       <Link href={`/bookCompetetion/${game?._id}`}>
@@ -119,6 +115,7 @@ export default function Card() {
               </div>
             );
           })}
+
         </div>
       </>
     );

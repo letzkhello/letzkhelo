@@ -52,7 +52,7 @@ export default function PrivacyPolicy() {
                 </p>
                 <p className="text-base mb-6">
                   <span className="font-semibold">Company</span> (referred to as
-                  either "the Company", &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement)
+                  either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement)
                   refers to LetzKhelo, Delhi. Cookies are small files that are
                   placed on Your computer, mobile device or any other device by
                   a website, containing the details of Your browsing history on

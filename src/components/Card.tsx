@@ -41,7 +41,7 @@ export default function Card() {
     setShimmer(true);
     const res = await axios.get("/api/getAllSports");
     setShimmer(false);
-    console.log(res.data,"praksh");
+    console.log(res.data, "praksh");
     setGame(res.data);
   };
 
@@ -59,37 +59,33 @@ export default function Card() {
     return count;
   };
 
-  
   const checkAlreadyRegistered = (sportName: any) => {
     return registered.some((item) => item.sportName === sportName);
   };
 
-const checkOpenContest=(checkContest:any,sportName:any)=>{
-
-    if(checkContest){
+  const checkOpenContest = (checkContest: any, sportName: any) => {
+    if (checkContest) {
       return true;
+    } else {
+      if (checkAlreadyRegistered(sportName)) {
+        return true;
+      }
     }
-    else{
-  if(checkAlreadyRegistered(sportName)){
-      return true;
-     }
-  }
-  return false;
-}
+    return false;
+  };
 
-
-  const convertDate =(dateString:any)=>{
+  const convertDate = (dateString: any) => {
     const date = new Date(dateString);
 
     if (!isNaN(date.getTime())) {
-      const showDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
-  return  showDate;
+      const showDate = `${date.getDate()}-${
+        date.getMonth() + 1
+      }-${date.getFullYear()}`;
+      return showDate;
     } else {
-    return "coming Soon";
+      return "coming Soon";
     }
-  }
-
-
+  };
 
   if (shimmer == true) {
     return <Shimmer />;
@@ -101,10 +97,10 @@ const checkOpenContest=(checkContest:any,sportName:any)=>{
             LETZKHELO COMPETETIONS
           </h1>
         </div>
-{/* 
+        {/* 
         <div className="p-4 w-full sm:flex sm:justify-center sm:items-center md:flex md:justify-evenly md:flex-wrap"> */}
         <div className="w-full flex flex-wrap items-center justify-evenly py-3 px-8">
-      {getGame?.map((game: any, id) => {
+          {getGame?.map((game: any, id) => {
             return (
               <div
                 key={id}
@@ -116,7 +112,7 @@ const checkOpenContest=(checkContest:any,sportName:any)=>{
                     alt="img"
                     width="300"
                     height="200"
-                    className="rounded-t-lg object-cover h-[100%] w-[100%]"
+                    className="rounded-t-lg object-cover h-48"
                   />
                 </figure>
                 <div className="card-body">
@@ -128,11 +124,15 @@ const checkOpenContest=(checkContest:any,sportName:any)=>{
                     <button
                       className="btn bg-purple-400 transform transition-transform hover:scale-105 hover:bg-purple-500 duration-300"
                       disabled={
-                         checkOpenContest(game?.isOpen, game?.sportName) ? true : false
+                        checkOpenContest(game?.isOpen, game?.sportName)
+                          ? true
+                          : false
                       }
                     >
                       <Link href={`/bookCompetetion/${game?._id}`}>
-                        {checkAlreadyRegistered(game?.sportName)
+                        {game?.isOpen
+                          ? "Coming Soon"
+                          : checkAlreadyRegistered(game?.sportName)
                           ? "Already registered"
                           : "Register Now"}
                       </Link>

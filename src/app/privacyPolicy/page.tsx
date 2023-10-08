@@ -45,14 +45,14 @@ export default function PrivacyPolicy() {
                 <p className="text-base mb-6">
                   <span className="font-semibold">Affiliate</span> means an
                   entity that controls, is controlled by or is under common
-                  control with a party, where "control" means ownership of 50%
+                  control with a party, where &quot;control&quot; means ownership of 50%
                   or more of the shares, equity interest or other securities
                   entitled to vote for election of directors or other managing
                   authority.
                 </p>
                 <p className="text-base mb-6">
                   <span className="font-semibold">Company</span> (referred to as
-                  either "the Company", "We", "Us" or "Our" in this Agreement)
+                  either "the Company", &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement)
                   refers to LetzKhelo, Delhi. Cookies are small files that are
                   placed on Your computer, mobile device or any other device by
                   a website, containing the details of Your browsing history on
@@ -143,7 +143,7 @@ export default function PrivacyPolicy() {
                   Usage Data is collected automatically when using the Service.
                 </p>
                 <p className="mb-2 text-[#585858]">
-                  Usage Data may include information such as Your Device's
+                  Usage Data may include information such as Your Device&apos;s
                   Internet Protocol address (e.g. IP address), browser type,
                   browser version, the pages of our Service that You visit, the
                   time and date of Your visit, the time spent on those pages,
@@ -181,14 +181,14 @@ export default function PrivacyPolicy() {
                   If You decide to register through or otherwise grant us access
                   to a Third-Party Social Media Service, We may collect Personal
                   data that is already associated with Your Third-Party Social
-                  Media Service's account, such as Your name, Your email
+                  Media Service&apos;s account, such as Your name, Your email
                   address, Your activities or Your contact list associated with
                   that account.
                 </p>
                 <p className="mb-6 text-[#585858]">
                   You may also have the option of sharing additional information
                   with the Company through Your Third-Party Social Media
-                  Service's account. If You choose to provide such information
+                  Service&apos;s account. If You choose to provide such information
                   and Personal Data, during registration or otherwise, You are
                   giving the Company permission to use, share, and store it in a
                   manner consistent with this Privacy Policy.
@@ -228,7 +228,7 @@ export default function PrivacyPolicy() {
                   </li>
                 </ul>
                 <p className="mb-6 text-[#585858] ">
-                  Cookies can be "Persistent" or "Session" Cookies. Persistent
+                  Cookies can be &quot;Persistent&quot; or &quot;Session&quot; Cookies. Persistent
                   Cookies remain on Your personal computer or mobile device when
                   You go offline, while Session Cookies are deleted as soon as
                   You close Your web browser.
@@ -304,7 +304,7 @@ export default function PrivacyPolicy() {
                   <span className="font-semibold">To contact You:</span>
                   To contact You by email, telephone calls, SMS, or other
                   equivalent forms of electronic communication, such as a mobile
-                  application's push notifications regarding updates or
+                  application&apos;s push notifications regarding updates or
                   informative communications related to the functionalities,
                   products or contracted services, including the security
                   updates, when necessary or reasonable for their implementation
@@ -419,7 +419,7 @@ export default function PrivacyPolicy() {
                 </h4>
                 <p className="mb-6 text-[#585858]">
                   Your information, including Personal Data, is processed at the
-                  Company's operating offices and in any other places where the
+                  Company&apos;s operating offices and in any other places where the
                   parties involved in the processing are located. It means that
                   this information may be transferred to — and maintained on —
                   computers located outside of Your state, province, country or
@@ -510,7 +510,7 @@ export default function PrivacyPolicy() {
                   to use commercially acceptable means to protect Your Personal
                   Data, We cannot guarantee its absolute security
                 </p>
-                <h4 className="mb-2 font-bold ">Children's Privacy</h4>
+                <h4 className="mb-2 font-bold ">Children&apos;s Privacy</h4>
                 <p className="mb-6 text-[#585858]">
                   Our Service does not address anyone under the age of 13. We do
                   not knowingly collect personally identifiable information from
@@ -524,14 +524,14 @@ export default function PrivacyPolicy() {
                 <p className="mb-6 text-[#585858]">
                   If We need to rely on consent as a legal basis for processing
                   Your information and Your country requires consent from a
-                  parent, We may require Your parent's consent before We collect
+                  parent, We may require Your parent&apos;s consent before We collect
                   and use that information
                 </p>
                 <h4 className="mb-2 font-bold ">Links to Other Websites</h4>
                 <p className="mb-6 text-[#585858]">
                   Our Service may contain links to other websites that are not
                   operated by Us. If You click on a third party link, You will
-                  be directed to that third party's site. We strongly advise You
+                  be directed to that third party&apos;s site. We strongly advise You
                   to review the Privacy Policy of every site You visit
                 </p>
                 <p className="mb-6 text-[#585858]">
@@ -550,7 +550,7 @@ export default function PrivacyPolicy() {
                 <p className="mb-6 text-[#585858]">
                   We will let You know via email and/or a prominent notice on
                   Our Service, prior to the change becoming effective and update
-                  the "Last updated" date at the top of this Privacy Policy
+                  the &quot;Last updated&quot; date at the top of this Privacy Policy
                 </p>
                 <p className="mb-6 text-[#585858]">
                   You are advised to review this Privacy Policy periodically for

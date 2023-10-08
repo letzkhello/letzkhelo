@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import { Toaster } from "react-hot-toast";
 import NextAuthSessionProvider from "./provider/sessionProvider";
 import Footer from "@/components/Footer";
-
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+      {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+            <GoogleAnalytics ga_id= 
+            {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+          ) : null}
       <NextAuthSessionProvider>
 
       <Navbar fixed={undefined} />

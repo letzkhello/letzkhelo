@@ -39,7 +39,6 @@ export default function AboutUs() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mt-12 flex">
             <div>
-              <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"></div>
               <div className="mt-5">
                 <h2 className="text-3xl font-extrabold text-gray-900">
                   Mission
@@ -55,7 +54,6 @@ export default function AboutUs() {
           </div>
 
           <div>
-            <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"></div>
             <div className="mt-5">
               <h2 className="text-3xl font-extrabold text-gray-900">
                 What we Offers
@@ -78,13 +76,12 @@ export default function AboutUs() {
             </div>
           </div>
           <div>
-            <div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white"></div>
             <div className="mt-5">
               <h2 className="text-3xl font-extrabold text-gray-900">
                 Why Choose Letzkhelo?
               </h2>
               <p className="mt-2 text-base text-gray-500  mb-5">
-                assion for Sports: We&apos;re sports enthusiasts, just like you.
+                sassion for Sports: We&apos;re sports enthusiasts, just like you.
                 Our dedication to the world of athletics drives us to provide
                 the best platform for athletes to shine. Fair Play: We value
                 fair competition and sportsmanship above all. Letzkhelo is a

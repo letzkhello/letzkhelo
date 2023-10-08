@@ -41,7 +41,7 @@ export default function Card() {
     setShimmer(true);
     const res = await axios.get("/api/getAllSports");
     setShimmer(false);
-    console.log(res.data);
+    console.log(res.data,"praksh");
     setGame(res.data);
   };
 
@@ -49,8 +49,6 @@ export default function Card() {
     const allGameRegsitered = getRegisterUser.filter(
       (user: any) => user?.userEmail === session?.user?.email
     );
-    console.log(getRegisterUser, "hiiiiiiiii");
-    console.log(allGameRegsitered, "rewds");
     setRegistered(allGameRegsitered);
   };
 
@@ -61,9 +59,37 @@ export default function Card() {
     return count;
   };
 
+  
   const checkAlreadyRegistered = (sportName: any) => {
     return registered.some((item) => item.sportName === sportName);
   };
+
+const checkOpenContest=(checkContest:any,sportName:any)=>{
+
+    if(checkContest){
+      return true;
+    }
+    else{
+  if(checkAlreadyRegistered(sportName)){
+      return true;
+     }
+  }
+  return false;
+}
+
+
+  const convertDate =(dateString:any)=>{
+    const date = new Date(dateString);
+
+    if (!isNaN(date.getTime())) {
+      const showDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+  return  showDate;
+    } else {
+    return "coming Soon";
+    }
+  }
+
+
 
   if (shimmer == true) {
     return <Shimmer />;
@@ -96,12 +122,13 @@ export default function Card() {
                 <div className="card-body">
                   <h2 className="card-title">{game?.sportName}</h2>
                   <p>location: {game?.location}</p>
+                  <p>Date: {convertDate(game?.date)}</p>
                   <p>Participants: {countRegisteredUsers(game?.sportName)}</p>
                   <div className="card-actions justify-end">
                     <button
                       className="btn bg-purple-400 transform transition-transform hover:scale-105 hover:bg-purple-500 duration-300"
                       disabled={
-                        checkAlreadyRegistered(game?.sportName) ? true : false
+                         checkOpenContest(game?.isOpen, game?.sportName) ? true : false
                       }
                     >
                       <Link href={`/bookCompetetion/${game?._id}`}>
@@ -115,7 +142,6 @@ export default function Card() {
               </div>
             );
           })}
-
         </div>
       </>
     );

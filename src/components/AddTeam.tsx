@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import BeatLoader from "react-spinners/BeatLoader";
-
+import { useRouter } from "next/navigation";
 export default function AddTeam() {
   const [loader, setLoader] = useState(false);
   const [phoneNumberError, setPhoneNumberError] = useState("");
+  const router = useRouter(); 
   const [formData, setFormData] = useState({
     teamName: "",
     captainName: "",
@@ -37,7 +38,7 @@ export default function AddTeam() {
       [e.target.name]: e.target.value,
     });
   };
-
+  
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
@@ -45,6 +46,7 @@ export default function AddTeam() {
       await axios.post("/api/addTeam", formData);
       setLoader(false);
       toast.success("Team register is Successfully");
+      router.push('/allTeam');
       setFormData({
         teamName: "",
         captainName: "",
@@ -54,6 +56,7 @@ export default function AddTeam() {
         instagramId: "",
         phoneNumber: "",
       });
+      router.push('/allTeam');
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
       setLoader(false);

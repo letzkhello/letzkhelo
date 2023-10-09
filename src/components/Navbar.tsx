@@ -6,6 +6,10 @@ import img from "@/../public/avatar.png";
 import SignoutButton from "@/components/signoutButton";
 import Link from "next/link";
 
+
+import { BiMenuAltLeft } from "react-icons/bi";
+
+
 interface Session {
   user: {
     name: string;
@@ -19,6 +23,17 @@ export default function Navbar({ fixed }: any) {
   const { data: session, status } = useSession();
   const [isNavOpen, setIsNavOpen] = useState(false);
 
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openMenu = () => {
+    setIsOpen(true);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
 
 
@@ -26,7 +41,7 @@ export default function Navbar({ fixed }: any) {
 
 
   {/* for hamburger  */}
-       <div className="flex items-center justify-between px-4 py-4 lg:hidden">
+       {/* <div className="flex items-center justify-between px-4 py-4 lg:hidden">
          <nav>
            <section className="MOBILE-MENU flex lg:hidden">
             <div
@@ -38,7 +53,7 @@ export default function Navbar({ fixed }: any) {
               <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
             </div>
 
-            <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>
+            <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"} >
               <div
                 className="CROSS-ICON absolute top-0 right-0 px-8 py-8"
                 onClick={() => setIsNavOpen(false)} // change isNavOpen state to false to close the menu
@@ -102,7 +117,105 @@ export default function Navbar({ fixed }: any) {
         align-items: center;
       }
     `}</style>
+      </div> */}
+
+{/* bg-purple-600 hover:bg-purple-500 */}
+   <div className="flex items-center justify-between px-4 py-4 lg:hidden">
+   <div className="z-50">
+        <button
+          onClick={openMenu}
+          className={` p-0 w-10 h-10 rounded-full  ${
+            isOpen ? "z-0 hidden" : "z-10"
+          } flex items-center justify-center`}
+        >
+          <BiMenuAltLeft  size={"30"} />
+        </button>
       </div>
+
+      <div
+        className={`fixed bottom-0 left-0 h-full w-64 bg-white border border-solid ${
+          isOpen ? "translate-x-0 z-10" : "-translate-x-full z-10"
+        } transition-transform duration-300 ease-in-out`}
+      >
+        <button
+          onClick={closeMenu}
+          className="absolute top-4 right-4 p-2 rounded-lg bg-purple-500 text-white"
+        >
+          Close
+        </button>
+
+        <div className="p-4">
+          <h1 className="text-2xl font-semibold mb-4">Menu</h1>
+          <ul>
+            <li className="mb-2">
+              <Link
+                href="/"
+                onClick={closeMenu}
+                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+              >
+                home
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link
+                href="/about"
+                onClick={closeMenu}
+                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+              >
+                About
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link
+                href="/allUsers"
+                onClick={closeMenu}
+                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+              >
+                All Members
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link
+                href="/profile"
+                onClick={closeMenu}
+                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+              >
+               Profile
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link
+                href="/createTeam"
+                onClick={closeMenu}
+                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+              >
+                Create Team
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link
+                href="/allTeam"
+                onClick={closeMenu}
+                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+              >
+                All Teams
+              </Link>
+            </li>
+            <li className="mb-2">
+              <Link
+                href="/contact"
+                onClick={closeMenu}
+                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+   </div>
+
+
 
 
   {/* Start: "LetzKhelo" */}

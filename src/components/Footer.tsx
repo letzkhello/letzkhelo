@@ -34,9 +34,9 @@ export default function Footer() {
         </nav>
         <nav>
           <header className="footer-title text-black">Legal</header>
-          <Link href={'/'} className="link link-hover text-black">Terms of use</Link>
+          <Link href={'/termandCondition'} className="link link-hover text-black">Terms of use</Link>
           <Link href={'/privacyPolicy'} className="link link-hover text-black">Privacy policy</Link>
-          <Link href={'/'} className="link link-hover text-black">Cookie policy</Link>
+          <Link href={'/cookiesPolicy'} className="link link-hover text-black">Cookie policy</Link>
         </nav>
         <nav>
           <header className="footer-title text-black">Social</header>

@@ -13,6 +13,14 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      keyframes: {
+        wave: {
+          to: { transform: "translateY(-10px)" },
+        },
+      },
+      animation: {
+        "waving-hand": "wave 0.7s linear infinite alternate",
+      },
     },
   },
   daisyui: {

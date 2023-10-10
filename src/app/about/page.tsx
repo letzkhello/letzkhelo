@@ -6,7 +6,7 @@ export default function AboutUs() {
     <>
       <div className="sm:flex items-center max-w-screen-xl">
         <div className="sm:w-1/2 p-10">
-          <div className="image object-center text-center">
+          <div className="image object-center text-center transition-all duration-500 hover:invert animate-waving-hand">
             <Image
               src="https://i.imgur.com/WbQnbas.png"
               alt="img"

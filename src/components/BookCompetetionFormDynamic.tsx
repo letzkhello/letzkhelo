@@ -137,12 +137,12 @@ export function BookCompetetionFormDynamic({ params }: any) {
 
                     <form
                       onSubmit={(e) => handleSubmit(e, sport)}
-                      className="m-5 flex flex-col items-center justify-center lg:m-20"
+                      className="m-2 flex flex-col items-center justify-center lg:m-20"
                     >
-                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
                         <label
                           htmlFor="name"
-                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
                         >
                           Name:
                         </label>
@@ -156,10 +156,10 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         />
                       </div>
 
-                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
                         <label
                           htmlFor="game-type"
-                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
                         >
                           Sport Name:
                         </label>
@@ -173,10 +173,10 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         />
                       </div>
 
-                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
                         <label
                           htmlFor="registration-price"
-                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
                         >
                           Registration Price:
                         </label>
@@ -190,10 +190,10 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         />
                       </div>
 
-                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
                         <label
                           htmlFor="age"
-                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
                         >
                           Age:
                         </label>
@@ -203,18 +203,19 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           name="age"
                           value={formData.age}
                           onChange={handleChange}
+                          placeholder="Enter Age"
                           className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
                         />
                       </div>
                       {formData.age.trim() === "" && (
-                        <p className="mt-2 text-sm text-red-500">
+                        <p className="text-sm text-red-500">
                           Enter Age 
                         </p>
                       )}
-                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
                         <label
                           htmlFor="weight"
-                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
                         >
                           weight:
                         </label>
@@ -232,14 +233,14 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         </select>
                       </div>
                       {formData.weight.trim() === "" && (
-                        <p className="mt-2 text-sm text-red-500">
+                        <p className="text-sm text-red-500">
                           Select weight
                         </p>
                       )}
-                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
                         <label
                           htmlFor="number"
-                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
                         >
                           Phone Number:
                         </label>
@@ -247,18 +248,19 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           id="number"
                           type="number"
                           name="phoneNumber"
+                          placeholder="Enter phone number"
                           value={formData.phoneNumber}
                           onChange={handleChange}
                           className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
                         />
                       </div>
                       {formData?.phoneNumber.length !== 10 && (
-                        <p className="mt-2 text-sm text-red-500">
+                        <p className="text-sm text-red-500">
                           {phoneNumberError}
                         </p>
                       )}
                       {formData?.phoneNumber.length === 0 && (
-                        <p className="mt-2 text-sm text-red-500">
+                        <p className="text-sm text-red-500">
                           Enter phone number
                         </p>
                       )}

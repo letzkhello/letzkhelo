@@ -83,10 +83,10 @@ export default function AddTeam() {
             onSubmit={handleSubmit}
             className="m-5 flex flex-col items-center justify-center lg:m-20"
           >
-            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
               <label
                 htmlFor="name"
-                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
               >
                 Team name:
               </label>
@@ -101,14 +101,14 @@ export default function AddTeam() {
               />
             </div>
             {formData.teamName.trim() === "" && (
-              <p className="mt-2 text-sm text-red-500">
+              <p className="text-sm text-red-500">
                Enter Team name
               </p>
             )}
-            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
               <label
                 htmlFor="captainName"
-                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
               >
                 Captain name:
               </label>
@@ -123,14 +123,14 @@ export default function AddTeam() {
               />
             </div>
             {formData.captainName.trim() === "" && (
-              <p className="mt-2 text-sm text-red-500">
+              <p className="text-sm text-red-500">
               Enter captain name
               </p>
             )}
-             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
               <label
                 htmlFor="sportName"
-                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
               >
                 Sport name:
               </label>
@@ -145,14 +145,14 @@ export default function AddTeam() {
               />
             </div>
             {formData.sportName.trim() === "" && (
-              <p className="mt-2 text-sm text-red-500">
+              <p className="text-sm text-red-500">
               Enter Sport name
               </p>
             )}
-            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
               <label
                 htmlFor="game-type"
-                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
               >
                 Location:
               </label>
@@ -167,14 +167,14 @@ export default function AddTeam() {
               />
             </div>
             {formData.location.trim() === "" && (
-              <p className="mt-2 text-sm text-red-500">
+              <p className="text-sm text-red-500">
                Enter location name
               </p>
             )}
-            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
               <label
                 htmlFor="registration-price"
-                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
               >
                 Number of Player:
               </label>
@@ -189,14 +189,14 @@ export default function AddTeam() {
               />
             </div>
             {formData.noOfPlayers.trim() === "" && (
-              <p className="mt-2 text-sm text-red-500">
+              <p className="text-sm text-red-500">
                 Enter number of player 
               </p>
             )}
-            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
               <label
                 htmlFor="instagramId"
-                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
               >
                 captain Instagram:
               </label>
@@ -211,14 +211,14 @@ export default function AddTeam() {
               />
             </div>
             {formData.instagramId.trim() === "" && (
-              <p className="mt-2 text-sm text-red-500">
+              <p className="text-sm text-red-500">
                 Enter patient name
               </p>
             )}
-            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
               <label
                 htmlFor="number"
-                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+                className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
               >
                 Phone Number:
               </label>
@@ -233,10 +233,10 @@ export default function AddTeam() {
               />
             </div>
             {formData?.phoneNumber.length !== 10 && (
-              <p className="mt-2 text-sm text-red-500">{phoneNumberError}</p>
+              <p className="text-sm text-red-500">{phoneNumberError}</p>
             )}
             {formData?.phoneNumber.length === 0 && (
-              <p className="mt-2 text-sm text-red-500">
+              <p className="text-sm text-red-500">
               Enter phone number
               </p>
             )}

@@ -212,7 +212,7 @@ const Carousel = ({ slides }: any) => {
   };
 
   return (
-    <div className="relative h-[50vh]">
+    <div className="relative h-[35vh] lg:h-[50vh]">
       <div>
         <div
           onClick={goToPrevious}

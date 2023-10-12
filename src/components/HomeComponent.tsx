@@ -6,12 +6,24 @@ import Card from './Card';
 export const HomeComponent = () => {
   const [isMounted, setIsMounted] = useState(false);
 
+
+  const slides = [
+    { url: "http://localhost:3000/image-1.jpg", title: "beach" },
+    { url: "http://localhost:3000/image-2.jpg", title: "boat" },
+    { url: "http://localhost:3000/image-3.jpg", title: "forest" },
+    { url: "http://localhost:3000/image-4.jpg", title: "city" },
+  ];
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   return (
     <div>
+    <div className='w-500 h-280 m-0 auto mb-10'>
+        <Carousel slides={slides} />
+      </div>
+
       {/* <Carousel/> */}
       {/* <section className="background firstsection">
         <div className="box-main">

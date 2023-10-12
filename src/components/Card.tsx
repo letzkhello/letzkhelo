@@ -5,6 +5,8 @@ import axios from "axios";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { Shimmer } from "./Shimmer";
+
+import { motion } from "framer-motion";
 interface Game {
   sportName: string;
   location: string;
@@ -93,52 +95,65 @@ export default function Card() {
     return (
       <>
         <div className="flex justify-center items-center my-6 ">
-          <h1 className="md:text-4xl text-2xl border-b-2 border-sky-500 font-serif font-bold">
-            LETZKHELO COMPETETIONS
-          </h1>
+          <motion.div
+            initial={{ opacity: 0, x: "-100vh" }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <h1 className="md:text-4xl text-2xl border-b-2 border-sky-500 font-serif font-bold">
+              LETZKHELO COMPETETIONS
+            </h1>
+          </motion.div>
         </div>
         {/* 
         <div className="p-4 w-full sm:flex sm:justify-center sm:items-center md:flex md:justify-evenly md:flex-wrap"> */}
         <div className="w-full flex flex-wrap items-center justify-evenly py-3 px-8">
           {getGame?.map((game: any, id) => {
             return (
-              <div
-                key={id}
-                className="card w-80 p-2 my-6 glass transition-transform transform hover:scale-105 duration-300 sm:my-12"
-              >
-                <figure>
-                  <Image
-                    src={game?.image}
-                    alt="img"
-                    width="300"
-                    height="200"
-                    className="rounded-t-lg object-cover h-48"
-                  />
-                </figure>
-                <div className="card-body">
-                  <h2 className="card-title">{game?.sportName}</h2>
-                  <p>location: {game?.location}</p>
-                  <p>Date: {convertDate(game?.date)}</p>
-                  <p>Participants: {countRegisteredUsers(game?.sportName)}</p>
-                  <div className="card-actions justify-end">
-                    <button
-                      className="btn bg-purple-400 transform transition-transform hover:scale-105 hover:bg-purple-500 duration-300"
-                      disabled={
-                        checkOpenContest(game?.isOpen, game?.sportName)
-                          ? true
-                          : false
-                      }
-                    >
-                      <Link href={`/bookCompetetion/${game?._id}`}>
-                        {game?.isOpen
-                          ? "Coming Soon"
-                          : checkAlreadyRegistered(game?.sportName)
-                          ? "Already registered"
-                          : "Register Now"}
-                      </Link>
-                    </button>
+              <div key={id}>
+                <motion.div
+                  initial={{ opacity: 0, x: "-100vh" }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 3}}
+                >
+                  <div className="card w-80 p-2 my-6 glass transition-transform transform hover:scale-105 duration-300 sm:my-12">
+                    <figure>
+                      <Image
+                        src={game?.image}
+                        alt="img"
+                        width="300"
+                        height="200"
+                        className="rounded-t-lg object-cover h-48"
+                      />
+                    </figure>
+                    <div className="card-body">
+                      <h2 className="card-title">{game?.sportName}</h2>
+                      <p>location: {game?.location}</p>
+                      <p>Date: {convertDate(game?.date)}</p>
+                      <p>
+                        Participants: {countRegisteredUsers(game?.sportName)}
+                      </p>
+                      <div className="card-actions justify-end">
+                        <button
+                          className="btn bg-purple-400 transform transition-transform hover:scale-105 hover:bg-purple-500 duration-300"
+                          disabled={
+                            checkOpenContest(game?.isOpen, game?.sportName)
+                              ? true
+                              : false
+                          }
+                        >
+                          <Link href={`/bookCompetetion/${game?._id}`}>
+                            {game?.isOpen
+                              ? "Coming Soon"
+                              : checkAlreadyRegistered(game?.sportName)
+                              ? "Already registered"
+                              : "Register Now"}
+                          </Link>
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             );
           })}

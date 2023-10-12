@@ -17,6 +17,12 @@ const nextConfig = {
             port: '',
             pathname: '/WbQnbas.png/**',
           },
+          {
+            protocol: 'https',
+            hostname: 'rukminim1.flixcart.com',
+            port: '',
+            pathname: '/fk-p-flap/**',
+          },
         ],
       },
 }

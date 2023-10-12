@@ -21,6 +21,9 @@ const config: Config = {
       animation: {
         "waving-hand": "wave 0.7s linear infinite alternate",
       },
+      aspectRatio: {
+        '70/45': '70 / 45',
+      },
     },
   },
   daisyui: {

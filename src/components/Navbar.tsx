@@ -5,10 +5,9 @@ import { useSession } from "next-auth/react";
 import img from "@/../public/avatar.png";
 import SignoutButton from "@/components/signoutButton";
 import Link from "next/link";
-
+import { motion } from "framer-motion";
 
 import { BiMenuAltLeft } from "react-icons/bi";
-
 
 interface Session {
   user: {
@@ -23,7 +22,6 @@ export default function Navbar({ fixed }: any) {
   const { data: session, status } = useSession();
   const [isNavOpen, setIsNavOpen] = useState(false);
 
-
   const [isOpen, setIsOpen] = useState(false);
 
   const openMenu = () => {
@@ -35,13 +33,9 @@ export default function Navbar({ fixed }: any) {
   };
 
   return (
-
-
-  <div className="navbar bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 lg:py-4 flex justify-between items-center">
-
-
-  {/* for hamburger  */}
-       {/* <div className="flex items-center justify-between px-4 py-4 lg:hidden">
+    <div className="navbar bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 lg:py-4 flex justify-between items-center">
+      {/* for hamburger  */}
+      {/* <div className="flex items-center justify-between px-4 py-4 lg:hidden">
          <nav>
            <section className="MOBILE-MENU flex lg:hidden">
             <div
@@ -119,173 +113,208 @@ export default function Navbar({ fixed }: any) {
     `}</style>
       </div> */}
 
-{/* bg-purple-600 hover:bg-purple-500 */}
-   <div className="flex items-center justify-between px-4 py-4 lg:hidden">
-   <div className="z-50">
-        <button
-          onClick={openMenu}
-          className={` p-0 w-10 h-10 rounded-full  ${
-            isOpen ? "z-0 hidden" : "z-10"
-          } flex items-center justify-center`}
-        >
-          <BiMenuAltLeft  size={"30"} />
-        </button>
-      </div>
+      {/* bg-purple-600 hover:bg-purple-500 */}
+      <div className="flex items-center justify-between px-4 py-4 lg:hidden">
+        <div className="z-50">
+          <button
+            onClick={openMenu}
+            className={` p-0 w-10 h-10 rounded-full  ${
+              isOpen ? "z-0 hidden" : "z-10"
+            } flex items-center justify-center`}
+          >
+            <BiMenuAltLeft size={"30"} />
+          </button>
+        </div>
 
-      <div
-        className={`fixed bottom-0 left-0 h-full w-64 bg-white border border-solid ${
-          isOpen ? "translate-x-0 z-10" : "-translate-x-full z-10"
-        } transition-transform duration-300 ease-in-out`}
-      >
-        <button
-          onClick={closeMenu}
-          className="absolute top-4 right-4 p-2 rounded-lg bg-purple-500 text-white"
+        <div
+          className={`fixed bottom-0 left-0 h-full w-64 bg-white border border-solid ${
+            isOpen ? "translate-x-0 z-10" : "-translate-x-full z-10"
+          } transition-transform duration-300 ease-in-out`}
         >
-          Close
-        </button>
+          <button
+            onClick={closeMenu}
+            className="absolute top-4 right-4 p-2 rounded-lg bg-purple-500 text-white"
+          >
+            Close
+          </button>
 
-        <div className="p-4">
-          <h1 className="text-2xl font-semibold mb-4">Menu</h1>
-          <ul>
-            <li className="mb-2">
-              <Link
-                href="/"
-                onClick={closeMenu}
-                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
-              >
-                home
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                href="/about"
-                onClick={closeMenu}
-                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
-              >
-                About
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                href="/allUsers"
-                onClick={closeMenu}
-                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
-              >
-                All Members
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                href="/profile"
-                onClick={closeMenu}
-                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
-              >
-               Profile
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                href="/createTeam"
-                onClick={closeMenu}
-                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
-              >
-                Create Team
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                href="/allTeam"
-                onClick={closeMenu}
-                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
-              >
-                All Teams
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link
-                href="/contact"
-                onClick={closeMenu}
-                className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
-              >
-                Contact
-              </Link>
-            </li>
-          </ul>
+          <div className="p-4">
+            <h1 className="text-2xl font-semibold mb-4">Menu</h1>
+            <ul>
+              <li className="mb-2">
+                <Link
+                  href="/"
+                  onClick={closeMenu}
+                  className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+                >
+                  home
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  href="/about"
+                  onClick={closeMenu}
+                  className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+                >
+                  About
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  href="/allUsers"
+                  onClick={closeMenu}
+                  className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+                >
+                  All Members
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  href="/profile"
+                  onClick={closeMenu}
+                  className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+                >
+                  Profile
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  href="/createTeam"
+                  onClick={closeMenu}
+                  className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+                >
+                  Create Team
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  href="/allTeam"
+                  onClick={closeMenu}
+                  className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+                >
+                  All Teams
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  href="/contact"
+                  onClick={closeMenu}
+                  className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-   </div>
 
-
-
-
-  {/* Start: "LetzKhelo" */}
-  <div>
-    <Link href="/" className="btn btn-ghost normal-case text-xl">
-      LetzKhelo
-    </Link>
-  </div>
-
-
-  {/* Middle: Navigation Links */}
-  <div id="navLinks">
-    <ul className="DESKTOP-MENU hidden space-x-4 lg:flex">
-      <li>
-        <Link href="/about" className="text-lg font-medium">About</Link>
-      </li>
-      <li>
-        <Link href="/contact" className="text-lg font-medium">Contact</Link>
-      </li>
-      <li>
-        <Link href="/allUsers" className="text-lg font-medium">All Members</Link>
-      </li>
-      <li>
-        <Link href="/createTeam" className="text-lg font-medium">Create Team</Link>
-      </li>
-      <li>
-        <Link href="/allTeam" className="text-lg font-medium">All Teams</Link>
-      </li>
-    </ul>
-  </div>
-
-  {/* End: Profile Image */}
-  <div className="dropdown dropdown-end">
-    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-      <div className="w-10 rounded-full">
-        <Image
-          src={session?.user?.image ?? img}
-          alt="Picture of the user"
-          width={500}
-          height={500}
-        />
-      </div>
-    </label>
-    <ul
-      tabIndex={0}
-      className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-    >
-      <li>
-        <Link href="/profile" className="justify-between">
-          Profile
-          <span className="badge">New</span>
+      {/* Start: "LetzKhelo" */}
+      <div>
+        <Link href="/" className="btn btn-ghost normal-case text-xl">
+          LetzKhelo
         </Link>
-      </li>
-      <li>
-        {session?.user == null ? (
-          <Link
-            href="/login"
-            title=""
-            className="font-medium text-black transition-all duration-200 hover:underline"
-          >
-            Sign In
-          </Link>
-        ) : (
-          <SignoutButton />
-        )}
-      </li>
-      <li></li>
-    </ul>
-  </div>
-</div>
+      </div>
 
+      {/* Middle: Navigation Links */}
+      <div id="navLinks">
+        <ul className="DESKTOP-MENU hidden space-x-4 lg:flex">
+          <li>
+            <motion.div
+              initial={{ opacity: 0, x: "-100vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: "spring", bounce: 0.6 }}
+            >
+              <Link href="/about" className="text-lg font-medium">
+                About
+              </Link>
+            </motion.div>
+          </li>
+          <li>
+            <motion.div
+              initial={{ opacity: 0, x: "-100vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: "spring", bounce: 0.6 }}
+            >
+              <Link href="/contact" className="text-lg font-medium">
+                Contact
+              </Link>
+            </motion.div>
+          </li>
+          <li>
+            <motion.div
+              initial={{ opacity: 0, x: "-100vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: "spring", bounce: 0.6 }}
+            >
+              <Link href="/allUsers" className="text-lg font-medium">
+                All Members
+              </Link>
+            </motion.div>
+          </li>
+          <li>
+            <motion.div
+              initial={{ opacity: 0, x: "-100vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: "spring", bounce: 0.6 }}
+            >
+              <Link href="/createTeam" className="text-lg font-medium">
+                Create Team
+              </Link>
+            </motion.div>
+          </li>
+          <li>
+            <motion.div
+              initial={{ opacity: 0, x: "-100vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: "spring", bounce: 0.6 }}
+            >
+              <Link href="/allTeam" className="text-lg font-medium">
+                All Teams
+              </Link>
+            </motion.div>
+          </li>
+        </ul>
+      </div>
+
+      {/* End: Profile Image */}
+      <div className="dropdown dropdown-end">
+        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+          <div className="w-10 rounded-full">
+            <Image
+              src={session?.user?.image ?? img}
+              alt="Picture of the user"
+              width={500}
+              height={500}
+            />
+          </div>
+        </label>
+        <ul
+          tabIndex={0}
+          className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <Link href="/profile" className="justify-between">
+              Profile
+              <span className="badge">New</span>
+            </Link>
+          </li>
+          <li>
+            {session?.user == null ? (
+              <Link
+                href="/login"
+                title=""
+                className="font-medium text-black transition-all duration-200 hover:underline"
+              >
+                Sign In
+              </Link>
+            ) : (
+              <SignoutButton />
+            )}
+          </li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
   );
 }

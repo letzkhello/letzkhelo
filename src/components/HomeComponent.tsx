@@ -8,7 +8,7 @@ export const HomeComponent = () => {
   
   const slides = [
     // { url: "http://localhost:3000//carousal1.jpeg", title: "beach" },
-    { url: "http://localhost:3000//one.jpg", title: "beach" },
+    { url: "https://www.letzkhelo.com//one.jpg", title: "beach" },
     { url: "https://www.letzkhelo.com//image-2.jpg", title: "boat" },
     { url: "https://www.letzkhelo.com//image-3.jpg", title: "forest" },
     { url: "https://www.letzkhelo.com//image-4.jpg", title: "city" },

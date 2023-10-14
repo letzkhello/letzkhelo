@@ -31,9 +31,11 @@ export default function Navbar({ fixed }: any) {
   const closeMenu = () => {
     setIsOpen(false);
   };
-
+  // bg-gradient-to-r from-green-300 via-blue-500 to-purple-600
+  // bg-gradient-to-tr from-gray-600 via-gray-700 to-gray-800
+  // bg-gradient-to-r from-red-500 to-red-300
   return (
-    <div className="navbar bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 lg:py-4 flex justify-between items-center">
+    <div className="navbar bg-black  lg:py-2 lg:h-[20vh] flex justify-between items-center z-10">
       {/* for hamburger  */}
       {/* <div className="flex items-center justify-between px-4 py-4 lg:hidden">
          <nav>
@@ -114,11 +116,11 @@ export default function Navbar({ fixed }: any) {
       </div> */}
 
       {/* bg-purple-600 hover:bg-purple-500 */}
-      <div className="flex items-center justify-between px-4 py-4 lg:hidden">
+      <div className="flex items-center justify-between px-4 py-4 lg:hidden ">
         <div className="z-50">
           <button
             onClick={openMenu}
-            className={` p-0 w-10 h-10 rounded-full  ${
+            className={` p-0 w-10 h-10 rounded-full text-white ${
               isOpen ? "z-0 hidden" : "z-10"
             } flex items-center justify-center`}
           >
@@ -133,7 +135,7 @@ export default function Navbar({ fixed }: any) {
         >
           <button
             onClick={closeMenu}
-            className="absolute top-4 right-4 p-2 rounded-lg bg-purple-500 text-white"
+            className="absolute top-4 right-4 p-2 rounded-lg bg-black text-white"
           >
             Close
           </button>
@@ -210,22 +212,22 @@ export default function Navbar({ fixed }: any) {
       </div>
 
       {/* Start: "LetzKhelo" */}
-      <div>
-        <Link href="/" className="btn btn-ghost normal-case text-xl">
-          LetzKhelo
+      <div className="relative top-[-35px]">
+        <Link href="/" className="btn btn-ghost normal-case text-xl ">
+          <Image src="/LetzKhelo.png" alt="logo" height={125} width={125} className="rounded-full align-top"/>
         </Link>
       </div>
 
       {/* Middle: Navigation Links */}
       <div id="navLinks">
-        <ul className="DESKTOP-MENU hidden space-x-4 lg:flex">
+        <ul className="DESKTOP-MENU hidden space-x-4 lg:flex text-white">
           <li>
             <motion.div
               initial={{ opacity: 0, x: "-100vh" }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring", bounce: 0.6 }}
             >
-              <Link href="/about" className="text-lg font-medium">
+              <Link href="/about" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
                 About
               </Link>
             </motion.div>
@@ -236,7 +238,7 @@ export default function Navbar({ fixed }: any) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring", bounce: 0.6 }}
             >
-              <Link href="/contact" className="text-lg font-medium">
+              <Link href="/contact" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
                 Contact
               </Link>
             </motion.div>
@@ -247,7 +249,7 @@ export default function Navbar({ fixed }: any) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring", bounce: 0.6 }}
             >
-              <Link href="/allUsers" className="text-lg font-medium">
+              <Link href="/allUsers" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
                 All Members
               </Link>
             </motion.div>
@@ -258,7 +260,7 @@ export default function Navbar({ fixed }: any) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring", bounce: 0.6 }}
             >
-              <Link href="/createTeam" className="text-lg font-medium">
+              <Link href="/createTeam" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
                 Create Team
               </Link>
             </motion.div>
@@ -269,7 +271,7 @@ export default function Navbar({ fixed }: any) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring", bounce: 0.6 }}
             >
-              <Link href="/allTeam" className="text-lg font-medium">
+              <Link href="/allTeam" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
                 All Teams
               </Link>
             </motion.div>
@@ -279,8 +281,8 @@ export default function Navbar({ fixed }: any) {
 
       {/* End: Profile Image */}
       <div className="dropdown dropdown-end">
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-          <div className="w-10 rounded-full">
+        <label tabIndex={0} className="btn btn-ghost btn-circle avatar bg-white">
+          <div className="w-10 rounded-full bg-white">
             <Image
               src={session?.user?.image ?? img}
               alt="Picture of the user"

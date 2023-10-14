@@ -8,45 +8,45 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 
 export default function SignInOne() {
-  const searchParam = useSearchParams();
+  // const searchParam = useSearchParams();
 
-  const [authData, setAuthData] = useState({
-    email: "",
-    password: "",
-  });
-  const [loading, setLoading] = useState<boolean>(false);
-  const [errors, setError] = useState<LoginErrorType>();
+  // const [authData, setAuthData] = useState({
+  //   email: "",
+  //   password: "",
+  // });
+  // const [loading, setLoading] = useState<boolean>(false);
+  // const [errors, setError] = useState<LoginErrorType>();
 
-  useEffect(() => {
-    console.log("The query is", searchParam.get("error"));
-  }, []);
+  // useEffect(() => {
+  //   console.log("The query is", searchParam.get("error"));
+  // }, []);
 
   //   * Submit the data
-  const submitForm = async () => {
-    setLoading(true);
-    axios
-      .post("/api/auth/login", authData)
-      .then((res) => {
-        setLoading(false);
-        const response = res.data;
-        console.log("The response is ", response);
-        if (response.status == 200) {
-          console.log("The user signed in", response);
-          signIn("credentials", {
-            email: authData.email,
-            password: authData.password,
-            callbackUrl: "/",
-            redirect: true,
-          });
-        } else if (response.status == 400) {
-          setError(response?.errors);
-        }
-      })
-      .catch((err) => {
-        setLoading(false);
-        console.log("Error is", err);
-      });
-  };
+  // const submitForm = async () => {
+  //   setLoading(true);
+  //   axios
+  //     .post("/api/auth/login", authData)
+  //     .then((res) => {
+  //       setLoading(false);
+  //       const response = res.data;
+  //       console.log("The response is ", response);
+  //       if (response.status == 200) {
+  //         console.log("The user signed in", response);
+  //         signIn("credentials", {
+  //           email: authData.email,
+  //           password: authData.password,
+  //           callbackUrl: "/",
+  //           redirect: true,
+  //         });
+  //       } else if (response.status == 400) {
+  //         setError(response?.errors);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       setLoading(false);
+  //       console.log("Error is", err);
+  //     });
+  // };
 
   // * Github signin
 

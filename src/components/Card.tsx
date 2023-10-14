@@ -100,7 +100,8 @@ export default function Card() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            <h1 className="md:text-4xl text-2xl border-b-2 border-sky-500 font-serif font-bold">
+            {/* text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300 */}
+            <h1 className="md:text-4xl text-white text-2xl border-b-4 border-black font-serif font-bold">
               LETZKHELO COMPETETIONS
             </h1>
           </motion.div>
@@ -116,7 +117,7 @@ export default function Card() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 3}}
                 >
-                  <div className="card w-80 p-2 my-6 glass transition-transform transform hover:scale-105 duration-300 sm:my-12">
+                  <div className="card w-80 p-2 my-6 glass transition-transform transform hover:scale-105 duration-300 sm:my-12 bg-white">
                     <figure>
                       <Image
                         src={game?.image}
@@ -135,14 +136,15 @@ export default function Card() {
                       </p>
                       <div className="card-actions justify-end">
                         <button
-                          className="btn bg-purple-400 transform transition-transform hover:scale-105 hover:bg-purple-500 duration-300"
+                          className="btn bg-black text-white transform transition-transform hover:scale-105 duration-300"
                           disabled={
                             checkOpenContest(game?.isOpen, game?.sportName)
                               ? true
                               : false
                           }
                         >
-                          <Link href={`/bookCompetetion/${game?._id}`}>
+                          {/* href={`/bookCompetetion/${game?._id}`} */}
+                          <Link href={session ? `/bookCompetetion/${game?._id}` : `/login`}>
                             {game?.isOpen
                               ? "Coming Soon"
                               : checkAlreadyRegistered(game?.sportName)

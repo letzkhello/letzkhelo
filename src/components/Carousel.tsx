@@ -167,7 +167,7 @@ import React, { useState, useEffect } from "react";
 const slideStyles = {
   width: "100%",
   height: "100%",
-  borderRadius: "10px",
+  // borderRadius: "10px",
   backgroundSize: "cover",
   backgroundPosition: "center",
   transition: "background-image 1s ease-in-out", // Add a transition for background-image
@@ -212,19 +212,19 @@ const Carousel = ({ slides }: any) => {
   };
 
   return (
-    <div className="relative h-[35vh] lg:h-[50vh]">
+    <div className="relative h-[35vh] lg:h-[60vh]">
       <div>
         <div
           onClick={goToPrevious}
           className="absolute top-1/2 transform -translate-y-1/2 left-32 text-45 text-white z-10 cursor-pointer"
         >
-          ❰
+          
         </div>
         <div
           onClick={goToNext}
           className="absolute top-1/2 transform -translate-y-1/2 right-32 text-45 text-white z-10 cursor-pointer"
         >
-          ❱
+          
         </div>
       </div>
       <div style={slideStylesWithBackground}></div>

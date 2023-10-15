@@ -7,23 +7,19 @@ export default function ContactUs() {
             <div className="flex flex-wrap">
               <div className="mb-10 w-full">
                 <h2 className="mb-6 text-3xl font-bold ">
-                  <span className="text-black-600">CONTACT US</span>
+                  <span className="text-white">CONTACT US</span>
                 </h2>
-                <p className="mb-6 text-[#585858]">
-                  Lorem ipsum dolor sit amet consectetur adipisicing
-                  elit.Laudantium, modi accusantium ipsum corporis quia
-                  asperiores dolorem nisi corrupti eveniet dolores ad maiores
-                  repellendus enim autem omnis fugiat perspiciatis? Ad,
-                  veritatis.
+                <p className="mb-10 text-white">
+                Thank you for your interest in contacting us. We're here to assist you and provide the information you need. Please find our contact details below:
                 </p>
-                <h4 className="text-black-600 font-bold">Address</h4>
-                <p className="mb-2 text-[#585858]">
-                  Dwarka sector-23 new delhi-11043
+                <h4 className="text-white font-bold">Address</h4>
+                <p className="mb-10 text-white">
+                Visit our office at the following location : Dwarka sector-23 new delhi-11043
                 </p>
-                <h4 className="text-black-600 font-bold">Phone No</h4>
-                <p className="mb-2 text-[#585858]">+91 8851840604</p>
-                <h4 className="text-black-600 font-bold">E-mail</h4>
-                <p className="mb-2 text-[#585858]">letzkhello@gmail.com</p>
+                <h4 className="text-white font-bold">Phone No</h4>
+                <p className="mb-10 text-white"> You can speak with our team directly by calling : +91 8851840604</p>
+                <h4 className="text-white font-bold">E-mail</h4>
+                <p className="mb-2 text-white"> For inquiries or assistance, you can reach us via email at : letzkhello@gmail.com</p>
               </div>
             </div>
           </section>

@@ -40,7 +40,7 @@ export default function AllUserCard() {
         {users.map((user) => (
           <div
             key={user?._id}
-            className="card w-80 mt-10 bg-base-100 shadow-xl"
+            className="card w-80 mt-10 -base-100 shadow-xl"
           >
             <figure>
               <img

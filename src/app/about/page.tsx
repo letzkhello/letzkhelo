@@ -18,7 +18,7 @@ export default function AboutUs() {
         </div>
         <div className="sm:w-1/2 p-5">
           <div className="text">
-            <span className="text-gray-500 border-b-2 border-indigo-600 uppercase">
+            <span className="text-white border-b-2 border-white uppercase">
               About Us
             </span>
             <h2 className="my-4 font-bold text-3xl  sm:text-4xl ">
@@ -28,18 +28,18 @@ export default function AboutUs() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ type: "spring", bounce: 0.6 }}
                 >
-                  <span>About</span>
+                  {/* <span>ABOUT</span> */}
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, x: "100vh" }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ type: "spring", bounce: 0.6 }}
                 >
-                  <span className="text-indigo-600"> Letzkhelo</span>
+                  <span className="text-white"> LETZKHELO</span>
                 </motion.div>
               </div>
             </h2>
-            <p className="text-gray-700">
+            <p className="text-white">
               Welcome to Letzkhelo, where sports enthusiasts unite to challenge,
               compete, and celebrate the spirit of athleticism!
               <br />
@@ -51,7 +51,7 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-      <section className="bg-gray-100 py-16">
+      <section className="bg-[#c52f2f] py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mt-12 flex">
             <div>
@@ -61,7 +61,7 @@ export default function AboutUs() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ type: "spring", bounce: 0.6 }}
                 >
-                  <h2 className="text-3xl font-extrabold text-gray-900">
+                  <h2 className="text-3xl font-extrabold text-white">
                     Mission
                   </h2>
                 </motion.div>
@@ -71,7 +71,7 @@ export default function AboutUs() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1 }}
                 >
-                  <p className="mt-2 mb-5 text-base text-gray-500">
+                  <p className="mt-2 mb-5 text-base text-white">
                     Our mission is simple: to create a vibrant and inclusive
                     community for athletes of all levels. Whether you&apos;re a
                     seasoned pro or just starting your sporting journey,
@@ -90,7 +90,7 @@ export default function AboutUs() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", bounce: 0.6 }}
               >
-                <h2 className="text-3xl font-extrabold text-gray-900">
+                <h2 className="text-3xl font-extrabold text-white">
                   What we Offers
                 </h2>
               </motion.div>
@@ -100,7 +100,7 @@ export default function AboutUs() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
               >
-                <p className="mt-2 text-base text-gray-500  mb-5">
+                <p className="mt-2 text-base text-white  mb-5">
                   Team and Player Registration: Register your team or yourself
                   as an individual player and become part of our dynamic sports
                   network. Showcase your skills, build your team, and connect
@@ -126,7 +126,7 @@ export default function AboutUs() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", bounce: 0.6 }}
               >
-                <h2 className="text-3xl font-extrabold text-gray-900">
+                <h2 className="text-3xl font-extrabold text-white">
                   Why Choose Letzkhelo?
                 </h2>
               </motion.div>
@@ -136,8 +136,8 @@ export default function AboutUs() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
               >
-                <p className="mt-2 text-base text-gray-500  mb-5">
-                  sassion for Sports: We&apos;re sports enthusiasts, just like
+                <p className="mt-2 text-base text-white mb-5">
+                  Passion for Sports: We&apos;re sports enthusiasts, just like
                   you. Our dedication to the world of athletics drives us to
                   provide the best platform for athletes to shine. Fair Play: We
                   value fair competition and sportsmanship above all. Letzkhelo

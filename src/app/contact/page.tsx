@@ -10,7 +10,7 @@ export default function ContactUs() {
                   <span className="text-white">CONTACT US</span>
                 </h2>
                 <p className="mb-10 text-white">
-                Thank you for your interest in contacting us. We're here to assist you and provide the information you need. Please find our contact details below:
+                Thank you for your interest in contacting us. We&apos;re here to assist you and provide the information you need. Please find our contact details below:
                 </p>
                 <h4 className="text-white font-bold">Address</h4>
                 <p className="mb-10 text-white">

@@ -85,7 +85,7 @@ export default function Card() {
       }-${date.getFullYear()}`;
       return showDate;
     } else {
-      return "coming Soon";
+      return "Coming Soon";
     }
   };
 
@@ -129,7 +129,7 @@ export default function Card() {
                     </figure>
                     <div className="card-body">
                       <h2 className="card-title">{game?.sportName}</h2>
-                      <p>location: {game?.location}</p>
+                      <p>Location: {game?.location}</p>
                       <p>Date: {convertDate(game?.date)}</p>
                       <p>
                         Participants: {countRegisteredUsers(game?.sportName)}

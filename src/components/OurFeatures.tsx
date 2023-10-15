@@ -1,6 +1,11 @@
 import React from "react";
 import Image from "next/image";
 
+interface ServiceCardProps {
+  title: string;
+  details: string;
+  image: string; // Define the type for the image prop
+}
 const Service = () => {
   return (
     <section className="pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
@@ -59,7 +64,7 @@ const Service = () => {
   );
 };
 
-const ServiceCard = ({ title, details, image }) => {
+const  ServiceCard: React.FC<ServiceCardProps>  = ({ title, details, image }) => {
   return (
     <div className="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 animate-pulse">
       <div className="px-6 py-8 bg-white rounded-xl text-center">

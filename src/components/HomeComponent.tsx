@@ -9,10 +9,10 @@ export const HomeComponent = () => {
   
   const slides = [
     // { url: "http://localhost:3000//carousal1.jpeg", title: "beach" },
-    { url: "https://www.letzkhelo.com//one.jpg", title: "beach" },
+    { url: "/one.jpg", title: "beach" },
     { url: "/ball.jpg", title: "boat" },
     { url: "/badmintoncover.jpg", title: "forest" },
-    { url: "https://www.letzkhelo.com//image-4.jpg", title: "city" },
+    { url: "/carous.jpg", title: "city" },
   ];
 
   useEffect(() => {

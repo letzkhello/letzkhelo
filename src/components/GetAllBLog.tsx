@@ -32,11 +32,11 @@ function GetAllBlog() {
             <div className="w-full mx-auto px-4 sm:px-6 lg:px-8" key={id}>
               <div className="max-w-3xl mx-auto">
                 <div className="py-8">
-                  <h1 className="text-3xl font-bold mb-2">{blog?.title}</h1>
-                  <p className="text-gray-500 text-sm">
+                  <h1 className="text-3xl font-bold mb-2 capitalize text-white">{blog?.title}</h1>
+                  <p className="text-sm capitalize text-white">
                   <b>Author Name :</b>   {blog?.author}
                   </p>
-                  <p className="text-gray-500 text-sm">
+                  <p className="capitalize text-white text-sm">
                     <time dateTime="2022-04-05"><b>Date :</b>{blog?.date}</time>
                   </p>
                 </div>
@@ -45,8 +45,8 @@ function GetAllBlog() {
                   alt="Featured image"
                   className="w-full h-auto mb-8"
                 />
-                <h2 className="text-3xl mb-2">{blog?.subHeading}</h2>
-                <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto">
+                <h2 className="text-3xl mb-2 text-white">{blog?.subHeading}</h2>
+                <div className="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mx-auto text-white">
                   {blog?.description}
                 </div>
               </div>

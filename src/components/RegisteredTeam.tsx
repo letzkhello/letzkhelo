@@ -87,7 +87,7 @@ export default function RegisteredTeam() {
           </h1>
         </div>
         <div className="flex  w-screen  justify-center p-5">
-        <dt className="text-sm font-medium text-gray-500 px-4">
+        <dt className="text-sm font-medium text-white px-4">
                         Select Sports
                       </dt>
           <select
@@ -97,10 +97,10 @@ export default function RegisteredTeam() {
           >
             <option value="All">All Sports</option>
             <option value="Cricket">Cricket</option>
-            <option value="Kabbadi">kabbadi</option>
-            <option value="arm wrestling">Arm Wrestling</option>
+            <option value="Kabaddi">kabaddi</option>
+            <option value="arm wrestling">Arm-Wrestling</option>
 
-            <option value="Khokho">Khokho</option>
+            <option value="Khokho">Kho-kho</option>
 
 
 
@@ -118,7 +118,7 @@ export default function RegisteredTeam() {
                   <h3 className="text-lg leading-6 font-medium text-gray-900">
                     TEAM: {team.teamName.toUpperCase()}
                   </h3>
-                  <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                  <p className="mt-1 max-w-2xl text-sm text-gray-500 capitalize">
                     Caption: {team.captainName}
                   </p>
                 </div>

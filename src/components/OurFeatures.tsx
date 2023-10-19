@@ -40,11 +40,11 @@ const Service = () => {
             title="Arm Wrestling"
             details="Think you have the strength to compete? Test your arm-wrestling
             skills at LetzKhelo. We host arm wrestling competitions and offer
-            training for those looking to improve their technique"
+            training for those looking to improve their technique."
             image="arms.jpeg" // Use your image variable here
           />
           <ServiceCard
-            title="100"
+            title="Badminton"
             details="Badminton is not just a casual backyard game. It&apos;s a fast-paced
             sport that requires agility and precision. Join our badminton
             club, whether you&apos;re a beginner or an advanced player."
@@ -55,7 +55,7 @@ const Service = () => {
             details="Kabaddi is a sport that demands both strategy and physical
             prowess. Join our kabaddi events and learn from experienced
             players. Challenge yourself and be part of the kabaddi
-            excitement"
+            excitement."
             image="/kabbadi.jpg" // Use your image variable here
           />
         </div>

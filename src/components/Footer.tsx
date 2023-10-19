@@ -30,7 +30,7 @@ export default function Footer() {
           <header className="footer-title text-white">Company</header>
           <Link href={'/about'}  className="link link-hover text-white">About us</Link>
           <Link href={'/contact'} className="link link-hover text-white">Contact</Link>
-          <Link href={'/ourTeam'} className="link link-hover text-white">Team</Link>
+          <Link href={'/ourTeam'} className="link link-hover text-white">Our Team</Link>
           <Link href={'/blog'} className="link link-hover text-white">Blogs Page</Link>
         </nav>
         <nav>

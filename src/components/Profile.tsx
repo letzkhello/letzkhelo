@@ -162,7 +162,7 @@ export default function ProfileComponent() {
                 </div>
                 <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
                   <li className="flex flex-col items-center justify-around">
-                    <p>contest</p>
+                    <p>Contest</p>
                     <div>0</div>
                   </li>
                   <li className="flex flex-col items-center justify-between">
@@ -252,13 +252,7 @@ export default function ProfileComponent() {
                       Write about yourself
                     </h2>
                     <p className="text-gray-700">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed finibus est vitae tortor ullamcorper, ut vestibulum
-                      velit convallis. Aenean posuere risus non velit egestas
-                      suscipit. Nunc finibus vel ante id euismod. Vestibulum
-                      ante ipsum primis in faucibus orci luctus et ultrices
-                      posuere cubilia Curae; Aliquam erat volutpat. Nulla
-                      vulputate pharetra tellus, in luctus risus rhoncus id.
+                   To be uploaded
                     </p>
                   </div>
                 </div>

@@ -13,8 +13,9 @@ export default function ContactUs() {
                 Thank you for your interest in contacting us. We&apos;re here to assist you and provide the information you need. Please find our contact details below:
                 </p>
                 <h4 className="text-white font-bold">Address</h4>
-                <p className="mb-10 text-white">
-                Visit our office at the following location : Dwarka sector-23 new delhi-11043
+                <p className="mb-10 text-white ">
+                Visit our office at the following location : 
+                <span className="capitalize"> Dwarka sector-23 new delhi-11043</span>
                 </p>
                 <h4 className="text-white font-bold">Phone No</h4>
                 <p className="mb-10 text-white"> You can speak with our team directly by calling : +91 8851840604</p>
@@ -27,4 +28,16 @@ export default function ContactUs() {
       </div>
     </>
   );
+}
+
+
+export function generateMetadata(){
+  return{
+    title:"Contacts",
+    description:"For inquiries, support, or collaboration,get in touch with Letzkhelo. We’re here to assist you. Contact us today!",
+    keywords:"Contact, Contact Information, Inquiry,Support, Collaboration, Get in Touch, Contact Us, Support Team, Contact Details.",
+    robots:"index, follow",
+    language:"EN",
+
+  }
 }

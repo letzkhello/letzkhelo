@@ -140,7 +140,7 @@ export default function AddTeam() {
                 name="sportName"
                 value={formData.sportName}
                 onChange={handleChange}
-                placeholder="captain name"
+                placeholder="sport name"
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
@@ -212,7 +212,7 @@ export default function AddTeam() {
             </div>
             {formData.instagramId.trim() === "" && (
               <p className="text-sm text-red-500">
-                Enter patient name
+                Enter your Instagram Id Link 
               </p>
             )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">

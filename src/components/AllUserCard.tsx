@@ -2,6 +2,9 @@
 import axios from "axios";
 import Loader from "./Loader";
 import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import Image from 'next/image'
+
 interface User {
   name: string;
   intrestedSport: string;
@@ -11,6 +14,7 @@ interface User {
   _id: any;
 }
 export default function AllUserCard() {
+  const { data: session, status } = useSession();
   const [users, setUsers] = useState<User[]>([]);
   const [getLoader, setLoader] = useState(true);
   useEffect(() => {
@@ -35,12 +39,12 @@ export default function AllUserCard() {
   } else {
   return (
     <>
-      <h1 className="text-center font-bold text-5xl m-5">All SportsMen</h1>
-      <div className="md:flex md:flex-wrap m-2 p-2 w-full">
+      <h1 className="text-center font-bold text-5xl m-5 text-white">All SportsMen</h1>
+      <div className="flex flex-wrap justify-evenly w-full">
         {users.map((user) => (
           <div
             key={user?._id}
-            className="card w-80 mt-10 -base-100 shadow-xl"
+            className="card w-80 mt-10 -base-100 shadow-xl bg-white"
           >
             <figure>
               <img
@@ -48,6 +52,10 @@ export default function AllUserCard() {
                 alt="Shoes"
               />
             </figure>
+           {/* <figure>
+            <Image src={session?.user?.image || ''} alt="Profile-image" height={100} width={100}/>
+           </figure> */}
+
             <div className="card-body">
               <h2 className="card-title">
                 {user?.name}

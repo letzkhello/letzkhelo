@@ -194,7 +194,7 @@ export default function Navbar({ fixed }: any) {
                   onClick={closeMenu}
                   className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
                 >
-                  All Teams
+                  Registered Teams
                 </Link>
               </li>
               <li className="mb-2">
@@ -221,6 +221,17 @@ export default function Navbar({ fixed }: any) {
       {/* Middle: Navigation Links */}
       <div id="navLinks">
         <ul className="DESKTOP-MENU hidden space-x-4 lg:flex text-white">
+        <li>
+            <motion.div
+              initial={{ opacity: 0, x: "-100vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: "spring", bounce: 0.6 }}
+            >
+              <Link href="/" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
+                Home
+              </Link>
+            </motion.div>
+          </li>
           <li>
             <motion.div
               initial={{ opacity: 0, x: "-100vh" }}
@@ -272,7 +283,7 @@ export default function Navbar({ fixed }: any) {
               transition={{ type: "spring", bounce: 0.6 }}
             >
               <Link href="/allTeam" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
-                All Teams
+                Registered Teams
               </Link>
             </motion.div>
           </li>

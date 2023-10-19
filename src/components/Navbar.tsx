@@ -214,7 +214,7 @@ export default function Navbar({ fixed }: any) {
       {/* Start: "LetzKhelo" */}
       <div className="relative top-[-35px]">
         <Link href="/" className="btn btn-ghost normal-case text-xl ">
-          <Image src="/LetzKhelo.png" alt="logo" height={125} width={125} className="rounded-full align-top"/>
+          <Image src="/LetzKhelo.png" alt="logo" height={125} width={125} className="rounded-full align-top z-10"/>
         </Link>
       </div>
 

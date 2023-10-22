@@ -101,7 +101,7 @@ export default function Card() {
             transition={{ duration: 1 }}
           >
             {/* text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300 */}
-            <h1 className="md:text-4xl text-white text-2xl border-b-4 border-black font-serif font-bold">
+            <h1 className="text-xl  text-white  border-b-4 border-black font-serif font-bold md:text-2xl lg:text-4xl">
               LETZKHELO COMPETETIONS
             </h1>
           </motion.div>

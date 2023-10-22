@@ -185,7 +185,7 @@ export default function Navbar({ fixed }: any) {
                   onClick={closeMenu}
                   className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
                 >
-                  Create Team
+                  Register Your Team
                 </Link>
               </li>
               <li className="mb-2">
@@ -280,7 +280,7 @@ export default function Navbar({ fixed }: any) {
               transition={{ type: "spring", bounce: 0.6 }}
             >
               <Link href="/createTeam" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
-                Create Team
+                Register Your Team
               </Link>
             </motion.div>
           </li>

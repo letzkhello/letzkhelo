@@ -17,24 +17,7 @@ export default function Team() {
               work tirelessly to make your gaming dreams come true.
             </p>
           </div>
-          <div className="grid gap-12 items-center md:grid-cols-3">
-            <div className="space-y-4 text-center">
-              <img
-                className="w-64 h-64 mx-auto object-cover rounded-xl md:w-40 md:h-40 lg:w-64 lg:h-64"
-                src="/an.png"
-                alt="woman"
-                loading="lazy"
-                width="640"
-                height="805"
-              />
-              <div>
-                <h4 className="text-2xl">Anshuman Negi</h4>
-                <span className="block text-sm text-gray-500">
-                  Co-Founder(tech lead)
-                </span>
-              </div>
-            </div>
-            <div className="space-y-4 text-center">
+          <div className="space-y-4 text-center">
               <img
                 className="w-64 h-64 mx-auto object-cover rounded-xl md:w-48 md:h-64 lg:w-64 lg:h-80"
                 src="/rj.png"
@@ -48,6 +31,24 @@ export default function Team() {
                 <span className="block text-sm text-gray-500">Founder(Chief Technology Officer)</span>
               </div>
             </div>
+          <div className="grid gap-12 items-center md:grid-cols-3">
+            <div className="space-y-4 text-center">
+              <img
+                className="w-64 h-64 mx-auto object-cover rounded-xl md:w-40 md:h-40 lg:w-64 lg:h-64"
+                src="/an.png"
+                alt="woman"
+                loading="lazy"
+                width="640"
+                height="805"
+              />
+              <div>
+                <h4 className="text-2xl">Anshuman Negi</h4>
+                <span className="block text-sm text-gray-500">
+                  Co-Founder(Tech Lead)
+                </span>
+              </div>
+            </div>
+            
 
             <div className="space-y-4 text-center">
               <img
@@ -61,7 +62,7 @@ export default function Team() {
               <div>
                 <h4 className="text-2xl">Prerna Sharma</h4>
                 <span className="block text-sm text-gray-500">
-                  Head of Marketting
+                  Head of Marketing
                 </span>
               </div>
             </div>
@@ -83,7 +84,7 @@ export default function Team() {
                 </span>
               </div>
             </div>
-            <div className="space-y-4 text-center">
+            {/* <div className="space-y-4 text-center">
               <img
                 className="w-64 h-64 mx-auto object-cover rounded-xl md:w-40 md:h-40 lg:w-64 lg:h-64"
                 src="/nonu.jpeg"
@@ -98,7 +99,7 @@ export default function Team() {
                   Design(intern)
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -45,7 +45,7 @@ export default function AddTeam() {
       setLoader(true);
       await axios.post("/api/addTeam", formData);
       setLoader(false);
-      toast.success("Team register is Successfully");
+      toast.success("Your team is registered....");
       router.push('/allTeam');
       setFormData({
         teamName: "",

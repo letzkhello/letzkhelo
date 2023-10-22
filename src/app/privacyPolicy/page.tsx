@@ -110,10 +110,10 @@ export default function PrivacyPolicy() {
                 </p>
                 <p className="text-base mb-6 text-white">
                   <span className="font-semibold">Website</span> refers to
-                  LetzKhelo, accessible from
-                  <Link href={"https://www.letzkhelo.com/login"}>
+                  LetzKhelo, accessible from <span> </span>
+                  <Link href={"https://www.letzkhelo.com"}>
                     <span className="text-[#06b6d4]">
-                      https://www.letzkhelo.com/login
+                       https://www.letzkhelo.com
                     </span>
                   </Link>
                 </p>

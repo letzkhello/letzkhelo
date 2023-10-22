@@ -145,11 +145,14 @@ export default function Card() {
                         >
                           {/* href={`/bookCompetetion/${game?._id}`} */}
                           <Link href={session ? `/bookCompetetion/${game?._id}` : `/login`}>
-                            {game?.isOpen
+                            { game.registrationClosed ? "Registration Closed" : game?.isOpen
                               ? "Coming Soon"
                               : checkAlreadyRegistered(game?.sportName)
                               ? "Already registered"
                               : "Register Now"}
+                              {/* {
+                                game.registrationClosed ? "Registration Closed" : "" 
+                              } */}
                           </Link>
                         </button>
                       </div>

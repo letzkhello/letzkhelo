@@ -10,6 +10,7 @@ interface ISport extends Document {
   date?: Date;
   isFeatured: boolean;
   isOpen: boolean;
+  registrationClosed: boolean;
 }
 
 const SportSchema = new Schema<ISport>({
@@ -38,6 +39,11 @@ const SportSchema = new Schema<ISport>({
     default: false,
   },
   isOpen: {
+    type: Schema.Types.Boolean,
+    default: false,
+    required: false,
+  },
+  registrationClosed: {
     type: Schema.Types.Boolean,
     default: false,
     required: false,

@@ -6,7 +6,6 @@ import img from "@/../public/avatar.png";
 import SignoutButton from "@/components/signoutButton";
 import Link from "next/link";
 import { motion } from "framer-motion";
-
 import { BiMenuAltLeft } from "react-icons/bi";
 
 interface Session {
@@ -21,8 +20,9 @@ export default function Navbar({ fixed }: any) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const { data: session, status } = useSession();
   const [isNavOpen, setIsNavOpen] = useState(false);
-
   const [isOpen, setIsOpen] = useState(false);
+
+
 
   const openMenu = () => {
     setIsOpen(true);
@@ -167,12 +167,12 @@ export default function Navbar({ fixed }: any) {
                   onClick={closeMenu}
                   className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
                 >
-                  All Members
+                  All Players
                 </Link>
               </li>
               <li className="mb-2">
                 <Link
-                  href="/profile"
+                  href={session ? `/profile` : `/login`}
                   onClick={closeMenu}
                   className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
                 >
@@ -212,9 +212,17 @@ export default function Navbar({ fixed }: any) {
       </div>
 
       {/* Start: "LetzKhelo" */}
-      <div className="relative top-[-35px]">
+      <div className="relative top-[-15px] lg:top-[-32px]  xl:top-[-40px] ">
         <Link href="/" className="btn btn-ghost normal-case text-xl ">
-          <Image src="/LetzKhelo.png" alt="logo" height={125} width={125} className="rounded-full align-top z-10"/>
+          {/* <Image src="/LetzKhelo.png" alt="logo" height={125} width={125}  className="rounded-full align-top "/> */}
+          <Image
+  src="/LetzKhelo.png"
+  alt="logo"
+  height={125}
+  width={125}
+  className="rounded-full align-top w-20 h-20 sm:w-20 sm:h-20 md:w-20 md:h-20 lg:w-28 lg:h-28 xl:w-32 xl:h-32" // Adjust the classes as needed
+/>
+
         </Link>
       </div>
 
@@ -261,7 +269,7 @@ export default function Navbar({ fixed }: any) {
               transition={{ type: "spring", bounce: 0.6 }}
             >
               <Link href="/allUsers" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
-                All Members
+                All Players
               </Link>
             </motion.div>
           </li>
@@ -307,7 +315,7 @@ export default function Navbar({ fixed }: any) {
           className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
         >
           <li>
-            <Link href="/profile" className="justify-between">
+            <Link href={session ? `/profile` : `/login`} className="justify-between">
               Profile
               <span className="badge">New</span>
             </Link>

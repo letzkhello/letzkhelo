@@ -39,7 +39,7 @@ export default function AllUserCard() {
   } else {
   return (
     <>
-      <h1 className="text-center font-bold text-5xl m-5 text-white">All SportsMen</h1>
+      <h1 className="text-center font-bold text-5xl m-5 text-white">All Players</h1>
       <div className="flex flex-wrap justify-evenly w-full">
         {users.map((user) => (
           <div

@@ -82,7 +82,7 @@ export default function RegisteredTeam() {
           </div>
         </div>
         <div className="flex justify-center items-center my-6 ">
-          <h1 className="md:text-4xl text-2xl border-b-2 border-sky-500 font-serif font-bold">
+          <h1 className="md:text-4xl text-2xl border-b-4 border-black font-serif font-bold text-white pb-3">
             ALL REGISTERED TEAM
           </h1>
         </div>
@@ -98,9 +98,9 @@ export default function RegisteredTeam() {
             <option value="All">All Sports</option>
             <option value="Cricket">Cricket</option>
             <option value="Kabaddi">kabaddi</option>
-            <option value="arm wrestling">Arm-Wrestling</option>
+            <option value="arm wrestling">Arm Wrestling</option>
 
-            <option value="Khokho">Kho-kho</option>
+            <option value="Khokho">Kho kho</option>
 
 
 
@@ -119,7 +119,7 @@ export default function RegisteredTeam() {
                     TEAM: {team.teamName.toUpperCase()}
                   </h3>
                   <p className="mt-1 max-w-2xl text-sm text-gray-500 capitalize">
-                    Caption: {team.captainName}
+                    Captain: {team.captainName}
                   </p>
                 </div>
                 <div className="border-t border-gray-200 px-4 py-5 sm:p-0">

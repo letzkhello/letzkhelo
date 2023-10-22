@@ -91,7 +91,7 @@ export default function AboutUs() {
                 transition={{ type: "spring", bounce: 0.6 }}
               >
                 <h2 className="text-3xl font-extrabold text-white">
-                  What we Offers
+                  What we Offer
                 </h2>
               </motion.div>
 

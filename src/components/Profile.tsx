@@ -236,15 +236,15 @@ export default function ProfileComponent() {
                     <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
                       <li className="flex flex-col items-center justify-around">
                         <p>Weight</p>
-                        <div>{user?.weight ? user?.weight : "not mentioned"}</div>
+                        <div>{user?.weight ? user?.weight : "Not Mentioned"}</div>
                       </li>
                       <li className="flex flex-col items-center justify-between">
                         <p>Age</p>
-                        <div>{user?.age ? user?.age : "not mentioned"}</div>
+                        <div>{user?.age ? user?.age : "Not Mentioned"}</div>
                       </li>
                       <li className="flex flex-col items-center justify-around">
                         <p>Intrested Sports</p>
-                        <div>{user?.intrestedSport ? user?.intrestedSport : "not mentioned"}</div>
+                        <div>{user?.intrestedSport ? user?.intrestedSport : "Not Mentioned"}</div>
                       </li>
                     </ul>
 
@@ -357,9 +357,9 @@ export default function ProfileComponent() {
                                 // defaultValue= {formData?.intrestedSport? formData?.intrestedSport : "Cricket"}
                               >
                                 <option value="Cricket">Cricket</option>
-                                <option value="Khokho">Khokho</option>
-                                <option value="Kabadi">Kabadi</option>
-                                <option value="Panga">Panga</option>
+                                <option value="Khokho">Kho kho</option>
+                                <option value="Kabadi">Kabaddi</option>
+                                <option value="Arm Wresting">Arm Wresting</option>
                               </select>
                             </div>
                           </div>

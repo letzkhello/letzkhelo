@@ -69,7 +69,8 @@ export default function Term_Condition() {
                 <ul className="list-disc text-white">
                   <li className="mb-4">
                     Your use of the website is also governed by our Privacy
-                    Policy, which you can find [link to Privacy Policy].
+                    Policy, which you can find 
+                     <Link className=" text-blue-500" href={"http://localhost:3000/privacyPolicy || https://www.letzkhelo.com/termandCondition"}> Privacy Policy</Link>.
                   </li>
                 </ul>
                 <h4 className="text-black-600 font-bold text-white mb-4">Disclaimer</h4>

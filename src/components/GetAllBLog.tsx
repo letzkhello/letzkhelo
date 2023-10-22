@@ -37,7 +37,7 @@ function GetAllBlog() {
                   <b>Author Name :</b>   {blog?.author}
                   </p>
                   <p className="capitalize text-white text-sm">
-                    <time dateTime="2022-04-05"><b>Date :</b>{blog?.date}</time>
+                    <time dateTime="2022-04-05"><b>Date :</b>{blog?.date.substring(0, 10)}</time>
                   </p>
                 </div>
                 <img

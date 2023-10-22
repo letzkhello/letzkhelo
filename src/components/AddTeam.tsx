@@ -88,7 +88,7 @@ export default function AddTeam() {
                 htmlFor="name"
                 className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
               >
-                Team name:
+                Team Name:
               </label>
               <input
                 id="name"
@@ -96,13 +96,13 @@ export default function AddTeam() {
                 name="teamName"
                 value={formData.teamName}
                 onChange={handleChange}
-                placeholder="Team name"
+                placeholder="Enter Team Name"
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
             {formData.teamName.trim() === "" && (
               <p className="text-sm text-red-500">
-               Enter Team name
+               Enter Team Name
               </p>
             )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
@@ -110,7 +110,7 @@ export default function AddTeam() {
                 htmlFor="captainName"
                 className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
               >
-                Captain name:
+                Captain Name:
               </label>
               <input
                 id="captainName"
@@ -118,13 +118,13 @@ export default function AddTeam() {
                 name="captainName"
                 value={formData.captainName}
                 onChange={handleChange}
-                placeholder="captain name"
+                placeholder="Enter Captain Name"
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
             {formData.captainName.trim() === "" && (
               <p className="text-sm text-red-500">
-              Enter captain name
+              Enter Captain Name
               </p>
             )}
              <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
@@ -132,7 +132,7 @@ export default function AddTeam() {
                 htmlFor="sportName"
                 className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
               >
-                Sport name:
+                Sport Name:
               </label>
               <input
                 id="sportName"
@@ -140,13 +140,13 @@ export default function AddTeam() {
                 name="sportName"
                 value={formData.sportName}
                 onChange={handleChange}
-                placeholder="sport name"
+                placeholder="Enter Sport Name"
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
             {formData.sportName.trim() === "" && (
               <p className="text-sm text-red-500">
-              Enter Sport name
+              Enter Sport Name
               </p>
             )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
@@ -162,13 +162,13 @@ export default function AddTeam() {
                 name="location"
                 value={formData.location}
                 onChange={handleChange}
-                placeholder="current location"
+                placeholder="Enter your Current Location"
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
             {formData.location.trim() === "" && (
               <p className="text-sm text-red-500">
-               Enter location name
+               Enter your Current Location
               </p>
             )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
@@ -184,13 +184,13 @@ export default function AddTeam() {
                 name="noOfPlayers"
                 value={formData.noOfPlayers}
                 onChange={handleChange}
-                placeholder="number of player"
+                placeholder="Enter Number of Players"
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
             {formData.noOfPlayers.trim() === "" && (
               <p className="text-sm text-red-500">
-                Enter number of player 
+                Enter Number of Players
               </p>
             )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
@@ -198,7 +198,7 @@ export default function AddTeam() {
                 htmlFor="instagramId"
                 className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
               >
-                captain Instagram:
+                Captain Instagram:
               </label>
               <input
                 id="instagramId"
@@ -206,7 +206,7 @@ export default function AddTeam() {
                 name="instagramId"
                 value={formData.instagramId}
                 onChange={handleChange}
-                placeholder="instagramId ID"
+                placeholder="Enter your Instagram Id"
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
@@ -228,7 +228,7 @@ export default function AddTeam() {
                 name="phoneNumber"
                 value={formData.phoneNumber}
                 onChange={handleChange}
-                placeholder="phone number"
+                placeholder="Enter Your Phone Number"
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
               />
             </div>
@@ -237,7 +237,7 @@ export default function AddTeam() {
             )}
             {formData?.phoneNumber.length === 0 && (
               <p className="text-sm text-red-500">
-              Enter phone number
+              Enter Your Phone Number
               </p>
             )}
             <button

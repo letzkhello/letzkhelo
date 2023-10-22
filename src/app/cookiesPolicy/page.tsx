@@ -3,8 +3,8 @@ import Link from "next/link";
 export default function Cokkies() {
   return (
     <>
-      <div className="mx-4 sm:mx-auto">
-        <div className="container my-24 mx-auto md:px-6 ">
+      <div className="mx-4 sm:mx-auto overflow-x-hidden">
+        <div className="container my-24 mx-auto md:px-6 w-full">
           <section className="mb-32">
             <div className="flex flex-wrap">
               <div className="mb-10 w-full">

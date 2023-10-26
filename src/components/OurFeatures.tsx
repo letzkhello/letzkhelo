@@ -9,7 +9,7 @@ interface ServiceCardProps {
 const Service = () => {
   return (
     <section className="pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
-      <div className="container">
+      <div className="w-full">
         <div className="flex flex-wrap ">
           <div className="w-full px-4">
             <div className="mx-auto mb-12 max-w-[510px] text-center lg:mb-20 animate-bounce">

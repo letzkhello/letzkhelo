@@ -35,13 +35,12 @@ export default function RegisteredTeam() {
     if (sport === "All") {
       setRegisteredTeams(searchTeams);
     } else {
-      const filteredTeams = searchTeams.filter((team) =>
-        team.sportName.toLowerCase() === sport.toLowerCase()
+      const filteredTeams = searchTeams.filter(
+        (team) => team.sportName.toLowerCase() === sport.toLowerCase()
       );
       setRegisteredTeams(filteredTeams);
     }
   };
-
 
   const handleInputChange = (e: any) => {
     setSearch(e.target.value);
@@ -57,7 +56,6 @@ export default function RegisteredTeam() {
   } else {
     return (
       <>
-      
         <div className="flex  w-screen  justify-center p-5">
           <div className="w-full rounded-lg bg-gray-200 p-2 md:w-2/4">
             <div className="flex">
@@ -87,9 +85,7 @@ export default function RegisteredTeam() {
           </h1>
         </div>
         <div className="flex  w-screen  justify-center p-5">
-        <dt className="text-sm font-medium text-white px-4">
-                        Select Sports
-                      </dt>
+          <dt className="text-sm font-medium text-white px-4">Select Sports</dt>
           <select
             value={selectedSport || "All"}
             onChange={(e) => filterBySport(e.target.value)}
@@ -97,14 +93,10 @@ export default function RegisteredTeam() {
           >
             <option value="All">All Sports</option>
             <option value="Cricket">Cricket</option>
-            <option value="Kabaddi">kabaddi</option>
-            <option value="arm wrestling">Arm Wrestling</option>
+            <option value="Kabbadi">kabaddi</option>
+            <option value="Arm Wrestling">Arm Wrestling</option>
 
-            <option value="Khokho">Kho kho</option>
-
-
-
-            
+            <option value="Kho kho">Kho kho</option>
           </select>
         </div>
         <div className="p-4 w-full md:flex md:justify-evenly md:flex-wrap">
@@ -152,7 +144,7 @@ export default function RegisteredTeam() {
                       <dt className="text-sm font-medium text-gray-500">
                         Instagram
                       </dt>
-                      
+
                       <Link href={team.instagramId}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

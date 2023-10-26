@@ -49,8 +49,8 @@ export const SuccessPageComponent = ({ params }: any) => {
         <h1 className="text-3xl font-bold text-green-600 mb-4">
           Registration Successful
         </h1>
-        <p className="text-lg text-gray-700">
-          <span className="font-bold uppercase">{session?.user?.name}</span>, Thank you for Registration in      { 
+        <p className="text-lg text-white px-10">
+          <span className="font-bold uppercase  ">{session?.user?.name}</span>, Thank you for Registration in      { 
           getGame?.map((game)=> {
              if(game?._id == params?.id){
               return (
@@ -60,7 +60,7 @@ export const SuccessPageComponent = ({ params }: any) => {
           })
           }
         </p>
-        <p className="text-lg text-gray-700">
+        <p className="text-lg text-white">
           <span className="font-bold uppercase">Venue:</span>
             { 
           getGame?.map((game)=> {

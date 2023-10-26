@@ -115,7 +115,7 @@ export default function Card() {
                 <motion.div
                   initial={{ opacity: 0, x: "-100vh" }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 3}}
+                  transition={{ duration: 3 }}
                 >
                   <div className="card w-80 p-2 my-6 glass transition-transform transform hover:scale-105 duration-300 sm:my-12 bg-white">
                     <figure>
@@ -135,26 +135,33 @@ export default function Card() {
                         Participants: {countRegisteredUsers(game?.sportName)}
                       </p>
                       <div className="card-actions justify-end">
-                        <button
-                          className="btn bg-black text-white transform transition-transform hover:scale-105 duration-300"
-                          disabled={
-                            checkOpenContest(game?.isOpen, game?.sportName)
-                              ? true
-                              : false
+                        <Link
+                          href={
+                            session ? `/bookCompetetion/${game?._id}` : `/login`
                           }
                         >
-                          {/* href={`/bookCompetetion/${game?._id}`} */}
-                          <Link href={session ? `/bookCompetetion/${game?._id}` : `/login`}>
-                            { game.registrationClosed ? "Registration Closed" : game?.isOpen
+                          <button
+                            className="btn bg-black text-white transform transition-transform hover:scale-105 duration-300"
+                            disabled={
+                              checkOpenContest(game?.isOpen, game?.sportName)
+                                ? true
+                                : false
+                            }
+                          >
+                            {/* href={`/bookCompetetion/${game?._id}`} */}
+
+                            {game.registrationClosed
+                              ? "Registration Closed"
+                              : game?.isOpen
                               ? "Coming Soon"
                               : checkAlreadyRegistered(game?.sportName)
                               ? "Already registered"
                               : "Register Now"}
-                              {/* {
+                            {/* {
                                 game.registrationClosed ? "Registration Closed" : "" 
                               } */}
-                          </Link>
-                        </button>
+                          </button>
+                        </Link>
                       </div>
                     </div>
                   </div>

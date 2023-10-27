@@ -33,7 +33,6 @@ export async function POST(request: NextRequest) {
           { status: 200 }
         );
       } else {
-        // * To Hash the password
         const salt = bcrypt.genSaltSync(10);
         output.password = bcrypt.hashSync(output.password, salt);
          await User.create(output);

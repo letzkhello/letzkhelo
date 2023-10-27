@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
       success: true,
     });
   } catch (error: any) {
-    console.log(error,'error')
+    console.log(error);
 
     return NextResponse.json(
       { error: "Error adding in Blog" },

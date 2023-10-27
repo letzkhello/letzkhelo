@@ -12,7 +12,6 @@ export async function PUT(request: NextRequest) {
   }
 
   const { id, isFeatured } = await request.json();
-  console.log(id,isFeatured)
 
   try {
     const sport = await AddSport.findById(id);
@@ -32,7 +31,7 @@ export async function PUT(request: NextRequest) {
       { status: 200 }
     );
   } catch (error: any) {
-    console.log(error, "error");
+    console.log(error);
     return NextResponse.json(
       { message: "Something went wrong" },
       { status: 500 }

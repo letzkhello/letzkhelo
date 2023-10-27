@@ -8,7 +8,6 @@ export const HomeComponent = () => {
   const [isMounted, setIsMounted] = useState(false);
   
   const slides = [
-    // { url: "http://localhost:3000//carousal1.jpeg", title: "beach" },
     { url: "/one.jpg", title: "beach" },
     { url: "/ball.jpg", title: "boat" },
     { url: "/badmintoncover.jpg", title: "forest" },

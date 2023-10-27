@@ -28,7 +28,6 @@ export default function AboutUs() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ type: "spring", bounce: 0.6 }}
                 >
-                  {/* <span>ABOUT</span> */}
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, x: "100vh" }}

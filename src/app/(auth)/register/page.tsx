@@ -22,12 +22,10 @@ export default function SignUp() {
 
   const submitForm = async () => {
     setLoading(true);
-    console.log("The payload is", userState);
     axios
       .post("/api/auth/register", userState)
       .then((res) => {
         setLoading(false);
-        console.log("The response is", res.data);
         const response = res.data;
         if (response.status == 200) {
           router.push(`/login?message=${response.msg}`);
@@ -37,17 +35,14 @@ export default function SignUp() {
           setError({});
         }
       })
-      .catch((err) => console.log("The error is", err));
+      .catch((err) => console.log(err));
   };
-
-  // * Github signin
   const githubSignIn = () => {
     signIn("github", {
       callbackUrl: "/",
     });
   };
 
-  // * Google login
   const googleLogin = async () => {
     await signIn("google", {
       callbackUrl: "/",
@@ -59,12 +54,7 @@ export default function SignUp() {
     <section>
       <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
         <div className="relative flex items-end px-4 pb-10 pt-60 sm:px-6 sm:pb-16 md:justify-center lg:px-8 lg:pb-24">
-          <div className="absolute inset-0">
-            {/* <Image
-              className="h-full w-full  object-cover object-top"
-              src="https://images.unsplash.com/photo-1614741118887-7a4ee193a5fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80"
-              alt=""
-            /> */}
+          <div className="absolute inset-0">    
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
           <div className="relative">

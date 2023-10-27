@@ -4,13 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 connect();
-
-// Function to send the email
 async function sendAppointmentConfirmationEmail(patientName: any,testName:any,email:any,date:any) {
   const useremail = email;
-  console.log(useremail,"my msg")
   const transporter = nodemailer.createTransport({
-    // configure your email provider here
     service: "gmail",
     port: 465,
     secure: true,
@@ -36,13 +32,6 @@ async function sendAppointmentConfirmationEmail(patientName: any,testName:any,em
     Please make sure to arrive at least 30 minutes before the event starts. If you have any questions or need further assistance, feel free to contact us at [contact 8851840604].\n\nBest of luck, and may the best athlete win!\n\nBest regards,\nThe LetzKhelo Team`,
   
   };
-
-  try {
-    await transporter.sendMail(mailOptions);
-    console.log("Appointment confirmation email sent to:", useremail);
-  } catch (error) {
-    console.error("Error sending appointment confirmation email:", error);
-  }
 }
 
 export async function POST(request: NextRequest) {
@@ -50,7 +39,6 @@ export async function POST(request: NextRequest) {
     const reqBody = await request.json();
     const {
       userName,
-      // userId,
       userEmail,
       date,
       sportName,
@@ -60,14 +48,8 @@ export async function POST(request: NextRequest) {
       phoneNumber,
     } = reqBody;
 
-    // console.log("first");
-    // console.log(reqBody);
-
-    // You can add any necessary validations here before proceeding with the appointment creation.
-
     const bookingCompetetion = new bookForCompetetion({
       userName,
-      // userId,
       date,
       userEmail,
       sportName,
@@ -77,16 +59,8 @@ export async function POST(request: NextRequest) {
       phoneNumber,
     });
 
-    // console.log("second",bookingCompetetion);
-
-
     await bookingCompetetion.save();
-
-    // console.log("third");
-
-    // Send the appointment confirmation email
     await sendAppointmentConfirmationEmail(userName, sportName, userEmail,date);
-
     return NextResponse.json({
       message: "Competetion Book successfully",
       success: true,

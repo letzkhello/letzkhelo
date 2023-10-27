@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import axios from "axios";
 
-
 interface Game {
   sportName: string;
   location: string;
@@ -19,21 +18,14 @@ export const SuccessPageComponent = ({ params }: any) => {
   const { data: session, status } = useSession();
   const [getGame, setGame] = useState<Game[]>([]);
 
-
   useEffect(() => {
     getGameDetails();
   }, []);
 
   const getGameDetails = async () => {
-    // setLoader(true);
-    // setShimmer(true);
     const res = await axios.get("/api/getAllSports");
-    // setLoader(false);
-    // setShimmer(false);
-    console.log(res.data);
     setGame(res.data);
   };
-
 
   return (
     <div className="h-screen">
@@ -50,27 +42,29 @@ export const SuccessPageComponent = ({ params }: any) => {
           Registration Successful
         </h1>
         <p className="text-lg text-white px-10">
-          <span className="font-bold uppercase  ">{session?.user?.name}</span>, Thank you for Registration in      { 
-          getGame?.map((game)=> {
-             if(game?._id == params?.id){
+          <span className="font-bold uppercase  ">{session?.user?.name}</span>,
+          Thank you for Registration in{" "}
+          {getGame?.map((game) => {
+            if (game?._id == params?.id) {
               return (
-          <span key={game?._id} className="font-bold uppercase">{game?.sportName}</span>
-              )
-             }
-          })
-          }
+                <span key={game?._id} className="font-bold uppercase">
+                  {game?.sportName}
+                </span>
+              );
+            }
+          })}
         </p>
         <p className="text-lg text-white">
           <span className="font-bold uppercase">Venue:</span>
-            { 
-          getGame?.map((game)=> {
-             if(game?._id == params?.id){
+          {getGame?.map((game) => {
+            if (game?._id == params?.id) {
               return (
-          <span key={game?._id} className="font-bold uppercase">{game?.location}</span>
-              )
-             }
-          })
-          }
+                <span key={game?._id} className="font-bold uppercase">
+                  {game?.location}
+                </span>
+              );
+            }
+          })}
         </p>
 
         <Link href={"/"}>

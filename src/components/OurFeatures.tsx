@@ -20,7 +20,7 @@ const Service = () => {
                 What We Offer
               </h2>
               <p className="text-base text-body-color animate-bounce text-white">
-              At LetzKhelo, we are passionate about sports and offer a wide
+                At LetzKhelo, we are passionate about sports and offer a wide
                 range of exciting activities. Explore the sports we provide
                 below.
               </p>
@@ -30,25 +30,25 @@ const Service = () => {
         <div className="flex flex-wrap ">
           <ServiceCard
             title="Cricket"
-            details="Experience the thrill of the gentleman&apos;s game. Join us for
-            intense cricket matches, coaching, and more. Whether you&apos;re a
+            details="Experience the thrill of the gentleman's game. Join us for
+            intense cricket matches, coaching, and more. Whether you're a
             seasoned pro or just starting, our cricket offerings will keep
             you engaged."
-            image=" cricket.jpg" // Use your image variable here
+            image=" cricket.jpg"
           />
           <ServiceCard
             title="Arm Wrestling"
             details="Think you have the strength to compete? Test your arm-wrestling
             skills at LetzKhelo. We host arm wrestling competitions and offer
             training for those looking to improve their technique."
-            image="arms.jpeg" // Use your image variable here
+            image="arms.jpeg"
           />
           <ServiceCard
             title="Badminton"
-            details="Badminton is not just a casual backyard game. It&apos;s a fast-paced
+            details="Badminton is not just a casual backyard game. It's a fast-paced
             sport that requires agility and precision. Join our badminton
-            club, whether you&apos;re a beginner or an advanced player."
-            image="/badminton.jpg" // Use your image variable here
+            club, whether you're a beginner or an advanced player."
+            image="/badminton.jpg"
           />
           <ServiceCard
             title="Kabbadi"
@@ -56,7 +56,7 @@ const Service = () => {
             prowess. Join our kabaddi events and learn from experienced
             players. Challenge yourself and be part of the kabaddi
             excitement."
-            image="/kabbadi.jpg" // Use your image variable here
+            image="/kabbadi.jpg"
           />
         </div>
       </div>
@@ -64,7 +64,7 @@ const Service = () => {
   );
 };
 
-const  ServiceCard: React.FC<ServiceCardProps>  = ({ title, details, image }) => {
+const ServiceCard: React.FC<ServiceCardProps> = ({ title, details, image }) => {
   return (
     <div className="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 animate-pulse">
       <div className="px-6 py-8 bg-white rounded-xl text-center">

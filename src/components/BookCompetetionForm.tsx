@@ -4,27 +4,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import BeatLoader from "react-spinners/BeatLoader";
-import { useSession } from "next-auth/react"
-
 
 export function BookCompetetionForm() {
-
-  const { data: session, status } = useSession()
-
-  // const [user, setUser] = useState({});
   const [loader, setLoader] = useState(false);
-  console.log(session)
-  console.log(session?.user)
-
-
-
-  // const getUserID = (user: any) => {
-  //   return user._id;
-  // };
-  // console.log("sdaf", getUserID(user));
   const [formData, setFormData] = useState({
     userName: "",
-    // userId: "",
     date: "",
     sportName: "",
     registrationPrice: "",
@@ -33,10 +17,8 @@ export function BookCompetetionForm() {
   useEffect(() => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      // userId: getUserID(user) || "123456", // Set it to user._id if available, or a default value "123456"
     }));
   }, []);
-  // getUserID(user)
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
     setFormData({
@@ -52,11 +34,8 @@ export function BookCompetetionForm() {
       await axios.post("/api/users/registerForCompetetion", formData);
       setLoader(false);
       toast.success("Competetion is Successfully Booked");
-
-      // alert("Appointment added successfully!");
       setFormData({
         userName: "",
-        // userId: "",
         date: "",
         sportName: "",
         registrationPrice: "",
@@ -65,7 +44,6 @@ export function BookCompetetionForm() {
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
       setLoader(false);
-      // alert("Something went wrong. Please try again.");
     }
   };
 

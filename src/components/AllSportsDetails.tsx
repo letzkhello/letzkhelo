@@ -21,7 +21,6 @@ const AllSportsDetails = () => {
     setLoader(true);
     const res = await axios.get("/api/getAllSports");
     setLoader(false);
-    console.log(res.data);
     setGame(res.data);
   };
 

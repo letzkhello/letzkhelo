@@ -10,7 +10,6 @@ export default function SearchBar() {
     const updatedFilter = searchData.filter((check: any) =>
       check?.patientName.toLowerCase().includes(inputValue)
     );
-    // setAppointments(updatedFilter);
   };
 
   return (

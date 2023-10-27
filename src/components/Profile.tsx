@@ -41,7 +41,6 @@ export default function ProfileComponent() {
     setLoader(true);
     const res = await axios.get("/api/users/getAllUsers");
     setLoader(false);
-    console.log(res.data.data, "api all user");
     setAllUsers(res.data.data);
   };
 
@@ -61,19 +60,14 @@ export default function ProfileComponent() {
   const handleSubmit = async (e: { preventDefault: () => void }, user: any) => {
     e.preventDefault();
     try {
-      // setLoader(true);
-
       const updatedFormData = {
         ...formData,
         email: session?.user?.email,
       };
 
       await axios.put("/api/users/getUserDetails", updatedFormData);
-      // setLoader(false);
 
       toast.success("Profile is Successfully Edited");
-
-      // alert("Appointment added successfully!");
       setFormData({
         age: "",
         instagramLink: "",
@@ -82,30 +76,17 @@ export default function ProfileComponent() {
         email: "",
       });
 
-
       closeModal();
-      // window.location.reload();
-    getAllUsers();
+      getAllUsers();
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
       closeModal();
-  
       console.log(error);
-      // setLoader(false);
-      // alert("Something went wrong. Please try again.");
     }
   };
 
-  // const openModal = () => {
-  //   if (modalRef.current) {
-  //     modalRef.current.showModal();
-  //   }
-
-  // };
-
   const openModal = (user: User) => {
     if (modalRef.current) {
-      // Set the form data with the user's data
       setFormData({
         age: user?.age?.toString(),
         instagramLink: user?.instagramLink,
@@ -143,11 +124,6 @@ export default function ProfileComponent() {
                   />
                 </div>
                 <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
-                  {/* <img
-                    className="object-cover object-center h-32"
-                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
-                    alt="Woman looking front"
-                  /> */}
                   <Image
                     src={session?.user?.image || img}
                     height="120"
@@ -158,7 +134,6 @@ export default function ProfileComponent() {
                 </div>
                 <div className="text-center mt-2">
                   <h2 className="font-semibold">{session?.user?.name}</h2>
-                  {/* <p className="text-gray-500">Freelance Web Designer</p> */}
                 </div>
                 <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
                   <li className="flex flex-col items-center justify-around">
@@ -236,7 +211,9 @@ export default function ProfileComponent() {
                     <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
                       <li className="flex flex-col items-center justify-around">
                         <p>Weight</p>
-                        <div>{user?.weight ? user?.weight : "Not Mentioned"}</div>
+                        <div>
+                          {user?.weight ? user?.weight : "Not Mentioned"}
+                        </div>
                       </li>
                       <li className="flex flex-col items-center justify-between">
                         <p>Age</p>
@@ -244,24 +221,22 @@ export default function ProfileComponent() {
                       </li>
                       <li className="flex flex-col items-center justify-around">
                         <p>Intrested Sports</p>
-                        <div>{user?.intrestedSport ? user?.intrestedSport : "Not Mentioned"}</div>
+                        <div>
+                          {user?.intrestedSport
+                            ? user?.intrestedSport
+                            : "Not Mentioned"}
+                        </div>
                       </li>
                     </ul>
 
                     <h2 className="text-xl font-bold mb-4">
                       Write about yourself
                     </h2>
-                    <p className="text-gray-700">
-                   To be uploaded
-                    </p>
+                    <p className="text-gray-700">To be uploaded</p>
                   </div>
                 </div>
                 {
                   <div className="py-4 mt-2 text-white flex items-center justify-around">
-                    {/* <button className="btn" onClick={openModal}>
-                      Add Details
-                    </button> */}
-
                     <button className="btn" onClick={() => openModal(user)}>
                       Add Details
                     </button>
@@ -327,7 +302,6 @@ export default function ProfileComponent() {
                                 name="weight"
                                 onChange={handleInputChange}
                                 value={formData?.weight}
-                                // defaultValue= {formData?.weight ? formData?.weight : "50-55"}
                                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                               >
                                 <option value="50-55">50-55</option>
@@ -354,12 +328,13 @@ export default function ProfileComponent() {
                                 onChange={handleInputChange}
                                 value={formData?.intrestedSport}
                                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                                // defaultValue= {formData?.intrestedSport? formData?.intrestedSport : "Cricket"}
                               >
                                 <option value="Cricket">Cricket</option>
                                 <option value="Khokho">Kho kho</option>
                                 <option value="Kabadi">Kabaddi</option>
-                                <option value="Arm Wresting">Arm Wresting</option>
+                                <option value="Arm Wresting">
+                                  Arm Wresting
+                                </option>
                               </select>
                             </div>
                           </div>

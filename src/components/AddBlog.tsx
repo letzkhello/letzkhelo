@@ -25,7 +25,6 @@ export default function AddBlog() {
         ...blogDetails,
         date: currentDate,
       };
-      console.log(updatedBlogDetails,"pardsda");
       await axios.post("/api/addBlog", updatedBlogDetails);
       toast.success("blog add Successfully");
       setBlogDetails({

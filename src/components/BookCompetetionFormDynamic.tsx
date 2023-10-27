@@ -8,17 +8,11 @@ import { useRouter } from "next/navigation";
 import Loader from "./Loader";
 
 export function BookCompetetionFormDynamic({ params }: any) {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
-
-  // console.log(params.id,typeof(params.id));
-
   const [loader, setLoader] = useState(false);
   const [allSports, setAllSports] = useState([]);
   const [phoneNumberError, setPhoneNumberError] = useState("");
-
-  console.log(session);
-  console.log(session?.user);
 
   useEffect(() => {
     getAllSports();
@@ -29,26 +23,23 @@ export function BookCompetetionFormDynamic({ params }: any) {
 
     const res = await axios.get("/api/getAllSports");
     setLoader(false);
-    console.log(res?.data, "my Output");
     setAllSports(res?.data);
   };
 
   const [formData, setFormData] = useState({
     userName: "",
-    // userId: "",
     sportName: "",
     registrationPrice: 0,
     age: "",
     weight: "",
     phoneNumber: "",
   });
+
   useEffect(() => {
     setFormData((prevFormData) => ({
       ...prevFormData,
-      // userId: getUserID(user) || "123456", // Set it to user._id if available, or a default value "123456"
     }));
   }, [session?.user?.email]);
-  // getUserID(user)
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
     if (e.target.name === "phoneNumber") {
@@ -84,20 +75,15 @@ export function BookCompetetionFormDynamic({ params }: any) {
         userEmail: session?.user?.email,
         sportName: sport?.sportName,
         registrationPrice: 0,
-        date:sport?.date
+        date: sport?.date,
       };
-
-      console.log(updatedFormData, "data");
 
       await axios.post("/api/users/registerForCompetetion", updatedFormData);
       setLoader(false);
 
       toast.success("Competetion is Successfully Booked");
-
-      // alert("Appointment added successfully!");
       setFormData({
         userName: "",
-        // userId: "",
         sportName: "",
         registrationPrice: 0,
         weight: "",
@@ -109,7 +95,6 @@ export function BookCompetetionFormDynamic({ params }: any) {
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
       setLoader(false);
-      // alert("Something went wrong. Please try again.");
     }
   };
 
@@ -124,8 +109,6 @@ export function BookCompetetionFormDynamic({ params }: any) {
     return (
       <div>
         {allSports?.map((sport: any) => {
-          console.log(params.id);
-          console.log(sport._id);
           if (params?.id == sport?._id) {
             return (
               <div key={sport?._id}>
@@ -208,9 +191,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         />
                       </div>
                       {formData.age.trim() === "" && (
-                        <p className="text-sm text-red-500">
-                          Enter Age 
-                        </p>
+                        <p className="text-sm text-red-500">Enter Age</p>
                       )}
                       <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
                         <label
@@ -233,9 +214,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         </select>
                       </div>
                       {formData.weight.trim() === "" && (
-                        <p className="text-sm text-red-500">
-                          Select weight
-                        </p>
+                        <p className="text-sm text-red-500">Select weight</p>
                       )}
                       <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
                         <label
@@ -267,7 +246,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                       <button
                         type="submit"
                         className="mx-0 my-12 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
-                        disabled={isFormNotValid ||loader ? true : false}
+                        disabled={isFormNotValid || loader ? true : false}
                       >
                         {loader ? (
                           <div className="flex justify-evenly items-center">

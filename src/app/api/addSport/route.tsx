@@ -13,7 +13,6 @@ export async function POST(request: NextRequest) {
     const { sportName, description, image, location, date  } =
       reqBody;
 
-    // You can add any necessary validations here before proceeding with the Sport creation.
 
     const AllSport = new AddSport({
         sportName,

@@ -31,91 +31,8 @@ export default function Navbar({ fixed }: any) {
   const closeMenu = () => {
     setIsOpen(false);
   };
-  // bg-gradient-to-r from-green-300 via-blue-500 to-purple-600
-  // bg-gradient-to-tr from-gray-600 via-gray-700 to-gray-800
-  // bg-gradient-to-r from-red-500 to-red-300
   return (
     <div className="navbar bg-black  lg:py-2 lg:h-[20vh] flex justify-between items-center z-10">
-      {/* for hamburger  */}
-      {/* <div className="flex items-center justify-between px-4 py-4 lg:hidden">
-         <nav>
-           <section className="MOBILE-MENU flex lg:hidden">
-            <div
-              className="HAMBURGER-ICON space-y-2"
-              onClick={() => setIsNavOpen((prev) => !prev)} // toggle isNavOpen state on click
-            >
-              <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
-              <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
-              <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
-            </div>
-
-            <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"} >
-              <div
-                className="CROSS-ICON absolute top-0 right-0 px-8 py-8"
-                onClick={() => setIsNavOpen(false)} // change isNavOpen state to false to close the menu
-              >
-                <svg
-                  className="h-8 w-8 text-gray-600"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </div>
-              <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-center justify-between min-h-[250px] text-black">
-                <li className="border-b border-gray-400 my-8 uppercase">
-                  <Link href="/about">About</Link>
-                </li>
-                <li className="border-b border-gray-400 my-8 uppercase">
-                  <Link href="/allUsers">All Members</Link>
-                </li>
-
-                <li className="border-b border-gray-400 my-8 uppercase">
-                  <Link href="/profile">Profile</Link>
-                </li>
-
-                <li className="border-b border-gray-400 my-8 uppercase">
-                  <Link href="/createTeam">Create Team</Link>
-                </li>
-                <li className="border-b border-gray-400 my-8 uppercase">
-                  <Link href="/allTeam">All Teams</Link>
-                </li>
-
-                <li className="border-b border-gray-400 my-8 uppercase">
-                  <Link href="/contact">Contact</Link>
-                </li>
-              </ul>
-            </div>
-          </section>
-
-        </nav>
-        <style>{`
-      .hideMenuNav {
-        display: none;
-      }
-      .showMenuNav {
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100vh;
-        top: 0;
-        left: 0;
-        background: white;
-        z-index: 10;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-      }
-    `}</style>
-      </div> */}
-
-      {/* bg-purple-600 hover:bg-purple-500 */}
       <div className="flex items-center justify-between px-4 py-4 lg:hidden ">
         <div className="z-50">
           <button
@@ -211,10 +128,8 @@ export default function Navbar({ fixed }: any) {
         </div>
       </div>
 
-      {/* Start: "LetzKhelo" */}
       <div className="relative top-[-15px] lg:top-[-32px]  xl:top-[-40px] ">
         <Link href="/" className="btn btn-ghost normal-case text-xl ">
-          {/* <Image src="/LetzKhelo.png" alt="logo" height={125} width={125}  className="rounded-full align-top "/> */}
           <Image
   src="/LetzKhelo.png"
   alt="logo"
@@ -226,7 +141,6 @@ export default function Navbar({ fixed }: any) {
         </Link>
       </div>
 
-      {/* Middle: Navigation Links */}
       <div id="navLinks">
         <ul className="DESKTOP-MENU hidden space-x-4 lg:flex text-white">
         <li>
@@ -298,7 +212,6 @@ export default function Navbar({ fixed }: any) {
         </ul>
       </div>
 
-      {/* End: Profile Image */}
       <div className="dropdown dropdown-end">
         <label tabIndex={0} className="btn btn-ghost btn-circle avatar bg-white">
           <div className="w-10 rounded-full bg-white">

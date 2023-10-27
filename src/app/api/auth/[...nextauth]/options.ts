@@ -20,7 +20,7 @@ export const authOptions: AuthOptions = {
         await User.create({ email: user.email, name: user.name });
         return true;
       } catch (error) {
-        console.log("The error is ", error);
+        console.log(error);
         return false;
       }
     },
@@ -39,8 +39,7 @@ export const authOptions: AuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        // * Connect to the MongoDb
-        console.info("The credentials and req info", credentials, req);
+        console.info(credentials, req);
         connect();
         const user = await User.findOne({ email: credentials?.email });
         if (user) {
@@ -56,6 +55,5 @@ export const authOptions: AuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
-    // ...add more providers here
   ],
 };

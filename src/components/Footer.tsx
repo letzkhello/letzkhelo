@@ -2,9 +2,6 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    // bg-gradient-to-r from-green-300 via-blue-500 to-purple-600
-    // bg-gradient-to-r from-green-300 via-blue-500 to-purple-600
-    // text-neutral-content
     <>
       <footer className="footer p-10 bg-black
    mt-10">

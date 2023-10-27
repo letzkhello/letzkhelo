@@ -17,9 +17,8 @@ function GetAllBlog() {
       const response = await axios.get("/api/getAllBlogs");
       setLoader(false);
       setBlogData(response.data);
-      console.log(response.data, "praksh");
     } catch (error) {
-      console.error("Error fetching blog data:", error);
+      console.error(error);
     }
   };
   if (loader) {

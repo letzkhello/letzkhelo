@@ -5,9 +5,6 @@ import ErrorReporter from "@/validator/ErrorReporter";
 import { loginSchema } from "@/validator/authValidationSchema";
 import { User } from "@/models/User";
 import bcrypt from "bcryptjs";
-import { signIn } from "next-auth/react";
-
-// * Connect to the DB
 connect();
 
 export async function POST(request: NextRequest) {
@@ -19,7 +16,7 @@ export async function POST(request: NextRequest) {
     const user = await User.findOne({ email: output.email });
     if (user) {
       const checkPassword = bcrypt.compareSync(output.password!, user.password);
-      console.info("the checkpassword is", checkPassword);
+      console.info(checkPassword);
       if (checkPassword) {
         return NextResponse.json(
           { status: 200, message: "User Logged in successfully!" },

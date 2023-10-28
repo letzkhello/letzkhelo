@@ -111,7 +111,7 @@ export const AddSportForm = () => {
             </label>
             <input
               id="date"
-              type="date"
+              type="datetime-local"
               name="date"
               value={formData.date}
               onChange={handleChange}

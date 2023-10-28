@@ -72,11 +72,22 @@ export default function Card() {
 
   const convertDate = (dateString: any) => {
     const date = new Date(dateString);
+    console.log(date)
 
     if (!isNaN(date.getTime())) {
-      const showDate = `${date.getDate()}-${
-        date.getMonth() + 1
-      }-${date.getFullYear()}`;
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const hours = date.getHours();
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+  
+      // Determine if it's AM or PM
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+  
+      // Convert 24-hour format to 12-hour format
+      const displayHours = hours % 12 || 12;
+  
+      const showDate = `${day}-${month}-${year} at ${displayHours}:${minutes} ${ampm}`;
       return showDate;
     } else {
       return "Coming Soon";

@@ -7,11 +7,11 @@ import { useRouter } from "next/navigation";
 export default function AddTeam() {
   const [loader, setLoader] = useState(false);
   const [phoneNumberError, setPhoneNumberError] = useState("");
-  const router = useRouter(); 
+  const router = useRouter();
   const [formData, setFormData] = useState({
     teamName: "",
     captainName: "",
-    sportName:"",
+    sportName: "",
     noOfPlayers: "",
     location: "",
     instagramId: "",
@@ -38,7 +38,8 @@ export default function AddTeam() {
       [e.target.name]: e.target.value,
     });
   };
-  
+  const sportsOptions = ["Cricket", "Kho Kho", "Arm Wrestling", "Kabbadi"];
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
@@ -46,17 +47,17 @@ export default function AddTeam() {
       await axios.post("/api/addTeam", formData);
       setLoader(false);
       toast.success("Your team is registered....");
-      router.push('/allTeam');
+      router.push("/allTeam");
       setFormData({
         teamName: "",
         captainName: "",
-        sportName:"",
+        sportName: "",
         location: "",
         noOfPlayers: "",
         instagramId: "",
         phoneNumber: "",
       });
-      router.push('/allTeam');
+      router.push("/allTeam");
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
       setLoader(false);
@@ -101,9 +102,7 @@ export default function AddTeam() {
               />
             </div>
             {formData.teamName.trim() === "" && (
-              <p className="text-sm text-red-500">
-               Enter Team Name
-              </p>
+              <p className="text-sm text-red-500">Enter Team Name</p>
             )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
               <label
@@ -123,31 +122,33 @@ export default function AddTeam() {
               />
             </div>
             {formData.captainName.trim() === "" && (
-              <p className="text-sm text-red-500">
-              Enter Captain Name
-              </p>
+              <p className="text-sm text-red-500">Enter Captain Name</p>
             )}
-             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
+            <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
               <label
                 htmlFor="sportName"
                 className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
               >
                 Sport Name:
               </label>
-              <input
+              <select
                 id="sportName"
-                type="text"
                 name="sportName"
                 value={formData.sportName}
                 onChange={handleChange}
-                placeholder="Enter Sport Name"
+                placeholder="Select Sport"
                 className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
-              />
+              >
+                <option value="">Select a Sport</option>
+                {sportsOptions.map((sport, index) => (
+                  <option key={index} value={sport}>
+                    {sport}
+                  </option>
+                ))}
+              </select>
             </div>
             {formData.sportName.trim() === "" && (
-              <p className="text-sm text-red-500">
-              Enter Sport Name
-              </p>
+              <p className="text-sm text-red-500">Enter Sport Name</p>
             )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
               <label
@@ -168,7 +169,7 @@ export default function AddTeam() {
             </div>
             {formData.location.trim() === "" && (
               <p className="text-sm text-red-500">
-               Enter your Current Location
+                Enter your Current Location
               </p>
             )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
@@ -189,9 +190,7 @@ export default function AddTeam() {
               />
             </div>
             {formData.noOfPlayers.trim() === "" && (
-              <p className="text-sm text-red-500">
-                Enter Number of Players
-              </p>
+              <p className="text-sm text-red-500">Enter Number of Players</p>
             )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
               <label
@@ -212,7 +211,7 @@ export default function AddTeam() {
             </div>
             {formData.instagramId.trim() === "" && (
               <p className="text-sm text-red-500">
-                Enter your Instagram Id Link 
+                Enter your Instagram Id Link
               </p>
             )}
             <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
@@ -236,9 +235,7 @@ export default function AddTeam() {
               <p className="text-sm text-red-500">{phoneNumberError}</p>
             )}
             {formData?.phoneNumber.length === 0 && (
-              <p className="text-sm text-red-500">
-              Enter Your Phone Number
-              </p>
+              <p className="text-sm text-red-500">Enter Your Phone Number</p>
             )}
             <button
               type="submit"

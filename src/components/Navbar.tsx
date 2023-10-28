@@ -22,8 +22,6 @@ export default function Navbar({ fixed }: any) {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-
-
   const openMenu = () => {
     setIsOpen(true);
   };
@@ -131,25 +129,27 @@ export default function Navbar({ fixed }: any) {
       <div className="relative top-[-15px] lg:top-[-32px]  xl:top-[-40px] ">
         <Link href="/" className="btn btn-ghost normal-case text-xl ">
           <Image
-  src="/LetzKhelo.png"
-  alt="logo"
-  height={125}
-  width={125}
-  className="rounded-full align-top w-20 h-20 sm:w-20 sm:h-20 md:w-20 md:h-20 lg:w-28 lg:h-28 xl:w-32 xl:h-32" // Adjust the classes as needed
-/>
-
+            src="/LetzKhelo.png"
+            alt="logo"
+            height={125}
+            width={125}
+            className="rounded-full align-top w-20 h-20 sm:w-20 sm:h-20 md:w-20 md:h-20 lg:w-28 lg:h-28 xl:w-32 xl:h-32" // Adjust the classes as needed
+          />
         </Link>
       </div>
 
       <div id="navLinks">
         <ul className="DESKTOP-MENU hidden space-x-4 lg:flex text-white">
-        <li>
+          <li>
             <motion.div
               initial={{ opacity: 0, x: "-100vh" }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring", bounce: 0.6 }}
             >
-              <Link href="/" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
+              <Link
+                href="/"
+                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+              >
                 Home
               </Link>
             </motion.div>
@@ -160,7 +160,10 @@ export default function Navbar({ fixed }: any) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring", bounce: 0.6 }}
             >
-              <Link href="/about" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
+              <Link
+                href="/about"
+                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+              >
                 About
               </Link>
             </motion.div>
@@ -171,7 +174,10 @@ export default function Navbar({ fixed }: any) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring", bounce: 0.6 }}
             >
-              <Link href="/contact" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
+              <Link
+                href="/contact"
+                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+              >
                 Contact
               </Link>
             </motion.div>
@@ -182,7 +188,10 @@ export default function Navbar({ fixed }: any) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring", bounce: 0.6 }}
             >
-              <Link href="/allUsers" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
+              <Link
+                href="/allUsers"
+                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+              >
                 All Players
               </Link>
             </motion.div>
@@ -193,7 +202,10 @@ export default function Navbar({ fixed }: any) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring", bounce: 0.6 }}
             >
-              <Link href="/createTeam" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
+              <Link
+                href="/createTeam"
+                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+              >
                 Register Your Team
               </Link>
             </motion.div>
@@ -204,7 +216,10 @@ export default function Navbar({ fixed }: any) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ type: "spring", bounce: 0.6 }}
             >
-              <Link href="/allTeam" className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300">
+              <Link
+                href="/allTeam"
+                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+              >
                 Registered Teams
               </Link>
             </motion.div>
@@ -213,7 +228,10 @@ export default function Navbar({ fixed }: any) {
       </div>
 
       <div className="dropdown dropdown-end">
-        <label tabIndex={0} className="btn btn-ghost btn-circle avatar bg-white">
+        <label
+          tabIndex={0}
+          className="btn btn-ghost btn-circle avatar bg-white"
+        >
           <div className="w-10 rounded-full bg-white">
             <Image
               src={session?.user?.image ?? img}
@@ -227,25 +245,28 @@ export default function Navbar({ fixed }: any) {
           tabIndex={0}
           className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
         >
-          <li>
-            <Link href={session ? `/profile` : `/login`} className="justify-between">
-              Profile
-              <span className="badge">New</span>
+          <Link
+            href={session ? `/profile` : `/login`}
+            className="ml-4 font-medium text-black transition-all duration-200 hover:underline"
+
+            
+          >
+            <li>Profile</li>
+          </Link>
+
+          {session?.user == null ? (
+            <Link
+              href="/login"
+              title=""
+              className="ml-4 font-medium text-black transition-all duration-200 hover:underline"
+            >
+              <li>Sign In</li>
             </Link>
-          </li>
-          <li>
-            {session?.user == null ? (
-              <Link
-                href="/login"
-                title=""
-                className="font-medium text-black transition-all duration-200 hover:underline"
-              >
-                Sign In
-              </Link>
-            ) : (
+          ) : (
+            <li>
               <SignoutButton />
-            )}
-          </li>
+            </li>
+          )}
           <li></li>
         </ul>
       </div>

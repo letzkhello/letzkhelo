@@ -137,15 +137,15 @@ export default function ProfileComponent() {
                 </div>
                 <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
                   <li className="flex flex-col items-center justify-around">
-                    <p>Contest</p>
+                    <p className="font-semibold">Contest</p>
                     <div>0</div>
                   </li>
                   <li className="flex flex-col items-center justify-between">
-                    <p>Win</p>
+                    <p className="font-semibold">Win</p>
                     <div>0</div>
                   </li>
                   <li className="flex flex-col items-center justify-around">
-                    <p>Loss</p>
+                    <p className="font-semibold">Loss</p>
                     <div>0</div>
                   </li>
                 </ul>
@@ -210,18 +210,18 @@ export default function ProfileComponent() {
 
                     <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
                       <li className="flex flex-col items-center justify-around">
-                        <p>Weight</p>
-                        <div>
+                        <p className="font-semibold">Weight</p>
+                        <div className="w-12">
                           {user?.weight ? user?.weight : "Not Mentioned"}
                         </div>
                       </li>
                       <li className="flex flex-col items-center justify-between">
-                        <p>Age</p>
-                        <div>{user?.age ? user?.age : "Not Mentioned"}</div>
+                        <p className="font-semibold">Age</p>
+                        <div className="w-10">{user?.age ? user?.age : "Not Mentioned"}</div>
                       </li>
                       <li className="flex flex-col items-center justify-around">
-                        <p>Intrested Sports</p>
-                        <div>
+                        <p className="font-semibold">Intrested Sports</p>
+                        <div className="w-10">
                           {user?.intrestedSport
                             ? user?.intrestedSport
                             : "Not Mentioned"}

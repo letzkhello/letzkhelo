@@ -205,7 +205,10 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           name="weight"
                           onChange={handleChange}
                           className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
+      
                         >
+                          <option value="">SELECT</option>
+                        <option value="Below 50">Below 50</option>
                           <option value="50-55">50-55</option>
                           <option value="55-60">55-60</option>
                           <option value="60-65">60-65</option>

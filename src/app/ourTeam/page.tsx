@@ -17,21 +17,24 @@ export default function Team() {
               work tirelessly to make your gaming dreams come true.
             </p>
           </div>
-          <div className="space-y-4 text-center">
-              <img
-                className="w-64 h-64 mx-auto object-cover rounded-xl md:w-48 md:h-64 lg:w-64 lg:h-80"
-                src="/rj.png"
-                alt="Fouder"
-                loading="lazy"
-                width="1000"
-                height="667"
-              />
-              <div>
-                <h4 className="text-2xl">Rishabh Jha</h4>
-                <span className="block text-sm text-gray-500">Founder(Chief Technology Officer)</span>
-              </div>
-            </div>
           <div className="grid gap-12 items-center md:grid-cols-3">
+
+          <div className="space-y-4 text-center">
+            <img
+              className="w-64 h-64 mx-auto object-cover rounded-xl md:w-40 md:h-40 lg:w-64 lg:h-64"
+              src="/rj.png"
+              alt="Fouder"
+              loading="lazy"
+              width="1000"
+              height="667"
+            />
+            <div>
+              <h4 className="text-2xl">Rishabh Jha</h4>
+              <span className="block text-sm text-gray-500">
+                Founder(Chief Technology Officer)
+              </span>
+            </div>
+          </div>
             <div className="space-y-4 text-center">
               <img
                 className="w-64 h-64 mx-auto object-cover rounded-xl md:w-40 md:h-40 lg:w-64 lg:h-64"
@@ -48,7 +51,6 @@ export default function Team() {
                 </span>
               </div>
             </div>
-            
 
             <div className="space-y-4 text-center">
               <img
@@ -106,13 +108,12 @@ export default function Team() {
     </>
   );
 }
-export function generateMetadata(){
-  return{
-    title:"Our Team",
-    description:"Founder,CoFounder",
-    keywords:"Founder, Team, Cofounder, CTO",
-    robots:"index, follow",
-    language:"EN",
-
-  }
+export function generateMetadata() {
+  return {
+    title: "Our Team",
+    description: "Founder,CoFounder",
+    keywords: "Founder, Team, Cofounder, CTO",
+    robots: "index, follow",
+    language: "EN",
+  };
 }

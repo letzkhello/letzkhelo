@@ -21,7 +21,7 @@ export default function Team() {
               <img
                 className="w-64 h-64 mx-auto object-cover rounded-xl md:w-48 md:h-64 lg:w-64 lg:h-80"
                 src="/rj.png"
-                alt="man"
+                alt="Fouder"
                 loading="lazy"
                 width="1000"
                 height="667"
@@ -36,7 +36,7 @@ export default function Team() {
               <img
                 className="w-64 h-64 mx-auto object-cover rounded-xl md:w-40 md:h-40 lg:w-64 lg:h-64"
                 src="/an.png"
-                alt="woman"
+                alt="Co-Founder"
                 loading="lazy"
                 width="640"
                 height="805"
@@ -105,4 +105,14 @@ export default function Team() {
       </div>
     </>
   );
+}
+export function generateMetadata(){
+  return{
+    title:"Our Team",
+    description:"Founder,CoFounder",
+    keywords:"Founder, Team, Cofounder, CTO",
+    robots:"index, follow",
+    language:"EN",
+
+  }
 }

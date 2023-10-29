@@ -23,7 +23,7 @@ export default function Team() {
             <img
               className="w-64 h-64 mx-auto object-cover rounded-xl md:w-40 md:h-40 lg:w-64 lg:h-64"
               src="/rj.png"
-              alt="Fouder"
+              alt="Letzkhelo Fouder"
               loading="lazy"
               width="1000"
               height="667"
@@ -39,7 +39,7 @@ export default function Team() {
               <img
                 className="w-64 h-64 mx-auto object-cover rounded-xl md:w-40 md:h-40 lg:w-64 lg:h-64"
                 src="/an.png"
-                alt="Co-Founder"
+                alt="Letzkhelo Co-Founder"
                 loading="lazy"
                 width="640"
                 height="805"
@@ -111,7 +111,7 @@ export default function Team() {
 export function generateMetadata() {
   return {
     title: "Our Team",
-    description: "Founder,CoFounder",
+    description: "Letzkhelo Founder,CoFounder",
     keywords: "Founder, Team, Cofounder, CTO",
     robots: "index, follow",
     language: "EN",

@@ -26,7 +26,7 @@ export default function Card() {
   }, []);
   useEffect(() => {
     checkUserEmail();
-  }, [getRegisterUser]);
+  }, [getRegisterUser,getGame]);
 
   const getUserRegisterDetails = async () => {
     const res = await axios.get("/api/users/getAllRegisteredUsers");
@@ -54,9 +54,8 @@ export default function Card() {
     )?.length;
     return count;
   };
-
   const checkAlreadyRegistered = (sportName: any) => {
-    return registered.some((item) => item.sportName === sportName);
+    return registered?.some((item) => item?.sportName === sportName);
   };
 
   const checkOpenContest = (checkContest: any, sportName: any) => {
@@ -133,7 +132,7 @@ export default function Card() {
                               : false
                           }
                         >
-                          {game.registrationClosed
+                          {game?.registrationClosed
                             ? "Registration Closed"
                             : game?.isOpen
                             ? "Coming Soon"

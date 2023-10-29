@@ -20,7 +20,6 @@ export function BookCompetetionFormDynamic({ params }: any) {
 
   const getAllSports = async () => {
     setLoader(true);
-
     const res = await axios.get("/api/getAllSports");
     setLoader(false);
     setAllSports(res?.data);

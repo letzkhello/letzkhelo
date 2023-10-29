@@ -1,15 +1,27 @@
 "use client";
-
 import { signIn } from "next-auth/react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import Router, { useRouter } from "next/navigation";
 export default function SignInOne() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  useEffect(()=>{
+    checkLogin();
+  });
+
+  const checkLogin =()=>{
+    (session?.user===undefined)?"":`${router.push('/')}`;
+  }
+
   const googleLogin = async () => {
     await signIn("google", {
       callbackUrl: "/",
       redirect: true,
     });
   };
-
   return (
     <section>
       <div className="space-y-3 mt-3 p-12">

@@ -10,7 +10,7 @@ export default function SignInOne() {
 
   useEffect(()=>{
     checkLogin();
-  });
+  },[session]);
 
   const checkLogin =()=>{
     (session?.user===undefined)?"":`${router.push('/')}`;

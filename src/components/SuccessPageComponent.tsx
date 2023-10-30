@@ -55,7 +55,7 @@ export const SuccessPageComponent = ({ params }: any) => {
           })}
         </p>
         <p className="text-lg text-white px-10 mt-8">
-          <span className="font-bold uppercase">Venue:</span>
+          <span className="font-bold uppercase">Venue : </span>
           {getGame?.map((game) => {
             if (game?._id == params?.id) {
               return (
@@ -65,6 +65,11 @@ export const SuccessPageComponent = ({ params }: any) => {
               );
             }
           })}
+        </p>
+
+        <p className="text-lg text-white px-10 mt-8">
+          <span className="font-bold uppercase">Time : </span>
+            11:00 AM
         </p>
 
         <p className="text-lg text-white mt-8 px-10">

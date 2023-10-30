@@ -20,7 +20,7 @@ export default function Card() {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    // checkUserEmail();
+    checkUserEmail();
     getGameDetails();
     getUserRegisterDetails();
   }, []);

@@ -30,7 +30,7 @@ export const SuccessPageComponent = ({ params }: any) => {
   return (
     <div className="h-screen">
       <div className="flex flex-col items-center justify-center h-4/6 my-16 sm:my-4 md:my-3 lg:my-3">
-        <div className="flex flex-col items-center justify-center mt-8">
+        <div className="flex flex-col items-center justify-center mt-12 lg:mt-8">
           <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center">
             <div className="text-2xl h-full w-full flex justify-center items-center">
               <TiTick className="text-white h-full w-full" />

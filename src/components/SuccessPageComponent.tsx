@@ -85,7 +85,7 @@ export const SuccessPageComponent = ({ params }: any) => {
         </Link>
       </div>
 
-      <div className="flex justify-center items-center my-4">
+      <div className="flex justify-center items-center mt-12 lg:mt-4">
            <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d7004.169407169525!2d77.02187234330985!3d28.62722335267022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjjCsDM3JzM1LjQiTiA3N8KwMDEnMjMuOCJF!5e0!3m2!1sen!2sin!4v1698658857499!5m2!1sen!2sin" width="600" height="450" loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="border-0 w-3/4 h-44 sm:w-3/4 sm:h-44"></iframe>
            </div>
     </div>

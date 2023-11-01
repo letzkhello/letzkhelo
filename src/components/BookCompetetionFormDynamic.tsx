@@ -208,7 +208,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         >
                           <option value="">SELECT</option>
                           <option value="Below 50">Below 50</option>
-                          <option value="50-60">55-60</option>
+                          <option value="50-60">50-60</option>
                           <option value="60-70">60-70</option>
                           <option value="Above 70">above 70</option>
                         </select>

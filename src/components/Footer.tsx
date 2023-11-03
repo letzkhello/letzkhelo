@@ -95,7 +95,7 @@ export default function Footer() {
                 <path d="M19.999,3h-10C6.14,3,3,6.141,3,10.001v10C3,23.86,6.141,27,10.001,27h10C23.86,27,27,23.859,27,19.999v-10   C27,6.14,23.859,3,19.999,3z M15,21c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S18.309,21,15,21z M22,9c-0.552,0-1-0.448-1-1   c0-0.552,0.448-1,1-1s1,0.448,1,1C23,8.552,22.552,9,22,9z"></path>
               </svg>
             </Link>
-{/* 
+
             <Link href="https://www.facebook.com/" target="_blank">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +107,7 @@ export default function Footer() {
               >
                 <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
               </svg>
-            </Link> */}
+            </Link>
           </div>
           <div className="relative">
             <input

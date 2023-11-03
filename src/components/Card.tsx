@@ -26,7 +26,7 @@ export default function Card() {
   }, []);
   useEffect(() => {
     checkUserEmail();
-  }, [getRegisterUser,getGame]);
+  }, [getRegisterUser, getGame]);
 
   const getUserRegisterDetails = async () => {
     const res = await axios.get("/api/users/getAllRegisteredUsers");
@@ -74,14 +74,14 @@ export default function Card() {
 
     if (!isNaN(date.getTime())) {
       const year = date.getFullYear();
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
-      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
+      const day = date.getDate().toString().padStart(2, "0");
       const hours = date.getHours();
-      const minutes = date.getMinutes().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, "0");
 
-      const ampm = hours >= 12 ? 'PM' : 'AM';
+      const ampm = hours >= 12 ? "PM" : "AM";
       const displayHours = hours % 12 || 12;
-  
+
       const showDate = `${day}-${month}-${year} at ${displayHours}:${minutes} ${ampm}`;
       return showDate;
     } else {
@@ -119,17 +119,18 @@ export default function Card() {
                     <p>Date: {convertDate(game?.date)}</p>
                     <p>Participants: {countRegisteredUsers(game?.sportName)}</p>
                     <div className="card-actions justify-end">
-                      <Link
-                        href={
-                          session ? `/bookCompetetion/${game?._id}` : `/login`
-                        }
+                      <button
+                        className="btn bg-black text-white transform transition-transform hover:scale-105 duration-300"
+                        // disabled={
+                        //   checkOpenContest(game?.isOpen, game?.sportName) ?
+                        //      true
+                        //     : false
+                        // }
+                        disabled={true}
                       >
-                        <button
-                          className="btn bg-black text-white transform transition-transform hover:scale-105 duration-300"
-                          disabled={
-                            checkOpenContest(game?.isOpen, game?.sportName)
-                              ? true
-                              : false
+                        <Link
+                          href={
+                            session ? `/bookCompetetion/${game?._id}` : `/login`
                           }
                         >
                           {game?.registrationClosed
@@ -139,8 +140,8 @@ export default function Card() {
                             : checkAlreadyRegistered(game?.sportName)
                             ? "Already registered"
                             : "Register Now"}
-                        </button>
-                      </Link>
+                        </Link>
+                      </button>
                     </div>
                   </div>
                 </div>

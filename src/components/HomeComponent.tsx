@@ -31,7 +31,7 @@ export const HomeComponent = () => {
             alt="Google Icon"
             className="mr-3"
           /> */}
-          <p className="absolute top-40 z-50 text-orange-600 text-4xl font-black p-2 animate-waving-hand animate-pulse text-center">Ab Har Gali Se Champion Niklenge</p>
+          {/* <p className="absolute top-40 z-50 text-orange-600 text-4xl font-black p-2 animate-waving-hand animate-pulse text-center">Ab Har Gali Se Champion Niklenge</p> */}
           
           <img className="h-96 w-[100%] opacity-80" src="/group.jpg"/>
       {/* </div> */}

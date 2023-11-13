@@ -130,7 +130,7 @@ export default function Navbar({ fixed }: any) {
         <Link href="/" className="btn btn-ghost normal-case text-xl ">
           <Image
             src="/LetzKhelo.png"
-            alt="logo"
+            alt="Letzkhelo"
             height={125}
             width={125}
             className="rounded-full align-top w-20 h-20 sm:w-20 sm:h-20 md:w-20 md:h-20 lg:w-28 lg:h-28 xl:w-32 xl:h-32" // Adjust the classes as needed

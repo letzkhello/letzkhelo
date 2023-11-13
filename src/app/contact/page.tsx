@@ -18,7 +18,7 @@ export default function ContactUs() {
                 <span className="capitalize"> Dwarka sector-23 New Delhi-11043</span>
                 </p>
                 <h4 className="text-white font-bold">Phone No</h4>
-                <p className="mb-10 text-white"> You can speak with our team directly by calling : +91 8851840604</p>
+                <p className="mb-10 text-white"> You can speak with our team directly by calling : +91 8882788610</p>
                 <h4 className="text-white font-bold">E-mail</h4>
                 <p className="mb-2 text-white"> For inquiries or assistance, you can reach us via email at : letzkhello@gmail.com</p>
               </div>

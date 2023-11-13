@@ -18,7 +18,7 @@ export default function Footer() {
           />
         </Link>
           <p className="text-white">
-            Let Z Khello Ltd.
+            LetZKhelo Ltd.
             <br />
             <Link href="mailto:letzkhello@gmail.com">
               SEND MAIL TO-letzkhello@gmail.com<span></span>

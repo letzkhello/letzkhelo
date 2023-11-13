@@ -59,12 +59,12 @@ export default function ProfileComponent() {
 
   const handleSubmit = async (e: { preventDefault: () => void }, user: any) => {
     e.preventDefault();
+  
     try {
       const updatedFormData = {
         ...formData,
         email: session?.user?.email,
       };
-
       await axios.put("/api/users/getUserDetails", updatedFormData);
 
       toast.success("Profile is Successfully Edited");
@@ -110,7 +110,9 @@ export default function ProfileComponent() {
     return (
       <div>
         {allUsers?.map((user: any) => {
+          console.log(user);
           if (user?.email == session?.user?.email) {
+            console.log(user)
             return (
               <div
                 key={user._id}
@@ -192,7 +194,7 @@ export default function ProfileComponent() {
                       <Link
                         className="text-pink-600"
                         aria-label="Visit TrendyMinds Instagram"
-                        href=""
+                        href= {user?.instagramLink ? user?.instagramLink : "Not Mentioned"}
                         target="_blank"
                       >
                         <svg

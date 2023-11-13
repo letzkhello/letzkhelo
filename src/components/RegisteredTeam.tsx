@@ -56,6 +56,9 @@ export default function RegisteredTeam() {
   } else {
     return (
       <>
+        <h1 className="text-center font-bold text-5xl m-5 text-white">
+          ALL REGISTERED TEAM
+        </h1>
         <div className="flex  w-screen  justify-center p-5">
           <div className="w-full rounded-lg bg-gray-200 p-2 md:w-2/4">
             <div className="flex">
@@ -79,11 +82,7 @@ export default function RegisteredTeam() {
             </div>
           </div>
         </div>
-        <div className="flex justify-center items-center my-6 ">
-          <h1 className="md:text-4xl text-2xl border-b-4 border-black font-serif font-bold text-white pb-3">
-            ALL REGISTERED TEAM
-          </h1>
-        </div>
+        <div className="flex justify-center items-center my-6 "></div>
         <div className="flex  w-screen  justify-center p-5">
           <dt className="text-sm font-medium text-white px-4">Select Sports</dt>
           <select

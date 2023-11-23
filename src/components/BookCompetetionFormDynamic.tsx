@@ -66,6 +66,12 @@ export function BookCompetetionFormDynamic({ params }: any) {
   ) => {
     e.preventDefault();
     try {
+      const confirmed = window.confirm(`Do you want to register for ${sport.sportName} with entry fees ${sport.entryFees || 100} ? Fees will be Collected on the ground. `);
+    
+      if (!confirmed) {
+        // User clicked Cancel in the confirmation dialog
+        return;
+      }
       setLoader(true);
 
       const updatedFormData = {
@@ -73,7 +79,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
         userName: session?.user?.name,
         userEmail: session?.user?.email,
         sportName: sport?.sportName,
-        registrationPrice: 0,
+        registrationPrice: sport.entryFees ? sport.entryFees : formData.registrationPrice,
         date: sport?.date,
       };
 
@@ -167,7 +173,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           type="number"
                           disabled
                           name="registrationPrice"
-                          value={formData.registrationPrice}
+                          value={sport.entryFees ? sport.entryFees : formData.registrationPrice}
                           className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
                         />
                       </div>

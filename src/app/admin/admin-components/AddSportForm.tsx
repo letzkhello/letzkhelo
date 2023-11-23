@@ -11,6 +11,8 @@ export const AddSportForm = () => {
     image: "",
     location: "",
     date: "",
+    entryFees: "",
+    locationLink: "",
   });
   const [loader, setLoader] = useState(false);
 
@@ -34,6 +36,8 @@ export const AddSportForm = () => {
         image: "",
         location: "",
         date: "",
+        entryFees: "",
+        locationLink: "",
       });
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
@@ -122,6 +126,24 @@ export const AddSportForm = () => {
 
           <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
             <label
+              htmlFor="entryFees"
+              className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+            >
+              Entry Fees:
+            </label>
+            <input
+              id="entryFees"
+              type="number"
+              name="entryFees"
+              value={formData.entryFees}
+              onChange={handleChange}
+              required
+              className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
+            />
+          </div>
+
+          <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+            <label
               htmlFor="loaction"
               className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
             >
@@ -132,6 +154,24 @@ export const AddSportForm = () => {
               type="text"
               name="location"
               value={formData.location}
+              onChange={handleChange}
+              required
+              className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
+            />
+          </div>
+
+          <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-2">
+            <label
+              htmlFor="location-url"
+              className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-4"
+            >
+              Location URL:
+            </label>
+            <input
+              id="location-url"
+              type="text"
+              name="locationLink"
+              value={formData.locationLink}
               onChange={handleChange}
               required
               className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"

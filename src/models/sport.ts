@@ -11,6 +11,8 @@ interface ISport extends Document {
   isFeatured: boolean;
   isOpen: boolean;
   registrationClosed: boolean;
+  entryFees: Number;
+  locationLink: string;
 }
 
 const SportSchema = new Schema<ISport>({
@@ -46,6 +48,14 @@ const SportSchema = new Schema<ISport>({
   registrationClosed: {
     type: Schema.Types.Boolean,
     default: false,
+    required: false,
+  },
+  entryFees: {
+    type: Schema.Types.Number,
+    required: false,
+  },
+  locationLink: {
+    type: Schema.Types.String,
     required: false,
   },
 });

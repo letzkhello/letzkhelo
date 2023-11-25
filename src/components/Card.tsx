@@ -5,14 +5,21 @@ import axios from "axios";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { Shimmer } from "./Shimmer";
+import { useRouter } from "next/navigation";
+
+
 interface Game {
   sportName: string;
   location: string;
   image: string;
   description: string;
   _id: number;
+  date: string;
+  entryFees: number;
 }
 export default function Card() {
+  const router = useRouter();
+
   const [getGame, setGame] = useState<Game[]>([]);
   const [getRegisterUser, setRegisterUser] = useState<Game[]>([]);
   const [shimmer, setShimmer] = useState(true);
@@ -38,8 +45,39 @@ export default function Card() {
     setShimmer(true);
     const res = await axios.get("/api/getAllSports");
     setShimmer(false);
-    setGame(res.data);
+    // setGame(res.data);
+
+
+  // const sortedGames: Game[] = res.data
+  // .filter((game: Game) => game.date) // Filter out items with undefined or falsy date values
+  // .sort((a: Game, b: Game) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  // setGame(sortedGames);
+  //   console.log(sortedGames);
+
+
+  const sortedGames: Game[] = res.data
+  .sort((a: Game, b: Game) => {
+    const dateA = new Date(a.date).getTime();
+    const dateB = new Date(b.date).getTime();
+
+    // Check if either date is invalid (undefined or null)
+    if (isNaN(dateA) && isNaN(dateB)) {
+      return 0; // Keep the order unchanged if both dates are invalid
+    } else if (isNaN(dateA)) {
+      return 1; // Place items with invalid date (a) at the end
+    } else if (isNaN(dateB)) {
+      return -1; // Place items with invalid date (b) at the end
+    } else {
+      // Sort by date in descending order
+      return dateB - dateA;
+    }
+  });
+
+setGame(sortedGames);
+console.log(sortedGames);
   };
+
+
 
   const checkUserEmail = () => {
     const allGameRegsitered = getRegisterUser.filter(
@@ -115,24 +153,31 @@ export default function Card() {
                   </figure>
                   <div className="card-body">
                     <h2 className="card-title">{game?.sportName}</h2>
-                    <p>Location: {game?.location}</p>
+                    <p>Location: 
+                      <Link href={`${game?.locationLink}`} target="_blank">
+                      <span className="text-blue-600">{game?.location}</span>
+                      </Link>
+                    </p>
                     <p>Date: {convertDate(game?.date)}</p>
                     <p>Participants: {countRegisteredUsers(game?.sportName)}</p>
+                    <p>Entry Fee: {game?.entryFees ? game?.entryFees : "Free"}</p>
+                    {/* <p>Location Link: {(game?.locationLink)}</p> */}
                     <div className="card-actions justify-end">
                       <button
                         className="btn bg-black text-white transform transition-transform hover:scale-105 duration-300"
-                        // disabled={
-                        //   checkOpenContest(game?.isOpen, game?.sportName) ?
-                        //      true
-                        //     : false
-                        // }
-                        disabled={true}
+                        onClick={()=>session ? router.push(`/bookCompetetion/${game?._id}`) : router.push(`/login`)}
+                        disabled={
+                          checkOpenContest(game?.isOpen, game?.sportName) ?
+                             true
+                            : false
+                        }
+                        // disabled={true}
                       >
-                        <Link
+                        {/* <Link
                           href={
                             session ? `/bookCompetetion/${game?._id}` : `/login`
                           }
-                        >
+                        > */}
                           {game?.registrationClosed
                             ? "Registration Closed"
                             : game?.isOpen
@@ -140,7 +185,7 @@ export default function Card() {
                             : checkAlreadyRegistered(game?.sportName)
                             ? "Already registered"
                             : "Register Now"}
-                        </Link>
+                        {/* </Link> */}
                       </button>
                     </div>
                   </div>

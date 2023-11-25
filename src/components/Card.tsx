@@ -160,7 +160,7 @@ console.log(sortedGames);
                     </p>
                     <p>Date: {convertDate(game?.date)}</p>
                     <p>Participants: {countRegisteredUsers(game?.sportName)}</p>
-                    <p>Entry Fee: {game?.entryFees ? game?.entryFees : "Free"}</p>
+                    <p>Entry Fee: <span className="text-blue-600 font-bold">{game?.entryFees ? game?.entryFees : "Free"}</span></p>
                     {/* <p>Location Link: {(game?.locationLink)}</p> */}
                     <div className="card-actions justify-end">
                       <button

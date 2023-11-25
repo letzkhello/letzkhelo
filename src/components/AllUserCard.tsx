@@ -80,7 +80,7 @@ export default function AllUserCard() {
                 value={search}
                 onChange={handleInputChange}
                 className="w-full bg-white pl-2 text-base font-semibold outline-0"
-                placeholder="Enter location "
+                placeholder="Enter Player Name "
                 id=""
               />
             </div>

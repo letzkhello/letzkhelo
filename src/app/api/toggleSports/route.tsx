@@ -22,7 +22,6 @@ export async function PUT(request: NextRequest) {
         { status: 404 }
       );
     }
-    console.log(sport);
     sport.isFeatured = isFeatured;
     await sport.save();
 

@@ -110,9 +110,7 @@ export default function ProfileComponent() {
     return (
       <div>
         {allUsers?.map((user: any) => {
-          console.log(user);
           if (user?.email == session?.user?.email) {
-            console.log(user)
             return (
               <div
                 key={user._id}

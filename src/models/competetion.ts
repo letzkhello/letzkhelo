@@ -41,6 +41,7 @@ const competetionSchema = new mongoose.Schema({
     type: Schema.Types.String,
     default:'55-60',
     required: true,
+    
   },
 });
 

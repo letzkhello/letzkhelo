@@ -1,21 +1,16 @@
-import mongoose, { Schema, Document, Types } from "mongoose";
-import { User } from "./User";
+import mongoose, { Schema } from "mongoose";
 
 interface UserStats {
+  userId:string;
   totalWins: number;
   totalCocWins: number;
   sportsName: string;
 }
 
-interface UserStatsDocument extends UserStats, Document {
-  userId: Types.ObjectId | typeof User;
-}
-
-const userStatsSchema = new Schema<UserStatsDocument>({
+const userStatsSchema = new Schema<UserStats>({
   userId: {
-    type: Schema.Types.ObjectId,
-    ref: "User", 
-    required: true,
+    type: Schema.Types.String,
+    required:true,
   },
   totalWins: {
     type: Schema.Types.Number,
@@ -31,4 +26,4 @@ const userStatsSchema = new Schema<UserStatsDocument>({
   },
 });
 
-export const UserStats = mongoose.models.UserStats || mongoose.model<UserStatsDocument>("UserStats", userStatsSchema);
+export const UserStats = mongoose.models.UserStats || mongoose.model<UserStats>("UserStats", userStatsSchema);

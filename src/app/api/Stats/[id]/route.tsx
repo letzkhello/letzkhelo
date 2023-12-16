@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
     const data = await UserStats.findOne({userId:id});
     console.log(data);
     return NextResponse.json({
+      data:data,
       message: "Data fetch sucessfully",
       success: true,
     });

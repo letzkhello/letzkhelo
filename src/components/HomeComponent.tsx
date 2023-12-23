@@ -44,7 +44,7 @@ export const HomeComponent = () => {
                     <p className="max-w-xl leading-relaxed text-gray-300 sm:mx-auto lg:ml-0">
                        Come out of virtual world- Ab har gali s Champions niklenge
                        <br/>
-                       Our mission is simple: to create a vibrant and inclusive community for athletes of all levels. Whether you're a seasoned pro or just starting your sporting journey, Letzkhelo is the place where you can connect, compete, and grow.
+                       Our mission is simple: to create a vibrant and inclusive community for athletes of all levels. Whether you are a seasoned pro or just starting your sporting journey, Letzkhelo is the place where you can connect, compete, and grow.
                     </p>
                     <div className="items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
                         <a

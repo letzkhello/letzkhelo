@@ -50,7 +50,7 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-      <section className="bg-[#c52f2f] py-16">
+      <section className="py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mt-12 flex">
             <div>

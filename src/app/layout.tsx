@@ -27,7 +27,7 @@ export default function RootLayout({
        <head>
         <link rel='icon' href='/favicon.ico'/>
       </head>
-      <body className={`${inter.className} bg-red-800`}  >
+      <body className={`${inter.className} bg-gray-700`}  >
       {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
             <GoogleAnalytics ga_id= 
             {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />

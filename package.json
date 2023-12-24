@@ -17,6 +17,7 @@
     "autoprefixer": "10.4.15",
     "axios": "^1.5.0",
     "bcryptjs": "^2.4.3",
+    "crypto": "^1.0.1",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
     "framer-motion": "^10.16.4",
@@ -26,18 +27,21 @@
     "next-auth": "^4.23.1",
     "nodemailer": "^6.9.5",
     "postcss": "8.4.29",
+    "razorpay": "^2.9.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.11.0",
     "react-scroll": "^1.9.0",
     "react-spinners": "^0.13.8",
+    "shortid": "^2.2.16",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.3",
     "@types/nodemailer": "^6.4.10",
+    "@types/shortid": "^0.0.32",
     "daisyui": "^3.7.3"
   }
 }

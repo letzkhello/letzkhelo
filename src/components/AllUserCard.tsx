@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import {  useRouter } from "next/navigation";
 interface User {
   name: string;
   intrestedSport: any;
@@ -19,6 +20,7 @@ export default function AllUserCard() {
   const [getLoader, setLoader] = useState(true);
   const [search, setSearch] = useState("");
   const [registeredTeams, setRegisteredTeams] = useState<User[]>([]);
+  const router=useRouter()
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -144,6 +146,8 @@ export default function AllUserCard() {
                     </svg>
                   </Link>
                 </div>
+                <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={()=>router.push(`/userStats/${user._id}`)}>Go To Profile</button>
+
               </div>
             </div>
           ))}

@@ -7,6 +7,8 @@ import { Toaster } from "react-hot-toast";
 import NextAuthSessionProvider from "./provider/sessionProvider";
 import Footer from "@/components/Footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Script from 'next/script'
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +27,7 @@ export default function RootLayout({
        <head>
         <link rel='icon' href='/favicon.ico'/>
       </head>
-      <body className={`${inter.className} bg-red-800`}  >
+      <body className={`${inter.className} bg-gray-700`}  >
       {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
             <GoogleAnalytics ga_id= 
             {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
@@ -39,6 +41,8 @@ export default function RootLayout({
       </NextAuthSessionProvider>
       <Toaster/>
       </body>
+      <Script src="https://checkout.razorpay.com/v1/checkout.js"
+          />
     </html>
   );
 }

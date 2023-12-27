@@ -12,8 +12,14 @@ const instance = new Razorpay({
 connect();
 
 export async function POST(request: NextRequest) {
-  const { razorpay_order_id, razorpay_payment_id, razorpay_signature,userId,sportname} =await request.json();
-
+  const {
+    razorpay_order_id,
+    razorpay_payment_id,
+    razorpay_signature,
+    userId,
+    sportname,
+  } = await request.json();
+  console.log(request.body);
   const body = razorpay_order_id + "|" + razorpay_payment_id;
   console.log("id==", body);
 

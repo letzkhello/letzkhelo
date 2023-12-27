@@ -6,6 +6,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Loader from "./Loader";
+import Razorpay from "razorpay";
 
 export function BookCompetetionFormDynamic({ params }: any) {
   const { data: session } = useSession();
@@ -13,10 +14,84 @@ export function BookCompetetionFormDynamic({ params }: any) {
   const [loader, setLoader] = useState(false);
   const [allSports, setAllSports] = useState([]);
   const [phoneNumberError, setPhoneNumberError] = useState("");
+  const userId = "12345678764";
+  const amount = 102;
+  const sportname = "Armwrestling";
 
   useEffect(() => {
     getAllSports();
   }, []);
+
+  const makePayment = async ({ productId = null }) => {
+    // "use server"
+    const key = process.env.RAZORPAY_API_KEY;
+    console.log(key);
+    // Make API call to the serverless API
+    const data = await fetch("http://localhost:3000/api/razorpay", {
+      method: "POST",
+      // headers: {
+      //   // Authorization: 'YOUR_AUTH_HERE'
+      // },
+      body: JSON.stringify({
+        userId,
+        amount,
+        sportname,
+      }),
+    });
+    const { order } = await data.json();
+    console.log(order.id);
+    const options = {
+      key: key,
+      name: "Letzkhello",
+      currency: order.currency,
+      amount: order.amount,
+      order_id: order.id,
+      description: "",
+      // image: logoBase64,
+      handler: async function (response: any) {
+        // if (response.length==0) return <Loading/>;
+        console.log(response);
+
+        const data = await fetch("http://localhost:3000/api/paymentverify", {
+          method: "POST",
+          // headers: {
+          //   // Authorization: 'YOUR_AUTH_HERE'
+          // },
+          body: JSON.stringify({
+            userId,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_signature: response.razorpay_signature,
+            sportname,
+          }),
+        });
+
+        const res = await data.json();
+
+        console.log("response verify==", res);
+
+        if (res?.message == "success") {
+          console.log("redirected.......");
+          // Add route after payment success
+          router.push(
+            "/paymentsuccess?paymentid=" + response.razorpay_payment_id
+          );
+        }
+      },
+      prefill: {
+        name: "Letzkhello",
+        email: "mmantratech@gmail.com",
+        contact: "000000000",
+      },
+    };
+
+    const paymentObject = (window as any).Razorpay(options)
+    paymentObject.open();
+
+    paymentObject.on("payment.failed", function (response: any) {
+      alert("Payment failed. Please try again. Contact support for help");
+    });
+  };
 
   const getAllSports = async () => {
     setLoader(true);
@@ -66,8 +141,12 @@ export function BookCompetetionFormDynamic({ params }: any) {
   ) => {
     e.preventDefault();
     try {
-      const confirmed = window.confirm(`Do you want to register for ${sport.sportName} with entry fees ${sport.entryFees || 100} ? Fees will be Collected on the ground. `);
-    
+      const confirmed = window.confirm(
+        `Do you want to register for ${sport.sportName} with entry fees ${
+          sport.entryFees || 100
+        } ? Fees will be Collected on the ground. `
+      );
+
       if (!confirmed) {
         // User clicked Cancel in the confirmation dialog
         return;
@@ -79,7 +158,9 @@ export function BookCompetetionFormDynamic({ params }: any) {
         userName: session?.user?.name,
         userEmail: session?.user?.email,
         sportName: sport?.sportName,
-        registrationPrice: sport.entryFees ? sport.entryFees : formData.registrationPrice,
+        registrationPrice: sport.entryFees
+          ? sport.entryFees
+          : formData.registrationPrice,
         date: sport?.date,
       };
 
@@ -173,7 +254,11 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           type="number"
                           disabled
                           name="registrationPrice"
-                          value={sport.entryFees ? sport.entryFees : formData.registrationPrice}
+                          value={
+                            sport.entryFees
+                              ? sport.entryFees
+                              : formData.registrationPrice
+                          }
                           className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
                         />
                       </div>
@@ -210,7 +295,6 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           name="weight"
                           onChange={handleChange}
                           className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
-      
                         >
                           <option value="">SELECT</option>
                           <option value="Below 50">Below 50</option>

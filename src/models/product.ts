@@ -6,7 +6,7 @@ interface IProduct extends Document {
   productName: string;
   category: string;
   description?: string;
-  expectedDelievery?: Date;
+  expectedDelievery?: string;
   isFeatured: boolean;
   inStock: boolean;
   price: Number;
@@ -29,7 +29,7 @@ const ProductSchema = new Schema<IProduct>({
   },
   
   expectedDelievery: {
-    type: Schema.Types.Date,
+    type: Schema.Types.String,
     required: true,
   },
   isFeatured: {

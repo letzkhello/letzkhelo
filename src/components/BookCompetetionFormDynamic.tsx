@@ -21,11 +21,28 @@ export function BookCompetetionFormDynamic({ params }: any) {
   useEffect(() => {
     getAllSports();
   }, []);
+  const [dynamicAmount, setDynamicAmount] = useState(0);
+  const [formData, setFormData] = useState({
+    userName: "",
+    sportName: "",
+    registrationPrice: 0,
+    age: "",
+    weight: "",
+    phoneNumber: "",
+  });
 
-  const makePayment = async () => {
+  useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+    }));
+  }, [session?.user?.email]);
+  const makePayment = async (sport:any) => {
     // "use server"
     const key = 'rzp_test_yV10DUcqP74vVl';
     console.log(key);
+    const calculatedAmount = sport.entryFees || formData.registrationPrice || 5400;
+  // setDynamicAmount(calculatedAmount);
+  console.log(dynamicAmount)
     // Make API call to the serverless API
     const data = await fetch("/api/razorpay", {
       method: "POST",
@@ -34,8 +51,8 @@ export function BookCompetetionFormDynamic({ params }: any) {
       // },
       body: JSON.stringify({
         email:session?.user?.email,
-        amount,
-        sportname,
+        amount:calculatedAmount*100,
+        sport:sport.sportName,
       }),
     });
     const { order } = await data.json();
@@ -62,7 +79,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_order_id: response.razorpay_order_id,
             razorpay_signature: response.razorpay_signature,
-            sportname,
+            sportname:sport.sportName,
           }),
         });
 
@@ -73,13 +90,19 @@ export function BookCompetetionFormDynamic({ params }: any) {
         if (res?.message == "success") {
           console.log("redirected.......");
           // Add route after payment success
-          router.push(`/SuccessPage/${params.id}`);
+          handleSubmit(
+            {
+              preventDefault: () => {},
+            },
+            sport
+          );
+          // router.push(`/SuccessPage/${params.id}`);
         }
       },
       prefill: {
-        name: "Letzkhelo",
-        email: "letzkhello@gmail.com",
-        contact: "8882788610",
+        name: session?.user?.name,
+        email: session?.user?.email,
+        contact: "0000000000",
       },
     };
 
@@ -99,20 +122,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
     setAllSports(res?.data);
   };
 
-  const [formData, setFormData] = useState({
-    userName: "",
-    sportName: "",
-    registrationPrice: 0,
-    age: "",
-    weight: "",
-    phoneNumber: "",
-  });
-
-  useEffect(() => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-    }));
-  }, [session?.user?.email]);
+  
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
     if (e.target.name === "phoneNumber") {
@@ -140,16 +150,16 @@ export function BookCompetetionFormDynamic({ params }: any) {
   ) => {
     e.preventDefault();
     try {
-      const confirmed = window.confirm(
-        `Do you want to register for ${sport.sportName} with entry fees ${
-          sport.entryFees || 100
-        } ? Fees will be Collected on the ground. `
-      );
+      // const confirmed = window.confirm(
+      //   `Do you want to register for ${sport.sportName} with entry fees ${
+      //     sport.entryFees || 100
+      //   } ? Fees will be Collected on the ground. `
+      // );
 
-      if (!confirmed) {
-        // User clicked Cancel in the confirmation dialog
-        return;
-      }
+      // if (!confirmed) {
+      //   // User clicked Cancel in the confirmation dialog
+      //   return;
+      // }
       setLoader(true);
 
       const updatedFormData = {
@@ -352,8 +362,13 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           "Register"
                         )}
                       </button>
+                     
                     </form>
-                    <button onClick={()=>makePayment()}>register</button>
+                    <button
+                        onClick={()=>makePayment(sport)}
+                        className="mx-0 my-12 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
+                        disabled={isFormNotValid || loader ? true : false}
+                      >Register online</button>
 
                   </main>
                 </div>

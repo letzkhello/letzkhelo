@@ -1,7 +1,18 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, Model, Document } from "mongoose";
 
-const paymentSchema = new mongoose.Schema({
-  userId: {
+
+
+interface IPayment extends Document {
+  email: string;
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  
+  razorpay_signature: string;
+  sportname: string;
+
+}
+const PaymentSchema = new Schema<IPayment>({
+  email: {
     type: String,
     required:true,
   },
@@ -22,7 +33,7 @@ const paymentSchema = new mongoose.Schema({
     required:true,
   },
 });
-
-export const Payment = mongoose.model("Payment", paymentSchema);
-
+const Payment: Model<IPayment> =
+  mongoose.models.Payment || mongoose.model<IPayment>("Payment", PaymentSchema);
+export default Payment;
 // module.exports = mongoose.models.Payment || mongoose.model('Payment', paymentSchema)

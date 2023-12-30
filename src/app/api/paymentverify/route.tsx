@@ -1,6 +1,8 @@
+export const revalidate = 0;
+
 import { connect } from "@/dbConfig/dbConfig";
 import { NextResponse, NextRequest } from "next/server";
-import { Payment } from "@/models/payment";
+import  Payment  from "@/models/payment";
 import Razorpay from "razorpay";
 import shortid from "shortid";
 import crypto from "crypto";
@@ -16,7 +18,7 @@ export async function POST(request: NextRequest) {
     razorpay_order_id,
     razorpay_payment_id,
     razorpay_signature,
-    userId,
+    email,
     sportname,
   } = await request.json();
   console.log(request.body);
@@ -37,7 +39,7 @@ export async function POST(request: NextRequest) {
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
-      userId,
+      email,
       sportname,
     });
 

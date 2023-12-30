@@ -14,26 +14,26 @@ export function BookCompetetionFormDynamic({ params }: any) {
   const [loader, setLoader] = useState(false);
   const [allSports, setAllSports] = useState([]);
   const [phoneNumberError, setPhoneNumberError] = useState("");
-  const userId = "12345678764";
-  const amount = 102;
+  const userId = "12345678dfd4";
+  const amount = 105500;
   const sportname = "Armwrestling";
 
   useEffect(() => {
     getAllSports();
   }, []);
 
-  const makePayment = async ({ productId = null }) => {
+  const makePayment = async () => {
     // "use server"
-    const key = process.env.RAZORPAY_API_KEY;
+    const key = 'rzp_test_yV10DUcqP74vVl';
     console.log(key);
     // Make API call to the serverless API
-    const data = await fetch("http://localhost:3000/api/razorpay", {
+    const data = await fetch("/api/razorpay", {
       method: "POST",
       // headers: {
       //   // Authorization: 'YOUR_AUTH_HERE'
       // },
       body: JSON.stringify({
-        userId,
+        email:session?.user?.email,
         amount,
         sportname,
       }),
@@ -42,7 +42,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
     console.log(order.id);
     const options = {
       key: key,
-      name: "Letzkhello",
+      name: "Letzkhelo",
       currency: order.currency,
       amount: order.amount,
       order_id: order.id,
@@ -58,7 +58,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
           //   // Authorization: 'YOUR_AUTH_HERE'
           // },
           body: JSON.stringify({
-            userId,
+            email:session?.user?.email,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_order_id: response.razorpay_order_id,
             razorpay_signature: response.razorpay_signature,
@@ -73,15 +73,13 @@ export function BookCompetetionFormDynamic({ params }: any) {
         if (res?.message == "success") {
           console.log("redirected.......");
           // Add route after payment success
-          router.push(
-            "/paymentsuccess?paymentid=" + response.razorpay_payment_id
-          );
+          router.push(`/SuccessPage/${params.id}`);
         }
       },
       prefill: {
-        name: "Letzkhello",
-        email: "mmantratech@gmail.com",
-        contact: "000000000",
+        name: "Letzkhelo",
+        email: "letzkhello@gmail.com",
+        contact: "8882788610",
       },
     };
 
@@ -92,6 +90,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
       alert("Payment failed. Please try again. Contact support for help");
     });
   };
+  console.log(session,'ll')
 
   const getAllSports = async () => {
     setLoader(true);
@@ -354,6 +353,8 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         )}
                       </button>
                     </form>
+                    <button onClick={()=>makePayment()}>register</button>
+
                   </main>
                 </div>
               </div>

@@ -1,3 +1,5 @@
+export const revalidate = 0;
+
 import { connect } from "@/dbConfig/dbConfig";
 import { NextRequest, NextResponse } from "next/server";
 import Razorpay from "razorpay";
@@ -11,8 +13,8 @@ const instance = new Razorpay({
 });
 
 export async function POST (request: NextRequest) {
-  const {userId,amount,sportname} = await request.json();
-  console.log(userId);
+  const {email,amount,sportname} = await request.json();
+  console.log(email);
   console.log(amount);
   console.log(sportname);
   const payment_capture = 1;
@@ -28,7 +30,7 @@ export async function POST (request: NextRequest) {
       // These notes will be added to your transaction. So you can search it within their dashboard.
       // Also, it's included in webhooks as well. So you can automate it.
       paymentFor: "testingDemo",
-      userId,
+      email,
       sportname,
     },
   };

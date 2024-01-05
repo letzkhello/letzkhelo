@@ -4,7 +4,7 @@ import Carousel from "./Carousel";
 import Card from "./Card";
 import Features from "./OurFeatures";
 import Image from "next/image";
-
+import Link from "next/link";
 
 export const HomeComponent = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -47,12 +47,11 @@ export const HomeComponent = () => {
                        Our mission is simple: to create a vibrant and inclusive community for athletes of all levels. Whether you are a seasoned pro or just starting your sporting journey, Letzkhelo is the place where you can connect, compete, and grow.
                     </p>
                     <div className="items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
-                        <a
-                            href="javascript:void(0)"
+                        <Link href={'/showproduct'}
                             className="block px-6 py-2 text-center text-white bg-yellow-600 rounded-md"
                         >
-                            Letzkhelo Store(Coming Soon)
-                        </a>
+                            Letzkhelo Store
+                        </Link>
                       
                     </div>
                 </div>

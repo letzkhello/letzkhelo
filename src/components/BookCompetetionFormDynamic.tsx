@@ -69,7 +69,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
         // if (response.length==0) return <Loading/>;
         console.log(response);
 
-        const data = await fetch("http://localhost:3000/api/paymentverify", {
+        const data = await fetch("/api/paymentverify", {
           method: "POST",
           // headers: {
           //   // Authorization: 'YOUR_AUTH_HERE'

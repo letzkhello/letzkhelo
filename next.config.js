@@ -27,6 +27,7 @@ const nextConfig = {
       },
 }
 
+
 // /a/ACg8ocJM_14cVzZogtCo2Iya5c6j0UZgI7wNT1l2p_tWrzC6=s96-
 
 module.exports = nextConfig

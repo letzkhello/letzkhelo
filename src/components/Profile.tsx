@@ -23,6 +23,8 @@ export default function ProfileComponent() {
   const [loader, setLoader] = useState(true);
   const { data: session, status } = useSession();
   const [allUsers, setAllUsers] = useState<User[]>([]);
+  const [url, setUrl] = useState("");
+  const [image, setImage] = useState("");
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
   const [formData, setFormData] = useState({
@@ -32,7 +34,44 @@ export default function ProfileComponent() {
     intrestedSport: "",
     email: "",
   });
+  const saveImage = async (userId: any) => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "hhxqnn9f");
+    data.append("cloud_name", "dd4ao3ler");
 
+    try {
+      if (image === null) {
+        return toast.error("Please Upload image");
+      }
+
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dd4ao3ler/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+
+      const cloudData = await res.json();
+
+      setUrl(cloudData.url);
+      if (cloudData) {
+        const body = {
+          userId: userId,
+          imageLink: cloudData.url,
+        };
+        console.log(body);
+        const res = await axios.patch("/api/users/updateUser", body);
+        if (res) {
+          getAllUsers();
+          setIsImageSelected(false)
+        }
+      }
+      console.log(cloudData.url);
+      toast.success("Image Upload Successfully");
+    } catch (error) {}
+  };
   useEffect(() => {
     getAllUsers();
   }, []);
@@ -59,7 +98,7 @@ export default function ProfileComponent() {
 
   const handleSubmit = async (e: { preventDefault: () => void }, user: any) => {
     e.preventDefault();
-  
+
     try {
       const updatedFormData = {
         ...formData,
@@ -98,6 +137,19 @@ export default function ProfileComponent() {
       modalRef.current.showModal();
     }
   };
+  const [isImageSelected, setIsImageSelected] = useState(false);
+  const handleImageChange = async (e: any) => {
+    console.log(e.target.files);
+    const selectedImage = e.target.files[0];
+    if (selectedImage) {
+      setIsImageSelected(true);
+      setImage(selectedImage);
+    } else {
+      setIsImageSelected(false);
+    }
+    console.log(selectedImage);
+    setImage(selectedImage);
+  };
 
   const closeModal = () => {
     if (modalRef.current) {
@@ -123,14 +175,54 @@ export default function ProfileComponent() {
                     alt="Mountain"
                   />
                 </div>
+
                 <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
-                  <Image
-                    src={session?.user?.image || img}
+                  <img
+                    src={user?.imageLink}
                     height="120"
                     width="128"
                     className="object-cover object-center h-32"
                     alt="Woman looking front"
                   />
+                </div>
+                <div className="w-full flex justify-evenly">
+                  {/* <label htmlFor="image" className="btn">
+                    Select Image
+                  </label>
+                  <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={handleImageChange}
+                  />
+                  <button onClick={(e) => saveImage(user?._id)} className="btn">
+                    upload
+                  </button> */}
+                    {!isImageSelected && (
+                  <>
+                    <label htmlFor="image" className="btn">
+                      Upload/Change Image
+                    </label>
+                    <input
+                      type="file"
+                      id="image"
+                      name="image"
+                      accept="image/*"
+                      style={{ display: "none" }}
+                      onChange={handleImageChange}
+                    />
+                  </>
+                )}
+                {isImageSelected && (
+                  <p className=" text-2xl text-green-400">Image Selected</p>
+                )}
+                {isImageSelected && (
+                  <button onClick={(e) => saveImage(user?._id)} className="btn">
+                    Upload
+                  </button>
+                )}
                 </div>
                 <div className="text-center mt-2">
                   <h2 className="font-semibold">{session?.user?.name}</h2>
@@ -192,7 +284,11 @@ export default function ProfileComponent() {
                       <Link
                         className="text-pink-600"
                         aria-label="Visit TrendyMinds Instagram"
-                        href= {user?.instagramLink ? user?.instagramLink : "Not Mentioned"}
+                        href={
+                          user?.instagramLink
+                            ? user?.instagramLink
+                            : "Not Mentioned"
+                        }
                         target="_blank"
                       >
                         <svg
@@ -217,7 +313,9 @@ export default function ProfileComponent() {
                       </li>
                       <li className="flex flex-col items-center justify-between">
                         <p className="font-semibold">Age</p>
-                        <div className="w-10">{user?.age ? user?.age : "Not Mentioned"}</div>
+                        <div className="w-10">
+                          {user?.age ? user?.age : "Not Mentioned"}
+                        </div>
                       </li>
                       <li className="flex flex-col items-center justify-around">
                         <p className="font-semibold">Intrested Sports</p>

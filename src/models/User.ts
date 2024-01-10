@@ -39,7 +39,13 @@ const userSchema = new Schema({
   instagramLink: {
     type: Schema.Types.String,
     required: false,
-    }
+    },
+  imageLink:{
+    type: Schema.Types.String,
+    required: false,
+
+
+  },
 });
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);

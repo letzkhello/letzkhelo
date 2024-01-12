@@ -56,7 +56,7 @@ export default function ShowProduct() {
                   />
                 </figure>
 
-                <div className="px-2 py-3 mt-4 w-72">
+                <div className="px-2 py-3 flex flex-col mt-4 w-72">
                   <p className="text-lg font-bold text-black truncate block capitalize">
                     {item?.productName}
                   </p>
@@ -73,6 +73,7 @@ export default function ShowProduct() {
                       </span>
                     </del>
                     </p>
+                    
 
                     <div className="ml-auto">
                       {item.inStock === true ? (
@@ -91,7 +92,7 @@ export default function ShowProduct() {
                     </div>
 
                   </div>
-
+                  <Link href={`/allProducts/${item._id}`} className="text-white bg-green-700 my-2 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">View Details --&gt; </Link>
                   <div><b>Expected Delievery</b>-{item.expectedDelievery}</div>
 
                 </div>

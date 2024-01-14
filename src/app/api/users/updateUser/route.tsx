@@ -1,4 +1,3 @@
-
 export const revalidate = 0;
 
 import { connect } from "@/dbConfig/dbConfig";
@@ -12,9 +11,7 @@ connect();
 export async function PATCH(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { userId,imageLink  } =
-      reqBody;
-
+    const { userId, imageLink } = reqBody;
 
     // const AllSport = new AddSport({
     //     sportName,
@@ -28,29 +25,22 @@ export async function PATCH(request: NextRequest) {
 
     // await AllSport.save();
 
-
     const updatedUser = await User.findByIdAndUpdate(
-        userId,
-        { $set: { imageLink } },
-        { new: true }
-      );
-  
-      if (!updatedUser) {
-        return NextResponse.json(
-            { error: "User Not Found" },
-            { status: 400 }
-          );
-      }
+      userId,
+      { $set: { imageLink } },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return NextResponse.json({ error: "User Not Found" }, { status: 400 });
+    }
 
     return NextResponse.json({
       message: "User updated successfully",
       success: true,
     });
   } catch (error: any) {
-    console.log(error)
-    return NextResponse.json(
-      { error: "Error updating User" },
-      { status: 400 }
-    );
+    console.log(error);
+    return NextResponse.json({ error: "Error updating User" }, { status: 400 });
   }
 }

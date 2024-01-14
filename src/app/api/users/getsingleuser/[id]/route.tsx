@@ -12,13 +12,23 @@ export async function GET(request: NextRequest, response: NextResponse) {
     const index = url.lastIndexOf("/");
     const Id = url.slice(index + 1);
     console.log(Id);
-    const data = await User.findOne({_id:Id});
-    console.log(data);
-    return NextResponse.json({
-      message: "Data fetch sucessfully",
-      data: data,
-      success: true,
-    });
+    if (Id.includes("@")) {
+      const data = await User.findOne({ email: Id });
+      console.log(data);
+      return NextResponse.json({
+        message: "Data fetch sucessfully",
+        data: data,
+        success: true,
+      });
+    } else {
+      const data = await User.findOne({ _id: Id });
+      console.log(data);
+      return NextResponse.json({
+        message: "Data fetch sucessfully",
+        data: data,
+        success: true,
+      });
+    }
   } catch (error: any) {
     console.log(error);
     return NextResponse.json(

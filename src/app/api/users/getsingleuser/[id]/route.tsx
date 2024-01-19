@@ -2,6 +2,7 @@
 
 import { connect } from "@/dbConfig/dbConfig";
 import { User } from "@/models/User";
+import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
 connect();
@@ -12,6 +13,14 @@ export async function GET(request: NextRequest, response: NextResponse) {
     const index = url.lastIndexOf("/");
     const Id = url.slice(index + 1);
     console.log(Id);
+
+    // if (!Id || Id === 'undefined' || !mongoose.Types.ObjectId.isValid(Id)) {
+    //   return NextResponse.json(
+    //     { message: "Invalid or missing identifier" },
+    //     { status: 400 } // Bad Request status code
+    //   );
+    // }
+
     if (Id.includes("@")) {
       const data = await User.findOne({ email: Id });
       console.log(data);

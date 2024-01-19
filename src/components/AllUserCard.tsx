@@ -4,7 +4,10 @@ import Loader from "./Loader";
 import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import {  useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import img from "@/../public/avatar.png";
+import Image from "next/image";
+
 interface User {
   name: string;
   intrestedSport: any;
@@ -12,6 +15,7 @@ interface User {
   age: any;
   weight: any;
   _id: any;
+  imageLink: any;
 }
 export default function AllUserCard() {
   const { data: session, status } = useSession();
@@ -20,7 +24,7 @@ export default function AllUserCard() {
   const [getLoader, setLoader] = useState(true);
   const [search, setSearch] = useState("");
   const [registeredTeams, setRegisteredTeams] = useState<User[]>([]);
-  const router=useRouter()
+  const router = useRouter();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -52,7 +56,8 @@ export default function AllUserCard() {
       setUsers(registeredTeams);
     } else {
       const filteredTeams = registeredTeams.filter(
-        (player) => player.intrestedSport === sport);
+        (player) => player.intrestedSport === sport
+      );
       setUsers(filteredTeams);
     }
   };
@@ -106,11 +111,36 @@ export default function AllUserCard() {
 
         <div className="flex flex-wrap justify-evenly w-full">
           {users.map((user) => (
-            <div
+           
+              <div className="card w-96 bg-base-100 shadow-xl mb-4" 
               key={user?._id}
-              className="card w-80 mt-10 -base-100 shadow-xl bg-white"
-            >
-              <div className="card-body">
+              >
+                <figure>
+                  {user?.imageLink ?
+              <div className="h-40 w-40 rounded-full overflow-hidden">
+                     <img
+                    src={user?.imageLink}
+
+                    alt="Shoes"
+                    className="h-full w-full rounded-full object-cover object-center"
+                  /> 
+              </div>
+                  : <Image
+                  src={img}
+                  alt="Picture of the user"
+                  width={500}
+                  height={500}
+                  className="h-40 w-40"
+                />}
+                </figure>
+                {/* <div className="card-body">
+                  <h2 className="card-title">Shoes!</h2>
+                  <p>If a dog chews shoes whose shoes does he choose?</p>
+                  <div className="card-actions justify-end">
+                    <button className="btn btn-primary">Buy Now</button>
+                  </div>
+                </div> */}
+                <div className="card-body">
                 <h2 className="card-title">
                   {user?.name}
                   <div className="badge badge-secondary">
@@ -146,9 +176,10 @@ export default function AllUserCard() {
                     </svg>
                   </Link>
                 </div>
+                <div className="card-actions justify-end">
                 <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={()=>router.push(`/userStats/${user._id}`)}>Go To Profile</button>
-
-              </div>
+                  </div>
+                </div>
             </div>
           ))}
         </div>

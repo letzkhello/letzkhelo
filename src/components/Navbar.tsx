@@ -1,12 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import img from "@/../public/avatar.png";
+import defaultavatar from "@/../public/avatar.png";
 import SignoutButton from "@/components/signoutButton";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { BiMenuAltLeft } from "react-icons/bi";
+import axios from "axios";
 
 interface Session {
   user: {
@@ -16,11 +17,41 @@ interface Session {
   };
 }
 
+interface User {
+  email: string;
+  name: string;
+  intrestedSport: any;
+  instagramLink: any;
+  age: any;
+  weight: any;
+  _id: any;
+  imageLink: any;
+}
+
 export default function Navbar({ fixed }: any) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const { data: session, status } = useSession();
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [singleUser, setSingleUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const identifier = session?.user?.email;
+        console.log(identifier);
+        const response = await axios.get(`/api/users/getsingleuser/${identifier}`);
+        // console.log(response.data.data);
+        setSingleUser(response.data.data);
+        // console.log(singleUser,"setted",typeof(singleUser));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [session]);
+  
 
   const openMenu = () => {
     setIsOpen(true);
@@ -233,12 +264,35 @@ export default function Navbar({ fixed }: any) {
           className="btn btn-ghost btn-circle avatar bg-white"
         >
           <div className="w-10 rounded-full bg-white">
-            <Image
-              src={session?.user?.image ?? img}
+          {
+            session?.user ? singleUser?.imageLink ? (<Image
+              src={ singleUser?.imageLink }
               alt="Picture of the user"
               width={500}
               height={500}
-            />
+              className="h-40 w-40"
+            />) : session?.user?.image ? (<Image
+              src={session?.user?.image }
+              alt="Picture of the user"
+              width={500}
+              height={500}
+              className="h-40 w-40"
+            />) :  (
+              <Image
+            src={ defaultavatar}
+            alt="Picture of the user"
+            width={500}
+            height={500}
+            className="h-40 w-40"
+          /> 
+            ) : ( <Image
+              src={ defaultavatar}
+              alt="Picture of the user"
+              width={500}
+              height={500}
+              className="h-40 w-40"
+            />)
+          }
           </div>
         </label>
         <ul
@@ -253,7 +307,7 @@ export default function Navbar({ fixed }: any) {
           >
             <li>Profile</li>
           </Link>
-
+     
           {session?.user == null ? (
             <Link
               href="/login"

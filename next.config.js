@@ -24,6 +24,7 @@ const nextConfig = {
             pathname: '/fk-p-flap/**',
           },
         ],
+        domains: ["res.cloudinary.com"],
       },
 }
 

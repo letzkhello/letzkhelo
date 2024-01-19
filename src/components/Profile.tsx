@@ -8,6 +8,7 @@ import Image from "next/image";
 import img from "@/../public/avatar.png";
 import Loader from "@/components/Loader";
 import Link from "next/link";
+import BeatLoader from "react-spinners/BeatLoader";
 interface User {
   age: number;
   email: string;
@@ -26,6 +27,11 @@ export default function ProfileComponent() {
   const [url, setUrl] = useState("");
   const [image, setImage] = useState("");
   const modalRef = useRef<HTMLDialogElement | null>(null);
+  const [singleUser, setSingleUser] = useState<User | null>(null);
+  const [isImageSelected, setIsImageSelected] = useState(false);
+  const [imageLoader, setImageLoader] = useState(false);
+  const [singleUserState, setSingleUserState] = useState(false);
+
 
   const [formData, setFormData] = useState({
     age: "",
@@ -34,14 +40,15 @@ export default function ProfileComponent() {
     intrestedSport: "",
     email: "",
   });
-  const saveImage = async (userId: any) => {
+  const saveImage = async (userId: any, selectedImage: any) => {
     const data = new FormData();
-    data.append("file", image);
+    console.log(selectedImage,"myImage");
+    data.append("file", selectedImage);
     data.append("upload_preset", "hhxqnn9f");
     data.append("cloud_name", "dd4ao3ler");
 
     try {
-      if (image === null) {
+      if (selectedImage === null) {
         return toast.error("Please Upload image");
       }
 
@@ -137,18 +144,47 @@ export default function ProfileComponent() {
       modalRef.current.showModal();
     }
   };
-  const [isImageSelected, setIsImageSelected] = useState(false);
-  const handleImageChange = async (e: any) => {
+
+  useEffect(() => {
+    fetchData();
+  }, [singleUserState]);
+
+  const fetchData = async () => {
+    try {
+      const identifier = session?.user?.email;
+      console.log(identifier);
+      const response = await axios.get(`/api/users/getsingleuser/${identifier}`);
+      console.log(response.data.data,"profile from");
+      setSingleUser(response.data.data);
+      setSingleUserState(false);
+      // console.log(singleUser,"setted",typeof(singleUser));
+    } catch (error) {
+      console.log(error);
+      setSingleUserState(false);
+    }
+  };
+
+
+  const handleImageChange = async (e : any , id : any) => {
+    // e.preventDefault();
+    setImageLoader(true);
     console.log(e.target.files);
     const selectedImage = e.target.files[0];
+    // console.log(selectedImage,"selected Image");
     if (selectedImage) {
       setIsImageSelected(true);
-      setImage(selectedImage);
+      // setImage(selectedImage);
+      await saveImage(id, selectedImage);
+      setImageLoader(false);
+      setSingleUserState(true);
+      // location.reload();
     } else {
       setIsImageSelected(false);
+      setImageLoader(false);
     }
     console.log(selectedImage);
     setImage(selectedImage);
+    setImageLoader(false);
   };
 
   const closeModal = () => {
@@ -170,7 +206,8 @@ export default function ProfileComponent() {
               >
                 <div className="rounded-t-lg h-32 overflow-hidden">
                   <img
-                    className="object-cover object-top w-full"
+                    // className="object-cover object-top w-full"
+                    className="w-full h-full object-cover"
                     src="https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
                     alt="Mountain"
                   />
@@ -179,10 +216,9 @@ export default function ProfileComponent() {
                 <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
                   <img
                     src={user?.imageLink}
-                    height="120"
-                    width="128"
-                    className="object-cover object-center h-32"
-                    alt="Woman looking front"
+                    // className="object-cover object-center h-32"
+                    className="w-full h-full object-cover object-center"
+                    alt="your profile pic"
                   />
                 </div>
                 <div className="w-full flex justify-evenly">
@@ -200,10 +236,24 @@ export default function ProfileComponent() {
                   <button onClick={(e) => saveImage(user?._id)} className="btn">
                     upload
                   </button> */}
-                    {!isImageSelected && (
+                
                   <>
-                    <label htmlFor="image" className="btn">
-                      Upload/Change Image
+                    <label htmlFor="image" className="btn" >
+                    {imageLoader ? (
+                          <div className="flex justify-evenly items-center">
+                            Uploading
+                            <BeatLoader
+                              className=""
+                              color={"#D0021B"}
+                              size={10}
+                              aria-label="Loading Spinner"
+                              data-testid="loader"
+                            />
+                          </div>
+                          // "uploading..."
+                        ) : (
+                      "Upload/Change Image"
+                        )}
                     </label>
                     <input
                       type="file"
@@ -211,18 +261,19 @@ export default function ProfileComponent() {
                       name="image"
                       accept="image/*"
                       style={{ display: "none" }}
-                      onChange={handleImageChange}
+                      onChange={ (e)=> handleImageChange(e,user._id)}
+                      disabled={imageLoader ? true : false}
                     />
                   </>
-                )}
-                {isImageSelected && (
+                
+                {/* {isImageSelected && (
                   <p className=" text-2xl text-green-400">Image Selected</p>
                 )}
                 {isImageSelected && (
                   <button onClick={(e) => saveImage(user?._id)} className="btn">
                     Upload
                   </button>
-                )}
+                )} */}
                 </div>
                 <div className="text-center mt-2">
                   <h2 className="font-semibold">{session?.user?.name}</h2>

@@ -44,8 +44,8 @@ export default function ProfileComponent() {
     const data = new FormData();
     console.log(selectedImage,"myImage");
     data.append("file", selectedImage);
-    data.append("upload_preset", "hhxqnn9f");
-    data.append("cloud_name", "dd4ao3ler");
+    data.append("upload_preset", "amipzzxk");
+    data.append("cloud_name", "dine5j77j");
 
     try {
       if (selectedImage === null) {
@@ -53,7 +53,7 @@ export default function ProfileComponent() {
       }
 
       const res = await fetch(
-        "https://api.cloudinary.com/v1_1/dd4ao3ler/image/upload",
+        "https://api.cloudinary.com/v1_1/dine5j77j/image/upload",
         {
           method: "POST",
           body: data,

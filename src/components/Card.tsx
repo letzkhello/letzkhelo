@@ -148,7 +148,7 @@ console.log(sortedGames);
                       alt="img"
                       width="300"
                       height="200"
-                      className="rounded-t-lg object-cover h-48"
+                      className="rounded-t-lg object-cover h-48 w-72"
                     />
                   </figure>
                   <div className="card-body">

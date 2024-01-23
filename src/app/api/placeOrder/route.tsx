@@ -10,7 +10,7 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { products, delieveryLocation, paid, totalPrice, date,phoneNo,orderCompleted } =
+    const { products, delieveryLocation, paid, totalPrice, date,phoneNo,orderCompleted,name,email } =
       reqBody;
 
 
@@ -18,10 +18,12 @@ export async function POST(request: NextRequest) {
         products,
         delieveryLocation,
         paid,
-        date,
         totalPrice,
+        date,
         phoneNo,
         orderCompleted,
+        name,
+        email
     });
 
     await AllOrders.save();

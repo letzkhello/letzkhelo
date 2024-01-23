@@ -6,6 +6,7 @@ import Loader from "@/components/Loader";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { add } from "@/Redux/CartSlice";
+import toast from "react-hot-toast";
 interface Product {
   category: string;
   expectedDelievery: string;
@@ -25,8 +26,9 @@ export default function ShowProduct() {
     getGameDetails();
   }, []);
   const dispatch = useDispatch();
-  const handleadd = (product: any) => {
-    dispatch(add(product));
+  const handleadd = (item: any) => {
+    dispatch(add(item));
+    toast.success(`${item?.productName} added successfully`);
   };
   const cartItem = useSelector((state: any) => state.cart);
   const isItemInCart = (productId: string) => {

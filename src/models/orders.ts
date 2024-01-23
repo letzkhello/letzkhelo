@@ -10,6 +10,8 @@ interface IOrders extends Document {
   paid: boolean;
   totalPrice: Number;
   orderCompleted:boolean;
+  name: string;
+  email: string;
 }
 
 const OrderSchema = new Schema<IOrders>({
@@ -42,6 +44,14 @@ const OrderSchema = new Schema<IOrders>({
 
   totalPrice: {
     type: Schema.Types.Number,
+    required: true,
+  },
+  name: {
+    type: Schema.Types.String,
+    required: true,
+  },
+  email: {
+    type: Schema.Types.String,
     required: true,
   },
 

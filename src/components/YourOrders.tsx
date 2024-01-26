@@ -96,8 +96,12 @@ const YourOrders = () => {
                     </div>
 
                     <div className="flex font-semibold">
-                      <h3>Date :</h3>
+                      <h3>Ordered on :</h3>
                       <span> {convertDate(order?.date)}</span>
+                    </div>
+                    <div className="flex font-semibold">
+                      <h3>Status :</h3>
+                      <span> {!order.orderCompleted?'On the way':'Delievered'}</span>
                     </div>
                   </div>
                 </div>

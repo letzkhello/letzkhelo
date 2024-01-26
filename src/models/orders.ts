@@ -15,10 +15,29 @@ interface IOrders extends Document {
 }
 
 const OrderSchema = new Schema<IOrders>({
-  products: {
-    type:[Schema.Types.String],
+  // products: {
+  //   type:[Schema.Types.String],
+  //   required: true,
+  // },
+
+  products: [{
+    productName: {
+    type: Schema.Types.String,
     required: true,
-  },
+    },
+    imageLink: {
+    type: Schema.Types.String,
+    required: true,
+    },
+    price: {
+    type: Schema.Types.Number,
+    required: true,
+    },
+    quantity: {
+    type: Schema.Types.Number,
+    required: false,
+    },
+  }],
  
   phoneNo: {
     type: Schema.Types.String,

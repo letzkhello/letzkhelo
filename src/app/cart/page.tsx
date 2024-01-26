@@ -7,6 +7,8 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import BeatLoader from "react-spinners/BeatLoader";
+import { useRouter } from "next/navigation";
+
 
 interface User {
   age: number;
@@ -21,12 +23,14 @@ interface User {
 
 const Cartpage = () => {
   const { data: session, status } = useSession();
+  const router = useRouter();
   const dispatch = useDispatch();
   const cartitems = useSelector((state: any) => state.cart);
   const total = useSelector((state: any) => state.cart.total);
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const [singleUser, setSingleUser] = useState<User | null>(null);
   const [buttonLoader, setButtonLoader] = useState(false);
+  console.log(cartitems);
   const handleremove = (item: any) => {
     dispatch(remove(item._id));
     toast.success(`${item?.productName} removed successfully`);
@@ -59,7 +63,7 @@ const Cartpage = () => {
 
   
   const [formData, setFormData] = useState({
-    products: "",
+    products: [],
     delieveryLocation: "",
     paid: "",
     totalPrice: "",
@@ -125,7 +129,14 @@ const Cartpage = () => {
     try {
       const updatedFormData = {
         ...formData,
-        products:  cartitems.items.map((item: any) => item.productName),
+        // products:  cartitems.items.map((item: any) => item.productName),
+        // products:  cartitems.items,
+          products: cartitems.items.map((item: any) => ({
+          productName: item.productName,
+          imageLink: item.imageLink,
+          price: item.price,
+          quantity: 1,
+        })),
         paid: false,
         totalPrice: total,
         date: new Date(),
@@ -136,7 +147,7 @@ const Cartpage = () => {
 
       toast.success("Order placed Successfully ");
       setFormData({
-        products: "",
+        products: [],
         delieveryLocation: "",
         paid: "",
         totalPrice: "",
@@ -147,8 +158,10 @@ const Cartpage = () => {
         email:"",
       });
     setButtonLoader(false);
-      
+
       closeModal();
+      router.push(`/yourOrders`);
+      
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
       setButtonLoader(false);

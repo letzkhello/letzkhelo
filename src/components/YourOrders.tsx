@@ -4,6 +4,9 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import Loader from "@/components/Loader";
+
 
 interface IOrders extends Array<IOrders> {
   // products:Array<string>;
@@ -21,13 +24,17 @@ interface IOrders extends Array<IOrders> {
 const YourOrders = () => {
   const { data: session, status } = useSession();
   const [yourOrders, setYourOrders] = useState<IOrders | null>(null);
+  const [loading,setISLoading]=useState(false)
+
 
   useEffect(() => {
     const fetchYourOrders = async () => {
       try {
         const identifier = session?.user?.email;
         console.log(identifier, "my email");
+        setISLoading(true)
         const response = await axios.get(`/api/getYourOrders/${identifier}`);
+        setISLoading(false)
         console.log(response.data.data, "your Orders");
         setYourOrders(response.data.data);
         // console.log(singleUser,"setted",typeof(singleUser));
@@ -66,49 +73,64 @@ const YourOrders = () => {
         </h1>
       </div>
       <div className="w-full flex flex-wrap items-center justify-evenly py-3 px-8">
-        {yourOrders?.map((order: any) => {
-          return (
-            <div key={order.id}>
-              {order.products.map((product: any) => (
-                <div
-                  key={product.productId}
-                  className="card w-80 p-2 my-6 glass transition-transform transform hover:scale-105 duration-300 sm:my-12 bg-white"
-                >
-                  <figure>
-                    <Image
-                      src={product?.imageLink}
-                      alt="img"
-                      width="300"
-                      height="200"
-                      className="rounded-t-lg object-cover h-48 w-72"
-                    />
-                  </figure>
-                  <div className="card-body">
-                    <h2 className="card-title">{product?.productName}</h2>
-                    <div className="flex font-semibold">
-                      <h3>Price :</h3>
-                      <span>{product?.price}</span>
-                    </div>
+        {loading?<Loader/>: yourOrders && yourOrders?.length > 0 ? (
+          yourOrders?.map((order: any) => {
+            return (
+              <div key={order.id}>
+                {order.products.map((product: any) => (
+                  <div
+                    key={product.productId}
+                    className="card w-80 p-2 my-6 glass transition-transform transform hover:scale-105 duration-300 sm:my-12 bg-white"
+                  >
+                    <figure>
+                      <Image
+                        src={product?.imageLink}
+                        alt="img"
+                        width="300"
+                        height="200"
+                        className="rounded-t-lg object-cover h-48 w-72"
+                      />
+                    </figure>
+                    <div className="card-body">
+                      <h2 className="card-title">{product?.productName}</h2>
+                      <div className="flex font-semibold">
+                        <h3>Price :</h3>
+                        <span>{product?.price}</span>
+                      </div>
 
-                    <div className="flex font-semibold">
-                      <h3>Phone No. :</h3>
-                      <span>{order?.phoneNo}</span>
-                    </div>
+                      <div className="flex font-semibold">
+                        <h3>Phone No. :</h3>
+                        <span>{order?.phoneNo}</span>
+                      </div>
 
-                    <div className="flex font-semibold">
-                      <h3>Ordered on :</h3>
-                      <span> {convertDate(order?.date)}</span>
-                    </div>
-                    <div className="flex font-semibold">
-                      <h3>Status :</h3>
-                      <span> {!order.orderCompleted?'On the way':'Delievered'}</span>
+                      <div className="flex font-semibold">
+                        <h3>Ordered on :</h3>
+                        <span> {convertDate(order?.date)}</span>
+                      </div>
+                      <div className="flex font-semibold">
+                        <h3>Status :</h3>
+                        <span>
+                          {" "}
+                          {!order.orderCompleted ? "On the way" : "Delievered"}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          );
-        })}
+                ))}
+              </div>
+            );
+          })
+        ) : (
+          <div className="text-center text-gray-500">
+            <p className="mb-8">Your order history is empty.</p>
+            <Link
+              href={"/allProducts"}
+              className=" px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+            >
+              Go to Store
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );

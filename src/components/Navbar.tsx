@@ -152,6 +152,15 @@ export default function Navbar({ fixed }: any) {
                   Contact
                 </Link>
               </li>
+              <li className="mb-2">
+                <Link
+                  href="/yourOrders"
+                  onClick={closeMenu}
+                  className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+                >
+                  Order History
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -252,6 +261,20 @@ export default function Navbar({ fixed }: any) {
                 className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
                 Registered Teams
+              </Link>
+            </motion.div>
+          </li>
+          <li>
+            <motion.div
+              initial={{ opacity: 0, x: "-100vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: "spring", bounce: 0.6 }}
+            >
+              <Link
+                href="/yourOrders"
+                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+              >
+                Order History
               </Link>
             </motion.div>
           </li>

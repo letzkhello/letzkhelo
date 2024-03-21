@@ -96,7 +96,7 @@ async function sendAppointmentConfirmationEmail(patientName: any, testName: any,
       debug: true,
       auth: {
         user: "letzkhello@gmail.com",
-        pass: "xlrk kauh tqfu bxkw",
+        pass: "ccir vjgl vxsd liuc",
       },
       tls: {
         rejectUnauthorized: true,

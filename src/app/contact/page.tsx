@@ -15,7 +15,7 @@ export default function ContactUs() {
                 <h4 className="text-white font-bold">Address</h4>
                 <p className="mb-10 text-white ">
                 Visit our office at the following location : 
-                <span className="capitalize"> Dwarka sector-23 New Delhi-11043</span>
+                <span className="capitalize">B 226/5 street no.7 Ashok nagar shahdara, delhi-93</span>
                 </p>
                 <h4 className="text-white font-bold">Phone No</h4>
                 <p className="mb-10 text-white"> You can speak with our team directly by calling : +91 8851840604</p>

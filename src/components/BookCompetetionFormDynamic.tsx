@@ -342,9 +342,10 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           Enter phone number
                         </p>
                       )}
+                      <div className="md:flex m-auto">
                       <button
                         type="submit"
-                        className="mx-0 my-12 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
+                        className="md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
                         disabled={isFormNotValid || loader ? true : false}
                       >
                         {loader ? (
@@ -359,16 +360,17 @@ export function BookCompetetionFormDynamic({ params }: any) {
                             />
                           </div>
                         ) : (
-                          "Register"
+                          "Register offline"
                         )}
                       </button>
-                     
-                    </form>
-                    <button
+                      <button
                         onClick={()=>makePayment(sport)}
-                        className="mx-0 my-12 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
+                        className="md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
                         disabled={isFormNotValid || loader ? true : false}
                       >Register online</button>
+                     </div>
+                    </form>
+                   
 
                   </main>
                 </div>

@@ -56,6 +56,21 @@ export default function Footer() {
           </Link>
         </nav>
         <nav>
+          <header className="footer-title text-white">Store Policy</header>
+          <Link
+            href={"/refundPolicy"}
+            className="link link-hover text-white"
+          >
+            Refund Policy
+          </Link>
+          <Link href={"/returnPolicy"} className="link link-hover text-white">
+            Return policy
+          </Link>
+          <Link href={"/shippingPolicy"} className="link link-hover text-white">
+            Shipping policy
+          </Link>
+        </nav>
+        <nav>
           <header className="footer-title text-white">Social</header>
           <div className="grid grid-flow-col gap-8 text-white ">
             <Link href="https://www.facebook.com/" target="_blank">

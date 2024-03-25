@@ -36,7 +36,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
   }, [session?.user?.email]);
   const makePayment = async (sport:any) => {
     // "use server"
-    const key = 'rzp_test_yV10DUcqP74vVl';
+    const key = process.env.RAZORPAY_API_KEY;
     console.log(key);
     const calculatedAmount = sport.entryFees || formData.registrationPrice || 5400;
   // setDynamicAmount(calculatedAmount);
@@ -361,11 +361,12 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           "Register(offline)"
                         )}
                       </button>
-                {sport?.isOnlinePaymentAvailable&&      <button
+                    <button
+                    type="button"
                         onClick={()=>makePayment(sport)}
                         className="md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
                         disabled={isFormNotValid || loader ? true : false}
-                      >Register(online)</button>}
+                      >Register(online)</button>
                      </div>
                     </form>
                    

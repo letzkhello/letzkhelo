@@ -342,6 +342,12 @@ export function BookCompetetionFormDynamic({ params }: any) {
                       )}
                       <div className="md:flex m-auto">
                       <button
+                    type="button"
+                        onClick={()=>makePayment(sport)}
+                        className="md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
+                        disabled={isFormNotValid || loader ? true : false}
+                      >Register-online</button>
+                      <button
                         type="submit"
                         className="md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
                         disabled={isFormNotValid || loader ? true : false}
@@ -358,15 +364,10 @@ export function BookCompetetionFormDynamic({ params }: any) {
                             />
                           </div>
                         ) : (
-                          "Register(offline)"
+                          "Register-offline"
                         )}
                       </button>
-                    <button
-                    type="button"
-                        onClick={()=>makePayment(sport)}
-                        className="md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
-                        disabled={isFormNotValid || loader ? true : false}
-                      >Register(online)</button>
+                   
                      </div>
                     </form>
                    

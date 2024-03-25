@@ -14,9 +14,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
   const [loader, setLoader] = useState(false);
   const [allSports, setAllSports] = useState([]);
   const [phoneNumberError, setPhoneNumberError] = useState("");
-  const userId = "12345678dfd4";
-  const amount = 105500;
-  const sportname = "Armwrestling";
+  
 
   useEffect(() => {
     getAllSports();
@@ -360,14 +358,14 @@ export function BookCompetetionFormDynamic({ params }: any) {
                             />
                           </div>
                         ) : (
-                          "Register offline"
+                          "Register(offline)"
                         )}
                       </button>
-                      <button
+                {sport?.isOnlinePaymentAvailable&&      <button
                         onClick={()=>makePayment(sport)}
                         className="md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
                         disabled={isFormNotValid || loader ? true : false}
-                      >Register online</button>
+                      >Register(online)</button>}
                      </div>
                     </form>
                    

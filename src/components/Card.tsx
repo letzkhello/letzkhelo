@@ -189,11 +189,19 @@ console.log(sortedGames);
                       </button>
                     </div>
                   </div>
+       {game?.organisedBy? <div className="bg-green-500 py-2 text-white text-center">
+      Organised by {game?.organisedBy}
+    </div>: <div className="bg-green-500 py-2 text-white text-center">
+      Organised by LetzKhelo
+    </div>}          
                 </div>
+            
               </div>
             );
           })}
+         
         </div>
+        
       </>
     );
   }

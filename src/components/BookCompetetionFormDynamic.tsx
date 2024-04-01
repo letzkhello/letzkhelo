@@ -297,7 +297,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         >
                           weight:
                         </label>
-                        <select
+                    {sport.organisedBy==='Letzkhelo'?    <select
                           id="weight"
                           name="weight"
                           onChange={handleChange}
@@ -308,7 +308,17 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           <option value="50-60">50-60</option>
                           <option value="60-70">60-70</option>
                           <option value="Above 70">above 70</option>
-                        </select>
+                        </select>:  <select
+                          id="weight"
+                          name="weight"
+                          onChange={handleChange}
+                          className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
+                        >
+                          <option value="">SELECT</option>
+                          <option value="45-55">45-55</option>
+                          <option value="55-65">55-65</option>
+                          <option value="65-74">65-75</option>
+                        </select>}
                       </div>
                       {formData.weight.trim() === "" && (
                         <p className="text-sm text-red-500">Select weight</p>

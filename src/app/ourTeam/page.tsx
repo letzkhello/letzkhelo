@@ -7,7 +7,6 @@ export default function Team() {
         <div className="container mx-auto px-6 md:px-12 xl:px-32 ">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-center text-2xl text-gray-900 font-bold md:text-4xl">
-              {" "}
               Meet the LetzKhelo Team
             </h2>
             <p className="text-gray-600 lg:w-8/12 lg:mx-auto">
@@ -38,16 +37,16 @@ export default function Team() {
             <div className="space-y-4 text-center">
               <img
                 className="w-64 h-64 mx-auto object-cover rounded-xl md:w-40 md:h-40 lg:w-64 lg:h-64"
-                src="/an.png"
-                alt="Letzkhelo Co-Founder"
+                src="/mayankv.jpg"
+                alt="Head of operations"
                 loading="lazy"
                 width="640"
                 height="805"
               />
               <div>
-                <h4 className="text-2xl">Anshuman Negi</h4>
+                <h4 className="text-2xl">Mayank Vyas</h4>
                 <span className="block text-sm text-gray-500">
-                  Co-Founder(Tech Lead)
+                  Head of Operations
                 </span>
               </div>
             </div>
@@ -70,23 +69,8 @@ export default function Team() {
             </div>
           </div>
           <div className="grid gap-12 items-center md:grid-cols-3 mt-4">
-            <div className="space-y-4 text-center mt-4">
-              <img
-                className="w-64 h-64 mx-auto object-cover rounded-xl md:w-40 md:h-40 lg:w-64 lg:h-64"
-                src="/pc.png"
-                alt="man"
-                loading="lazy"
-                width="1000"
-                height="667"
-              />
-              <div>
-                <h4 className="text-2xl">Prakash Chand</h4>
-                <span className="block text-sm text-gray-500">
-                  Software Engineer(founding team)
-                </span>
-              </div>
-            </div>
-            {/* <div className="space-y-4 text-center">
+           
+            <div className="space-y-4 text-center">
               <img
                 className="w-64 h-64 mx-auto object-cover rounded-xl md:w-40 md:h-40 lg:w-64 lg:h-64"
                 src="/nonu.jpeg"
@@ -101,7 +85,7 @@ export default function Team() {
                   Design(intern)
                 </span>
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

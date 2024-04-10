@@ -154,6 +154,15 @@ export default function Navbar({ fixed }: any) {
               </li>
               <li className="mb-2">
                 <Link
+                  href="/winners"
+                  onClick={closeMenu}
+                  className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+                >
+                  Our COCs
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
                   href="/yourOrders"
                   onClick={closeMenu}
                   className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
@@ -161,6 +170,7 @@ export default function Navbar({ fixed }: any) {
                   Order History
                 </Link>
               </li>
+            
             </ul>
           </div>
         </div>
@@ -271,6 +281,20 @@ export default function Navbar({ fixed }: any) {
               transition={{ type: "spring", bounce: 0.6 }}
             >
               <Link
+                href="/winners"
+                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+              >
+                Our COCs
+              </Link>
+            </motion.div>
+          </li>
+          <li>
+            <motion.div
+              initial={{ opacity: 0, x: "-100vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: "spring", bounce: 0.6 }}
+            >
+              <Link
                 href="/yourOrders"
                 className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
@@ -278,6 +302,7 @@ export default function Navbar({ fixed }: any) {
               </Link>
             </motion.div>
           </li>
+         
         </ul>
       </div>
 

@@ -7,7 +7,6 @@ import { useSession } from "next-auth/react";
 import { Shimmer } from "./Shimmer";
 import { useRouter } from "next/navigation";
 
-
 interface Game {
   sportName: string;
   location: string;
@@ -34,12 +33,17 @@ export default function Card() {
   useEffect(() => {
     checkUserEmail();
   }, [getRegisterUser, getGame]);
-
+  const [termsChecked, setTermsChecked] = useState(false);
+  const handleCheckboxChange = () => {
+    setTermsChecked(!termsChecked); // Step 4
+  };
   const getUserRegisterDetails = async () => {
     const res = await axios.get("/api/users/getAllRegisteredUsers");
     setRegisterUser(res.data.data);
     checkUserEmail();
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const getGameDetails = async () => {
     setShimmer(true);
@@ -47,37 +51,32 @@ export default function Card() {
     setShimmer(false);
     // setGame(res.data);
 
+    // const sortedGames: Game[] = res.data
+    // .filter((game: Game) => game.date) // Filter out items with undefined or falsy date values
+    // .sort((a: Game, b: Game) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    // setGame(sortedGames);
+    //   console.log(sortedGames);
 
-  // const sortedGames: Game[] = res.data
-  // .filter((game: Game) => game.date) // Filter out items with undefined or falsy date values
-  // .sort((a: Game, b: Game) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  // setGame(sortedGames);
-  //   console.log(sortedGames);
+    const sortedGames: Game[] = res.data.sort((a: Game, b: Game) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
 
+      // Check if either date is invalid (undefined or null)
+      if (isNaN(dateA) && isNaN(dateB)) {
+        return 0; // Keep the order unchanged if both dates are invalid
+      } else if (isNaN(dateA)) {
+        return 1; // Place items with invalid date (a) at the end
+      } else if (isNaN(dateB)) {
+        return -1; // Place items with invalid date (b) at the end
+      } else {
+        // Sort by date in descending order
+        return dateB - dateA;
+      }
+    });
 
-  const sortedGames: Game[] = res.data
-  .sort((a: Game, b: Game) => {
-    const dateA = new Date(a.date).getTime();
-    const dateB = new Date(b.date).getTime();
-
-    // Check if either date is invalid (undefined or null)
-    if (isNaN(dateA) && isNaN(dateB)) {
-      return 0; // Keep the order unchanged if both dates are invalid
-    } else if (isNaN(dateA)) {
-      return 1; // Place items with invalid date (a) at the end
-    } else if (isNaN(dateB)) {
-      return -1; // Place items with invalid date (b) at the end
-    } else {
-      // Sort by date in descending order
-      return dateB - dateA;
-    }
-  });
-
-setGame(sortedGames);
-console.log(sortedGames);
+    setGame(sortedGames);
+    console.log(sortedGames);
   };
-
-
 
   const checkUserEmail = () => {
     const allGameRegsitered = getRegisterUser.filter(
@@ -126,6 +125,13 @@ console.log(sortedGames);
       return "Coming Soon";
     }
   };
+  const [gamedetails,setGameDetails]=useState<Game>()
+  const showModal=(data:any)=>{
+    
+    setGameDetails(data)
+
+    setIsModalOpen(true)
+  }
 
   if (shimmer == true) {
     return <Shimmer />;
@@ -153,22 +159,38 @@ console.log(sortedGames);
                   </figure>
                   <div className="card-body">
                     <h2 className="card-title">{game?.sportName}</h2>
-                    <p>Location: 
+                    <p>
+                      Location:
                       <Link href={`${game?.locationLink}`} target="_blank">
-                      <span className="text-blue-600">{game?.location}</span>
+                        <span className="text-blue-600">{game?.location}</span>
                       </Link>
                     </p>
                     <p>Date: {convertDate(game?.date)}</p>
                     <p>Participants: {countRegisteredUsers(game?.sportName)}</p>
-                    <p>Entry Fee: <span className="text-blue-600 font-bold">{game?.entryFees ? game?.entryFees : "Free"}</span></p>
-                    {/* <p>Location Link: {(game?.locationLink)}</p> */}
+                    {/* {game?.isOnlinePaymentAvailable && (
+                      <p>
+                        Entry Fee-Online:{" "}
+                        <span className="text-blue-600 font-bold">{300}</span>
+                      </p>
+                    )} */}
+                    {/* <p>
+                      Entry Fee
+                      <span className="text-blue-600 font-bold">
+                        {game?.entryFees ? game?.entryFees : "Free"}
+                      </span>
+                    </p> */}
+
                     <div className="card-actions justify-end">
                       <button
                         className="btn bg-black text-white transform transition-transform hover:scale-105 duration-300"
-                        onClick={()=>session ? router.push(`/bookCompetetion/${game?._id}`) : router.push(`/login`)}
+                        onClick={() =>
+                          session
+                            ? showModal(game)
+                            : router.push(`/login`)
+                        }
                         disabled={
-                          checkOpenContest(game?.isOpen, game?.sportName) ?
-                             true
+                          checkOpenContest(game?.isOpen, game?.sportName)
+                            ? true
                             : false
                         }
                         // disabled={true}
@@ -178,23 +200,105 @@ console.log(sortedGames);
                             session ? `/bookCompetetion/${game?._id}` : `/login`
                           }
                         > */}
-                          {game?.registrationClosed
-                            ? "Registration Closed"
-                            : game?.isOpen
-                            ? "Coming Soon"
-                            : checkAlreadyRegistered(game?.sportName)
-                            ? "Already registered"
-                            : "Register Now"}
+                        {game?.registrationClosed
+                          ? "Registration Closed"
+                          : game?.isOpen
+                          ? "Coming Soon"
+                          : checkAlreadyRegistered(game?.sportName)
+                          ? "Already registered"
+                          : "Register Now"}
                         {/* </Link> */}
                       </button>
                     </div>
                   </div>
+                  {game?.organisedBy ? (
+                    <div className="bg-green-500 py-2 text-white text-center">
+                      Organised by {game?.organisedBy}
+                    </div>
+                  ) : (
+                    <div className="bg-green-500 py-2 text-white text-center">
+                      Organised by LetzKhelo
+                    </div>
+                  )}
                 </div>
+                
               </div>
             );
+           
           })}
+           {isModalOpen && (
+              <div className="fixed inset-0 p-4 flex items-center justify-center bg-gray-500 bg-opacity-75 ">
+                <div className="bg-white p-6 max-w-md mx-auto rounded-md shadow-lg">
+                <h2 className="text-xl font-semibold mb-4">
+                    ONLINE PAYMENT= Rs. 300
+                    {/* {gamedetails?.entryFees} */}
+                  </h2>
+                  <h2 className="text-xl font-semibold mb-4">
+                    OFFLINE PAYMENT= Rs. 400
+                  </h2>
+                  <p className="font-bold text-green-300 mb-2">NOTE-First 80 players who registers online will get free Letzkhelo tshirt</p>
+
+                  <h2 className="text-lg font-semibold mb-4">
+                    TERMS AND CONDITION
+                  </h2>
+                  <p>
+                    <ol>
+                      <li>
+                      <b>Injury Disclaimer</b>: The organization shall not
+                                  be held responsible for any injuries sustained
+                                  during the event. Participants acknowledge
+                                  that they engage in the event at their own
+                                  risk and should take appropriate precautions.
+                      </li>
+                      <li>
+                        <b>Non-refundable Payment</b>: All payments made
+                        towards registration or participation fees are
+                        non-refundable. Once payment is made, it
+                        cannot be refunded under any circumstances,
+                        including withdrawal from the event or
+                        disqualification.
+                      </li>
+                      <li>
+                      <b>  Misbehavior Disqualification</b>: Participants who misbehave will be disqualified
+                      </li>
+                    </ol>
+                  </p>
+                  {/* Add more terms and conditions here */}
+                  <div className="flex  gap-4">
+                        <input
+                          type="checkbox"
+                          id="terms"
+                          name="terms"
+                          checked={termsChecked}
+                          onChange={handleCheckboxChange}
+                        />
+                        <label htmlFor="terms">
+                          I accept the terms and conditions
+                        </label>
+                      </div>
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+                  >
+                    Close
+                  </button>
+                  <button
+                    onClick={() => router.push(`/bookCompetetion/${gamedetails?._id}`)}
+                    className={`mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300  ${
+                      !termsChecked
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : ""
+                    }`}
+                    disabled={!termsChecked}
+                  >
+                    Continue to Register
+                  </button>
+                </div>
+              </div>
+            )}
         </div>
       </>
+
     );
   }
 }

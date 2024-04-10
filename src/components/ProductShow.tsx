@@ -144,8 +144,67 @@ export default function Productdetails({ params }: any) {
                       {showProduct.description}
                     </p>
                   </div>
+                 
                 </div>
               </div>
+              <div className="max-w-2xl my-4 mx-auto bg-white p-6 rounded-lg shadow-md">
+                    <h1 className="text-2xl font-bold mb-4">
+                      Delivery Timeline
+                    </h1>
+
+                    <h2 className="text-lg font-semibold mb-2">
+                      Order Processing:
+                    </h2>
+                    <p className="mb-4">
+                      Orders are typically processed within 1-2 business days
+                      after payment confirmation.
+                    </p>
+
+                    <h2 className="text-lg font-semibold mb-2">
+                      Shipping Times:
+                    </h2>
+                    <p className="mb-4">
+                      Standard shipping within India generally takes
+                      5-7 business days for delivery.
+                    </p>
+
+                    <h2 className="text-lg font-semibold mb-2">
+                      International Shipping:
+                    </h2>
+                    <p className="mb-4">
+                      International shipping times may vary depending on the
+                      destination country and customs clearance procedures.
+                      Please allow additional time for delivery.
+                    </p>
+
+                    <h2 className="text-lg font-semibold mb-2">
+                      Delivery Tracking:
+                    </h2>
+                    <p className="mb-4">
+                      Once your order is shipped, you will receive a
+                      confirmation email with tracking information. You can
+                      track the status of your order through our website or by
+                      using the provided tracking number on the carrier’s
+                      website.
+                    </p>
+
+                    <h2 className="text-lg font-semibold mb-2">
+                      Delivery Issues:
+                    </h2>
+                    <p className="mb-4">
+                      In the rare event of a delivery issue or delay, please
+                      contact our customer service team for assistance. We are
+                      here to help resolve any concerns and ensure your
+                      satisfaction.
+                    </p>
+
+                    <h2 className="text-lg font-semibold mb-2">Contact Us:</h2>
+                    <p className="mb-4">
+                      If you have any questions or need further assistance
+                      regarding delivery timelines, please do not hesitate to
+                      contact our customer service team at letzkhello@gmail.com
+                    </p>
+                  </div>
             </div>
           </>
         </div>

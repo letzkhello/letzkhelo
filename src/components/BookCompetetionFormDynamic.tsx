@@ -14,9 +14,6 @@ export function BookCompetetionFormDynamic({ params }: any) {
   const [loader, setLoader] = useState(false);
   const [allSports, setAllSports] = useState([]);
   const [phoneNumberError, setPhoneNumberError] = useState("");
-  const userId = "12345678dfd4";
-  const amount = 105500;
-  const sportname = "Armwrestling";
 
   useEffect(() => {
     getAllSports();
@@ -36,13 +33,16 @@ export function BookCompetetionFormDynamic({ params }: any) {
       ...prevFormData,
     }));
   }, [session?.user?.email]);
-  const makePayment = async (sport:any) => {
+  const [paymentLoading,setPaymentLoading]=useState(false)
+  const makePayment = async (sport: any) => {
     // "use server"
-    const key = 'rzp_test_yV10DUcqP74vVl';
+    setPaymentLoading(true)
+    const key = process.env.RAZORPAY_API_KEY;
     console.log(key);
-    const calculatedAmount = sport.entryFees || formData.registrationPrice || 5400;
-  // setDynamicAmount(calculatedAmount);
-  console.log(dynamicAmount)
+    const calculatedAmount =
+      sport.entryFees || formData.registrationPrice || 5400;
+    // setDynamicAmount(calculatedAmount);
+    console.log(dynamicAmount);
     // Make API call to the serverless API
     const data = await fetch("/api/razorpay", {
       method: "POST",
@@ -50,9 +50,9 @@ export function BookCompetetionFormDynamic({ params }: any) {
       //   // Authorization: 'YOUR_AUTH_HERE'
       // },
       body: JSON.stringify({
-        email:session?.user?.email,
-        amount:calculatedAmount*100,
-        sport:sport.sportName,
+        email: session?.user?.email,
+        amount: calculatedAmount * 100,
+        sport: sport.sportName,
       }),
     });
     const { order } = await data.json();
@@ -75,11 +75,11 @@ export function BookCompetetionFormDynamic({ params }: any) {
           //   // Authorization: 'YOUR_AUTH_HERE'
           // },
           body: JSON.stringify({
-            email:session?.user?.email,
+            email: session?.user?.email,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_order_id: response.razorpay_order_id,
             razorpay_signature: response.razorpay_signature,
-            sportname:sport.sportName,
+            sportname: sport.sportName,
           }),
         });
 
@@ -106,14 +106,15 @@ export function BookCompetetionFormDynamic({ params }: any) {
       },
     };
 
-    const paymentObject = (window as any).Razorpay(options)
+    const paymentObject = (window as any).Razorpay(options);
     paymentObject.open();
+    setPaymentLoading(false)
 
     paymentObject.on("payment.failed", function (response: any) {
       alert("Payment failed. Please try again. Contact support for help");
     });
   };
-  console.log(session,'ll')
+  console.log(session, "ll");
 
   const getAllSports = async () => {
     setLoader(true);
@@ -122,7 +123,6 @@ export function BookCompetetionFormDynamic({ params }: any) {
     setAllSports(res?.data);
   };
 
-  
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
     if (e.target.name === "phoneNumber") {
@@ -299,18 +299,19 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         >
                           weight:
                         </label>
-                        <select
-                          id="weight"
-                          name="weight"
-                          onChange={handleChange}
-                          className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
-                        >
-                          <option value="">SELECT</option>
-                          <option value="Below 50">Below 50</option>
-                          <option value="50-60">50-60</option>
-                          <option value="60-70">60-70</option>
-                          <option value="Above 70">above 70</option>
-                        </select>
+                          <select
+                            id="weight"
+                            name="weight"
+                            onChange={handleChange}
+                            className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
+                          >
+                            <option value="">SELECT</option>
+                            <option value="Below 55">Below 55</option>
+                            <option value="55-65">55-65</option>
+                            <option value="65-75">65-75</option>
+                            <option value="Above 75">above 75</option>
+                          </select>
+                        
                       </div>
                       {formData.weight.trim() === "" && (
                         <p className="text-sm text-red-500">Select weight</p>
@@ -342,34 +343,73 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           Enter phone number
                         </p>
                       )}
-                      <button
-                        type="submit"
-                        className="mx-0 my-12 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
-                        disabled={isFormNotValid || loader ? true : false}
-                      >
-                        {loader ? (
-                          <div className="flex justify-evenly items-center">
-                            Booking
-                            <BeatLoader
-                              className=""
-                              color={"#D0021B"}
-                              size={10}
-                              aria-label="Loading Spinner"
-                              data-testid="loader"
-                            />
-                          </div>
-                        ) : (
-                          "Register"
-                        )}
-                      </button>
-                     
+                    
+                    
+                      
+                      <div className="md:flex m-auto">
+                        <button
+                          type="button"
+                          onClick={() => makePayment(sport)}
+                          className={`md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500 ${
+                            isFormNotValid || loader
+                              ? "bg-gray-400 cursor-not-allowed"
+                              : ""
+                          }`}
+                          disabled={isFormNotValid || loader ? true : false}
+                          style={{
+                            cursor:
+                              isFormNotValid || loader
+                                ? "not-allowed"
+                                : "pointer",
+                          }}
+                        >
+                           {paymentLoading ? (
+                            <div className="flex justify-evenly items-center">
+                              Registering
+                              <BeatLoader
+                                className=""
+                                color={"#D0021B"}
+                                size={10}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                              />
+                            </div>
+                          ) : (
+                            "Register-online"
+                          )}
+                        </button>
+                        <button
+                          type="submit"
+                          className={`md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500 ${
+                            isFormNotValid || loader
+                              ? "bg-gray-400 cursor-not-allowed"
+                              : ""
+                          }`}
+                          disabled={isFormNotValid || loader ? true : false}
+                          style={{
+                            cursor:
+                              isFormNotValid || loader
+                                ? "not-allowed"
+                                : "pointer",
+                          }}
+                        >
+                          {loader ? (
+                            <div className="flex justify-evenly items-center">
+                              Registering
+                              <BeatLoader
+                                className=""
+                                color={"#D0021B"}
+                                size={10}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                              />
+                            </div>
+                          ) : (
+                            "Register-offline"
+                          )}
+                        </button>
+                      </div>
                     </form>
-                    <button
-                        onClick={()=>makePayment(sport)}
-                        className="mx-0 my-12 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
-                        disabled={isFormNotValid || loader ? true : false}
-                      >Register online</button>
-
                   </main>
                 </div>
               </div>

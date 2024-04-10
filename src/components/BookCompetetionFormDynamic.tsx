@@ -40,7 +40,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
     const key = process.env.RAZORPAY_API_KEY;
     console.log(key);
     const calculatedAmount =
-      sport.entryFees || formData.registrationPrice || 5400;
+      sport.onlineEntryFees || formData.registrationPrice || 5400;
     // setDynamicAmount(calculatedAmount);
     console.log(dynamicAmount);
     // Make API call to the serverless API
@@ -251,12 +251,12 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         />
                       </div>
 
-                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
+                      {/* <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
                         <label
                           htmlFor="registration-price"
                           className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
                         >
-                          Registration Price:
+                          Registration Pricee:
                         </label>
                         <input
                           id="registration-price"
@@ -270,7 +270,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           }
                           className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
                         />
-                      </div>
+                      </div> */}
 
                       <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
                         <label
@@ -375,7 +375,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                               />
                             </div>
                           ) : (
-                            "Register-online"
+                            "Register-online( Rs. " + sport.onlineEntryFees + ")"
                           )}
                         </button>
                         <button
@@ -405,7 +405,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                               />
                             </div>
                           ) : (
-                            "Register-offline"
+                            "Register-offline( Rs. " + sport.offlineEntryFees + ")"
                           )}
                         </button>
                       </div>

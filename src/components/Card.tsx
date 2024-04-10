@@ -125,8 +125,9 @@ export default function Card() {
       return "Coming Soon";
     }
   };
-  const [gamedetails,setGameDetails]=useState<Game>()
+  const [gamedetails,setGameDetails]=useState<any>()
   const showModal=(data:any)=>{
+    console.log(data);
     
     setGameDetails(data)
 
@@ -166,7 +167,8 @@ export default function Card() {
                       </Link>
                     </p>
                     <p>Date: {convertDate(game?.date)}</p>
-                    <p>Participants: {countRegisteredUsers(game?.sportName)}</p>
+                    {game?.registrationClosed ? <p>Participants: {countRegisteredUsers(game?.sportName)}</p> : <></>}
+                    {/* <p>Participants: {countRegisteredUsers(game?.sportName)}</p> */}
                     {/* {game?.isOnlinePaymentAvailable && (
                       <p>
                         Entry Fee-Online:{" "}
@@ -230,13 +232,13 @@ export default function Card() {
               <div className="fixed inset-0 p-4 flex items-center justify-center bg-gray-500 bg-opacity-75 ">
                 <div className="bg-white p-6 max-w-md mx-auto rounded-md shadow-lg">
                 <h2 className="text-xl font-semibold mb-4">
-                    ONLINE PAYMENT= Rs. 300
+                    ONLINE PAYMENT= Rs. {gamedetails?.onlineEntryFees}
                     {/* {gamedetails?.entryFees} */}
                   </h2>
                   <h2 className="text-xl font-semibold mb-4">
-                    OFFLINE PAYMENT= Rs. 400
+                    OFFLINE PAYMENT= Rs. {gamedetails?.offlineEntryFees}
                   </h2>
-                  <p className="font-bold text-green-300 mb-2">NOTE-First 80 players who registers online will get free Letzkhelo tshirt</p>
+                  <p className="font-bold text-green-300 mb-2" style={{color: "#00cc00"}}>First 80 players who registers online will get free Letzkhelo tshirt <span style={{fontSize: 25}}>🎉</span></p>
 
                   <h2 className="text-lg font-semibold mb-4">
                     TERMS AND CONDITION
@@ -264,7 +266,7 @@ export default function Card() {
                     </ol>
                   </p>
                   {/* Add more terms and conditions here */}
-                  <div className="flex  gap-4">
+                  <div style={{marginTop: 12}} className="flex  gap-2">
                         <input
                           type="checkbox"
                           id="terms"
@@ -272,7 +274,7 @@ export default function Card() {
                           checked={termsChecked}
                           onChange={handleCheckboxChange}
                         />
-                        <label htmlFor="terms">
+                        <label style={{fontSize: 20, color: "red", fontWeight: 700}} htmlFor="terms">
                           I accept the terms and conditions
                         </label>
                       </div>

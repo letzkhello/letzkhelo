@@ -14,7 +14,6 @@ export function BookCompetetionFormDynamic({ params }: any) {
   const [loader, setLoader] = useState(false);
   const [allSports, setAllSports] = useState([]);
   const [phoneNumberError, setPhoneNumberError] = useState("");
-  
 
   useEffect(() => {
     getAllSports();
@@ -34,13 +33,16 @@ export function BookCompetetionFormDynamic({ params }: any) {
       ...prevFormData,
     }));
   }, [session?.user?.email]);
-  const makePayment = async (sport:any) => {
+  const [paymentLoading,setPaymentLoading]=useState(false)
+  const makePayment = async (sport: any) => {
     // "use server"
+    setPaymentLoading(true)
     const key = process.env.RAZORPAY_API_KEY;
     console.log(key);
-    const calculatedAmount = sport.entryFees || formData.registrationPrice || 5400;
-  // setDynamicAmount(calculatedAmount);
-  console.log(dynamicAmount)
+    const calculatedAmount =
+      sport.entryFees || formData.registrationPrice || 5400;
+    // setDynamicAmount(calculatedAmount);
+    console.log(dynamicAmount);
     // Make API call to the serverless API
     const data = await fetch("/api/razorpay", {
       method: "POST",
@@ -48,9 +50,9 @@ export function BookCompetetionFormDynamic({ params }: any) {
       //   // Authorization: 'YOUR_AUTH_HERE'
       // },
       body: JSON.stringify({
-        email:session?.user?.email,
-        amount:calculatedAmount*100,
-        sport:sport.sportName,
+        email: session?.user?.email,
+        amount: calculatedAmount * 100,
+        sport: sport.sportName,
       }),
     });
     const { order } = await data.json();
@@ -73,11 +75,11 @@ export function BookCompetetionFormDynamic({ params }: any) {
           //   // Authorization: 'YOUR_AUTH_HERE'
           // },
           body: JSON.stringify({
-            email:session?.user?.email,
+            email: session?.user?.email,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_order_id: response.razorpay_order_id,
             razorpay_signature: response.razorpay_signature,
-            sportname:sport.sportName,
+            sportname: sport.sportName,
           }),
         });
 
@@ -104,14 +106,15 @@ export function BookCompetetionFormDynamic({ params }: any) {
       },
     };
 
-    const paymentObject = (window as any).Razorpay(options)
+    const paymentObject = (window as any).Razorpay(options);
     paymentObject.open();
+    setPaymentLoading(false)
 
     paymentObject.on("payment.failed", function (response: any) {
       alert("Payment failed. Please try again. Contact support for help");
     });
   };
-  console.log(session,'ll')
+  console.log(session, "ll");
 
   const getAllSports = async () => {
     setLoader(true);
@@ -119,8 +122,10 @@ export function BookCompetetionFormDynamic({ params }: any) {
     setLoader(false);
     setAllSports(res?.data);
   };
-
-  
+  const [termsChecked, setTermsChecked] = useState(false);
+  const handleCheckboxChange = () => {
+    setTermsChecked(!termsChecked); // Step 4
+  };
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
     if (e.target.name === "phoneNumber") {
@@ -141,6 +146,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
       [e.target.name]: e.target.value,
     });
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = async (
     e: { preventDefault: () => void },
@@ -194,7 +200,8 @@ export function BookCompetetionFormDynamic({ params }: any) {
   const isFormNotValid =
     formData.age.trim() === "" ||
     formData.weight.trim() === "" ||
-    phoneNumberError;
+    phoneNumberError ||
+    !termsChecked;
 
   if (loader) {
     return <Loader />;
@@ -297,28 +304,32 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         >
                           weight:
                         </label>
-                    {sport.organisedBy==='Letzkhelo'?    <select
-                          id="weight"
-                          name="weight"
-                          onChange={handleChange}
-                          className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
-                        >
-                          <option value="">SELECT</option>
-                          <option value="Below 50">Below 50</option>
-                          <option value="50-60">50-60</option>
-                          <option value="60-70">60-70</option>
-                          <option value="Above 70">above 70</option>
-                        </select>:  <select
-                          id="weight"
-                          name="weight"
-                          onChange={handleChange}
-                          className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
-                        >
-                          <option value="">SELECT</option>
-                          <option value="45-55">45-55</option>
-                          <option value="55-65">55-65</option>
-                          <option value="65-74">65-75</option>
-                        </select>}
+                        {sport.organisedBy === "Letzkhelo" ? (
+                          <select
+                            id="weight"
+                            name="weight"
+                            onChange={handleChange}
+                            className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
+                          >
+                            <option value="">SELECT</option>
+                            <option value="Below 50">Below 50</option>
+                            <option value="50-60">50-60</option>
+                            <option value="60-70">60-70</option>
+                            <option value="Above 70">above 70</option>
+                          </select>
+                        ) : (
+                          <select
+                            id="weight"
+                            name="weight"
+                            onChange={handleChange}
+                            className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
+                          >
+                            <option value="">SELECT</option>
+                            <option value="45-55">45-55</option>
+                            <option value="55-65">55-65</option>
+                            <option value="65-74">65-75</option>
+                          </select>
+                        )}
                       </div>
                       {formData.weight.trim() === "" && (
                         <p className="text-sm text-red-500">Select weight</p>
@@ -350,38 +361,133 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           Enter phone number
                         </p>
                       )}
-                      <div className="md:flex m-auto">
-                      <button
-                    type="button"
-                        onClick={()=>makePayment(sport)}
-                        className="md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
-                        disabled={isFormNotValid || loader ? true : false}
-                      >Register-online</button>
-                      <button
-                        type="submit"
-                        className="md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500"
-                        disabled={isFormNotValid || loader ? true : false}
+                      <p
+                        className="text-violet-600 font-bold mt-5 cursor-pointer"
+                        onClick={() => setIsModalOpen(true)}
                       >
-                        {loader ? (
-                          <div className="flex justify-evenly items-center">
-                            Booking
-                            <BeatLoader
-                              className=""
-                              color={"#D0021B"}
-                              size={10}
-                              aria-label="Loading Spinner"
-                              data-testid="loader"
-                            />
+                        Read terms and condition
+                      </p>
+                      <div className="flex  gap-4">
+                        <input
+                          type="checkbox"
+                          id="terms"
+                          name="terms"
+                          checked={termsChecked}
+                          onChange={handleCheckboxChange}
+                        />
+                        <label htmlFor="terms">
+                          I accept the terms and conditions
+                        </label>
+                      </div>
+                      {isModalOpen && (
+                        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
+                          <div className="bg-white p-6 max-w-md mx-auto rounded-md shadow-lg">
+                            <h2 className="text-xl font-semibold mb-4">
+                              Terms and Conditions
+                            </h2>
+                            <p>
+                              <ol>
+                                <li>
+                                  Injury Disclaimer: The organization shall not
+                                  be held responsible for any injuries sustained
+                                  during the event. Participants acknowledge
+                                  that they engage in the event at their own
+                                  risk and should take appropriate precautions.
+                                </li>
+                                <li>
+                                  Non-refundable Payment: All payments made
+                                  towards registration or participation fees are
+                                  non-refundable. Once payment is made, it
+                                  cannot be refunded under any circumstances,
+                                  including withdrawal from the event or
+                                  disqualification.
+                                </li>
+                                <li>
+                                  Misbehavior Disqualification: Participants are
+                                  expected to adhere to a code of conduct
+                                  conducive to fair play and sportsmanship. Any
+                                  act of misbehavior, including but not limited
+                                  to cheating, harassment, or violence, will
+                                  result in immediate disqualification from the
+                                  event. The decision of the organizers
+                                  regarding disqualification will be final.
+                                </li>
+                              </ol>
+                            </p>
+                            {/* Add more terms and conditions here */}
+                            <button
+                              onClick={() => setIsModalOpen(false)}
+                              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+                            >
+                              Close
+                            </button>
                           </div>
-                        ) : (
-                          "Register-offline"
-                        )}
-                      </button>
-                   
-                     </div>
+                        </div>
+                      )}
+                      <div className="md:flex m-auto">
+                        <button
+                          type="button"
+                          onClick={() => makePayment(sport)}
+                          className={`md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500 ${
+                            isFormNotValid || loader
+                              ? "bg-gray-400 cursor-not-allowed"
+                              : ""
+                          }`}
+                          disabled={isFormNotValid || loader ? true : false}
+                          style={{
+                            cursor:
+                              isFormNotValid || loader
+                                ? "not-allowed"
+                                : "pointer",
+                          }}
+                        >
+                           {paymentLoading ? (
+                            <div className="flex justify-evenly items-center">
+                              Registering
+                              <BeatLoader
+                                className=""
+                                color={"#D0021B"}
+                                size={10}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                              />
+                            </div>
+                          ) : (
+                            "Register-online"
+                          )}
+                        </button>
+                        <button
+                          type="submit"
+                          className={`md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500 ${
+                            isFormNotValid || loader
+                              ? "bg-gray-400 cursor-not-allowed"
+                              : ""
+                          }`}
+                          disabled={isFormNotValid || loader ? true : false}
+                          style={{
+                            cursor:
+                              isFormNotValid || loader
+                                ? "not-allowed"
+                                : "pointer",
+                          }}
+                        >
+                          {loader ? (
+                            <div className="flex justify-evenly items-center">
+                              Registering
+                              <BeatLoader
+                                className=""
+                                color={"#D0021B"}
+                                size={10}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                              />
+                            </div>
+                          ) : (
+                            "Register-offline"
+                          )}
+                        </button>
+                      </div>
                     </form>
-                   
-
                   </main>
                 </div>
               </div>

@@ -42,7 +42,7 @@ export default function WinnerPlayer() {
                 <div className="w-full md:w-3/5 text-left p-4 md:p-4 space-y-2">
                     <p className="text-xl text-white font-bold">Mayank</p>
                     <p className="text-base text-gray-400 font-normal">COC Season 2</p>
-                    <p className="text-base leading-relaxed text-gray-500 font-normal">Mayank sharma is a professional Arm Wrestler.He won Letzkhelo ArmWrestling Season 3 Champions of Champion</p>
+                    <p className="text-base leading-relaxed text-gray-500 font-normal">Mayank sharma is a professional Arm Wrestler.He won Letzkhelo ArmWrestling Season 2 Champions of Champion</p>
                     <div className="flex justify-start space-x-2">
                     
                         <a href="https://www.instagram.com/mayank.kkkkkk/" className="text-gray-500 hover:text-gray-600" target="_blank">

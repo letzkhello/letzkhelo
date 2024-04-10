@@ -160,8 +160,9 @@ console.log(sortedGames);
                     </p>
                     <p>Date: {convertDate(game?.date)}</p>
                     <p>Participants: {countRegisteredUsers(game?.sportName)}</p>
-                    <p>Entry Fee: <span className="text-blue-600 font-bold">{game?.entryFees ? game?.entryFees : "Free"}</span></p>
                     {game?.isOnlinePaymentAvailable  &&<p>Entry Fee-Online: <span className="text-blue-600 font-bold">{300}</span></p>}
+                    <p>Entry Fee{game?.isOnlinePaymentAvailable && '-Offline'}: <span className="text-blue-600 font-bold">{game?.entryFees ? game?.entryFees : "Free"}</span></p>
+                  
                    
                     <div className="card-actions justify-end">
                       <button

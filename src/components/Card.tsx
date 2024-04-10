@@ -227,7 +227,7 @@ export default function Card() {
            
           })}
            {isModalOpen && (
-              <div className="fixed inset-0 p-8 m-8 flex items-center justify-center bg-gray-500 bg-opacity-75 ">
+              <div className="fixed inset-0 p-4 flex items-center justify-center bg-gray-500 bg-opacity-75 ">
                 <div className="bg-white p-6 max-w-md mx-auto rounded-md shadow-lg">
                 <h2 className="text-xl font-semibold mb-4">
                     ONLINE PAYMENT= Rs. 300

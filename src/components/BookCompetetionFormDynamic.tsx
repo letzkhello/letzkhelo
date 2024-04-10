@@ -122,10 +122,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
     setLoader(false);
     setAllSports(res?.data);
   };
-  const [termsChecked, setTermsChecked] = useState(false);
-  const handleCheckboxChange = () => {
-    setTermsChecked(!termsChecked); // Step 4
-  };
+
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
     if (e.target.name === "phoneNumber") {
@@ -146,7 +143,6 @@ export function BookCompetetionFormDynamic({ params }: any) {
       [e.target.name]: e.target.value,
     });
   };
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = async (
     e: { preventDefault: () => void },
@@ -200,8 +196,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
   const isFormNotValid =
     formData.age.trim() === "" ||
     formData.weight.trim() === "" ||
-    phoneNumberError ||
-    !termsChecked;
+    phoneNumberError;
 
   if (loader) {
     return <Loader />;
@@ -348,69 +343,9 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           Enter phone number
                         </p>
                       )}
-                      <p
-                        className="text-violet-600 font-bold mt-5 cursor-pointer"
-                        onClick={() => setIsModalOpen(true)}
-                      >
-                        Read terms and condition
-                      </p>
-                      <div className="flex  gap-4">
-                        <input
-                          type="checkbox"
-                          id="terms"
-                          name="terms"
-                          checked={termsChecked}
-                          onChange={handleCheckboxChange}
-                        />
-                        <label htmlFor="terms">
-                          I accept the terms and conditions
-                        </label>
-                      </div>
-                      {isModalOpen && (
-                        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-                          <div className="bg-white p-6 max-w-md mx-auto rounded-md shadow-lg">
-                            <h2 className="text-xl font-semibold mb-4">
-                              Terms and Conditions
-                            </h2>
-                            <p>
-                              <ol>
-                                <li>
-                                  Injury Disclaimer: The organization shall not
-                                  be held responsible for any injuries sustained
-                                  during the event. Participants acknowledge
-                                  that they engage in the event at their own
-                                  risk and should take appropriate precautions.
-                                </li>
-                                <li>
-                                  Non-refundable Payment: All payments made
-                                  towards registration or participation fees are
-                                  non-refundable. Once payment is made, it
-                                  cannot be refunded under any circumstances,
-                                  including withdrawal from the event or
-                                  disqualification.
-                                </li>
-                                <li>
-                                  Misbehavior Disqualification: Participants are
-                                  expected to adhere to a code of conduct
-                                  conducive to fair play and sportsmanship. Any
-                                  act of misbehavior, including but not limited
-                                  to cheating, harassment, or violence, will
-                                  result in immediate disqualification from the
-                                  event. The decision of the organizers
-                                  regarding disqualification will be final.
-                                </li>
-                              </ol>
-                            </p>
-                            {/* Add more terms and conditions here */}
-                            <button
-                              onClick={() => setIsModalOpen(false)}
-                              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
-                            >
-                              Close
-                            </button>
-                          </div>
-                        </div>
-                      )}
+                    
+                    
+                      
                       <div className="md:flex m-auto">
                         <button
                           type="button"

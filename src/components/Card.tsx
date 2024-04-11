@@ -231,6 +231,27 @@ export default function Card() {
            {isModalOpen && (
               <div className="fixed inset-0 p-4 flex items-center justify-center bg-gray-500 bg-opacity-75 ">
                 <div className="bg-white p-6 max-w-md mx-auto rounded-md shadow-lg">
+                <div className="flex justify-end">
+        <button
+          onClick={() => setIsModalOpen(false)}
+          className="text-gray-500 hover:text-gray-700 focus:outline-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
                 <h2 className="text-xl font-semibold mb-4">
                     ONLINE PAYMENT= Rs. {gamedetails?.onlineEntryFees}
                     {/* {gamedetails?.entryFees} */}
@@ -266,8 +287,9 @@ export default function Card() {
                     </ol>
                   </p>
                   {/* Add more terms and conditions here */}
-                  <div style={{marginTop: 12}} className="flex  gap-2">
+                  <div style={{marginTop: 12}} className="flex  gap-4">
                         <input
+                        className="md:w-4 w-8"
                           type="checkbox"
                           id="terms"
                           name="terms"
@@ -278,12 +300,12 @@ export default function Card() {
                           I accept the terms and conditions
                         </label>
                       </div>
-                  <button
+                  {/* <button
                     onClick={() => setIsModalOpen(false)}
                     className="mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
                   >
                     Close
-                  </button>
+                  </button> */}
                   <button
                     onClick={() => router.push(`/bookCompetetion/${gamedetails?._id}`)}
                     className={`mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300  ${

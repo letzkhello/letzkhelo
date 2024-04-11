@@ -311,8 +311,9 @@ export function BookCompetetionFormDynamic({ params }: any) {
                             <option value="65-75">65-75</option>
                             <option value="Above 75">above 75</option>
                           </select>
-                        
+                       
                       </div>
+                      <p className="font-normal   lg:w-3/5 mx-0 my-1">NOTE: If you want to participate in multiple category you can enroll yourself at the venue</p>
                       {formData.weight.trim() === "" && (
                         <p className="text-sm text-red-500">Select weight</p>
                       )}

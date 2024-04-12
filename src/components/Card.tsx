@@ -229,7 +229,7 @@ export default function Card() {
            
           })}
            {isModalOpen && (
-              <div className="fixed inset-0 p-4 flex items-center justify-center bg-gray-500 bg-opacity-75 ">
+              <div className="fixed inset-0 p-4 flex items-center justify-center bg-gray-500 bg-opacity-75 overflow-auto ">
                 <div className="bg-white p-6 max-w-md mx-auto rounded-md shadow-lg">
                 <div className="flex justify-end">
         <button
@@ -252,16 +252,16 @@ export default function Card() {
           </svg>
         </button>
       </div>
-                <h2 className="text-xl font-semibold mb-4">
+                <h2 className="text-xl font-semibold mb-2">
                     ONLINE PAYMENT= Rs. {gamedetails?.onlineEntryFees}
                     {/* {gamedetails?.entryFees} */}
                   </h2>
-                  <h2 className="text-xl font-semibold mb-4">
+                  <h2 className="text-xl font-semibold mb-2">
                     OFFLINE PAYMENT= Rs. {gamedetails?.offlineEntryFees}
                   </h2>
                   <p className="font-bold text-green-300 mb-2" style={{color: "#00cc00"}}>First 80 players who registers online will get free Letzkhelo tshirt <span style={{fontSize: 25}}>🎉</span></p>
 
-                  <h2 className="text-lg font-semibold mb-4">
+                  <h2 className="text-lg font-semibold mb-2">
                     TERMS AND CONDITION
                   </h2>
                   <p>
@@ -269,9 +269,7 @@ export default function Card() {
                       <li>
                       <b>Injury Disclaimer</b>: The organization shall not
                                   be held responsible for any injuries sustained
-                                  during the event. Participants acknowledge
-                                  that they engage in the event at their own
-                                  risk and should take appropriate precautions.
+                                  during the event
                       </li>
                       <li>
                         <b>Non-refundable Payment</b>: All payments made
@@ -296,7 +294,7 @@ export default function Card() {
                           checked={termsChecked}
                           onChange={handleCheckboxChange}
                         />
-                        <label style={{fontSize: 20, color: "red", fontWeight: 700}} htmlFor="terms">
+                        <label style={{fontSize: 15, color: "red", fontWeight: 700}} htmlFor="terms">
                           I accept the terms and conditions
                         </label>
                       </div>

@@ -215,7 +215,7 @@ export default function ProfileComponent() {
 
                 <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
                   <img
-                    src={user?.imageLink}
+                    src={user?.imageLink? user?.imageLink: session?.user?.image}
                     // className="object-cover object-center h-32"
                     className="w-full h-full object-cover object-center"
                     alt="your profile pic"

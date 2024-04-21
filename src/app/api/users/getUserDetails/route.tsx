@@ -20,6 +20,7 @@ export async function PUT(request: NextRequest, response: NextResponse) {
 
   const reqBody = await request.json();
 const {
+  userName,
   email,
   age,
   weight,
@@ -40,7 +41,7 @@ const {
         { status: 404 }
       );
     }
-
+    user.name=userName
     user.age = age;
     user.weight = weight; 
     user.intrestedSport = intrestedSport; 

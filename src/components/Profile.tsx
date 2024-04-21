@@ -34,6 +34,7 @@ export default function ProfileComponent() {
 
 
   const [formData, setFormData] = useState({
+    userName:"",
     age: "",
     instagramLink: "",
     weight: "",
@@ -115,6 +116,7 @@ export default function ProfileComponent() {
 
       toast.success("Profile is Successfully Edited");
       setFormData({
+        userName:"",
         age: "",
         instagramLink: "",
         weight: "",
@@ -134,6 +136,7 @@ export default function ProfileComponent() {
   const openModal = (user: User) => {
     if (modalRef.current) {
       setFormData({
+        userName:user?.name,
         age: user?.age?.toString(),
         instagramLink: user?.instagramLink,
         weight: user?.weight || "50-55",
@@ -276,7 +279,7 @@ export default function ProfileComponent() {
                 )} */}
                 </div>
                 <div className="text-center mt-2">
-                  <h2 className="font-semibold">{session?.user?.name}</h2>
+                  <h2 className="font-semibold">{user?.name ? user?.name :session?.user?.name}</h2>
                 </div>
                 <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
                   <li className="flex flex-col items-center justify-around">
@@ -396,6 +399,26 @@ export default function ProfileComponent() {
                           className="w-full max-w-sm"
                           onSubmit={(e) => handleSubmit(e, user)}
                         >
+                           <div className="md:flex md:items-center mb-6">
+                          <div className="md:w-1/3">
+                              <label
+                                className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                                htmlFor="userName"
+                              >
+                                Name:
+                              </label>
+                            </div>
+                            <div className="md:w-2/3">
+                              <input
+                                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                                type="string"
+                                name="userName"
+                                id="userName"
+                                value={formData?.userName}
+                                onChange={handleInputChange}
+                              ></input>
+                            </div>
+                          </div>
                           <div className="md:flex md:items-center mb-6">
                             <div className="md:w-1/3">
                               <label

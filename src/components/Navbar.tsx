@@ -200,7 +200,7 @@ export default function Navbar({ fixed }: any) {
             >
               <Link
                 href="/"
-                className="text-xl font-normal font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                className="text-xl font-bold  font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
                 Home
               </Link>
@@ -214,7 +214,7 @@ export default function Navbar({ fixed }: any) {
             >
               <Link
                 href="/about"
-                className="text-xl font-normal  font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
                 About
               </Link>
@@ -228,7 +228,7 @@ export default function Navbar({ fixed }: any) {
             >
               <Link
                 href="/contact"
-                className="text-xl font-normal  font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                className="text-xl font-bold  font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
                 Contact
               </Link>
@@ -242,7 +242,7 @@ export default function Navbar({ fixed }: any) {
             >
               <Link
                 href="/allUsers"
-                className="text-xl font-normal pb-3  font-sans border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                className="text-xl font-bold  pb-3  font-sans border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
                 All Players
               </Link>
@@ -284,7 +284,7 @@ export default function Navbar({ fixed }: any) {
             >
               <Link
                 href="/winners"
-                className="text-xl font-normal  font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
                 Our COCs
               </Link>

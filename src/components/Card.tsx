@@ -138,9 +138,9 @@ export default function Card() {
   } else {
     return (
       <>
-        <div className="flex justify-center items-center my-6 ">
-          <h1 className="text-xl  text-white  border-b-4 border-black font-serif font-bold md:text-2xl lg:text-4xl">
-            LETZKHELO COMPETETIONS
+        <div className="flex justify-center items-center my-6 container items-center px-4 pb-12 mx-auto  lg:flex md:px-40 border"  >
+          <h1 className="text-xl font-sans  text-black font-bold md:text-2xl lg:text-4xl">
+            Letzkhelo Competitions
           </h1>
         </div>
         <div className="w-full flex flex-wrap items-center justify-evenly py-3 px-8">

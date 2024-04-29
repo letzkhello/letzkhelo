@@ -30,7 +30,7 @@ export const HomeComponent = () => {
                   <div>
                   <div>
                   <h1 className="text-7xl font-bold  pt-5 text-black-500">
-                      Arm Wrestling
+                      Sports
                     </h1>
                     <h1 className="text-7xl font-bold  pt-5 text-black-500">
                       Platform
@@ -45,8 +45,8 @@ export const HomeComponent = () => {
 
                   
                   <div className="max-w-xl font-bold  leading-relaxed text-black-700 sm:mx-auto lg:ml-0 text-2xl">" Ab Har Gali Se Champions Niklenge "</div>
-                  <h1 className="text-5xl font-bold  pt-5 text-black-500">
-                      <div className="text-5xl font-bold  pt-5 text-yellow-500">500+ </div>Registered Arm Wrestlers
+                  <h1 className="text-5xl font-bold  pt-5 text-black-500 ">
+                      <span className="text-5xl font-bold  pt-5 text-yellow-500 underline">500+</span> &nbsp; Registered Athletes
                     </h1>
                     <p className="max-w-xl leading-relaxed text-gray-500 sm:mx-auto lg:ml-0">
                        <br/>
@@ -66,7 +66,7 @@ export const HomeComponent = () => {
                 <div>
                     <img
                         src="/group.jpg"
-                        className="w-64 h-72 mx-auto mt-6 sm:w-10/12 "
+                        className="w-60 h-80 mx-auto mt-6 sm:w-10/12 rounded-full"
                     />
                 </div>
             </section>

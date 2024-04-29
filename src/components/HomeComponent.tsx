@@ -66,7 +66,7 @@ export const HomeComponent = () => {
                 <div>
                     <img
                         src="/group.jpg"
-                        className="w-60 h-80 mx-auto mt-6 sm:w-10/12 rounded-full"
+                        className="w-80 h-80 mx-auto mt-6  rounded-full"
                     />
                 </div>
             </section>

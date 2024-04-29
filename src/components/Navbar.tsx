@@ -78,7 +78,7 @@ export default function Navbar({ fixed }: any) {
         <div
           className={`fixed bottom-0 left-0 h-full w-64 bg-black border border-solid ${
             isOpen ? "translate-x-0 z-10" : "-translate-x-full z-10"
-          } transition-transform duration-300 ease-in-out`}
+          } transition-transform duration-300 ease-in-out bg-yellow-200`}
         >
           <button
             onClick={closeMenu}
@@ -87,7 +87,7 @@ export default function Navbar({ fixed }: any) {
             Close
           </button>
 
-          <div className="p-4 bg-yellow-200" >
+          <div className="p-4" >
             <h1 className="text-2xl font-semibold mb-4">Menu</h1>
             <ul>
               <li className="mb-2">

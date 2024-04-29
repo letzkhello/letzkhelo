@@ -44,7 +44,7 @@ export const HomeComponent = () => {
                   </div>
 
                   
-                  <div className="max-w-xl font-bold  leading-relaxed text-black-700 sm:mx-auto lg:ml-0 text-2xl">" Ab Har Gali Se Champions Niklenge "</div>
+                  <div className="max-w-xl font-bold  leading-relaxed text-black-700 sm:mx-auto lg:ml-0 text-2xl">&quot; Ab Har Gali Se Champions Niklenge &quot;</div>
                   <h1 className="text-5xl font-bold  pt-5 text-black-500 ">
                       <span className="text-5xl font-bold  pt-5 text-yellow-500 underline">500+</span> &nbsp; Registered Athletes
                     </h1>

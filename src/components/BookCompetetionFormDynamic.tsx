@@ -306,10 +306,10 @@ export function BookCompetetionFormDynamic({ params }: any) {
                             className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
                           >
                             <option value="">SELECT</option>
-                            <option value="Below 55">Below 55</option>
-                            <option value="55-65">55-65</option>
-                            <option value="65-75">65-75</option>
-                            <option value="Above 75">above 75</option>
+                            <option value="Below 50">Below 50</option>
+                            <option value="50-60">50-60</option>
+                            <option value="60-70">60-70</option>
+                            <option value="Above 70">above 70</option>
                           </select>
                        
                       </div>

@@ -43,7 +43,8 @@ const competetionSchema = new mongoose.Schema({
   },
 });
 
-export const bookForCompetetion =
+const bookForCompetetion =
   mongoose.models.bookForCompetetion ||
   mongoose.model("bookForCompetetion", competetionSchema);
 
+  export default bookForCompetetion;

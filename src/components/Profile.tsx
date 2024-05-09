@@ -86,7 +86,7 @@ export default function ProfileComponent() {
 
   const getAllUsers = async () => {
     setLoader(true);
-    const res = await axios.get("/api/users/getAllUsers");
+    const res = await axios.get(`/api/users/getAllUsers`);
     setLoader(false);
     setAllUsers(res.data.data);
   };
@@ -96,6 +96,17 @@ export default function ProfileComponent() {
       ...prevFormData,
     }));
   }, [session?.user?.email]);
+  const [payment,setPayment]=useState<any>({})
+  
+  useEffect(()=>{
+    const getPaymentData=async()=>{
+      const res=await axios.get( `/api/getPayment?email=${session?.user?.email}`)
+      // console.log(res.data.payments,"payment")
+      setPayment(res)
+    }
+    getPaymentData()
+
+  },[session])
 
   const handleInputChange = (e: { target: { name: any; value: any } }) => {
     setFormData({
@@ -385,6 +396,24 @@ export default function ProfileComponent() {
                       Write about yourself
                     </h2>
                     <p className="text-gray-700">To be uploaded</p>
+                    <h2 className="text-xl font-bold mb-4">
+                      Payment History
+                    </h2>
+                    <ul className="space-y-2">
+          {payment.data?.payments.map((payment: any) => (
+            <li key={payment._id} className="bg-gray-200 p-4 rounded">
+              <div className="flex flex-col justify-between items-center">
+
+              <span>Sport Name: {payment.sportname}</span>
+                <span>Order ID: {payment.razorpay_order_id}</span>
+                <span>Payment ID: {payment.razorpay_payment_id}</span>
+                <span className="bg-green-400 py-1 px-2 rounded text-white">PAID</span>
+
+              </div>
+            </li>
+          ))}
+        </ul>
+                 
                   </div>
                 </div>
                 {

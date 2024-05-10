@@ -19,7 +19,7 @@ export default function WinnerPlayer() {
                     <img className="object-center object-cover w-full h-full" src="/rajatcoc.jpg" alt="photo"/>
                 </div>
                 <div className="w-full md:w-3/5 text-left p-4 md:p-4 space-y-2">
-                    <p className="text-xl text-white font-bold">Rajat Bishth</p>
+                    <p className="text-xl text-white font-bold">Rajat Bisht</p>
                     <p className="text-base text-gray-400 font-normal">COC Season 4</p>
                     <p className="text-base leading-relaxed text-gray-500 font-normal">Rajat is a renowned arm wrestler at the national level, boasting multiple victories in the prestigious National Arm Wrestling Championships. Moreover, he has achieved the remarkable feat of emerging as the champion of Letzkhelo CoC Season 4, further cementing his position as a formidable competitor in the realm of arm wrestling.</p>
                     <div className="flex justify-start space-x-2">

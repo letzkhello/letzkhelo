@@ -3,23 +3,23 @@ import React from "react";
 export default function WinnerPlayer() {
   return (
     <>
-<div className="w-full bg-gray-800">
+<div className="w-full">
     <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-4 py-12">
         <div className="text-center pb-12">
             <h2 className="text-base font-bold text-indigo-600">
                 We have the best athletes at Letzkhhelo
             </h2>
-            <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-white">
+            <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-black">
                 Check our awesome COC Winners
             </h1>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="w-full bg-gray-900 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row">
+        <div className="w-full bg-gray-100 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row">
                 <div className="w-full md:w-2/5 h-80">
                     <img className="object-center object-cover w-full h-full" src="/rajatcoc.jpg" alt="photo"/>
                 </div>
                 <div className="w-full md:w-3/5 text-left p-4 md:p-4 space-y-2">
-                    <p className="text-xl text-white font-bold">Rajat Bisht</p>
+                    <p className="text-xl text-black font-bold">Rajat Bisht</p>
                     <p className="text-base text-gray-400 font-normal">COC Season 4</p>
                     <p className="text-base leading-relaxed text-gray-500 font-normal">Rajat is a renowned arm wrestler at the national level, boasting multiple victories in the prestigious National Arm Wrestling Championships. Moreover, he has achieved the remarkable feat of emerging as the champion of Letzkhelo CoC Season 4, further cementing his position as a formidable competitor in the realm of arm wrestling.</p>
                     <div className="flex justify-start space-x-2">
@@ -34,12 +34,12 @@ export default function WinnerPlayer() {
                     </div>
                 </div>
             </div>
-            <div className="w-full bg-gray-900 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row">
+            <div className="w-full bg-gray-100 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row">
                 <div className="w-full md:w-2/5 h-80">
                     <img className="object-center object-cover w-full h-full" src="/shubdeep.jpg" alt="photo"/>
                 </div>
                 <div className="w-full md:w-3/5 text-left p-4 md:p-4 space-y-2">
-                    <p className="text-xl text-white font-bold">Shubdeep</p>
+                    <p className="text-xl text-black font-bold">Shubdeep</p>
                     <p className="text-base text-gray-400 font-normal">COC Season 3</p>
                     <p className="text-base leading-relaxed text-gray-500 font-normal">Shubdeep is a state level Arm Wrestler. He won LetzKhelo ArmWrestling S3 Champions of Champion</p>
                     <div className="flex justify-start space-x-2">
@@ -54,12 +54,12 @@ export default function WinnerPlayer() {
                     </div>
                 </div>
             </div>
-            <div className="w-full bg-gray-900 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row">
+            <div className="w-full bg-gray-100 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row">
                 <div className="w-full md:w-2/5 h-80">
                     <img className="object-center object-cover w-full h-full" src="/mayank.jpg" alt="COC season 3"/>
                 </div>
                 <div className="w-full md:w-3/5 text-left p-4 md:p-4 space-y-2">
-                    <p className="text-xl text-white font-bold">Mayank</p>
+                    <p className="text-xl text-black font-bold">Mayank</p>
                     <p className="text-base text-gray-400 font-normal">COC Season 2</p>
                     <p className="text-base leading-relaxed text-gray-500 font-normal">Mayank sharma is a professional Arm Wrestler.He won Letzkhelo ArmWrestling Season 2 Champions of Champion</p>
                     <div className="flex justify-start space-x-2">
@@ -73,12 +73,12 @@ export default function WinnerPlayer() {
                     </div>
                 </div>
             </div>
-            <div className="w-full bg-gray-900 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row">
+            <div className="w-full bg-gray-100 rounded-lg sahdow-lg overflow-hidden flex flex-col md:flex-row">
                 <div className="w-full md:w-2/5 h-80">
                     <img className="object-center object-cover w-full h-full" src="/goroz.jpg" alt="photo"/>
                 </div>
                 <div className="w-full md:w-3/5 text-left p-6 md:p-4 space-y-2">
-                    <p className="text-xl text-white font-bold">Goroz</p>
+                    <p className="text-xl text-black font-bold">Goroz</p>
                     <p className="text-base text-gray-400 font-normal">COC Season 1</p>
                     <p className="text-base leading-relaxed text-gray-500 font-normal">Goroz is an armwrestler, he won Champions of Champions in LetzKhelo Arm Wrestling Season 1.</p>
                     <div className="flex justify-start space-x-2">

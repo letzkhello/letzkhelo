@@ -8,20 +8,20 @@ export default function Term_Condition() {
           <section className="mb-32">
             <div className="flex flex-wrap">
               <div className="mb-10 w-full">
-                <h2 className="mb-4 text-3xl font-bold text-white ">
+                <h2 className="mb-4 text-3xl font-bold text-black ">
                   Return Policy
                 </h2>
-                <h4 className="mb-4 font-bold text-white ">
+                <h4 className="mb-4 font-bold text-black ">
                   At Letzkhelo, customer satisfaction is our top priority. If
                   you are not entirely satisfied with your purchase, we are here
                   to help. Please review our return policy below:
                 </h4>
 
-                <h4 className="mb-2 font-bold text-white ">
+                <h4 className="mb-2 font-bold text-black ">
                   Eligibility for Refunds:
                 </h4>
 
-                <ul className="list-disc text-white mb-2">
+                <ul className="list-disc text-black mb-2">
                   <li className="mb-4">
                     Items may be returned within 7 days of the purchase date.
                   </li>
@@ -31,10 +31,10 @@ export default function Term_Condition() {
                   </li>
                 </ul>
 
-                <h4 className="text-black-600 font-bold text-white mb-4">
+                <h4 className="text-black-600 font-bold text-black mb-4">
                   Return Process:
                 </h4>
-                <ul className="list-disc text-white">
+                <ul className="list-disc text-black">
                   <li className="mb-4">
                     Contact our customer service team at letzkhello@gmail.com to
                     initiate the return process and obtain a Return Merchandise

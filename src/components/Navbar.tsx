@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { BiMenuAltLeft } from "react-icons/bi";
 import axios from "axios";
 
+
 interface Session {
   user: {
     name: string;
@@ -61,12 +62,12 @@ export default function Navbar({ fixed }: any) {
     setIsOpen(false);
   };
   return (
-    <div className="navbar bg-black  lg:py-2 lg:h-[20vh] flex justify-between items-center z-10">
+    <div className="navbar lg:py-2 lg:h-[20vh] md:px-28 flex justify-between items-center z-10">
       <div className="flex items-center justify-between px-4 py-4 lg:hidden ">
         <div className="z-50">
           <button
             onClick={openMenu}
-            className={` p-0 w-10 h-10 rounded-full text-white ${
+            className={` p-0 w-10 h-10 rounded-full text-black ${
               isOpen ? "z-0 hidden" : "z-10"
             } flex items-center justify-center`}
           >
@@ -75,9 +76,9 @@ export default function Navbar({ fixed }: any) {
         </div>
 
         <div
-          className={`fixed bottom-0 left-0 h-full w-64 bg-white border border-solid ${
+          className={`fixed bottom-0 left-0 h-full w-64 bg-black border border-solid ${
             isOpen ? "translate-x-0 z-10" : "-translate-x-full z-10"
-          } transition-transform duration-300 ease-in-out`}
+          } transition-transform duration-300 ease-in-out bg-yellow-200`}
         >
           <button
             onClick={closeMenu}
@@ -86,7 +87,7 @@ export default function Navbar({ fixed }: any) {
             Close
           </button>
 
-          <div className="p-4">
+          <div className="p-4" >
             <h1 className="text-2xl font-semibold mb-4">Menu</h1>
             <ul>
               <li className="mb-2">
@@ -188,8 +189,9 @@ export default function Navbar({ fixed }: any) {
         </Link>
       </div>
 
+      <div>
       <div id="navLinks">
-        <ul className="DESKTOP-MENU hidden space-x-4 lg:flex text-white">
+        <ul className="DESKTOP-MENU hidden space-x-6 lg:flex text-black">
           <li>
             <motion.div
               initial={{ opacity: 0, x: "-100vh" }}
@@ -198,7 +200,7 @@ export default function Navbar({ fixed }: any) {
             >
               <Link
                 href="/"
-                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                className="text-xl font-bold  font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
                 Home
               </Link>
@@ -212,7 +214,7 @@ export default function Navbar({ fixed }: any) {
             >
               <Link
                 href="/about"
-                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
                 About
               </Link>
@@ -226,7 +228,7 @@ export default function Navbar({ fixed }: any) {
             >
               <Link
                 href="/contact"
-                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                className="text-xl font-bold  font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
                 Contact
               </Link>
@@ -240,13 +242,13 @@ export default function Navbar({ fixed }: any) {
             >
               <Link
                 href="/allUsers"
-                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                className="text-xl font-bold  pb-3  font-sans border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
                 All Players
               </Link>
             </motion.div>
           </li>
-          <li>
+          {/* <li>
             <motion.div
               initial={{ opacity: 0, x: "-100vh" }}
               animate={{ opacity: 1, x: 0 }}
@@ -273,7 +275,7 @@ export default function Navbar({ fixed }: any) {
                 Registered Teams
               </Link>
             </motion.div>
-          </li>
+          </li> */}
           <li>
             <motion.div
               initial={{ opacity: 0, x: "-100vh" }}
@@ -282,13 +284,13 @@ export default function Navbar({ fixed }: any) {
             >
               <Link
                 href="/winners"
-                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
                 Our COCs
               </Link>
             </motion.div>
           </li>
-          <li>
+          {/* <li>
             <motion.div
               initial={{ opacity: 0, x: "-100vh" }}
               animate={{ opacity: 1, x: 0 }}
@@ -301,17 +303,17 @@ export default function Navbar({ fixed }: any) {
                 Order History
               </Link>
             </motion.div>
-          </li>
+          </li> */}
          
         </ul>
       </div>
 
-      <div className="dropdown dropdown-end">
+      <div className="dropdown dropdown-end" style={{"marginLeft": 40}}>
         <label
           tabIndex={0}
           className="btn btn-ghost btn-circle avatar bg-white"
         >
-          <div className="w-10 rounded-full bg-white">
+          <div className="w-15 rounded-full bg-white">
           {
             session?.user ? singleUser?.imageLink ? (<Image
               src={ singleUser?.imageLink }
@@ -372,6 +374,9 @@ export default function Navbar({ fixed }: any) {
           <li></li>
         </ul>
       </div>
+      </div>
+
+     
     </div>
   );
 }

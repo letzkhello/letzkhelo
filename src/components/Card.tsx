@@ -125,9 +125,8 @@ export default function Card() {
       return "Coming Soon";
     }
   };
-  const [gamedetails,setGameDetails]=useState<any>()
+  const [gamedetails,setGameDetails]=useState<Game>()
   const showModal=(data:any)=>{
-    console.log(data);
     
     setGameDetails(data)
 
@@ -139,9 +138,9 @@ export default function Card() {
   } else {
     return (
       <>
-        <div className="flex justify-center items-center my-6 ">
-          <h1 className="text-xl  text-white  border-b-4 border-black font-serif font-bold md:text-2xl lg:text-4xl">
-            LETZKHELO COMPETETIONS
+        <div className="flex justify-center items-center my-6 container  px-4 pb-6 pt-6 mx-auto  lg:flex md:px-40 border"  >
+          <h1 className="text-xl font-sans  text-black font-bold md:text-2xl lg:text-4xl">
+            Letzkhelo Competitions
           </h1>
         </div>
         <div className="w-full flex flex-wrap items-center justify-evenly py-3 px-8">
@@ -167,8 +166,7 @@ export default function Card() {
                       </Link>
                     </p>
                     <p>Date: {convertDate(game?.date)}</p>
-                    {game?.registrationClosed ? <p>Participants: {countRegisteredUsers(game?.sportName)}</p> : <></>}
-                    {/* <p>Participants: {countRegisteredUsers(game?.sportName)}</p> */}
+                    <p>Participants: {countRegisteredUsers(game?.sportName)}</p>
                     {/* {game?.isOnlinePaymentAvailable && (
                       <p>
                         Entry Fee-Online:{" "}
@@ -229,39 +227,18 @@ export default function Card() {
            
           })}
            {isModalOpen && (
-              <div className="fixed inset-0 p-4 flex items-center justify-center bg-gray-500 bg-opacity-75 overflow-auto ">
+              <div className="fixed inset-0 p-4 flex items-center justify-center bg-gray-500 bg-opacity-75 ">
                 <div className="bg-white p-6 max-w-md mx-auto rounded-md shadow-lg">
-                <div className="flex justify-end">
-        <button
-          onClick={() => setIsModalOpen(false)}
-          className="text-gray-500 hover:text-gray-700 focus:outline-none"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-      </div>
-                <h2 className="text-xl font-semibold mb-2">
-                    ONLINE PAYMENT= Rs. {gamedetails?.onlineEntryFees}
+                <h2 className="text-xl font-semibold mb-4">
+                    ONLINE PAYMENT= Rs. 300
                     {/* {gamedetails?.entryFees} */}
                   </h2>
-                  <h2 className="text-xl font-semibold mb-2">
-                    OFFLINE PAYMENT= Rs. {gamedetails?.offlineEntryFees}
+                  <h2 className="text-xl font-semibold mb-4">
+                    OFFLINE PAYMENT= Rs. 400
                   </h2>
-                  <p className="font-bold text-green-300 mb-2" style={{color: "#00cc00"}}>First 80 players who registers online will get free Letzkhelo tshirt <span style={{fontSize: 25}}>🎉</span></p>
+                  <p className="font-bold text-green-300 mb-2">NOTE-First 80 players who registers online will get free Letzkhelo tshirt</p>
 
-                  <h2 className="text-lg font-semibold mb-2">
+                  <h2 className="text-lg font-semibold mb-4">
                     TERMS AND CONDITION
                   </h2>
                   <p>
@@ -269,7 +246,9 @@ export default function Card() {
                       <li>
                       <b>Injury Disclaimer</b>: The organization shall not
                                   be held responsible for any injuries sustained
-                                  during the event
+                                  during the event. Participants acknowledge
+                                  that they engage in the event at their own
+                                  risk and should take appropriate precautions.
                       </li>
                       <li>
                         <b>Non-refundable Payment</b>: All payments made
@@ -285,25 +264,24 @@ export default function Card() {
                     </ol>
                   </p>
                   {/* Add more terms and conditions here */}
-                  <div style={{marginTop: 12}} className="flex  gap-4">
+                  <div className="flex  gap-4">
                         <input
-                        className="md:w-4 w-8"
                           type="checkbox"
                           id="terms"
                           name="terms"
                           checked={termsChecked}
                           onChange={handleCheckboxChange}
                         />
-                        <label style={{fontSize: 15, color: "red", fontWeight: 700}} htmlFor="terms">
+                        <label htmlFor="terms">
                           I accept the terms and conditions
                         </label>
                       </div>
-                  {/* <button
+                  <button
                     onClick={() => setIsModalOpen(false)}
                     className="mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
                   >
                     Close
-                  </button> */}
+                  </button>
                   <button
                     onClick={() => router.push(`/bookCompetetion/${gamedetails?._id}`)}
                     className={`mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300  ${

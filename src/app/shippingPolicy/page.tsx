@@ -8,18 +8,18 @@ export default function Term_Condition() {
           <section className="mb-32">
             <div className="flex flex-wrap">
               <div className="mb-10 w-full">
-                <h2 className="mb-4 text-3xl font-bold text-white ">
+                <h2 className="mb-4 text-3xl font-bold text-black ">
                   Shipping Policy
                 </h2>
-                <h4 className="mb-4 font-bold text-white ">
+                <h4 className="mb-4 font-bold text-black ">
                   Thank you for choosing Letzkhelo for your equipment needs! We
                   strive to provide you with the best shipping experience
                   possible. Please review our shipping policy below
                 </h4>
 
-                <h4 className="mb-2 font-bold text-white ">Shipping Times:</h4>
+                <h4 className="mb-2 font-bold text-black ">Shipping Times:</h4>
 
-                <ul className="list-disc text-white mb-2">
+                <ul className="list-disc text-black mb-2">
                   <li className="mb-4">
                     {" "}
                     Orders are typically processed within 1-2 business days
@@ -36,10 +36,10 @@ export default function Term_Condition() {
                   </li>
                 </ul>
 
-                <h4 className="text-black-600 font-bold text-white mb-4">
+                <h4 className="text-black-600 font-bold text-black mb-4">
                   Shipping Rates:
                 </h4>
-                <ul className="list-disc text-white mb-2">
+                <ul className="list-disc text-black mb-2">
                   <li className="mb-4">
                     Shipping rates are calculated based on the weight and
                     dimensions of your order, as well as the selected shipping

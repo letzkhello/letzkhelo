@@ -6,6 +6,7 @@ import Features from "./OurFeatures";
 import Image from "next/image";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 export const HomeComponent = () => {
   const [isMounted, setIsMounted] = useState(false);
   
@@ -37,16 +38,24 @@ export const HomeComponent = () => {
                     </h1>
                   </div>
                     
-                    <div><h1 className="md:text-7xl text-4xl font-bold  pt-5 text-orange-400 underline" >
+                    <div><h1 className="md:text-7xl text-4xl font-bold  pt-5 text-orange-400 underline animate-bounce" >
                       LetzKhelo
                     </h1></div>
 
                   </div>
 
                   
-                  <div className="max-w-xl font-bold  leading-relaxed text-black sm:mx-auto lg:ml-0 text-2xl">&quot; Ab Har Gali Se Champions Niklenge &quot;</div>
+                  <div className="max-w-xl font-bold  leading-relaxed text-black sm:mx-auto lg:ml-0 text-2xl ">&quot; Ab Har Gali Se Champions Niklenge &quot;</div>
                   <h1 className="text-5xl font-bold  pt-5 text-black ">
-                      <span className="text-5xl font-bold  pt-5 text-orange-400 underline">500+</span> &nbsp; Registered Athletes
+                      {/* <span className="text-5xl font-bold  pt-5 text-orange-400 underline">500+</span> &nbsp; Registered Athletes */}
+                      <motion.span
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.5, duration: 1.5 }}
+      className="text-5xl font-bold pt-5 text-orange-400 underline"
+    >
+      500+&nbsp; Registered Athletes
+    </motion.span>
                     </h1>
                     <p className="max-w-xl leading-relaxed text-black sm:mx-auto lg:ml-0">
                        <br/>

@@ -308,7 +308,7 @@ export default function Navbar({ fixed }: any) {
         </ul>
       </div>
 
-      <div className="dropdown dropdown-end" style={{"marginLeft": 40}}>
+      <div className="dropdown dropdown-end md:ml-10" >
         <label
           tabIndex={0}
           className="btn btn-ghost btn-circle avatar bg-white"

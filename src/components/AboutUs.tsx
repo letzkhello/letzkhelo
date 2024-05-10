@@ -18,7 +18,7 @@ export default function AboutUs() {
         </div>
         <div className="sm:w-1/2 p-5">
           <div className="text">
-            <span className="text-white border-b-2 border-white uppercase">
+            <span className="text-black border-b-2 border-white uppercase">
               About Us
             </span>
             <h2 className="my-4 font-bold text-3xl  sm:text-4xl ">
@@ -34,11 +34,11 @@ export default function AboutUs() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ type: "spring", bounce: 0.6 }}
                 >
-                  <span className="text-white"> LETZKHELO</span>
+                  <span className="text-black"> LETZKHELO</span>
                 </motion.div>
               </div>
             </h2>
-            <p className="text-white">
+            <p className="text-black">
               Welcome to Letzkhelo, where sports enthusiasts unite to challenge,
               compete, and celebrate the spirit of athleticism!
               <br />
@@ -60,7 +60,7 @@ export default function AboutUs() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ type: "spring", bounce: 0.6 }}
                 >
-                  <h2 className="text-3xl font-extrabold text-white">
+                  <h2 className="text-3xl font-extrabold text-black">
                     Mission
                   </h2>
                 </motion.div>
@@ -70,7 +70,7 @@ export default function AboutUs() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 1 }}
                 >
-                  <p className="mt-2 mb-5 text-base text-white">
+                  <p className="mt-2 mb-5 text-base text-black">
                     Our mission is simple: to create a vibrant and inclusive
                     community for athletes of all levels. Whether you&apos;re a
                     seasoned pro or just starting your sporting journey,
@@ -89,7 +89,7 @@ export default function AboutUs() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", bounce: 0.6 }}
               >
-                <h2 className="text-3xl font-extrabold text-white">
+                <h2 className="text-3xl font-extrabold text-black">
                   What we Offer
                 </h2>
               </motion.div>
@@ -99,7 +99,7 @@ export default function AboutUs() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
               >
-                <p className="mt-2 text-base text-white  mb-5">
+                <p className="mt-2 text-base text-black  mb-5">
                   Team and Player Registration: Register your team or yourself
                   as an individual player and become part of our dynamic sports
                   network. Showcase your skills, build your team, and connect
@@ -125,7 +125,7 @@ export default function AboutUs() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ type: "spring", bounce: 0.6 }}
               >
-                <h2 className="text-3xl font-extrabold text-white">
+                <h2 className="text-3xl font-extrabold text-black">
                   Why Choose Letzkhelo?
                 </h2>
               </motion.div>
@@ -135,7 +135,7 @@ export default function AboutUs() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
               >
-                <p className="mt-2 text-base text-white mb-5">
+                <p className="mt-2 text-base text-black mb-5">
                   Passion for Sports: We&apos;re sports enthusiasts, just like
                   you. Our dedication to the world of athletics drives us to
                   provide the best platform for athletes to shine. Fair Play: We

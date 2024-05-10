@@ -23,36 +23,32 @@ export const HomeComponent = () => {
   return (
     <div>
      
-      <div className="bg-white "  style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHNwb3J0c3xlbnwwfHwwfHx8MA%3D%3D')",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }} >
+      <div className="bg-white "  >
             <section className="container items-center px-4 pb-12 mx-auto  lg:flex md:px-40">
                 <div className="flex-1 space-y-4 sm:text-center lg:text-left">
 
                   <div>
                   <div className="">
-                  <h1 className="md:text-7xl text-5xl font-bold  pt-5 text-white">
+                  <h1 className="md:text-7xl text-5xl font-bold  pt-5 text-orange-400">
                       Your Sports &nbsp;
                     </h1>
-                    <h1 className="md:text-7xl text-5xl font-bold  pt-5 text-white">
+                    <h1 className="md:text-7xl text-5xl font-bold  pt-5 text-orange-400">
                       Platform
                     </h1>
                   </div>
                     
-                    <div><h1 className="md:text-7xl text-4xl font-bold  pt-5 text-orange-800 underline" >
+                    <div><h1 className="md:text-7xl text-4xl font-bold  pt-5 text-orange-400 underline" >
                       LetzKhelo
                     </h1></div>
 
                   </div>
 
                   
-                  <div className="max-w-xl font-bold  leading-relaxed text-white sm:mx-auto lg:ml-0 text-2xl">&quot; Ab Har Gali Se Champions Niklenge &quot;</div>
-                  <h1 className="text-5xl font-bold  pt-5 text-white ">
-                      <span className="text-5xl font-bold  pt-5 text-orange-800 underline">500+</span> &nbsp; Registered Athletes
+                  <div className="max-w-xl font-bold  leading-relaxed text-black sm:mx-auto lg:ml-0 text-2xl">&quot; Ab Har Gali Se Champions Niklenge &quot;</div>
+                  <h1 className="text-5xl font-bold  pt-5 text-black ">
+                      <span className="text-5xl font-bold  pt-5 text-orange-400 underline">500+</span> &nbsp; Registered Athletes
                     </h1>
-                    <p className="max-w-xl leading-relaxed text-white sm:mx-auto lg:ml-0">
+                    <p className="max-w-xl leading-relaxed text-black sm:mx-auto lg:ml-0">
                        <br/>
                        Our mission is simple: to create a vibrant and inclusive community for athletes of all levels. Whether you are a seasoned pro or just starting your sporting journey, Letzkhelo is the place where you can connect, compete, and grow.
                     </p>

@@ -68,7 +68,7 @@ const YourOrders = () => {
   return (
     <>
       <div className="flex justify-center items-center my-6 ">
-        <h1 className="text-xl  text-white  border-b-4 border-black font-serif font-bold md:text-2xl lg:text-4xl">
+        <h1 className="text-xl  text-black  border-b-4 border-black font-serif font-bold md:text-2xl lg:text-4xl">
           Your Orders
         </h1>
       </div>
@@ -125,7 +125,7 @@ const YourOrders = () => {
             <p className="mb-8">Your order history is empty.</p>
             <Link
               href={"/allProducts"}
-              className=" px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+              className=" px-6 py-2 bg-blue-500 text-black rounded hover:bg-blue-700"
             >
               Go to Store
             </Link>

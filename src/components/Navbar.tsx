@@ -78,7 +78,7 @@ export default function Navbar({ fixed }: any) {
         <div
           className={`fixed bottom-0 left-0 h-full w-64 bg-black border border-solid ${
             isOpen ? "translate-x-0 z-10" : "-translate-x-full z-10"
-          } transition-transform duration-300 ease-in-out bg-yellow-200`}
+          } transition-transform duration-300 ease-in-out bg-gray-100`}
         >
           <button
             onClick={closeMenu}
@@ -290,7 +290,21 @@ export default function Navbar({ fixed }: any) {
               </Link>
             </motion.div>
           </li>
-          {/* <li>
+          <li>
+            <motion.div
+              initial={{ opacity: 0, x: "-100vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: "spring", bounce: 0.6 }}
+            >
+              <Link
+                href="/allProducts"
+                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+              >
+                Store
+              </Link>
+            </motion.div>
+          </li>
+          <li>
             <motion.div
               initial={{ opacity: 0, x: "-100vh" }}
               animate={{ opacity: 1, x: 0 }}
@@ -303,7 +317,7 @@ export default function Navbar({ fixed }: any) {
                 Order History
               </Link>
             </motion.div>
-          </li> */}
+          </li>
          
         </ul>
       </div>

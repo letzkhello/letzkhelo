@@ -54,7 +54,7 @@ export const HomeComponent = () => {
       transition={{ delay: 0.5, duration: 1.5 }}
       className="text-5xl font-bold pt-5 text-orange-400 underline"
     >
-      500+&nbsp; Registered Athletes
+      1000+&nbsp; Registered Athletes
     </motion.span>
                     </h1>
                     <p className="max-w-xl leading-relaxed text-black sm:mx-auto lg:ml-0">

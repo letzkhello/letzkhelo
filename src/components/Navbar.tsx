@@ -164,6 +164,15 @@ export default function Navbar({ fixed }: any) {
               </li>
               <li className="mb-2">
                 <Link
+                  href="/allProducts"
+                  onClick={closeMenu}
+                  className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+                >
+                  Store<div className="badge badge-accent">new</div>
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
                   href="/yourOrders"
                   onClick={closeMenu}
                   className="block p-2 rounded-lg hover:bg-purple-100 capitalize"

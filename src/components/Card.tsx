@@ -15,6 +15,8 @@ interface Game {
   _id: number;
   date: string;
   entryFees: number;
+  onlineEntryFees:number;
+  offlineEntryFees:number;
 }
 export default function Card() {
   const router = useRouter();
@@ -230,13 +232,12 @@ export default function Card() {
               <div className="fixed inset-0 p-4 flex items-center justify-center bg-gray-500 bg-opacity-75 ">
                 <div className="bg-white p-6 max-w-md mx-auto rounded-md shadow-lg">
                 <h2 className="text-xl font-semibold mb-4">
-                    ONLINE PAYMENT= Rs. 300
-                    {/* {gamedetails?.entryFees} */}
+                    ONLINE PAYMENT= {gamedetails?.onlineEntryFees}
                   </h2>
                   <h2 className="text-xl font-semibold mb-4">
-                    OFFLINE PAYMENT= Rs. 400
+                    OFFLINE PAYMENT= {gamedetails?.offlineEntryFees}
                   </h2>
-                  <p className="font-bold text-green-300 mb-2">NOTE-First 80 players who registers online will get free Letzkhelo tshirt</p>
+                  {/* <p className="font-bold text-green-300 mb-2">NOTE-First 80 players who registers online will get free Letzkhelo tshirt</p> */}
 
                   <h2 className="text-lg font-semibold mb-4">
                     TERMS AND CONDITION

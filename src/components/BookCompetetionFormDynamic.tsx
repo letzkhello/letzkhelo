@@ -40,7 +40,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
     const key = process.env.RAZORPAY_API_KEY;
     console.log(key);
     const calculatedAmount =
-      sport.entryFees || formData.registrationPrice || 5400;
+      sport.onlineEntryFees || formData.registrationPrice || 5400;
     // setDynamicAmount(calculatedAmount);
     console.log(dynamicAmount);
     // Make API call to the serverless API
@@ -251,12 +251,12 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         />
                       </div>
 
-                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
+                      {/* <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
                         <label
                           htmlFor="registration-price"
                           className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
                         >
-                          Registration Price:
+                          Registration Pricee:
                         </label>
                         <input
                           id="registration-price"
@@ -270,7 +270,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           }
                           className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
                         />
-                      </div>
+                      </div> */}
 
                       <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
                         <label
@@ -306,13 +306,14 @@ export function BookCompetetionFormDynamic({ params }: any) {
                             className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
                           >
                             <option value="">SELECT</option>
-                            <option value="Below 55">Below 55</option>
-                            <option value="55-65">55-65</option>
-                            <option value="65-75">65-75</option>
-                            <option value="Above 75">above 75</option>
+                            <option value="Below 50">Below 50</option>
+                            <option value="50-60">50-60</option>
+                            <option value="60-70">60-70</option>
+                            <option value="Above 70">above 70</option>
                           </select>
-                        
+                       
                       </div>
+                      <p className="font-normal   lg:w-3/5 mx-0 my-1">NOTE: If you want to participate in multiple category you can enroll yourself at the venue</p>
                       {formData.weight.trim() === "" && (
                         <p className="text-sm text-red-500">Select weight</p>
                       )}
@@ -350,7 +351,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         <button
                           type="button"
                           onClick={() => makePayment(sport)}
-                          className={`md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500 ${
+                          className={`md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-full font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500 ${
                             isFormNotValid || loader
                               ? "bg-gray-400 cursor-not-allowed"
                               : ""
@@ -364,7 +365,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           }}
                         >
                            {paymentLoading ? (
-                            <div className="flex justify-evenly items-center">
+                            <div className="flex justify-evenly items-center w-full">
                               Registering
                               <BeatLoader
                                 className=""
@@ -375,12 +376,12 @@ export function BookCompetetionFormDynamic({ params }: any) {
                               />
                             </div>
                           ) : (
-                            "Register-online"
+                            "Register-online( Rs. " + sport.onlineEntryFees + ")"
                           )}
                         </button>
                         <button
                           type="submit"
-                          className={`md:mx-2 md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-52 font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500 ${
+                          className={`md:mx-2  md:px-8 md:my-12 my-4 p-3 border-none rounded-md bg-[#5853ff] text-white w-full font-medium text-base cursor-pointer hover:opacity-90 hover:scale-110 duration-500 ${
                             isFormNotValid || loader
                               ? "bg-gray-400 cursor-not-allowed"
                               : ""
@@ -405,7 +406,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                               />
                             </div>
                           ) : (
-                            "Register-offline"
+                            "Register-offline( Rs. " + sport.offlineEntryFees + ")"
                           )}
                         </button>
                       </div>

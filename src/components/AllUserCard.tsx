@@ -67,7 +67,7 @@ export default function AllUserCard() {
   } else {
     return (
       <>
-        <h1 className="text-center font-bold text-5xl m-5 text-white">
+        <h1 className="text-center font-bold text-5xl m-5 text-black">
           All Players
         </h1>
         <div className="flex  w-screen  justify-center p-5">
@@ -95,7 +95,7 @@ export default function AllUserCard() {
         </div>
 
         <div className="flex  w-screen  justify-center p-5">
-          <dt className="text-sm font-medium text-white px-4">Select Sports</dt>
+          <dt className="text-sm font-medium text-black px-4">Select Sports</dt>
           <select
             value={selectedSport || "All"}
             onChange={(e) => filterBySport(e.target.value)}
@@ -177,7 +177,7 @@ export default function AllUserCard() {
                   </Link>
                 </div>
                 <div className="card-actions justify-end">
-                <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={()=>router.push(`/userStats/${user._id}`)}>Go To Profile</button>
+                <button  className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded" onClick={()=>router.push(`/userStats/${user._id}`)}>Go To Profile</button>
                   </div>
                 </div>
             </div>

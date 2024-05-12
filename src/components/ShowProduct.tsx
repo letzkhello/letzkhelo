@@ -48,9 +48,9 @@ export default function ShowProduct() {
     return (
       <>
         <div className="text-center p-10">
-          <h1 className="font-bold text-4xl mb-4 text-white">All Products</h1>
+          <h1 className="font-bold text-4xl mb-4 text-black">All Products</h1>
           <Link
-            className="font-bold mb-4 text-white flex justify-end"
+            className="font-bold mb-4 text-black flex justify-end"
             href="/cart"
           >
             {" "}
@@ -69,7 +69,7 @@ export default function ShowProduct() {
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 1.92 1.61h9.8a2 2 0 0 0 1.92-1.61L20 6H6" />
             </svg>
             {cartItem.items.length > 0 && (
-              <div className="relative bottom-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center">
+              <div className="relative bottom-2 bg-red-500 text-black rounded-full w-5 h-5 flex items-center justify-center">
                 {cartItem.items.length}
               </div>
             )}
@@ -115,7 +115,7 @@ export default function ShowProduct() {
                       {item.inStock === true ? (
                         <button
                           onClick={() => handleadd(item)}
-                          className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${
+                          className={`text-black bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${
                             isItemInCart(item._id)  ? 'disabled' : ''
                           }`}
                           disabled={isItemInCart(item._id)}
@@ -132,7 +132,7 @@ export default function ShowProduct() {
                   </div>
                   <Link
                     href={`/allProducts/${item._id}`}
-                    className="text-white bg-green-700 my-2 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    className="text-black bg-green-700 my-2 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     View Details --&gt;{" "}
                   </Link>

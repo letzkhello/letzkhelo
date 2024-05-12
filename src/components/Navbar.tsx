@@ -62,7 +62,7 @@ export default function Navbar({ fixed }: any) {
     setIsOpen(false);
   };
   return (
-    <div className="navbar bg-white  lg:py-2 lg:h-[20vh] flex justify-evenly items-center z-10">
+    <div className="navbar lg:py-2 lg:h-[20vh] md:px-28 flex justify-between items-center z-10">
       <div className="flex items-center justify-between px-4 py-4 lg:hidden ">
         <div className="z-50">
           <button
@@ -78,7 +78,7 @@ export default function Navbar({ fixed }: any) {
         <div
           className={`fixed bottom-0 left-0 h-full w-64 bg-black border border-solid ${
             isOpen ? "translate-x-0 z-10" : "-translate-x-full z-10"
-          } transition-transform duration-300 ease-in-out`}
+          } transition-transform duration-300 ease-in-out bg-gray-100`}
         >
           <button
             onClick={closeMenu}
@@ -87,7 +87,7 @@ export default function Navbar({ fixed }: any) {
             Close
           </button>
 
-          <div className="p-4" style={{"color": "black"}}>
+          <div className="p-4" >
             <h1 className="text-2xl font-semibold mb-4">Menu</h1>
             <ul>
               <li className="mb-2">
@@ -160,6 +160,15 @@ export default function Navbar({ fixed }: any) {
                   className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
                 >
                   Our COCs
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  href="/allProducts"
+                  onClick={closeMenu}
+                  className="block p-2 rounded-lg hover:bg-purple-100 capitalize"
+                >
+                  Store<div className="badge badge-accent">new</div>
                 </Link>
               </li>
               <li className="mb-2">
@@ -297,6 +306,20 @@ export default function Navbar({ fixed }: any) {
               transition={{ type: "spring", bounce: 0.6 }}
             >
               <Link
+                href="/allProducts"
+                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+              >
+                Store
+              </Link>
+            </motion.div>
+          </li>
+          <li>
+            <motion.div
+              initial={{ opacity: 0, x: "-100vh" }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ type: "spring", bounce: 0.6 }}
+            >
+              <Link
                 href="/yourOrders"
                 className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
               >
@@ -308,7 +331,7 @@ export default function Navbar({ fixed }: any) {
         </ul>
       </div>
 
-      <div className="dropdown dropdown-end" style={{"marginLeft": 40}}>
+      <div className="dropdown dropdown-end md:ml-10" >
         <label
           tabIndex={0}
           className="btn btn-ghost btn-circle avatar bg-white"

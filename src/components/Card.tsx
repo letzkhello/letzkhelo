@@ -15,6 +15,8 @@ interface Game {
   _id: number;
   date: string;
   entryFees: number;
+  onlineEntryFees: number;
+  offlineEntryFees: number;
 }
 export default function Card() {
   const router = useRouter();
@@ -43,7 +45,6 @@ export default function Card() {
     checkUserEmail();
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
-
 
   const getGameDetails = async () => {
     setShimmer(true);
@@ -125,20 +126,19 @@ export default function Card() {
       return "Coming Soon";
     }
   };
-  const [gamedetails,setGameDetails]=useState<Game>()
-  const showModal=(data:any)=>{
-    
-    setGameDetails(data)
+  const [gamedetails, setGameDetails] = useState<Game>();
+  const showModal = (data: any) => {
+    setGameDetails(data);
 
-    setIsModalOpen(true)
-  }
+    setIsModalOpen(true);
+  };
 
   if (shimmer == true) {
     return <Shimmer />;
   } else {
     return (
       <>
-        <div className="flex justify-center items-center my-6 container items-center px-4 pb-12 mx-auto  lg:flex md:px-40 border"  >
+        <div className="flex justify-center items-center my-6 container  px-4 pb-6 pt-6 mx-auto  lg:flex md:px-40 border">
           <h1 className="text-xl font-sans  text-black font-bold md:text-2xl lg:text-4xl">
             Letzkhelo Competitions
           </h1>
@@ -159,7 +159,7 @@ export default function Card() {
                   </figure>
                   <div className="card-body">
                     <h2 className="card-title">{game?.sportName}</h2>
-                    <p>
+                    <p className="h-20 overflow-hidden whitespace-normal">
                       Location:
                       <Link href={`${game?.locationLink}`} target="_blank">
                         <span className="text-blue-600">{game?.location}</span>
@@ -184,9 +184,7 @@ export default function Card() {
                       <button
                         className="btn bg-black text-white transform transition-transform hover:scale-105 duration-300"
                         onClick={() =>
-                          session
-                            ? showModal(game)
-                            : router.push(`/login`)
+                          session ? showModal(game) : router.push(`/login`)
                         }
                         disabled={
                           checkOpenContest(game?.isOpen, game?.sportName)
@@ -221,84 +219,80 @@ export default function Card() {
                     </div>
                   )}
                 </div>
-                
               </div>
             );
-           
           })}
-           {isModalOpen && (
-              <div className="fixed inset-0 p-4 flex items-center justify-center bg-gray-500 bg-opacity-75 ">
-                <div className="bg-white p-6 max-w-md mx-auto rounded-md shadow-lg">
+          {isModalOpen && (
+            <div className="fixed inset-0 p-4 flex items-center justify-center bg-gray-500 bg-opacity-75 ">
+              <div className="bg-white p-6 max-w-md mx-auto rounded-md shadow-lg">
                 <h2 className="text-xl font-semibold mb-4">
-                    ONLINE PAYMENT= Rs. 300
-                    {/* {gamedetails?.entryFees} */}
-                  </h2>
-                  <h2 className="text-xl font-semibold mb-4">
-                    OFFLINE PAYMENT= Rs. 400
-                  </h2>
-                  <p className="font-bold text-green-300 mb-2">NOTE-First 80 players who registers online will get free Letzkhelo tshirt</p>
+                  ONLINE PAYMENT= {gamedetails?.onlineEntryFees}
+                </h2>
+                <h2 className="text-xl font-semibold mb-4">
+                  OFFLINE PAYMENT= {gamedetails?.offlineEntryFees}
+                </h2>
+                {/* <p className="font-bold text-green-300 mb-2">NOTE-First 80 players who registers online will get free Letzkhelo tshirt</p> */}
 
-                  <h2 className="text-lg font-semibold mb-4">
-                    TERMS AND CONDITION
-                  </h2>
-                  <p>
-                    <ol>
-                      <li>
-                      <b>Injury Disclaimer</b>: The organization shall not
-                                  be held responsible for any injuries sustained
-                                  during the event. Participants acknowledge
-                                  that they engage in the event at their own
-                                  risk and should take appropriate precautions.
-                      </li>
-                      <li>
-                        <b>Non-refundable Payment</b>: All payments made
-                        towards registration or participation fees are
-                        non-refundable. Once payment is made, it
-                        cannot be refunded under any circumstances,
-                        including withdrawal from the event or
-                        disqualification.
-                      </li>
-                      <li>
-                      <b>  Misbehavior Disqualification</b>: Participants who misbehave will be disqualified
-                      </li>
-                    </ol>
-                  </p>
-                  {/* Add more terms and conditions here */}
-                  <div className="flex  gap-4">
-                        <input
-                          type="checkbox"
-                          id="terms"
-                          name="terms"
-                          checked={termsChecked}
-                          onChange={handleCheckboxChange}
-                        />
-                        <label htmlFor="terms">
-                          I accept the terms and conditions
-                        </label>
-                      </div>
-                  <button
-                    onClick={() => setIsModalOpen(false)}
-                    className="mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
-                  >
-                    Close
-                  </button>
-                  <button
-                    onClick={() => router.push(`/bookCompetetion/${gamedetails?._id}`)}
-                    className={`mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300  ${
-                      !termsChecked
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : ""
-                    }`}
-                    disabled={!termsChecked}
-                  >
-                    Continue to Register
-                  </button>
+                <h2 className="text-lg font-semibold mb-4">
+                  TERMS AND CONDITION
+                </h2>
+                <p>
+                  <ol>
+                    <li>
+                      <b>Injury Disclaimer</b>: The organization shall not be
+                      held responsible for any injuries sustained during the
+                      event. Participants acknowledge that they engage in the
+                      event at their own risk and should take appropriate
+                      precautions.
+                    </li>
+                    <li>
+                      <b>Non-refundable Payment</b>: All payments made towards
+                      registration or participation fees are non-refundable.
+                      Once payment is made, it cannot be refunded under any
+                      circumstances, including withdrawal from the event or
+                      disqualification.
+                    </li>
+                    <li>
+                      <b> Misbehavior Disqualification</b>: Participants who
+                      misbehave will be disqualified
+                    </li>
+                  </ol>
+                </p>
+                {/* Add more terms and conditions here */}
+                <div className="flex  gap-4">
+                  <input
+                    type="checkbox"
+                    id="terms"
+                    name="terms"
+                    checked={termsChecked}
+                    onChange={handleCheckboxChange}
+                  />
+                  <label htmlFor="terms">
+                    I accept the terms and conditions
+                  </label>
                 </div>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() =>
+                    router.push(`/bookCompetetion/${gamedetails?._id}`)
+                  }
+                  className={`mt-4 w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300  ${
+                    !termsChecked ? "bg-gray-400 cursor-not-allowed" : ""
+                  }`}
+                  disabled={!termsChecked}
+                >
+                  Continue to Register
+                </button>
               </div>
-            )}
+            </div>
+          )}
         </div>
       </>
-
     );
   }
 }

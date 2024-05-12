@@ -6,6 +6,7 @@ import Features from "./OurFeatures";
 import Image from "next/image";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 export const HomeComponent = () => {
   const [isMounted, setIsMounted] = useState(false);
   
@@ -23,32 +24,40 @@ export const HomeComponent = () => {
   return (
     <div>
      
-      <div className="bg-white ">
+      <div className="bg-white "  >
             <section className="container items-center px-4 pb-12 mx-auto  lg:flex md:px-40">
                 <div className="flex-1 space-y-4 sm:text-center lg:text-left">
 
                   <div>
-                  <div>
-                  <h1 className="text-7xl font-bold  pt-5 text-black-500">
-                      Sports
+                  <div className="">
+                  <h1 className="md:text-7xl text-5xl font-bold  pt-5 text-orange-400">
+                      Your Sports &nbsp;
                     </h1>
-                    <h1 className="text-7xl font-bold  pt-5 text-black-500">
+                    <h1 className="md:text-7xl text-5xl font-bold  pt-5 text-orange-400">
                       Platform
                     </h1>
                   </div>
                     
-                    <div><h1 className="text-7xl font-bold  pt-5 text-yellow-500 underline" >
+                    <div><h1 className="md:text-7xl text-4xl font-bold  pt-5 text-orange-400 underline animate-bounce" >
                       LetzKhelo
                     </h1></div>
 
                   </div>
 
                   
-                  <div className="max-w-xl font-bold  leading-relaxed text-black-700 sm:mx-auto lg:ml-0 text-2xl">" Ab Har Gali Se Champions Niklenge "</div>
-                  <h1 className="text-5xl font-bold  pt-5 text-black-500 ">
-                      <span className="text-5xl font-bold  pt-5 text-yellow-500 underline">500+</span> &nbsp; Registered Athletes
+                  <div className="max-w-xl font-bold  leading-relaxed text-black sm:mx-auto lg:ml-0 text-2xl ">&quot; Ab Har Gali Se Champions Niklenge &quot;</div>
+                  <h1 className="text-5xl font-bold  pt-5 text-black ">
+                      {/* <span className="text-5xl font-bold  pt-5 text-orange-400 underline">500+</span> &nbsp; Registered Athletes */}
+                      <motion.span
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.5, duration: 1.5 }}
+      className="text-5xl font-bold pt-5 text-orange-400 underline"
+    >
+      1000+&nbsp; Registered Athletes
+    </motion.span>
                     </h1>
-                    <p className="max-w-xl leading-relaxed text-gray-500 sm:mx-auto lg:ml-0">
+                    <p className="max-w-xl leading-relaxed text-black sm:mx-auto lg:ml-0">
                        <br/>
                        Our mission is simple: to create a vibrant and inclusive community for athletes of all levels. Whether you are a seasoned pro or just starting your sporting journey, Letzkhelo is the place where you can connect, compete, and grow.
                     </p>
@@ -66,7 +75,7 @@ export const HomeComponent = () => {
                 <div>
                     <img
                         src="/group.jpg"
-                        className="w-60 h-80 mx-auto mt-6 sm:w-10/12 rounded-full"
+                        className="w-80 h-80 mx-auto mt-6  rounded-full"
                     />
                 </div>
             </section>

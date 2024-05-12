@@ -189,8 +189,8 @@ const Cartpage = () => {
         className="flex"
       >
 
-        <p  className="h-24 w-24 cursor-pointer text-white px-2 mt-4 ">&lt;-- back{" "}</p>
-        <h3 className="text-2xl font-bold text-white mb-4 flex justify-center mt-4">
+        <p  className="h-24 w-24 cursor-pointer text-black px-2 mt-4 ">&lt;-- back{" "}</p>
+        <h3 className="text-2xl font-bold text-black mb-4 flex justify-center mt-4">
         Your Cart
       </h3>
       </div>
@@ -206,7 +206,7 @@ const Cartpage = () => {
             <h5 className="text-lg font-semibold mb-2">{item.productName}</h5>
             <h5 className="text-gray-700 mb-2">Price:{item.price}</h5>
             <button
-              className="bg-red-500 text-white px-4 py-2 rounded-full focus:outline-none hover:bg-red-600"
+              className="bg-red-500 text-black px-4 py-2 rounded-full focus:outline-none hover:bg-red-600"
               onClick={() => handleremove(item)}
             >
               Remove
@@ -216,19 +216,19 @@ const Cartpage = () => {
       </div>
       {total > 0 ? (
         <div className="mt-4  flex justify-center items-center">
-          <div className="text-xl font-semibold mx-4 text-white">
+          <div className="text-xl font-semibold mx-4 text-black">
             Total: Rs.{total}
           </div>
           {total > 0 ? (
             // <button
-            //   className="bg-green-500 text-white px-6 py-2 rounded-full focus:outline-none hover:bg-green-600"
+            //   className="bg-green-500 text-black px-6 py-2 rounded-full focus:outline-none hover:bg-green-600"
             //   onClick={() => console.log("Place Order clicked")}
             //   // disabled
             // >
             //   Place Order
             // </button>
 
-            <div className="py-4 mt-2 text-white flex items-center justify-around">
+            <div className="py-4 mt-2 text-black flex items-center justify-around">
               <button className="btn" onClick={() => openModal()}>
                 Place Order
               </button>
@@ -323,7 +323,7 @@ const Cartpage = () => {
 
                     <button
                       type="submit"
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded "
+                      className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 border border-blue-700 rounded "
                       disabled={buttonLoader}
                     >
                       {buttonLoader ? (

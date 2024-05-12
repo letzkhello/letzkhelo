@@ -10,12 +10,12 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { sportName, description, image, location, date, entryFees, locationLink  } =
+    const { eventName, description, image, location, date, entryFees, locationLink  } =
       reqBody;
 
 
     const AllEvent = new AddEvent({
-        sportName,
+        eventName,
         description,
         image,
         location,

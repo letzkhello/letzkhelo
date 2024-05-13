@@ -79,7 +79,7 @@
 
 
 import { connect } from "@/dbConfig/dbConfig";
-import { bookForCompetetion } from "@/models/competetion";
+import bookForCompetetion  from "@/models/competetion";
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 

@@ -1,7 +1,7 @@
 export const revalidate = 0;
 
 import { NextRequest, NextResponse } from "next/server";
-import {bookForCompetetion} from "@/models/competetion";
+import bookForCompetetion from "@/models/competetion";
 import { connect } from "@/dbConfig/dbConfig";
 
 connect();

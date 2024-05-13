@@ -299,7 +299,7 @@ export default function Navbar({ fixed }: any) {
               </Link>
             </motion.div>
           </li>
-          {/* <li>
+          <li>
             <motion.div
               initial={{ opacity: 0, x: "-100vh" }}
               animate={{ opacity: 1, x: 0 }}
@@ -326,7 +326,7 @@ export default function Navbar({ fixed }: any) {
                 Order History
               </Link>
             </motion.div>
-          </li> */}
+          </li>
          
         </ul>
       </div>

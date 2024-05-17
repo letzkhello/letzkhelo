@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import EventsCarousel from "./EventCarousel";
+import { useRouter } from "next/navigation";
 export const HomeComponent = () => {
   const [isMounted, setIsMounted] = useState(false);
 
@@ -17,6 +18,7 @@ export const HomeComponent = () => {
     { url: "/badmintoncover.jpg", title: "forest" },
     { url: "/carous.jpg", title: "city" },
   ];
+  const router=useRouter()
 
   useEffect(() => {
     setIsMounted(true);
@@ -83,11 +85,14 @@ export const HomeComponent = () => {
           </div>
         </section>
       </div>
-      <div>
-        <p>
-          Our Events
-        </p>
-        <EventsCarousel/>
+      <div className="md:p-16 p-2 w-full overflow-x-auto md:overflow-hidden" >
+        <div className=" flex justify-between">
+          <p className="text-2xl font-bold text-gray-800 md:text-3xl lg:text-4xl mb-8">
+            Events Near You
+          </p>
+          <p className="cursor-pointer" onClick={()=>router.push('/allEvents')}>view all --&gt;</p>
+        </div>
+        <EventsCarousel />
       </div>
       <Card />
       <div className="m-0 p-0">

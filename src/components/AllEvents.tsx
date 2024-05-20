@@ -2,7 +2,6 @@
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { Shimmer } from "./Shimmer";
 interface Event {
   image: string;
@@ -16,7 +15,7 @@ interface Event {
 function AllEvents() {
   const [allEvents, setAllEvents] = useState<Event[]>([]);
   const [loading,setLoading]=useState<boolean>(false)
-  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [filteredEvents, setFilteredEvents] = useState<Event[]>([]);
   const [dateFilter, setDateFilter] = useState({
     olderThan: "",
     newerThan: "",
@@ -53,26 +52,56 @@ function AllEvents() {
     };
     getAllEvents();
   }, []);
+  const [showFilters, setShowFilters] = useState(false);
+  // useEffect(() => {
+  //   const getFilteredEvents = async () => {
+  //     let query = "/api/getAllEvents?";
+  //      const filters = [];
+  //     if (dateFilter.olderThan) {
+  //       query += `date=${dateFilter.olderThan.toString}&dateFilter=$lt`;
+  //     }
+  //     if (dateFilter.newerThan) {
+  //       query += `date=${dateFilter.newerThan.toString}&dateFilter=$gt`;
+  //     }
+  //     if (priceFilter.minPrice) {
+  //       console.log(priceFilter, typeof priceFilter.minPrice);
+  //       query += `entryFees=${priceFilter.minPrice}&entryFeesFilter=$gt`;
+  //     }
+  //     if (priceFilter.maxPrice) {
+  //       query += `entryFees=${priceFilter.maxPrice}&entryFeesFilter=$lt`;
+  //     }
+
+  //     const res = await axios.get(query);
+  //     setFilteredEvents(res.data);
+  //     //   setAllEvents(res.data);
+  //   };
+
+  //   getFilteredEvents();
+  // }, [dateFilter, priceFilter]);
   useEffect(() => {
     const getFilteredEvents = async () => {
       let query = "/api/getAllEvents?";
+      const filters = [];
+
       if (dateFilter.olderThan) {
-        query += `date=${dateFilter.olderThan.toString}&dateFilter=$lt;`;
+        filters.push(`date=${dateFilter.olderThan}&dateFilter=$lt`);
       }
       if (dateFilter.newerThan) {
-        query += `date=${dateFilter.newerThan.toString}&dateFilter=$gt;`;
+        filters.push(`date=${dateFilter.newerThan}&dateFilter=$gt`);
       }
       if (priceFilter.minPrice) {
-        console.log(priceFilter, typeof priceFilter.minPrice);
-        query += `entryFees=${priceFilter.minPrice}&entryFeesFilter=$gt;`;
+        filters.push(`entryFees=${priceFilter.minPrice}&entryFeesFilter=$gt`);
       }
       if (priceFilter.maxPrice) {
-        query += `entryFees=${priceFilter.maxPrice}&entryFeesFilter=$lt;`;
+        filters.push(`entryFees=${priceFilter.maxPrice}&entryFeesFilter=$lt`);
+      }
+
+      if (filters.length > 0) {
+        query += filters.join("&");
       }
 
       const res = await axios.get(query);
       setFilteredEvents(res.data);
-      //   setAllEvents(res.data);
     };
 
     getFilteredEvents();
@@ -84,11 +113,11 @@ function AllEvents() {
   
   return (
     <div className="w-full p-4 flex flex-wrap justify-center">
-      <p className="text-xl font-sans w-full text-center text-black font-bold md:text-2xl lg:text-4xl">
+      <p className="text-xl font-sans w-full text-center text-black font-bold md:text-2xl lg:text-4xl mb-2">
         ALL EVENTS
       </p>
 
-      {/* <div className="flex flex-col sm:flex-row items-center my-4 space-y-4 sm:space-y-0 sm:space-x-4">
+      <div className="flex flex-col sm:flex-row items-center my-4 space-y-4 sm:space-y-0 sm:space-x-4">
         <div>
           <label className="mr-2">Older Than:</label>
           <input
@@ -112,7 +141,7 @@ function AllEvents() {
           />
         </div>
         <div>
-          <label className="mr-2">Min Price:</label>
+          <label className="mr-2">Min Entry Price:</label>
           <input
             type="number"
             value={priceFilter.minPrice}
@@ -123,7 +152,7 @@ function AllEvents() {
           />
         </div>
         <div>
-          <label className="mr-2">Max Price:</label>
+          <label className="mr-2">Max Entry Price:</label>
           <input
             type="number"
             value={priceFilter.maxPrice}
@@ -133,8 +162,8 @@ function AllEvents() {
             className="p-2 border rounded"
           />
         </div>
-      </div> */}
-      {allEvents.map((event, id) => {
+      </div> 
+      {filteredEvents.map((event, id) => {
         return (
           <div className="flex p-5" key={id}>
             <div className="card w-80 p-2 my-6 glass transition-transform transform hover:scale-105 duration-300 sm:my-12 bg-white">

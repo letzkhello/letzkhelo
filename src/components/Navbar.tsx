@@ -62,7 +62,7 @@ export default function Navbar({ fixed }: any) {
     setIsOpen(false);
   };
   return (
-    <div className="navbar lg:py-2 lg:h-[20vh] md:px-28 flex justify-between items-center z-10">
+    <div className="navbar lg:py-2 lg:h-[20vh] md:px-24 flex justify-between items-center z-10">
       <div className="flex items-center justify-between px-4 py-4 lg:hidden ">
         <div className="z-50">
           <button
@@ -307,7 +307,8 @@ export default function Navbar({ fixed }: any) {
             >
               <Link
                 href="/allProducts"
-                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+
               >
                 Store
               </Link>
@@ -321,7 +322,8 @@ export default function Navbar({ fixed }: any) {
             >
               <Link
                 href="/yourOrders"
-                className="text-xl font-semibold pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+
               >
                 Order History
               </Link>
@@ -331,7 +333,7 @@ export default function Navbar({ fixed }: any) {
         </ul>
       </div>
 
-      <div className="dropdown dropdown-end md:ml-10" >
+      <div className="dropdown dropdown-end md:ml-10 ml-2" >
         <label
           tabIndex={0}
           className="btn btn-ghost btn-circle avatar bg-white"

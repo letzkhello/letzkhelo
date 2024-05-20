@@ -34,7 +34,7 @@ export const SuccessPageComponent = ({ params }: any) => {
         <div className="flex flex-col items-center justify-center mt-12 lg:mt-8">
           <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center">
             <div className="text-2xl h-full w-full flex justify-center items-center">
-              <TiTick className="text-white h-full w-full" />
+              <TiTick className="text-black h-full w-full" />
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@ export const SuccessPageComponent = ({ params }: any) => {
         <h1 className="text-3xl font-bold text-green-600 my-4">
           Registration Successful
         </h1>
-        <p className="text-lg text-white px-10">
+        <p className="text-lg text-black px-10">
           <span className="font-bold uppercase  ">{session?.user?.name}</span>,
           Thank you for Registration in{" "}
           {getGame?.map((game) => {
@@ -55,7 +55,7 @@ export const SuccessPageComponent = ({ params }: any) => {
             }
           })}
         </p>
-        <p className="text-lg text-white px-10 my-4">
+        <p className="text-lg text-black px-10 my-4">
           <span className="font-bold uppercase">Venue : </span>
           {getGame?.map((game) => {
             if (game?._id == params?.id) {
@@ -68,18 +68,18 @@ export const SuccessPageComponent = ({ params }: any) => {
           })}
         </p>
 
-        <p className="text-lg text-white px-10 my-4">
+        <p className="text-lg text-black px-10 my-4">
           <span className="font-bold uppercase">Time : </span>
             11:00 AM
         </p>
 
-        <p className="text-lg text-white my-4 px-10">
+        <p className="text-lg text-black my-4 px-10">
         Please remember to bring your Aadhar card for verification purposes. It helps us ensure accurate and secure identification.
         </p>
 
         <Link href={"/"} className="my-4 p-0">
           <button
-            className="inline-flex items-center px-3 py-2 mb-4 text-sm font-medium text-center lg:text-xl text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 hover:scale-110 duration-300"
+            className="inline-flex items-center px-3 py-2 mb-4 text-sm font-medium text-center lg:text-xl text-black bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 hover:scale-110 duration-300"
           >
             Go Back to Home
           </button>

@@ -26,15 +26,15 @@ export const HomeComponent = () => {
 
   return (
     <div>
-      <div className="bg-white ">
-        <section className="container items-center px-4 pb-12 mx-auto  lg:flex md:px-40">
+      <div className="bg-white">
+        <section className="container items-center px-4 pb-12 mx-auto  lg:flex md:px-28">
           <div className="flex-1 space-y-4 sm:text-center lg:text-left">
             <div>
               <div className="">
-                <h1 className="md:text-7xl text-5xl font-bold  pt-5 text-orange-400">
+                <h1 className="md:text-7xl text-5xl font-bold  pt-5 text-black">
                   Your Sports &nbsp;
                 </h1>
-                <h1 className="md:text-7xl text-5xl font-bold  pt-5 text-orange-400">
+                <h1 className="md:text-7xl text-5xl font-bold  pt-5 text-black">
                   Platform
                 </h1>
               </div>
@@ -80,22 +80,24 @@ export const HomeComponent = () => {
           <div>
             <img
               src="/group.jpg"
-              className="w-80 h-80 mx-auto mt-6  rounded-full"
+              className="w-96 h-96 mx-auto mt-6  rounded-full"
             />
           </div>
         </section>
       </div>
-      <div className="md:p-16 p-2 w-full overflow-x-auto md:overflow-hidden" >
+      <div className="md:py-16 md:px-24 p-2 w-full overflow-x-auto md:overflow-hidden" >
         <div className=" flex justify-between">
           <p className="text-2xl font-bold text-gray-800 md:text-3xl lg:text-4xl mb-8">
             Events Near You
           </p>
-          <p className="cursor-pointer" onClick={()=>router.push('/allEvents')}>view all --&gt;</p>
+          <p className="cursor-pointer" onClick={()=>router.push('/allEvents')}>View all --&gt;</p>
         </div>
         <EventsCarousel />
       </div>
+      <div className="md:px-20">
       <Card />
-      <div className="m-0 p-0">
+      </div>
+      <div className="m-0 p-0 md:px-24">
         <Features />
       </div>
     </div>

@@ -11,7 +11,25 @@ interface Event {
 function EventsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [allEvents, setAllEvents] = useState<Event[]>([]);
+  const convertDate = (dateString: any) => {
+    const date = new Date(dateString);
 
+    if (!isNaN(date.getTime())) {
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, "0");
+      const day = date.getDate().toString().padStart(2, "0");
+      const hours = date.getHours();
+      const minutes = date.getMinutes().toString().padStart(2, "0");
+
+      const ampm = hours >= 12 ? "PM" : "AM";
+      const displayHours = hours % 12 || 12;
+
+      const showDate = `${day}-${month}-${year}`;
+      return showDate;
+    } else {
+      return "Coming Soon";
+    }
+  };
 
   useEffect(() => {
     const getAllEvents = async () => {
@@ -94,7 +112,7 @@ function EventsCarousel() {
                   Entry Fees: {item?.entryFees}
                 </p>
                 <p className="text-gray-600 mb-1">Location: {item?.location}</p>
-                <p className="text-gray-600 mb-1">Date: {item?.date}</p>
+                <p className="text-gray-600 mb-1">Date: {convertDate(item?.date)}</p>
                 {/* <p className="text-gray-600 mb-1">
                   Description: {item?.description}
                 </p> */}

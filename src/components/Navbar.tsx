@@ -189,7 +189,7 @@ export default function Navbar({ fixed }: any) {
       <div className="relative top-[-15px] lg:top-[-32px]  xl:top-[-40px] ">
         <Link href="/" className="btn btn-ghost normal-case text-xl ">
           <Image
-            src="/LetzKhelo.png"
+            src="/letzkhelo-logo.png"
             alt="Letzkhelo"
             height={125}
             width={125}

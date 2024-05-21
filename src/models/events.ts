@@ -13,6 +13,7 @@ interface IEvent extends Document {
   registrationClosed: boolean;
   entryFees: Number;
   locationLink: string;
+  contactInfo: string;
 }
 
 const EventSchema = new Schema<IEvent>({
@@ -58,6 +59,10 @@ const EventSchema = new Schema<IEvent>({
     type: Schema.Types.String,
     required: false,
   },
+  contactInfo: {
+    type: Schema.Types.String,
+    required: false
+  }
 });
 
 const AddEvent: Model<IEvent> =

@@ -10,7 +10,7 @@ connect();
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
-    const { eventName, description, image, location, date, entryFees, locationLink  } =
+    const { eventName, description, image, location, date, entryFees, locationLink, contactInfo  } =
       reqBody;
 
 
@@ -22,6 +22,7 @@ export async function POST(request: NextRequest) {
         date,
         entryFees,
         locationLink,
+        contactInfo
     });
 
     await AllEvent.save();

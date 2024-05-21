@@ -10,15 +10,21 @@ export async function GET(request: NextRequest) {
     const { url } = request;
     const { query } = parse(url || '', true);
 
-    const { date, entryFees, dateFilter, entryFeesFilter } = query;
+    const { date, dateFilter, minFees, maxFees } = query;
 
     // Prepare filter criteria
     const filter: any = {};
     if (date && dateFilter) {
       filter.date = { [dateFilter as string]: date };
     }
-    if (entryFees && entryFeesFilter) {
-      filter.entryFees = { [entryFeesFilter as string]: entryFees };
+    if (minFees || maxFees) {
+      filter.entryFees = {};
+      if (minFees) {
+        filter.entryFees.$gte = minFees;
+      }
+      if (maxFees) {
+        filter.entryFees.$lte = maxFees;
+      }
     }
 
     // Query events based on filter

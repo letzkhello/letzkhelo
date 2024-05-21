@@ -3,27 +3,33 @@ import AddEvent from "@/models/events";
 import { NextRequest, NextResponse } from "next/server";
 import { parse } from 'url';
 
-connect();
-
 export async function GET(request: NextRequest) {
   try {
+    await connect();
+    
     const { url } = request;
     const { query } = parse(url || '', true);
 
-    const { date, dateFilter, minFees, maxFees } = query;
+    const { minDate, maxDate, minFees, maxFees } = query;
 
     // Prepare filter criteria
     const filter: any = {};
-    if (date && dateFilter) {
-      filter.date = { [dateFilter as string]: date };
+    if (minDate || maxDate) {
+      filter.date = {};
+      if (minDate) {
+        filter.date.$gte = new Date(minDate as string);
+      }
+      if (maxDate) {
+        filter.date.$lte = new Date(maxDate as string);
+      }
     }
     if (minFees || maxFees) {
       filter.entryFees = {};
       if (minFees) {
-        filter.entryFees.$gte = minFees;
+        filter.entryFees.$gte = parseFloat(minFees as string);
       }
       if (maxFees) {
-        filter.entryFees.$lte = maxFees;
+        filter.entryFees.$lte = parseFloat(maxFees as string);
       }
     }
 

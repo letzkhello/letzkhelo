@@ -101,16 +101,16 @@ function AllEvents() {
       const filters = [];
 
       if (dateFilter.olderThan) {
-        filters.push(`date=${debouncedOlderThan}&dateFilter=$lt`);
+        filters.push(`minDate=${debouncedOlderThan}`);
       }
       if (dateFilter.newerThan) {
-        filters.push(`date=${debouncedNewerThan}&dateFilter=$gt`);
+        filters.push(`maxDate=${debouncedNewerThan}`);
       }
       if (priceFilter.minPrice) {
-        filters.push(`minPrice=${debouncedMinPrice}`);
+        filters.push(`minFees=${debouncedMinPrice}`);
       }
       if (priceFilter.maxPrice) {
-        filters.push(`maxPrice=${debouncedMaxPrice}`);
+        filters.push(`maxFees=${debouncedMaxPrice}`);
       }
 
       if (filters.length > 0) {
@@ -218,6 +218,8 @@ function AllEvents() {
                     {/* </Link> */}
                   </p>
                   <p>Date: {convertDate(event?.date)}</p>
+                  <p>Entry Price: {event?.entryFees}</p>
+
                   {/* {event?.isOnlinePaymentAvailable && (
               <p>
                 Entry Fee-Online:{" "}

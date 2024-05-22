@@ -173,6 +173,7 @@ function AllEvents() {
               className="p-2 border rounded w-full"
             />
           </div>
+          
           <div className="w-full sm:w-auto">
             <label className="mr-2">Max Entry Price:</label>
             <input

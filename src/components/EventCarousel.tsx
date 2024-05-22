@@ -105,7 +105,7 @@ function EventsCarousel() {
                 width={400}
               />
               <div className="p-4">
-                <p className="text-xl font-semibold text-gray-800 mb-2">
+                <p className="text-xl font-semibold text-gray-800 mb-2 w-80">
                   Event Name: {item?.eventName}
                 </p>
                 <p className="text-gray-600 mb-1">

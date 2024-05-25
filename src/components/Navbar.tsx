@@ -62,7 +62,7 @@ export default function Navbar({ fixed }: any) {
     setIsOpen(false);
   };
   return (
-    <div className="navbar lg:py-2 lg:h-[20vh] md:px-24 flex justify-between items-center z-10">
+    <div className="navbar lg:py-2 lg:h-[20vh] md:px-24.5 flex justify-between items-center z-10">
       <div className="flex items-center justify-between px-4 py-4 lg:hidden ">
         <div className="z-50">
           <button
@@ -186,7 +186,7 @@ export default function Navbar({ fixed }: any) {
         </div>
       </div>
 
-      <div className="relative top-[-15px] lg:top-[-32px]  xl:top-[-40px] ">
+      <div className="relative items-start top-[-15px] lg:top-[-32px]  xl:top-[-40px] ">
         <Link href="/" className="btn btn-ghost normal-case text-xl ">
           <Image
             src="/letzkhelo-logo.png"
@@ -331,6 +331,11 @@ export default function Navbar({ fixed }: any) {
           </li>
          
         </ul>
+      </div>
+      <div className="flex items-center md:ml-10 ml-2">
+        <div className="text-xl font-bold mr-4">
+        🟡400
+        </div>
       </div>
 
       <div className="dropdown dropdown-end md:ml-10 ml-2" >

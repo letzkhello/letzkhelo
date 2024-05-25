@@ -9,6 +9,7 @@ import img from "@/../public/avatar.png";
 import Loader from "@/components/Loader";
 import Link from "next/link";
 import BeatLoader from "react-spinners/BeatLoader";
+import Modal from "./ReferallInfomodal";
 interface User {
   age: number;
   email: string;
@@ -158,7 +159,14 @@ export default function ProfileComponent() {
       modalRef.current.showModal();
     }
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+
+  const showrefModal =  ()=>{
+    setIsModalOpen(true);
+    console.log(isModalOpen);
+  }
+ const hideModal= ()=> setIsModalOpen(false);
   useEffect(() => {
     fetchData();
   }, [singleUserState]);
@@ -416,6 +424,17 @@ export default function ProfileComponent() {
                  
                   </div>
                 </div>
+
+                <div className="py-4 mt-2 text-white flex items-center justify-around">
+                 <button className="btn" onClick={()=>{setIsModalOpen(true);
+   console.log(isModalOpen);}}> How to use refferal </button>
+               </div>
+
+               <Modal show={isModalOpen} onClose={hideModal}>
+       <h2>Modal Title</h2>
+       <p>This is the modal content.</p>
+     </Modal>
+
                 {
                   <div className="py-4 mt-2 text-white flex items-center justify-around">
                     <button className="btn" onClick={() => openModal(user)}>

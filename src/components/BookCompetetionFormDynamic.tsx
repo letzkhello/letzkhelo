@@ -26,6 +26,8 @@ export function BookCompetetionFormDynamic({ params }: any) {
     age: "",
     weight: "",
     phoneNumber: "",
+    referralId: "",
+    redeemPoints: "",
   });
 
   useEffect(() => {
@@ -33,10 +35,10 @@ export function BookCompetetionFormDynamic({ params }: any) {
       ...prevFormData,
     }));
   }, [session?.user?.email]);
-  const [paymentLoading,setPaymentLoading]=useState(false)
+  const [paymentLoading, setPaymentLoading] = useState(false);
   const makePayment = async (sport: any) => {
     // "use server"
-    setPaymentLoading(true)
+    setPaymentLoading(true);
     const key = process.env.RAZORPAY_API_KEY;
     console.log(key);
     const calculatedAmount =
@@ -108,7 +110,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
 
     const paymentObject = (window as any).Razorpay(options);
     paymentObject.open();
-    setPaymentLoading(false)
+    setPaymentLoading(false);
 
     paymentObject.on("payment.failed", function (response: any) {
       alert("Payment failed. Please try again. Contact support for help");
@@ -122,7 +124,6 @@ export function BookCompetetionFormDynamic({ params }: any) {
     setLoader(false);
     setAllSports(res?.data);
   };
-
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
     if (e.target.name === "phoneNumber") {
@@ -141,6 +142,37 @@ export function BookCompetetionFormDynamic({ params }: any) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleReferralIdChange = async (event: { target: { name: any; value: any; }; }) => {
+    const id = event.target.value;
+    
+    if (id.length === 10) {  // Assuming referral ID length is 10
+      try {
+        const response = await axios.get(`https://api.example.com/check-referral/${id}`);
+      } catch (error) {
+        console.error('Error checking referral ID:', error);
+      }
+    }
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleRedeemPoints = async (event: { target: {  name: any; value: string; }; }) => {
+    const redeem = event.target.value === 'yes';
+    if (redeem) {
+      try {
+        const response = await axios.get('https://api.example.com/get-reward-points');
+      } catch (error) {
+        console.error('Error fetching reward points:', error);
+      }
+    }
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
     });
   };
 
@@ -184,6 +216,8 @@ export function BookCompetetionFormDynamic({ params }: any) {
         weight: "",
         age: "",
         phoneNumber: "",
+        referralId: "",
+        redeemPoints: "",
       });
 
       router.push(`/SuccessPage/${params.id}`);
@@ -208,7 +242,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
             return (
               <div key={sport?._id}>
                 <div className="w-full lg:bg-[#090c31] flex justify-center items-center lg:h-[140vh]">
-                  <main className="bg-white w-full h-full lg:h-[80%] lg:w-[70%] p-12 lg:rounded-tl-none lg:rounded-tr-[200px] lg:rounded-br-[200px] lg:rounded-bl-none">
+                  <main className="bg-white w-full h-full lg:h-[95%] lg:w-[70%] p-12 lg:rounded-tl-none lg:rounded-tr-[200px] lg:rounded-br-[200px] lg:rounded-bl-none">
                     <h2 className="flex uppercase justify-center font-bold text-xl pt-10 pb-3 border-b-2 border-b-orange-700 lg:text-2xl lg:justify-start">
                       Book For Competetion
                     </h2>
@@ -299,21 +333,23 @@ export function BookCompetetionFormDynamic({ params }: any) {
                         >
                           weight:
                         </label>
-                          <select
-                            id="weight"
-                            name="weight"
-                            onChange={handleChange}
-                            className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
-                          >
-                            <option value="">SELECT</option>
-                            <option value="Below 50">Below 50</option>
-                            <option value="50-60">50-60</option>
-                            <option value="60-70">60-70</option>
-                            <option value="Above 70">above 70</option>
-                          </select>
-                       
+                        <select
+                          id="weight"
+                          name="weight"
+                          onChange={handleChange}
+                          className="self-stretch p-1 rounded-md border border-solid lg:w-4/5 border-[rgba(123,123,123,0.6)] outline-none"
+                        >
+                          <option value="">SELECT</option>
+                          <option value="Below 50">Below 50</option>
+                          <option value="50-60">50-60</option>
+                          <option value="60-70">60-70</option>
+                          <option value="Above 70">above 70</option>
+                        </select>
                       </div>
-                      <p className="font-normal   lg:w-3/5 mx-0 my-1">NOTE: If you want to participate in multiple category you can enroll yourself at the venue</p>
+                      <p className="font-normal   lg:w-3/5 mx-0 my-1">
+                        NOTE: If you want to participate in multiple category
+                        you can enroll yourself at the venue
+                      </p>
                       {formData.weight.trim() === "" && (
                         <p className="text-sm text-red-500">Select weight</p>
                       )}
@@ -344,9 +380,63 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           Enter phone number
                         </p>
                       )}
-                    
-                    
+
+                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">
+                        <label
+                          htmlFor="referral"
+                          className="font-normal text-lg lg:text-xl lg:w-2/5 mx-0 my-1"
+                        >
+                          Referral Id:
+                        </label>
+                        <input
+                          id="referral"
+                          type="text"
+                          name="referralId"
+                          placeholder="Enter Referral Id"
+                          value={formData.referralId}
+                          onChange={handleReferralIdChange}
+                          className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
+                        />
+                      </div>
                       
+                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-start lg:h-12 lg:w-3/5 m-1 mt-3">
+                        <p
+                          className="font-normal text-lg lg:text-xl mx-0 my-1 mr-3"
+                        >
+                          Do you want to redeem reward points
+                        </p>
+                        <div>
+                          <input
+                            id="yes"
+                            type="radio"
+                            name="redeemPoints"
+                            value="yes"
+                            onChange={handleRedeemPoints}
+                            className="p-2 h-4 w-4 mr-1 rounded-md border border-solid lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
+                          />
+                          <label
+                          htmlFor="yes"
+                          className="font-normal text-lg lg:text-xl mx-0 my-1 mr-2"
+                          >Yes</label>
+                          <input
+                            id="no"
+                            type="radio"
+                            name="redeemPoints"
+                            value="no"
+                            checked
+                            onChange={handleRedeemPoints}
+                            className="p-2 h-4 w-4 mr-1 rounded-md border border-solid lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
+                          />
+                           <label
+                          htmlFor="no"
+                          className="font-normal text-lg lg:text-xl mx-0 my-1"
+                          >No</label>
+                        </div>
+                      </div>
+                      <p className="font-normal   lg:w-3/5 mx-0 my-1">
+                        NOTE: Minimum 100 reward points redeem at a time
+                      </p>
+
                       <div className="md:flex m-auto">
                         <button
                           type="button"
@@ -364,7 +454,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
                                 : "pointer",
                           }}
                         >
-                           {paymentLoading ? (
+                          {paymentLoading ? (
                             <div className="flex justify-evenly items-center w-full">
                               Registering
                               <BeatLoader
@@ -376,7 +466,9 @@ export function BookCompetetionFormDynamic({ params }: any) {
                               />
                             </div>
                           ) : (
-                            "Register-online( Rs. " + sport.onlineEntryFees + ")"
+                            "Register-online( Rs. " +
+                            sport.onlineEntryFees +
+                            ")"
                           )}
                         </button>
                         <button
@@ -406,7 +498,9 @@ export function BookCompetetionFormDynamic({ params }: any) {
                               />
                             </div>
                           ) : (
-                            "Register-offline( Rs. " + sport.offlineEntryFees + ")"
+                            "Register-offline( Rs. " +
+                            sport.offlineEntryFees +
+                            ")"
                           )}
                         </button>
                       </div>

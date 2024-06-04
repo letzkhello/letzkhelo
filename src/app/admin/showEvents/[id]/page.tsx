@@ -19,26 +19,25 @@ function page() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoader(true);
-        const tokenResponse = await axios.post(
-          "https://letzkhelo-backend.onrender.com/token",
-          new URLSearchParams({ username: "admin", password: "abc" }),
+        const response = await axios.post('https://letzkhelo-backend.onrender.com/admin/get_registered_users_by_sport_name', 
+          {
+            sportName: 'Arm Wrestling S4',
+            email: 'mohitmongia2005@gmail.com',
+          }, 
           {
             headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-              Accept: "application/json",
+              Authorization: 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyODIzNTQ4Nn0.yl383fYp6pTk1a3iy_KrJwGByUVGFV5uz9uL9YsOaRg',
             },
           }
         );
-        // Handle successful response
-        console.log("Access Token:", tokenResponse.data.access_token);
-        const response = await axios.get("https://letzkhelo-backend.onrender.com/token/admin/");
-        setEventData(response?.data);
-        setLoader(false);
+        console.log(response.data, "res");
+        setUsers(response.data);
       } catch (error) {
-        console.log(error);
+        console.error('Error fetching registered users', error);
       }
-    };
+    }
+    
+
     fetchData();
   }, []);
   const filterByWeight = (sport: string) => {
@@ -80,7 +79,7 @@ function page() {
       <div className="overflow-x-auto mx-4">
         <div className="my-4">
           <h4 className=" font-sans  text-black font-bold md:text-2xl text-sm">
-            Total Participants : 20
+            Total Participants : {users?.length}
           </h4>
         </div>
         <table className="table table-xs">
@@ -94,13 +93,19 @@ function page() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Littel, Schaden and Vandervort</td>
-              <td>Canada</td>
-            </tr>
+          {users.map((obj:any,index)=>{
+              return(
+                <tr>
+           
+                <th>{index+1}</th>
+                <td>{obj?.userName}</td>
+                <td>{obj?.age}</td>
+                <td>{obj?.weight}</td>
+                {/* <td></td> */}
+              </tr>
+              )
+            })}
+          
           </tbody>
         </table>
       </div>

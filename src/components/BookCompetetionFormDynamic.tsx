@@ -7,7 +7,20 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Loader from "./Loader";
 import Razorpay from "razorpay";
-
+interface User {
+  age: number;
+  email: string;
+  intrestedSport: string;
+  instagramLink: string;
+  isAdmin: boolean;
+  name: string;
+  weight: string;
+  _id: number;
+  wallet_balance: any;
+  referral_credits: any;
+  wallet_history: any;
+  referral_code: any;
+}
 export function BookCompetetionFormDynamic({ params }: any) {
   const { data: session } = useSession();
   const router = useRouter();
@@ -29,6 +42,21 @@ export function BookCompetetionFormDynamic({ params }: any) {
     referralId: "",
     redeemPoints: "",
   });
+  const [referralCode, setReferralCode] = useState();
+
+  function sumAmounts(data: any) {
+    const currentDate = new Date();
+    let sum = 0;
+
+    data?.forEach((item: any) => {
+      const unlockDate = new Date(item.unlock_date);
+      if (unlockDate <= currentDate) {
+        sum += item.amount;
+      }
+    });
+
+    return sum;
+  }
 
   useEffect(() => {
     setFormData((prevFormData) => ({
@@ -41,8 +69,10 @@ export function BookCompetetionFormDynamic({ params }: any) {
     setPaymentLoading(true);
     const key = process.env.RAZORPAY_API_KEY;
     console.log(key);
-    const calculatedAmount =
-      sport.onlineEntryFees || formData.registrationPrice || 5400;
+    const calculatedAmount = referralIdRight
+      ? 0.95 * sport.onlineEntryFees
+      : sport.onlineEntryFees || formData.registrationPrice || 5400;
+
     // setDynamicAmount(calculatedAmount);
     console.log(dynamicAmount);
     // Make API call to the serverless API
@@ -90,6 +120,12 @@ export function BookCompetetionFormDynamic({ params }: any) {
         console.log("response verify==", res);
 
         if (res?.message == "success") {
+          await applyReferral({
+            user_email: session?.user?.email || "",
+            referral_code: referralCode || "",
+            competition_fees: sport.onlineEntryFees,
+            sport_referred_to: sport.sportName,
+          });
           console.log("redirected.......");
           // Add route after payment success
           handleSubmit(
@@ -118,6 +154,44 @@ export function BookCompetetionFormDynamic({ params }: any) {
   };
   console.log(session, "ll");
 
+  interface ReferralData {
+    user_email: string;
+    referral_code: string;
+    competition_fees: number;
+    sport_referred_to: string;
+  }
+
+  const applyReferral = async (data: ReferralData) => {
+    try {
+      const response = await axios.post(
+        "https://letzkhelo-backend.onrender.com/apply_referral",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log("Response:", response.data);
+    } catch (error) {
+      console.error("Error applying referral:", error);
+    }
+  };
+
+  // useEffect(()=>{
+  //   if(session){
+  //     console.log('asdsa')
+  //      applyReferral({
+  //       "user_email": session.user?.email || '',
+  //       "referral_code":referralCode || '' ,
+  //       "competition_fees": 500,
+  //       "sport_referred_to": formData.sportName
+  //   })
+  //   }
+
+  // },[session,referralCode])
+
   const getAllSports = async () => {
     setLoader(true);
     const res = await axios.get("/api/getAllSports");
@@ -144,30 +218,93 @@ export function BookCompetetionFormDynamic({ params }: any) {
       [e.target.name]: e.target.value,
     });
   };
+  function checkSubstringLengthAfterHyphen(str: any) {
+    // Find the position of the hyphen in the string
+    let hyphenIndex = str.indexOf("-");
 
-  const handleReferralIdChange = async (event: { target: { name: any; value: any; }; }) => {
-    const id = event.target.value;
-    
-    if (id.length === 10) {  // Assuming referral ID length is 10
-      try {
-        const response = await axios.get(`https://api.example.com/check-referral/${id}`);
-      } catch (error) {
-        console.error('Error checking referral ID:', error);
+    // Check if there is a hyphen
+    if (hyphenIndex !== -1) {
+      // Get the substring after the hyphen
+      let substringAfterHyphen = str.substring(hyphenIndex + 1);
+
+      // Check if the length of the substring is exactly 5
+      if (substringAfterHyphen.length === 5) {
+        return true;
       }
     }
+    return false;
+  }
+  const [referalLoader, setReferralLoader] = useState(false);
+  const [singleUser, setSingleUser] = useState<User | null>(null);
+
+  const [referralIdRight, setReferralIdRight] = useState(false);
+  const handleReferralIdChange = async (event: {
+    target: { name: any; value: any };
+  }) => {
+    const id = event.target.value;
+    setReferralCode(id);
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
     });
+    // if (checkSubstringLengthAfterHyphen(id)) {  // Assuming referral ID length is 10
+    try {
+      setReferralLoader(true);
+      const result = await axios.post(
+        "https://letzkhelo-backend.onrender.com/check_referral_code",
+        { referral_code: id },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setReferralLoader(false);
+      console.log({ result });
+      if (
+        result.data.message === "Referral code is valid" &&
+        singleUser?.referral_code !== id
+      ) {
+        setReferralIdRight(true);
+      }
+    } catch (error) {
+      setReferralLoader(false);
+      setReferralIdRight(false);
+      console.error("Error checking referral ID:", error);
+    }
+    // }
   };
 
-  const handleRedeemPoints = async (event: { target: {  name: any; value: string; }; }) => {
-    const redeem = event.target.value === 'yes';
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const identifier = session?.user?.email;
+        console.log(identifier);
+        const response = await axios.get(
+          `/api/users/getsingleuser/${identifier}`
+        );
+        // console.log(response.data.data);
+        setSingleUser(response.data.data);
+        // console.log(singleUser,"setted",typeof(singleUser));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [session]);
+
+  const handleRedeemPoints = async (event: {
+    target: { name: any; value: string };
+  }) => {
+    const redeem = event.target.value === "yes";
     if (redeem) {
       try {
-        const response = await axios.get('https://api.example.com/get-reward-points');
+        const response = await axios.get(
+          "https://api.example.com/get-reward-points"
+        );
       } catch (error) {
-        console.error('Error fetching reward points:', error);
+        console.error("Error fetching reward points:", error);
       }
     }
     setFormData({
@@ -398,11 +535,25 @@ export function BookCompetetionFormDynamic({ params }: any) {
                           className="self-stretch p-1  rounded-md border border-solid lg:w-4/5 lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
                         />
                       </div>
-                      
-                      <div className="flex flex-col w-full items-center lg:flex-row lg:justify-start lg:h-12 lg:w-3/5 m-1 mt-3">
-                        <p
-                          className="font-normal text-lg lg:text-xl mx-0 my-1 mr-3"
-                        >
+                      {referalLoader ? (
+                        <>
+                          Checking
+                          <BeatLoader />
+                        </>
+                      ) : referralIdRight ? (
+                        <p className="text-green-700 tex-bold">
+                          Referral Applied
+                        </p>
+                      ) : formData.referralId ? (
+                        <p className="text-red-700 tex-bold">
+                          Enter Valid referral id
+                        </p>
+                      ) : (
+                        ""
+                      )}
+
+                    {sumAmounts(singleUser?.referral_credits)?  <div className="flex flex-col w-full items-center lg:flex-row lg:justify-start lg:h-12 lg:w-3/5 m-1 mt-3">
+                        <p className="font-normal text-lg lg:text-xl mx-0 my-1 mr-3">
                           Do you want to redeem reward points
                         </p>
                         <div>
@@ -415,9 +566,11 @@ export function BookCompetetionFormDynamic({ params }: any) {
                             className="p-2 h-4 w-4 mr-1 rounded-md border border-solid lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
                           />
                           <label
-                          htmlFor="yes"
-                          className="font-normal text-lg lg:text-xl mx-0 my-1 mr-2"
-                          >Yes</label>
+                            htmlFor="yes"
+                            className="font-normal text-lg lg:text-xl mx-0 my-1 mr-2"
+                          >
+                            Yes
+                          </label>
                           <input
                             id="no"
                             type="radio"
@@ -427,15 +580,17 @@ export function BookCompetetionFormDynamic({ params }: any) {
                             onChange={handleRedeemPoints}
                             className="p-2 h-4 w-4 mr-1 rounded-md border border-solid lg:p-4 border-[rgba(123,123,123,0.6)] outline-none"
                           />
-                           <label
-                          htmlFor="no"
-                          className="font-normal text-lg lg:text-xl mx-0 my-1"
-                          >No</label>
+                          <label
+                            htmlFor="no"
+                            className="font-normal text-lg lg:text-xl mx-0 my-1"
+                          >
+                            No
+                          </label>
                         </div>
-                      </div>
-                      <p className="font-normal   lg:w-3/5 mx-0 my-1">
+                      </div>:null}
+                     {sumAmounts(singleUser?.referral_credits)>0? <p className="font-normal lg:w-3/5 mx-0 my-1">
                         NOTE: Minimum 100 reward points redeem at a time
-                      </p>
+                      </p>:null}
 
                       <div className="md:flex m-auto">
                         <button
@@ -467,7 +622,9 @@ export function BookCompetetionFormDynamic({ params }: any) {
                             </div>
                           ) : (
                             "Register-online( Rs. " +
-                            sport.onlineEntryFees +
+                            (referralIdRight
+                              ? 0.95 * sport.onlineEntryFees
+                              : sport.onlineEntryFees) +
                             ")"
                           )}
                         </button>

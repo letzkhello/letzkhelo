@@ -19,6 +19,10 @@ interface User {
   name: string;
   weight: string;
   _id: number;
+  wallet_balance: any;
+  referral_credits: any;
+  wallet_history: any;
+  referral_code:any
 }
 
 export default function ProfileComponent() {
@@ -33,9 +37,8 @@ export default function ProfileComponent() {
   const [imageLoader, setImageLoader] = useState(false);
   const [singleUserState, setSingleUserState] = useState(false);
 
-
   const [formData, setFormData] = useState({
-    userName:"",
+    userName: "",
     age: "",
     instagramLink: "",
     weight: "",
@@ -44,7 +47,7 @@ export default function ProfileComponent() {
   });
   const saveImage = async (userId: any, selectedImage: any) => {
     const data = new FormData();
-    console.log(selectedImage,"myImage");
+    console.log(selectedImage, "myImage");
     data.append("file", selectedImage);
     data.append("upload_preset", "amipzzxk");
     data.append("cloud_name", "dine5j77j");
@@ -74,7 +77,7 @@ export default function ProfileComponent() {
         const res = await axios.patch("/api/users/updateUser", body);
         if (res) {
           getAllUsers();
-          setIsImageSelected(false)
+          setIsImageSelected(false);
         }
       }
       console.log(cloudData.url);
@@ -97,17 +100,18 @@ export default function ProfileComponent() {
       ...prevFormData,
     }));
   }, [session?.user?.email]);
-  const [payment,setPayment]=useState<any>({})
-  
-  useEffect(()=>{
-    const getPaymentData=async()=>{
-      const res=await axios.get( `/api/getPayment?email=${session?.user?.email}`)
-      // console.log(res.data.payments,"payment")
-      setPayment(res)
-    }
-    getPaymentData()
+  const [payment, setPayment] = useState<any>({});
 
-  },[session])
+  useEffect(() => {
+    const getPaymentData = async () => {
+      const res = await axios.get(
+        `/api/getPayment?email=${session?.user?.email}`
+      );
+      // console.log(res.data.payments,"payment")
+      setPayment(res);
+    };
+    getPaymentData();
+  }, [session]);
 
   const handleInputChange = (e: { target: { name: any; value: any } }) => {
     setFormData({
@@ -128,7 +132,7 @@ export default function ProfileComponent() {
 
       toast.success("Profile is Successfully Edited");
       setFormData({
-        userName:"",
+        userName: "",
         age: "",
         instagramLink: "",
         weight: "",
@@ -148,7 +152,7 @@ export default function ProfileComponent() {
   const openModal = (user: User) => {
     if (modalRef.current) {
       setFormData({
-        userName:user?.name,
+        userName: user?.name,
         age: user?.age?.toString(),
         instagramLink: user?.instagramLink,
         weight: user?.weight || "50-55",
@@ -161,22 +165,23 @@ export default function ProfileComponent() {
   };
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
-  const showrefModal =  ()=>{
+  const showrefModal = () => {
     setIsModalOpen(true);
     console.log(isModalOpen);
-  }
- const hideModal= ()=> setIsModalOpen(false);
+  };
+  const hideModal = () => setIsModalOpen(false);
   useEffect(() => {
     fetchData();
-  }, [singleUserState]);
+  }, [singleUserState,session]);
 
   const fetchData = async () => {
     try {
       const identifier = session?.user?.email;
       console.log(identifier);
-      const response = await axios.get(`/api/users/getsingleuser/${identifier}`);
-      console.log(response.data.data,"profile from");
+      const response = await axios.get(
+        `/api/users/getsingleuser/${identifier}`
+      );
+      console.log(response.data.data, "profilek");
       setSingleUser(response.data.data);
       setSingleUserState(false);
       // console.log(singleUser,"setted",typeof(singleUser));
@@ -185,9 +190,21 @@ export default function ProfileComponent() {
       setSingleUserState(false);
     }
   };
+  function sumAmounts(data:any) {
+    const currentDate = new Date();
+    let sum = 0;
 
+    data?.forEach((item:any) => {
+        const unlockDate = new Date(item.unlock_date);
+        if (unlockDate <= currentDate) {
+            sum += item.amount;
+        }
+    });
 
-  const handleImageChange = async (e : any , id : any) => {
+    return sum;
+}
+
+  const handleImageChange = async (e: any, id: any) => {
     // e.preventDefault();
     setImageLoader(true);
     console.log(e.target.files);
@@ -237,7 +254,9 @@ export default function ProfileComponent() {
 
                 <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
                   <img
-                    src={user?.imageLink? user?.imageLink: session?.user?.image}
+                    src={
+                      user?.imageLink ? user?.imageLink : session?.user?.image
+                    }
                     // className="object-cover object-center h-32"
                     className="w-full h-full object-cover object-center"
                     alt="your profile pic"
@@ -258,24 +277,24 @@ export default function ProfileComponent() {
                   <button onClick={(e) => saveImage(user?._id)} className="btn">
                     upload
                   </button> */}
-                
+
                   <>
-                    <label htmlFor="image" className="btn" >
-                    {imageLoader ? (
-                          <div className="flex justify-evenly items-center">
-                            Uploading
-                            <BeatLoader
-                              className=""
-                              color={"#D0021B"}
-                              size={10}
-                              aria-label="Loading Spinner"
-                              data-testid="loader"
-                            />
-                          </div>
-                          // "uploading..."
-                        ) : (
-                      "Upload/Change Image"
-                        )}
+                    <label htmlFor="image" className="btn">
+                      {imageLoader ? (
+                        <div className="flex justify-evenly items-center">
+                          Uploading
+                          <BeatLoader
+                            className=""
+                            color={"#D0021B"}
+                            size={10}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                          />
+                        </div>
+                      ) : (
+                        // "uploading..."
+                        "Upload/Change Image"
+                      )}
                     </label>
                     <input
                       type="file"
@@ -283,12 +302,12 @@ export default function ProfileComponent() {
                       name="image"
                       accept="image/*"
                       style={{ display: "none" }}
-                      onChange={ (e)=> handleImageChange(e,user._id)}
+                      onChange={(e) => handleImageChange(e, user._id)}
                       disabled={imageLoader ? true : false}
                     />
                   </>
-                
-                {/* {isImageSelected && (
+
+                  {/* {isImageSelected && (
                   <p className=" text-2xl text-green-400">Image Selected</p>
                 )}
                 {isImageSelected && (
@@ -297,9 +316,32 @@ export default function ProfileComponent() {
                   </button>
                 )} */}
                 </div>
-                <div className="text-center mt-2">
-                  <h2 className="font-semibold">{user?.name ? user?.name :session?.user?.name}</h2>
+                <div className="m-auto flex justify-center flex-col text-center">
+                  <h2 className="font-semibold">
+                    {user?.name ? user?.name : session?.user?.name}
+                  </h2>
+                  <button className="btn w-44 m-auto" onClick={() => openModal(user)}>
+                      Add Details
+                    </button>
                 </div>
+                <div className="text-center mt-2">
+                  <h2 className="font-semibold">
+                    Referral code: {singleUser?.referral_code}
+                  </h2>
+                </div>
+                <div className="py-4 mt-2 text-white flex items-center justify-around">
+                  <button
+                    className="btn"
+                    onClick={() => {
+                      setIsModalOpen(true);
+                      console.log(isModalOpen);
+                    }}
+                  >
+                    {" "}
+                    How to use refferal{" "}
+                  </button>
+                </div>
+               
                 <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
                   <li className="flex flex-col items-center justify-around">
                     <p className="font-semibold">Contest</p>
@@ -400,46 +442,88 @@ export default function ProfileComponent() {
                       </li>
                     </ul>
 
-                    <h2 className="text-xl font-bold mb-4">
+                    {/* <h2 className="text-xl font-bold mb-4">
                       Write about yourself
                     </h2>
-                    <p className="text-gray-700">To be uploaded</p>
-                    <h2 className="text-xl font-bold mb-4">
-                      Payment History
-                    </h2>
+                    <p className="text-gray-700">To be uploaded</p> */}
+                    <h2 className="text-xl font-bold mb-1">Wallet Info</h2>
+                    <div>
+                    <div><b>Total Coins</b>:{singleUser?.wallet_balance}</div>
+                    <div><b>Redemable Coins</b>:{sumAmounts(singleUser?.referral_credits)}</div>
+                    </div>
+
+
+                    <div  className="mb-7">NOTE:Coins will be redemed after a certain period of time after referal</div>
+
+
+                    <h2 className="text-xl font-bold mb-1">Redemable Points History</h2>
                     <ul className="space-y-2">
-          {payment.data?.payments.map((payment: any) => (
-            <li key={payment._id} className="bg-gray-200 p-4 rounded">
-              <div className="flex flex-col justify-between items-center">
+                      {singleUser?.referral_credits.map((history: any) => (
+                        <li
+                          key={history._id}
+                          className="bg-gray-200 p-4 rounded"
+                        >
+                          <div className="flex flex-col justify-between items-center">
+                            <span>Redemable coins: {history.amount}</span>
+                            <span className="w-full m-auto">Redemable date: {history.unlock_date}</span>
+                           
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  
 
-              <span>Sport Name: {payment.sportname}</span>
-                <span>Order ID: {payment.razorpay_order_id}</span>
-                <span>Payment ID: {payment.razorpay_payment_id}</span>
-                <span className="bg-green-400 py-1 px-2 rounded text-white">PAID</span>
 
-              </div>
-            </li>
-          ))}
-        </ul>
-                 
+                    <h2 className="text-xl font-bold mb-4">Wallet History</h2>
+                    {/* {JSON.stringify(singleUser?.wallet_history)} */}
+                    <ul className="space-y-2">
+                      {singleUser?.wallet_history?.map((history: any) => (
+                        <li
+                          key={history._id}
+                          className="bg-gray-200 p-4 rounded"
+                        >
+                          <div className="flex flex-col justify-between items-center">
+                            <span>Credit: {history.change}</span>
+                            <span className="m-auto w-full">Credited from: {history.description}</span>
+                            <span className="m-auto w-full">Date: {history.timestamp}</span>
+                            
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                    <h2 className="text-xl font-bold mb-4">Payment History</h2>
+                    <ul className="space-y-2">
+                      {payment.data?.payments.map((payment: any) => (
+                        <li
+                          key={payment._id}
+                          className="bg-gray-200 p-4 rounded"
+                        >
+                          <div className="flex flex-col justify-between items-center">
+                            <span>Sport Name: {payment.sportname}</span>
+                            <span>Order ID: {payment.razorpay_order_id}</span>
+                            <span>
+                              Payment ID: {payment.razorpay_payment_id}
+                            </span>
+                            <span className="bg-green-400 py-1 px-2 rounded text-white">
+                              PAID
+                            </span>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
 
-                <div className="py-4 mt-2 text-white flex items-center justify-around">
-                 <button className="btn" onClick={()=>{setIsModalOpen(true);
-   console.log(isModalOpen);}}> How to use refferal </button>
-               </div>
+              
 
-               <Modal show={isModalOpen} onClose={hideModal}>
-       <h2>Modal Title</h2>
-       <p>This is the modal content.</p>
-     </Modal>
+                <Modal show={isModalOpen} onClose={hideModal}>
+                  <h2>Modal Title</h2>
+                  <p>This is the modal content.</p>
+                </Modal>
 
                 {
                   <div className="py-4 mt-2 text-white flex items-center justify-around">
-                    <button className="btn" onClick={() => openModal(user)}>
-                      Add Details
-                    </button>
+                   
 
                     <dialog id="my_modal_1" className="modal" ref={modalRef}>
                       <div className="modal-box">
@@ -447,8 +531,8 @@ export default function ProfileComponent() {
                           className="w-full max-w-sm"
                           onSubmit={(e) => handleSubmit(e, user)}
                         >
-                           <div className="md:flex md:items-center mb-6">
-                          <div className="md:w-1/3">
+                          <div className="md:flex md:items-center mb-6">
+                            <div className="md:w-1/3">
                               <label
                                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
                                 htmlFor="userName"

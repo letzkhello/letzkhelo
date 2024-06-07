@@ -27,6 +27,7 @@ interface User {
   weight: any;
   _id: any;
   imageLink: any;
+  wallet_balance:any;
 }
 
 export default function Navbar({ fixed }: any) {
@@ -334,7 +335,7 @@ export default function Navbar({ fixed }: any) {
       </div>
       <div className="flex items-center md:ml-10 ml-2">
         <div className="text-xl font-bold mr-4">
-        🟡400
+        🟡{singleUser?.wallet_balance?singleUser?.wallet_balance:0}
         </div>
       </div>
 

@@ -528,13 +528,9 @@ export default function ProfileComponent() {
                 </div>
 
                 <Modal show={isModalOpen} onClose={hideModal}>
-                  <h2>How to use referral</h2>
+                  <h2 className="text-xl text-bold mb-2">How to use referral</h2>
                   <p>
-                    Share your unique referral code. Both you and the new user
-                    get 5% of the event fees when the new user completes an
-                    online payment. The new user gets a 5% discount, and you
-                    earn 5% credited to your account. Start sharing and enjoy
-                    the rewards! .
+                  Join our referral program and earn rewards! Share your unique referral code with friends. When they use your code and complete an online payment for an event, both of you benefit. The new user gets a 5% discount on their total event fees, and you receive 5% of the event fees credited to your account. It's a win-win! To get started, log in to your account, find your referral code, and start sharing. There’s no limit to how many people you can refer. Enjoy the rewards and help grow our community. For any questions, contact our support team.
                   </p>
                 </Modal>
 

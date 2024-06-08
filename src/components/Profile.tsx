@@ -22,7 +22,7 @@ interface User {
   wallet_balance: any;
   referral_credits: any;
   wallet_history: any;
-  referral_code:any
+  referral_code: any;
 }
 
 export default function ProfileComponent() {
@@ -172,7 +172,7 @@ export default function ProfileComponent() {
   const hideModal = () => setIsModalOpen(false);
   useEffect(() => {
     fetchData();
-  }, [singleUserState,session]);
+  }, [singleUserState, session]);
 
   const fetchData = async () => {
     try {
@@ -190,19 +190,19 @@ export default function ProfileComponent() {
       setSingleUserState(false);
     }
   };
-  function sumAmounts(data:any) {
+  function sumAmounts(data: any) {
     const currentDate = new Date();
     let sum = 0;
 
-    data?.forEach((item:any) => {
-        const unlockDate = new Date(item.unlock_date);
-        if (unlockDate <= currentDate) {
-            sum += item.amount;
-        }
+    data?.forEach((item: any) => {
+      const unlockDate = new Date(item.unlock_date);
+      if (unlockDate <= currentDate) {
+        sum += item.amount;
+      }
     });
 
     return sum;
-}
+  }
 
   const handleImageChange = async (e: any, id: any) => {
     // e.preventDefault();
@@ -320,9 +320,12 @@ export default function ProfileComponent() {
                   <h2 className="font-semibold">
                     {user?.name ? user?.name : session?.user?.name}
                   </h2>
-                  <button className="btn w-44 m-auto" onClick={() => openModal(user)}>
-                      Add Details
-                    </button>
+                  <button
+                    className="btn w-44 m-auto"
+                    onClick={() => openModal(user)}
+                  >
+                    Add Details
+                  </button>
                 </div>
                 <div className="text-center mt-2">
                   <h2 className="font-semibold">
@@ -341,7 +344,7 @@ export default function ProfileComponent() {
                     How to use refferal{" "}
                   </button>
                 </div>
-               
+
                 <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
                   <li className="flex flex-col items-center justify-around">
                     <p className="font-semibold">Contest</p>
@@ -448,15 +451,23 @@ export default function ProfileComponent() {
                     <p className="text-gray-700">To be uploaded</p> */}
                     <h2 className="text-xl font-bold mb-1">Wallet Info</h2>
                     <div>
-                    <div><b>Total Coins</b>:{singleUser?.wallet_balance}</div>
-                    <div><b>Redemable Coins</b>:{sumAmounts(singleUser?.referral_credits)}</div>
+                      <div>
+                        <b>Total Coins</b>:{singleUser?.wallet_balance}
+                      </div>
+                      <div>
+                        <b>Redemable Coins</b>:
+                        {sumAmounts(singleUser?.referral_credits)}
+                      </div>
                     </div>
 
+                    <div className="mb-7">
+                      NOTE:Coins will be redemed after a certain period of time
+                      after referal
+                    </div>
 
-                    <div  className="mb-7">NOTE:Coins will be redemed after a certain period of time after referal</div>
-
-
-                    <h2 className="text-xl font-bold mb-1">Redemable Points History</h2>
+                    <h2 className="text-xl font-bold mb-1">
+                      Redemable Points History
+                    </h2>
                     <ul className="space-y-2">
                       {singleUser?.referral_credits.map((history: any) => (
                         <li
@@ -465,14 +476,13 @@ export default function ProfileComponent() {
                         >
                           <div className="flex flex-col justify-between items-center">
                             <span>Redemable coins: {history.amount}</span>
-                            <span className="w-full m-auto">Redemable date: {history.unlock_date}</span>
-                           
+                            <span className="w-full m-auto">
+                              Redemable date: {history.unlock_date}
+                            </span>
                           </div>
                         </li>
                       ))}
                     </ul>
-                  
-
 
                     <h2 className="text-xl font-bold mb-4">Wallet History</h2>
                     {/* {JSON.stringify(singleUser?.wallet_history)} */}
@@ -484,9 +494,12 @@ export default function ProfileComponent() {
                         >
                           <div className="flex flex-col justify-between items-center">
                             <span>Credit: {history.change}</span>
-                            <span className="m-auto w-full">Credited from: {history.description}</span>
-                            <span className="m-auto w-full">Date: {history.timestamp}</span>
-                            
+                            <span className="m-auto w-full">
+                              Credited from: {history.description}
+                            </span>
+                            <span className="m-auto w-full">
+                              Date: {history.timestamp}
+                            </span>
                           </div>
                         </li>
                       ))}
@@ -514,17 +527,19 @@ export default function ProfileComponent() {
                   </div>
                 </div>
 
-              
-
                 <Modal show={isModalOpen} onClose={hideModal}>
-                  <h2>Modal Title</h2>
-                  <p>This is the modal content.</p>
+                  <h2>How to use referral</h2>
+                  <p>
+                    Share your unique referral code. Both you and the new user
+                    get 5% of the event fees when the new user completes an
+                    online payment. The new user gets a 5% discount, and you
+                    earn 5% credited to your account. Start sharing and enjoy
+                    the rewards! .
+                  </p>
                 </Modal>
 
                 {
                   <div className="py-4 mt-2 text-white flex items-center justify-around">
-                   
-
                     <dialog id="my_modal_1" className="modal" ref={modalRef}>
                       <div className="modal-box">
                         <form

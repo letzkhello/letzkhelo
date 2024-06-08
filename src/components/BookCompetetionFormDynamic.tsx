@@ -119,12 +119,8 @@ export function BookCompetetionFormDynamic({ params }: any) {
         console.log("response verify==", res);
 
         if (res?.message == "success") {
-          await applyReferral({
-            user_email: session?.user?.email || "",
-            referral_code: referralCode || "",
-            competition_fees: sport.onlineEntryFees,
-            sport_referred_to: sport.sportName,
-          });
+          
+       
           console.log("redirected.......");
           // Add route after payment success
           handleSubmit(
@@ -134,6 +130,19 @@ export function BookCompetetionFormDynamic({ params }: any) {
             sport,
             'online'
           );
+          if(referralCode){
+            try{
+              await applyReferral({
+                user_email: session?.user?.email || "",
+                referral_code: referralCode || "",
+                competition_fees: sport.onlineEntryFees,
+                sport_referred_to: sport.sportName,
+              });
+            }
+            catch(e:any){
+              console.log(e)
+            }
+          }
           // router.push(`/SuccessPage/${params.id}`);
         }
       },

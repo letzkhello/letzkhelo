@@ -469,7 +469,7 @@ export default function ProfileComponent() {
                       Redemable Points History
                     </h2>
                     <ul className="space-y-2">
-                      {singleUser?.referral_credits.map((history: any) => (
+                      {singleUser?.referral_credits?.map((history: any) => (
                         <li
                           key={history._id}
                           className="bg-gray-200 p-4 rounded"
@@ -506,7 +506,7 @@ export default function ProfileComponent() {
                     </ul>
                     <h2 className="text-xl font-bold mb-4">Payment History</h2>
                     <ul className="space-y-2">
-                      {payment.data?.payments.map((payment: any) => (
+                      {payment.data?.payments?.map((payment: any) => (
                         <li
                           key={payment._id}
                           className="bg-gray-200 p-4 rounded"

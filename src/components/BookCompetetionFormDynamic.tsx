@@ -57,7 +57,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
 
     return sum;
   }
-
+const [paymentMode,setPaymentMode]=useState('offline')
   useEffect(() => {
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -126,6 +126,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
             competition_fees: sport.onlineEntryFees,
             sport_referred_to: sport.sportName,
           });
+          setPaymentMode('online')
           console.log("redirected.......");
           // Add route after payment success
           handleSubmit(
@@ -340,6 +341,7 @@ export function BookCompetetionFormDynamic({ params }: any) {
           ? sport.entryFees
           : formData.registrationPrice,
         date: sport?.date,
+        paymentMode:paymentMode,
       };
 
       await axios.post("/api/users/registerForCompetetion", updatedFormData);

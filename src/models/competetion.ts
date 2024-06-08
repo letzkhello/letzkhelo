@@ -41,6 +41,12 @@ const competetionSchema = new mongoose.Schema({
     default:'55-60',
     required: true,
   },
+  paymentMode: {
+    type: Schema.Types.String,
+    default:'55-60',
+    required: true,
+  },
+  
 });
 
 const bookForCompetetion =

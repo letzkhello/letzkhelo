@@ -537,7 +537,7 @@ export default function ProfileComponent() {
                     and complete an online payment for an event, both of you
                     benefit. The new user gets a 5% discount on their total
                     event fees, and you receive 5% of the event fees credited to
-                    your account. It's a win-win! To get started, log in to your
+                    your account. It&apos;s a win-win To get started, log in to your
                     account, find your referral code, and start sharing.
                     There&apos;s no limit to how many people you can refer.
                     Enjoy the rewards and help grow our community. For any

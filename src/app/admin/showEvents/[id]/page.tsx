@@ -95,7 +95,7 @@ function Page() {
           <tbody>
           {users.map((obj:any,index)=>{
               return(
-                <tr>
+                <tr key={index}>
            
                 <th>{index+1}</th>
                 <td>{obj?.userName}</td>

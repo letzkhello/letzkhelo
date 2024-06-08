@@ -11,7 +11,7 @@ interface User {
   paymentMode: string;
 }
 
-function page() {
+function Page() {
   const [getLoader, setLoader] = useState(true);
   const [users, setUsers] = useState<User[]>([]);
   const [eventData, setEventData] = useState<User[]>([]);
@@ -113,4 +113,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

@@ -452,7 +452,7 @@ export default function ProfileComponent() {
                     <h2 className="text-xl font-bold mb-1">Wallet Info</h2>
                     <div>
                       <div>
-                        <b>Total Coins</b>:{singleUser?.wallet_balance}
+                        <b>Total Coins</b>:{singleUser?.wallet_balance>0?singleUser?.wallet_balance:0}
                       </div>
                       <div>
                         <b>Redemable Coins</b>:
@@ -465,7 +465,7 @@ export default function ProfileComponent() {
                       after referal
                     </div>
 
-                    <h2 className="text-xl font-bold mb-1">
+                   {singleUser?.referral_credits?.length?<> <h2 className="text-xl font-bold mb-1">
                       Redemable Points History
                     </h2>
                     <ul className="space-y-2">
@@ -475,16 +475,16 @@ export default function ProfileComponent() {
                           className="bg-gray-200 p-4 rounded"
                         >
                           <div className="flex flex-col justify-between items-center">
-                            <span>Redemable coins: {history.amount}</span>
-                            <span className="w-full m-auto">
-                              Redemable date: {history.unlock_date}
+                            <span><b>Coins to be Redeemed:</b> {history.amount}</span>
+                            <span className="">
+                             <b> Redemable date: </b>{history.unlock_date.substring(0, 10)}
                             </span>
                           </div>
                         </li>
                       ))}
-                    </ul>
+                    </ul></>:null}
 
-                    <h2 className="text-xl font-bold mb-4">Wallet History</h2>
+                  {singleUser?.wallet_history?<>  <h2 className="text-xl font-bold mb-4">Wallet History</h2>
                     {/* {JSON.stringify(singleUser?.wallet_history)} */}
                     <ul className="space-y-2">
                       {singleUser?.wallet_history?.map((history: any) => (
@@ -493,18 +493,18 @@ export default function ProfileComponent() {
                           className="bg-gray-200 p-4 rounded"
                         >
                           <div className="flex flex-col justify-between items-center">
-                            <span>Credit: {history.change}</span>
-                            <span className="m-auto w-full">
-                              Credited from: {history.description}
+                            <span><b>Amount Credited:</b> {history.change} Letzkhelo Points</span>
+                            <span className=" m-auto w-full">
+                             <b> Credited from:</b> {history.description}
                             </span>
                             <span className="m-auto w-full">
-                              Date: {history.timestamp}
+                              Date: {history.timestamp.substring(0, 10)}
                             </span>
                           </div>
                         </li>
                       ))}
-                    </ul>
-                    <h2 className="text-xl font-bold mb-4">Payment History</h2>
+                    </ul></>:null}
+                   <h2 className="text-xl font-bold mb-4">Payment History</h2>
                     <ul className="space-y-2">
                       {payment.data?.payments?.map((payment: any) => (
                         <li

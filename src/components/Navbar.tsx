@@ -63,8 +63,8 @@ export default function Navbar({ fixed }: any) {
     setIsOpen(false);
   };
   return (
-    <div className="navbar lg:py-2 lg:h-[20vh] md:px-24.5 flex justify-between items-center z-10">
-      <div className="flex items-center justify-between px-4 py-4 lg:hidden ">
+    <div className="navbar lg:py-2 lg:h-[20vh] md:px-16 flex justify-between items-center z-10">
+      <div className="flex items-center justify-between px-4 py-4 lg:hidden  ">
         <div className="z-50">
           <button
             onClick={openMenu}

@@ -85,6 +85,10 @@ export const HomeComponent = () => {
           </div>
         </section>
       </div>
+     
+      <div className="md:px-20">
+      <Card />
+      </div>
       <div className="md:py-16 md:px-24 p-2 w-full overflow-x-auto md:overflow-hidden" >
         <div className=" flex justify-between">
           <p className="text-2xl font-bold text-gray-800 md:text-3xl lg:text-4xl mb-8">
@@ -93,9 +97,6 @@ export const HomeComponent = () => {
           <p className="cursor-pointer" onClick={()=>router.push('/allEvents')}>View all --&gt;</p>
         </div>
         <EventsCarousel />
-      </div>
-      <div className="md:px-20">
-      <Card />
       </div>
       <div className="m-0 p-0 md:px-24">
         <Features />

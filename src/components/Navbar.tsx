@@ -45,6 +45,10 @@ export default function Navbar({ fixed }: any) {
         const response = await axios.get(`/api/users/getsingleuser/${identifier}`);
         // console.log(response.data.data);
         setSingleUser(response.data.data);
+        if (response.data.data && !response.data.data.referral_code) {
+          
+          await updateReferralId(identifier);
+        }
         // console.log(singleUser,"setted",typeof(singleUser));
       } catch (error) {
         console.log(error);
@@ -53,6 +57,29 @@ export default function Navbar({ fixed }: any) {
 
     fetchData();
   }, [session]);
+    const updateReferralId = async (email: any) => {
+    try {
+      await axios.patch(`/api/users/updateReferralId`, { email, referral_code: generateReferralId() });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const generateReferralId = () => {
+    // Generate a unique referral ID
+    // return Math.random().toString(36).substr(2, 9);
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  const charactersLength = characters.length;
+  
+  for (let i = 0; i < 5; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  
+  const newReferralCode = `${session?.user?.name?.toUpperCase()?.split(' ')[0]}-${result}`;
+  return newReferralCode;
+  };
+
   
 
   const openMenu = () => {

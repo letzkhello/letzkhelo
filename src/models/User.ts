@@ -46,6 +46,12 @@ const userSchema = new Schema({
 
 
   },
+  referral_code:{
+    type: Schema.Types.String,
+    required: false,
+
+
+  },
 });
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);

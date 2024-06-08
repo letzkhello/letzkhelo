@@ -57,7 +57,6 @@ export function BookCompetetionFormDynamic({ params }: any) {
 
     return sum;
   }
-const [paymentMode,setPaymentMode]=useState('offline')
   useEffect(() => {
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -126,14 +125,14 @@ const [paymentMode,setPaymentMode]=useState('offline')
             competition_fees: sport.onlineEntryFees,
             sport_referred_to: sport.sportName,
           });
-          setPaymentMode('online')
           console.log("redirected.......");
           // Add route after payment success
           handleSubmit(
             {
               preventDefault: () => {},
             },
-            sport
+            sport,
+            'online'
           );
           // router.push(`/SuccessPage/${params.id}`);
         }
@@ -316,7 +315,8 @@ const [paymentMode,setPaymentMode]=useState('offline')
 
   const handleSubmit = async (
     e: { preventDefault: () => void },
-    sport: any
+    sport: any,
+    paymentMode:string
   ) => {
     e.preventDefault();
     try {
@@ -387,7 +387,7 @@ const [paymentMode,setPaymentMode]=useState('offline')
                     </h2>
 
                     <form
-                      onSubmit={(e) => handleSubmit(e, sport)}
+                      onSubmit={(e) => handleSubmit(e, sport,'offline')}
                       className="m-2 flex flex-col items-center justify-center lg:m-20"
                     >
                       <div className="flex flex-col w-full items-center lg:flex-row lg:justify-end lg:h-12 lg:w-3/5 m-1">

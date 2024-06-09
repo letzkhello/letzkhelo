@@ -61,7 +61,7 @@ export default function EventLists() {
           </h2>
           <ul>
             {sportList?.sportAccess?.map((sportName?: any, index?: any) => (
-              <li className="flex items-center justify-between py-2 border-b border-gray-300">
+              <li className="flex items-center justify-between py-2 border-b border-gray-300" key={index}>
                 <div className="flex items-center">
                   <span className="text-lg font-semibold mr-4">
                     {index + 1}

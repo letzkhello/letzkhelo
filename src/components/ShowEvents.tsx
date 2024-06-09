@@ -55,9 +55,12 @@ function Page({ params }: any) {
         console.error("Error fetching registered Users", error);
       }
     };
-
+    if(session){
     fetchData();
-  }, []);
+      
+    }
+
+  }, [session]);
 
   function replaceEncodedSpace(inputString: string): string {
     return inputString.replace(/%20/g, ' ');

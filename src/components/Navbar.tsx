@@ -9,12 +9,12 @@ import { motion } from "framer-motion";
 import { BiMenuAltLeft } from "react-icons/bi";
 import axios from "axios";
 
-
 interface Session {
   user: {
     name: string;
     email: string;
     image: string;
+    sportAccess: any;
   };
 }
 
@@ -27,7 +27,8 @@ interface User {
   weight: any;
   _id: any;
   imageLink: any;
-  wallet_balance:any;
+  wallet_balance: any;
+  sportAccess: any;
 }
 
 export default function Navbar({ fixed }: any) {
@@ -41,12 +42,12 @@ export default function Navbar({ fixed }: any) {
     const fetchData = async () => {
       try {
         const identifier = session?.user?.email;
-        console.log(identifier);
-        const response = await axios.get(`/api/users/getsingleuser/${identifier}`);
-        // console.log(response.data.data);
+        const response = await axios.get(
+          `/api/users/getsingleuser/${identifier}`
+        );
+        console.log(response.data.data ,"akashasassss")
         setSingleUser(response.data.data);
         if (response.data.data && !response.data.data.referral_code) {
-          
           await updateReferralId(identifier);
         }
         // console.log(singleUser,"setted",typeof(singleUser));
@@ -54,12 +55,15 @@ export default function Navbar({ fixed }: any) {
         console.log(error);
       }
     };
-
+    console.log(singleUser?.sportAccess?.length , "praksh")
     fetchData();
   }, [session]);
-    const updateReferralId = async (email: any) => {
+  const updateReferralId = async (email: any) => {
     try {
-      await axios.patch(`/api/users/updateReferralId`, { email, referral_code: generateReferralId() });
+      await axios.patch(`/api/users/updateReferralId`, {
+        email,
+        referral_code: generateReferralId(),
+      });
     } catch (error) {
       console.log(error);
     }
@@ -68,19 +72,19 @@ export default function Navbar({ fixed }: any) {
   const generateReferralId = () => {
     // Generate a unique referral ID
     // return Math.random().toString(36).substr(2, 9);
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  let result = '';
-  const charactersLength = characters.length;
-  
-  for (let i = 0; i < 5; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  
-  const newReferralCode = `${session?.user?.name?.toUpperCase()?.split(' ')[0]}-${result}`;
-  return newReferralCode;
-  };
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let result = "";
+    const charactersLength = characters.length;
 
-  
+    for (let i = 0; i < 5; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    const newReferralCode = `${
+      session?.user?.name?.toUpperCase()?.split(" ")[0]
+    }-${result}`;
+    return newReferralCode;
+  };
 
   const openMenu = () => {
     setIsOpen(true);
@@ -115,7 +119,7 @@ export default function Navbar({ fixed }: any) {
             Close
           </button>
 
-          <div className="p-4" >
+          <div className="p-4">
             <h1 className="text-2xl font-semibold mb-4">Menu</h1>
             <ul>
               <li className="mb-2">
@@ -208,7 +212,6 @@ export default function Navbar({ fixed }: any) {
                   Order History
                 </Link>
               </li>
-            
             </ul>
           </div>
         </div>
@@ -227,65 +230,65 @@ export default function Navbar({ fixed }: any) {
       </div>
 
       <div>
-      <div id="navLinks">
-        <ul className="DESKTOP-MENU hidden space-x-6 lg:flex text-black">
-          <li>
-            <motion.div
-              initial={{ opacity: 0, x: "-100vh" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", bounce: 0.6 }}
-            >
-              <Link
-                href="/"
-                className="text-xl font-bold  font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+        <div id="navLinks">
+          <ul className="DESKTOP-MENU hidden space-x-6 lg:flex text-black">
+            <li>
+              <motion.div
+                initial={{ opacity: 0, x: "-100vh" }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: "spring", bounce: 0.6 }}
               >
-                Home
-              </Link>
-            </motion.div>
-          </li>
-          <li>
-            <motion.div
-              initial={{ opacity: 0, x: "-100vh" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", bounce: 0.6 }}
-            >
-              <Link
-                href="/about"
-                className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                <Link
+                  href="/"
+                  className="text-xl font-bold  font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                >
+                  Home
+                </Link>
+              </motion.div>
+            </li>
+            <li>
+              <motion.div
+                initial={{ opacity: 0, x: "-100vh" }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: "spring", bounce: 0.6 }}
               >
-                About
-              </Link>
-            </motion.div>
-          </li>
-          <li>
-            <motion.div
-              initial={{ opacity: 0, x: "-100vh" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", bounce: 0.6 }}
-            >
-              <Link
-                href="/contact"
-                className="text-xl font-bold  font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                <Link
+                  href="/about"
+                  className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                >
+                  About
+                </Link>
+              </motion.div>
+            </li>
+            <li>
+              <motion.div
+                initial={{ opacity: 0, x: "-100vh" }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: "spring", bounce: 0.6 }}
               >
-                Contact
-              </Link>
-            </motion.div>
-          </li>
-          <li>
-            <motion.div
-              initial={{ opacity: 0, x: "-100vh" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", bounce: 0.6 }}
-            >
-              <Link
-                href="/allUsers"
-                className="text-xl font-bold  pb-3  font-sans border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                <Link
+                  href="/contact"
+                  className="text-xl font-bold  font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                >
+                  Contact
+                </Link>
+              </motion.div>
+            </li>
+            <li>
+              <motion.div
+                initial={{ opacity: 0, x: "-100vh" }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: "spring", bounce: 0.6 }}
               >
-                All Players
-              </Link>
-            </motion.div>
-          </li>
-          {/* <li>
+                <Link
+                  href="/allUsers"
+                  className="text-xl font-bold  pb-3  font-sans border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                >
+                  All Players
+                </Link>
+              </motion.div>
+            </li>
+            {/* <li>
             <motion.div
               initial={{ opacity: 0, x: "-100vh" }}
               animate={{ opacity: 1, x: 0 }}
@@ -313,128 +316,138 @@ export default function Navbar({ fixed }: any) {
               </Link>
             </motion.div>
           </li> */}
-          <li>
-            <motion.div
-              initial={{ opacity: 0, x: "-100vh" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", bounce: 0.6 }}
-            >
-              <Link
-                href="/winners"
-                className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+            <li>
+              <motion.div
+                initial={{ opacity: 0, x: "-100vh" }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: "spring", bounce: 0.6 }}
               >
-                Our COCs
-              </Link>
-            </motion.div>
-          </li>
-          <li>
-            <motion.div
-              initial={{ opacity: 0, x: "-100vh" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", bounce: 0.6 }}
-            >
-              <Link
-                href="/allProducts"
-                className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
-
+                <Link
+                  href="/winners"
+                  className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                >
+                  Our COCs
+                </Link>
+              </motion.div>
+            </li>
+            <li>
+              <motion.div
+                initial={{ opacity: 0, x: "-100vh" }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: "spring", bounce: 0.6 }}
               >
-                Store
-              </Link>
-            </motion.div>
-          </li>
-          <li>
-            <motion.div
-              initial={{ opacity: 0, x: "-100vh" }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ type: "spring", bounce: 0.6 }}
-            >
-              <Link
-                href="/yourOrders"
-                className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
-
+                <Link
+                  href="/allProducts"
+                  className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                >
+                  Store
+                </Link>
+              </motion.div>
+            </li>
+            <li>
+              <motion.div
+                initial={{ opacity: 0, x: "-100vh" }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ type: "spring", bounce: 0.6 }}
               >
-                Order History
-              </Link>
-            </motion.div>
-          </li>
-         
-        </ul>
-      </div>
-      <div className="flex items-center md:ml-10 ml-2">
-        <div className="text-xl font-bold mr-4">
-        🟡{singleUser?.wallet_balance?singleUser?.wallet_balance:0}
+                <Link
+                  href="/yourOrders"
+                  className="text-xl font-bold   font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                >
+                  Order History
+                </Link>
+              </motion.div>
+            </li>
+          </ul>
         </div>
-      </div>
-
-      <div className="dropdown dropdown-end md:ml-10 ml-2" >
-        <label
-          tabIndex={0}
-          className="btn btn-ghost btn-circle avatar bg-white"
-        >
-          <div className="w-15 rounded-full bg-white">
-          {
-            session?.user ? singleUser?.imageLink ? (<Image
-              src={ singleUser?.imageLink }
-              alt="Picture of the user"
-              width={500}
-              height={500}
-              className="h-40 w-40"
-            />) : session?.user?.image ? (<Image
-              src={session?.user?.image }
-              alt="Picture of the user"
-              width={500}
-              height={500}
-              className="h-40 w-40"
-            />) :  (
-              <Image
-            src={ defaultavatar}
-            alt="Picture of the user"
-            width={500}
-            height={500}
-            className="h-40 w-40"
-          /> 
-            ) : ( <Image
-              src={ defaultavatar}
-              alt="Picture of the user"
-              width={500}
-              height={500}
-              className="h-40 w-40"
-            />)
-          }
+        <div className="flex items-center md:ml-10 ml-2">
+          <div className="text-xl font-bold mr-4">
+            🟡{singleUser?.wallet_balance ? singleUser?.wallet_balance : 0}
           </div>
-        </label>
-        <ul
-          tabIndex={0}
-          className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-        >
-          <Link
-            href={session ? `/profile` : `/login`}
-            className="ml-4 font-medium text-black transition-all duration-200 hover:underline"
+        </div>
 
-            
+        <div className="dropdown dropdown-end md:ml-10 ml-2">
+          <label
+            tabIndex={0}
+            className="btn btn-ghost btn-circle avatar bg-white"
           >
-            <li>Profile</li>
-          </Link>
-     
-          {session?.user == null ? (
+            <div className="w-15 rounded-full bg-white">
+              {session?.user ? (
+                singleUser?.imageLink ? (
+                  <Image
+                    src={singleUser?.imageLink}
+                    alt="Picture of the user"
+                    width={500}
+                    height={500}
+                    className="h-40 w-40"
+                  />
+                ) : session?.user?.image ? (
+                  <Image
+                    src={session?.user?.image}
+                    alt="Picture of the user"
+                    width={500}
+                    height={500}
+                    className="h-40 w-40"
+                  />
+                ) : (
+                  <Image
+                    src={defaultavatar}
+                    alt="Picture of the user"
+                    width={500}
+                    height={500}
+                    className="h-40 w-40"
+                  />
+                )
+              ) : (
+                <Image
+                  src={defaultavatar}
+                  alt="Picture of the user"
+                  width={500}
+                  height={500}
+                  className="h-40 w-40"
+                />
+              )}
+            </div>
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+          >
             <Link
-              href="/login"
-              title=""
+              href={session ? `/profile` : `/login`}
               className="ml-4 font-medium text-black transition-all duration-200 hover:underline"
             >
-              <li>Sign In</li>
+              <li>Profile</li>
             </Link>
-          ) : (
-            <li>
-              <SignoutButton />
-            </li>
-          )}
-          <li></li>
-        </ul>
-      </div>
-      </div>
 
-     
+            {session?.user == null ? (
+              <Link
+                href="/login"
+                title=""
+                className="ml-4 font-medium text-black transition-all duration-200 hover:underline"
+              >
+                <li>Sign In</li>
+              </Link>
+            ) : (
+              <li>
+                <SignoutButton />
+              </li>
+            )}
+
+            {singleUser?.sportAccess?.length > 0 ? (
+                 <Link
+                 href="/admin/eventLists"
+                 title=""
+                 className="ml-4 font-medium text-black transition-all duration-200 hover:underline"
+               >
+                 <li>Admin</li>
+               </Link>
+            ) : (
+          ""
+            )}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }

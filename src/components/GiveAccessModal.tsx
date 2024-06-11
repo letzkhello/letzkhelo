@@ -18,13 +18,15 @@ interface User {
     totalCocWins?: number;
   }
 
-export const UserStatistics=({ params }: any)=> {
+export const Modal=({ params }: any)=> {
     const [user,setUser]=useState<User>()
     const [stats,setStat]=useState<Stats>()
+    const [email, setEmail] = useState<string>("");
     const fetchUserDetails=async()=>{
         const response= await axios.get(`/api/users/getUser/${params.id}`);
-        console.log( {response});
-        setUser(response.data)
+        // console.log(response.data.user.email);
+        setUser(response.data);
+        setEmail(response.data.user.email);
     }
     const fetchStats=async()=>{
         const response= await axios.get(`/api/Stats/${params.id}`)
@@ -36,7 +38,23 @@ export const UserStatistics=({ params }: any)=> {
         fetchStats()
 
     },[])
-
+    const handleGiveAccess = async (sport: string) => {
+      const body={
+        email: email,
+        sportName: sport,
+        superadmin_email: 'mohitmongia2005@gmail.com'
+      }
+      try{
+        const token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTcyODIyODM1Mn0.5nz61Li_a8RBNGR83Gc9LO7pPTYMoU4oaWhltQAfx-M';
+        const response= await axios.post('https://letzkhelo-backend.onrender.com/admin/provide_admin_access', body,{headers:{
+          Authorization: `Bearer ${token}`
+        }});
+        console.log(response.data);
+      }
+      catch(err){
+        console.log(err);
+      }
+    };
   return (
     <div className="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
       <div className="rounded-t-lg h-32 overflow-hidden">
@@ -59,101 +77,28 @@ export const UserStatistics=({ params }: any)=> {
       <div className="text-center mt-2">
         <h2 className="font-semibold">{user?.user?.name}</h2>
       </div>
-      <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
-        <li className="flex flex-col items-center justify-around">
-          <p className="font-semibold">Sport</p>
-          <div>{stats?.sportsName || 'Arm-Wrestling'}</div>
-        </li>
-        <li className="flex flex-col items-center justify-between">
-          <p className="font-semibold">Wins</p>
-          <div>{stats?.totalWins || 0}</div>
-        </li>
-        <li className="flex flex-col items-center justify-around">
-          <p className="font-semibold">Coc Wins</p>
-          <div>{stats?.totalCocWins || 0} </div>
-        </li>
-      </ul>
       <div className="col-span-4 sm:col-span-9">
         <div className="bg-white shadow rounded-lg p-6">
-          <h3 className="font-semibold text-center mt-3 -mb-2">Social media</h3>
-          <div className="flex justify-center items-center gap-6 my-6">
-            <Link
-              className="text-red-600"
-              aria-label="Visit TrendyMinds YouTube"
-              href=""
-              target="_blank"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 576 512"
-                className="h-6"
-              >
-                <path
-                  fill="currentColor"
-                  d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"
-                ></path>
-              </svg>
-            </Link>
-            <Link
-              className="text-blue-600"
-              aria-label="Visit TrendyMinds Facebook"
-              href=""
-              target="_blank"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 320 512"
-                className="h-6"
-              >
-                <path
-                  fill="currentColor"
-                  d="m279.14 288 14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"
-                ></path>
-              </svg>
-            </Link>
-            <Link
-              className="text-pink-600"
-              aria-label="Visit TrendyMinds Instagram"
-              // href= {user?.instagramLink ? user?.instagramLink : "Not Mentioned"}
-              href={"/"}
-              target="_blank"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 448 512"
-                className="h-6"
-              >
-                <path
-                  fill="currentColor"
-                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
-                ></path>
-              </svg>
-            </Link>
-          </div>
-
-          <ul className="py-4 mt-2 text-gray-700 flex items-center justify-around">
-            <li className="flex flex-col items-center justify-around">
-              <p className="font-semibold">Weight</p>
-              <div className="w-12">
-                {/* {user?.weight ? user?.weight : "Not Mentioned"} */}
-                {user?.user?.weight || "Not Mentioned"}
-              </div>
+          <ul>
+            <li>
+            Arm Wrestling 
+              <button className="btn m-10" onClick={()=>{handleGiveAccess('Arm Wrestling')}}>Give Access</button>
             </li>
-            <li className="flex flex-col items-center justify-between">
-              <p className="font-semibold">Age</p>
-              <div className="w-10">{user?.user?.age || "Not Mentioned"}</div>
+            <li>
+            Cricket 
+              <button className="btn m-10" onClick={()=>{handleGiveAccess('Cricket')}}>Give Access</button>
             </li>
-            <li className="flex flex-col items-center justify-around">
-              <p className="font-semibold">Intrested Sports</p>
-              <div className="w-10">{user?.user?.intrestedSport || "Not Mentioned"}</div>
+            <li>
+            Kabbadi 
+              <button className="btn m-10" onClick={()=>{handleGiveAccess('Kabbadi')}}>Give Access</button>
+            </li>
+            <li>
+            Football 
+              <button className="btn m-10" onClick={()=>{handleGiveAccess('Football')}}>Give Access</button>
             </li>
           </ul>
-
-          <h2 className="text-xl font-bold mb-4">About</h2>
-          <p className="text-gray-700">To be uploaded</p>
         </div>
       </div>
     </div>
   );
 }
-

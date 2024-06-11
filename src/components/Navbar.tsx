@@ -36,19 +36,21 @@ export default function Navbar({ fixed }: any) {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [singleUser, setSingleUser] = useState<User | null>(null);
-
+  const [isSuperAdmin, setSuperAdmin]= useState('');
   useEffect(() => {
     const fetchData = async () => {
       try {
         const identifier = session?.user?.email;
         console.log(identifier);
         const response = await axios.get(`/api/users/getsingleuser/${identifier}`);
-        // console.log(response.data.data);
+        // console.log(response.data.data + 'hello');
+        // console.log(... response.data.data);
         setSingleUser(response.data.data);
         if (response.data.data && !response.data.data.referral_code) {
           
           await updateReferralId(identifier);
         }
+        setSuperAdmin(response.data.data.role);
         // console.log(singleUser,"setted",typeof(singleUser));
       } catch (error) {
         console.log(error);
@@ -357,7 +359,22 @@ export default function Navbar({ fixed }: any) {
               </Link>
             </motion.div>
           </li>
-         
+          { isSuperAdmin=='superAdmin' ? (
+                <li>
+                    <motion.div
+                        initial={{ opacity: 0, x: "-100vh" }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ type: "spring", bounce: 0.6 }}
+                    >
+                        <Link
+                            href="/adminAccess"
+                            className="text-xl font-bold font-sans pb-3 border-b-4 border-transparent hover:border-orange-500 transition duration-300"
+                        >
+                            Give Access
+                        </Link>
+                    </motion.div>
+                </li>
+            ) : null}
         </ul>
       </div>
       <div className="flex items-center md:ml-10 ml-2">
